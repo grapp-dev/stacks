@@ -46,6 +46,12 @@ const App = () => {
 
 ## Example
 
+The following example shows how simple is building screens without using neither _margin_ nor _padding_ properties in your style sheets objects. For debugging purposes, you may want to either turn the debug mode by passing `debug` property to the provider or use the customizable Grid component.
+
+|  | Debug mode on | Grid component |
+| -- | ------------- | ------------- |
+| ![screen](assets/example.png) | ![screen](assets/example-debug.png)  | ![screen](assets/example-grid.png) |
+
 ```tsx
 import React from 'react'
 import { ScrollView, Text } from 'react-native'
@@ -92,10 +98,6 @@ const Profile = () => {
   )
 }
 ```
-
-|  | With debug mode on | With Grid component |
-| -- | ------------- | ------------- |
-| ![screen](assets/example.png) | ![screen](assets/example-debug.png)  | ![screen](assets/example-grid.png) |
 
 ## Api Reference
 
