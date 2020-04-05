@@ -58,7 +58,7 @@ const Profile = () => {
     <ScrollView>
       <Box padding={4}>
         <Stack space={4}>
-          <Stack space={5} align="center">
+          <Stack space={4} align="center">
             <Avatar source="…" size={96} />
             <Stack space={1} align="center">
               <Title>Shirley Anderson</Title>
@@ -80,7 +80,7 @@ const Profile = () => {
             </Columns>
             <Divider />
           </Stack>
-          <Tiles columns={4} space={1}>
+          <Tiles columns={4} space={2}>
             <Photo source="…" />
             <Photo source="…" />
             <Photo source="…" />
