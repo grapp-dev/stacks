@@ -17,7 +17,6 @@ export const Tiles = (props: Props) => {
   const { children, columns, space = 0, style, testID } = props
   const arr = splitEvery(columns, Children.toArray(children))
   const margin = useSpacing(space)
-  const flexBasis = `${100 / columns}%`
   const filledColumns = new Array(columns)
   const debugStyle = useDebugStyle()
 
@@ -28,15 +27,14 @@ export const Tiles = (props: Props) => {
         const isLast = lastFactory(filledArray)
 
         return (
-          <View style={directionOf('row')} key={index}>
+          <View style={[styles.fullWidth, directionOf('row')]} key={index}>
             {filledArray.map((child, innerIndex) => {
               return (
                 <View
                   style={[
-                    styles.shrink,
+                    styles.flexFluid,
                     child && debugStyle,
                     isLast(innerIndex) ? styles.noMarginRight : { marginRight: margin },
-                    { flexBasis },
                   ]}
                   key={innerIndex}
                 >
