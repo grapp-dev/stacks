@@ -46,7 +46,56 @@ const App = () => {
 
 ## Example
 
-(TODO)
+```tsx
+import React from 'react'
+import { ScrollView, Text } from 'react-native'
+import { Stack, Box, Columns, Column, Tiles } from '@mobily/stacks'
+
+// import components, styles, etc.
+
+const Profile = () => {
+  return (
+    <ScrollView>
+      <Box padding={4}>
+        <Stack space={4}>
+          <Stack space={5} align="center">
+            <Avatar source="…" size={96} />
+            <Stack space={1} align="center">
+              <Title>Shirley Anderson</Title>
+              <Text style={styles.description}>Mobile App UI/UX Designer</Text>
+            </Stack>
+            <Columns>
+              <Column>
+                <Stack space={1} align="center">
+                  <Text style={styles.highlight}>Followers</Text>
+                  <Text style={styles.counter}>258</Text>
+                </Stack>
+              </Column>
+              <Column>
+                <Stack space={1} align="center">
+                  <Text style={styles.highlight}>Following</Text>
+                  <Text style={styles.counter}>346</Text>
+                </Stack>
+              </Column>
+            </Columns>
+            <Divider />
+          </Stack>
+          <Tiles columns={4} space={1}>
+            <Photo source="…" />
+            <Photo source="…" />
+            <Photo source="…" />
+            // it's just for the example purposes, normally we all use an array and `map` 🙈
+          </Tiles>
+        </Stack>
+      </Box>
+    </ScrollView>
+  )
+}
+```
+
+|  | With debug mode on | With Grid component |
+| -- | ------------- | ------------- |
+| ![screen](assets/example.png) | ![screen](assets/example-debug.png)  | ![screen](assets/example-grid.png) |
 
 ## Api Reference
 
