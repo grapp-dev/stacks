@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Dimensions, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, useWindowDimensions } from 'react-native'
 import { useSpacing } from '../context'
 
 interface Props {
@@ -18,6 +18,7 @@ interface Options {
 
 const styles = StyleSheet.create({
   root: {
+    ...StyleSheet.absoluteFillObject,
     flexDirection: 'row',
     height: '100%',
   },
@@ -47,8 +48,8 @@ const calculatePageWidth = (options: Options) => {
 
 export const Grid = (props: Props) => {
   const { gutter = 1, margin = 1, columns = 8, opacity = 0.1 } = props
+  const { width } = useWindowDimensions()
   const spacing = useSpacing()
-  const { width } = Dimensions.get('window')
   const options = {
     columns,
     gutter: spacing(gutter),
