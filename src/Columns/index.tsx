@@ -1,6 +1,6 @@
 import React, { Children, cloneElement, isValidElement } from 'react'
 import { View, ViewProps } from 'react-native'
-import { lastFactory, directionOf, alignTo, styles, AxisY } from '../utils'
+import { lastFactory, directionOf, alignTo, justifyTo, styles, AxisY, Space, AxisX } from '../utils'
 import { useSpacing, useDebugStyle } from '../context'
 
 interface Props {
@@ -8,12 +8,13 @@ interface Props {
   space?: number
   reverse?: boolean
   alignY?: AxisY
+  alignX?: AxisX | Space
   style?: ViewProps['style']
   testID?: ViewProps['testID']
 }
 
 export const Columns = (props: Props) => {
-  const { children, space = 0, reverse = false, alignY, style, testID } = props
+  const { children, space = 0, reverse = false, alignX, alignY, style, testID } = props
   const isLast = lastFactory(children)
   const margin = useSpacing(space)
   const debugStyle = useDebugStyle()
@@ -25,6 +26,7 @@ export const Columns = (props: Props) => {
         styles.fullWidth,
         directionOf(reverse ? 'row-reverse' : 'row'),
         alignTo(alignY),
+        justifyTo(alignX),
       ]}
       testID={testID}
     >
