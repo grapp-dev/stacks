@@ -1,0 +1,61 @@
+{
+  "name": "@mobily/stacks",
+  "description": "⚡ Build React Native views blazingly fast.",
+  "version": "0.1.0",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf ./dist && rm -f ./tsconfig.tsbuildinfo",
+    "build": "tsc --outDir ./dist",
+    "test": "jest --passWithNoTests",
+    "test:watch": "jest --watch",
+    "generate:contributors": "yarn all-contributors generate",
+    "generate:package": "bash ./scripts/package.sh"
+  },
+  "engines": {
+    "node": ">= 10.*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "keywords": [
+    "react-native",
+    "react",
+    "typescript",
+    "stacks",
+    "layout"
+  ],
+  "author": "mobily",
+  "homepage": "https://github.com/mobily/stacks#readme",
+  "bugs": "https://github.com/mobily/stacks/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mobily/stacks.git"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-native": ">=0.59.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.4",
+    "@types/react": "^16.9.32",
+    "@types/react-native": "^0.62.1",
+    "@typescript-eslint/eslint-plugin": "^2.25.0",
+    "@typescript-eslint/parser": "^2.25.0",
+    "all-contributors-cli": "^6.14.0",
+    "coveralls": "^3.0.11",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
+    "jest": "^25.2.0",
+    "prettier": "^2.0.2",
+    "react": "^16.13.1",
+    "react-native": "^0.62.1",
+    "ts-jest": "^25.2.1",
+    "typescript": "^3.8.3"
+  },
+  "cacheDirectories": [
+    "node_modules"
+  ]
+}

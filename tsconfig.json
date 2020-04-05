@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "lib": ["esnext"],
+    "forceConsistentCasingInFileNames": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "esnext",
+    "module": "commonjs",
+    "allowJs": false,
+    "composite": true,
+    "declaration": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "removeComments": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "baseUrl": "src",
+    "moduleResolution": "node"
+  },
+  "exclude": ["**/*.test.ts", "playground"],
+  "include": [
+    "./src/**/*"
+  ]
+}
