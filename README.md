@@ -60,7 +60,7 @@ Consistent and clear!
 
 ## Example
 
-The following example shows how simple is building screens without using neither _margin_ nor _padding_ properties in your style sheets objects. For debugging purposes, you may want to turn the debug mode by passing `debug` property to the provider or use the customizable Grid component.
+The following example shows how simple is building screens without using neither _margin_ nor _padding_ properties in your style sheets objects. For debugging purposes, you may want to turn the debug mode on (pass the `debug` property to the provider) or use the customizable Grid component.
 
 |  | Debug mode on | Grid component |
 | -- | ------------- | ------------- |
