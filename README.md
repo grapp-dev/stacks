@@ -44,6 +44,20 @@ const App = () => {
 }
 ```
 
+In short, the spacing value unit here is a logical pixel, the same as you used to use before for either _margin_ and _padding_. However, for all `space` (`padding` as well) properties passed to components, **Stacks** will automatically multiply the default spacing value by passed value of `space`, for instance:
+
+```tsx
+<Stacks spacing={4}>…</Stacks>
+
+<Stack space={2}>…</Stack>
+// ⬆️ 4 * 2 = 8 logical pixels of the bottom margin
+
+<Box padding={3}>…</Box>
+// ⬆️ 4 * 3 = 12 logical pixels of the padding
+```
+
+Consistent and clear!
+
 ## Example
 
 The following example shows how simple is building screens without using neither _margin_ nor _padding_ properties in your style sheets objects. For debugging purposes, you may want to either turn the debug mode by passing `debug` property to the provider or use the customizable Grid component.
