@@ -68,19 +68,19 @@ const Profile = () => {
             <Avatar source="…" size={96} />
             <Stack space={1} align="center">
               <Title>Shirley Anderson</Title>
-              <Text style={styles.description}>Mobile App UI/UX Designer</Text>
+              <Description>Mobile App UI/UX Designer</Description>
             </Stack>
             <Columns>
               <Column>
                 <Stack space={1} align="center">
-                  <Text style={styles.highlight}>Followers</Text>
-                  <Text style={styles.counter}>258</Text>
+                  <Text>Followers</Text>
+                  <Counter>258</Counter>
                 </Stack>
               </Column>
               <Column>
                 <Stack space={1} align="center">
-                  <Text style={styles.highlight}>Following</Text>
-                  <Text style={styles.counter}>346</Text>
+                  <Text>Following</Text>
+                  <Counter>346</Counter>
                 </Stack>
               </Column>
             </Columns>
