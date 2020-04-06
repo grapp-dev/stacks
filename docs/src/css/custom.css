@@ -1,0 +1,57 @@
+/* stylelint-disable docusaurus/copyright-header */
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #2A6CDE;
+  --ifm-color-primary-dark: rgb(33, 175, 144);
+  --ifm-color-primary-darker: rgb(31, 165, 136);
+  --ifm-color-primary-darkest: rgb(26, 136, 112);
+  --ifm-color-primary-light: rgb(70, 203, 174);
+  --ifm-color-primary-lighter: rgb(102, 212, 189);
+  --ifm-color-primary-lightest: rgb(146, 224, 208);
+  --ifm-code-font-size: 95%;
+
+  --custom-background-color-features: #fff;
+  --custom-hero-background-color: #F5F6F7;
+  --custom-hero-text-color: inherit;
+}
+
+.docusaurus-highlight-code-line {
+  background-color: rgb(72, 77, 91);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+html[data-theme='dark'] {
+  --custom-background-color-features: #2F3238;
+  --custom-hero-background-color: #1f2125;
+  --custom-hero-text-color: #fff;
+
+  --ifm-color-primary: #79AAFF;
+  --ifm-background-color: #1f2125;
+  --ifm-contents-border-color: #2F3238;
+}
+
+.features_src-pages- {
+  background-color: var(--custom-background-color-features);
+}
+
+.hero.hero--primary {
+  --ifm-hero-background-color: var(--custom-hero-background-color);
+  --ifm-hero-text-color: var(--custom-hero-text-color);
+}
+
+.hero .hero__title {
+  font-size: 3.4rem;
+  font-style: italic;
+}
+
+.hero .hero__subtitle {
+  font-size: 1.2rem;
+}

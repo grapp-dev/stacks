@@ -1,0 +1,4 @@
+---
+id: inline
+title: Inline
+---
