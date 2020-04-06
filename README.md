@@ -81,8 +81,8 @@ const Profile = () => {
           <Stack space={4} align="center">
             <Avatar source="…" size={96} />
             <Stack space={1} align="center">
-              <Title>Shirley Anderson</Title>
-              <Description>Mobile App UI/UX Designer</Description>
+              <Title>Jenna Doe</Title>
+              <Description>Photographer & Artist</Description>
             </Stack>
             <Columns>
               <Column>
