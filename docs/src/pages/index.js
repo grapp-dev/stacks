@@ -15,9 +15,7 @@ const features = [
   {
     title: <>Debug your layout quickly</>,
     // imageUrl: 'img/undraw_docusaurus_tree.svg',
-    description: (
-      <>Use debug mode to see how your components are positioned and fix inaccurate ones.</>
-    ),
+    description: <>Use debug mode to investigate your layout.</>,
   },
   {
     title: <>Add design system grid</>,
