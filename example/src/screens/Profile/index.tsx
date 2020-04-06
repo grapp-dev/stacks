@@ -6,6 +6,8 @@ import { Avatar } from 'components/Avatar'
 import { Divider } from 'components/Divider'
 import { Photo } from 'components/Photo'
 import { Title } from 'components/Title'
+import { Description } from 'components/Description'
+import { Counter } from 'components/Counter'
 
 import { styles } from './styles'
 
@@ -20,19 +22,19 @@ export const Profile = () => {
             <Avatar source="https://randomuser.me/api/portraits/women/11.jpg" size={96} />
             <Stack space={1} align="center">
               <Title>Jenna Doe</Title>
-              <Text style={styles.description}>Photographer & Artist</Text>
+              <Description>Photographer &amp; Artist</Description>
             </Stack>
             <Columns>
               <Column>
                 <Stack space={1} align="center">
                   <Text style={styles.highlight}>Followers</Text>
-                  <Text style={styles.counter}>258</Text>
+                  <Counter>258</Counter>
                 </Stack>
               </Column>
               <Column>
                 <Stack space={1} align="center">
                   <Text style={styles.highlight}>Following</Text>
-                  <Text style={styles.counter}>346</Text>
+                  <Counter>346</Counter>
                 </Stack>
               </Column>
             </Columns>
