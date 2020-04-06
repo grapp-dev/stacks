@@ -44,7 +44,7 @@ const App = () => {
 }
 ```
 
-In short, the spacing value unit here is a logical pixel, the same as you used to use before for either _margin_ or _padding_, whilst **Stacks** will automatically multiply the default spacing value by value of `space` (`padding` as well) passed to the components, for instance:
+In short, the spacing value unit here is a logical pixel, the same as you've been using before for either _margin_ or _padding_. **Stacks** will automatically multiply the default spacing value by value of `space` (`padding` as well) passed to the components, for instance:
 
 ```tsx
 <Stacks spacing={4}>…</Stacks>
