@@ -82,7 +82,7 @@ const Profile = () => {
             <Avatar source="…" size={96} />
             <Stack space={1} align="center">
               <Title>Jenna Doe</Title>
-              <Description>Photographer & Artist</Description>
+              <Description>Photographer &amp; Artist</Description>
             </Stack>
             <Columns>
               <Column>
