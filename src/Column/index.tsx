@@ -2,7 +2,7 @@ import React from 'react'
 import { View, ViewProps } from 'react-native'
 import { flexOf, Flex, AxisX, alignTo } from '../utils'
 
-interface Props {
+export interface Props {
   children: React.ReactNode
   width?: Flex
   align?: AxisX

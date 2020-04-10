@@ -3,7 +3,7 @@ import { View, ViewProps } from 'react-native'
 import { lastFactory, wrapOf, directionOf, styles } from '../utils'
 import { useSpacing, useDebugStyle } from '../context'
 
-interface Props {
+export interface Props {
   children: React.ReactNode
   space?: number
   style?: ViewProps['style']

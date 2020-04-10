@@ -5,7 +5,7 @@ import { Stack } from '../Stack'
 import { lastFactory, splitEvery, directionOf, styles } from '../utils'
 import { useSpacing, useDebugStyle } from '../context'
 
-interface Props {
+export interface Props {
   children: React.ReactNode
   columns: number
   space?: number
