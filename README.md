@@ -58,6 +58,29 @@ In short, the spacing value unit here is a logical pixel, the same as you've bee
 
 Consistent and clear!
 
+Another required thing, you always have to pass `style` property to your components if you want to use them within **Stacks** components, like so:
+
+```tsx
+import { View, ViewProps } from 'react-native'
+import { styles } from './styles'
+// ⬆️ your custom styles
+
+interface Props {
+  …
+  style?: ViewProps['style']
+}
+
+export const Placeholder = (props: Props) => {
+  const { …, style } = props
+
+  return (
+    <View style={[styles.root, style]}>
+      …
+    </View>
+  )
+}
+```
+
 ## Example
 
 The following example shows how simple is building screens without using neither _margin_ nor _padding_ properties in your style sheets objects. For debugging purposes, you may want to turn the debug mode on (pass the `debug` property to the provider) or use the customizable Grid component.

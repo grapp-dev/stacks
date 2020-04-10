@@ -28,3 +28,28 @@ In short, the spacing value unit here is a logical pixel, the same as you've bee
 <Box padding={3}>…</Box>
 // ⬆️ 4 * 3 = 12 logical pixels of the padding
 ```
+
+Consistent and clear!
+
+Another required thing, you always have to pass `style` property to your components if you want to use them within **Stacks** components, like so:
+
+```tsx
+import { View, ViewProps } from 'react-native'
+import { styles } from './styles'
+// ⬆️ your custom styles
+
+interface Props {
+  …
+  style?: ViewProps['style']
+}
+
+export const Placeholder = (props: Props) => {
+  const { …, style } = props
+
+  return (
+    <View style={[styles.root, style]}>
+      …
+    </View>
+  )
+}
+```
