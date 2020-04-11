@@ -1,0 +1,61 @@
+---
+id: inline
+title: Inline
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+- use `Inline` to render a set of components in a row with equal spacing around them, wrapping onto multiple lines when necessary
+- multiple `Inline` components can be nested to create more complex white space rules
+
+### `space`
+
+- type: `number`
+- required: `no`
+- default: `0`
+
+::: div doc-example
+```tsx
+<Inline space={2}>
+  <Placeholder height={60} width={90} />
+  <Placeholder height={60} width={60} />
+  <Placeholder height={60} width={120} />
+  <Placeholder height={60} width={200} />
+  <Placeholder height={60} width={100} />
+  <Placeholder height={60} width={140} />
+</Inline>
+```
+
+  ::: div doc-example__image
+  <img src={useBaseUrl('img/inline-space-1.png')} />
+  :::
+:::
+
+::: div doc-example
+```tsx
+<Inline space={6}>
+  <Inline space={2}>
+    <Placeholder height={60} width={60} />
+    <Placeholder height={60} width={90} />
+  </Inline>
+  <Inline space={2}>
+    <Placeholder height={60} width={60} />
+    <Placeholder height={60} width={90} />
+  </Inline>
+</Inline>
+```
+
+  ::: div doc-example__image
+  <img src={useBaseUrl('img/inline-space-2.png')} />
+  :::
+:::
+
+### `testID`
+
+- type: `string`
+- required: `no`
+
+### `style`
+
+- type: `StyleProp<ViewStyle>`
+- required: `no`
