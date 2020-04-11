@@ -85,7 +85,7 @@ export const Placeholder = (props: Props) => {
 
 The following example shows how simple is building screens without using neither _margin_ nor _padding_ properties in your style sheets objects. For debugging purposes, you may want to turn the debug mode on (pass the `debug` property to the provider) or use the customizable Grid component.
 
-|                               | Debug mode on                       | Grid component                     |
+|                               | Debug mode                          | Grid component                     |
 | ----------------------------- | ----------------------------------- | ---------------------------------- |
 | ![screen](assets/example.png) | ![screen](assets/example-debug.png) | ![screen](assets/example-grid.png) |
 
