@@ -2,7 +2,7 @@ import React from 'react'
 import { Stack } from '@mobily/stacks'
 import { Placeholder } from 'components/Placeholder'
 
-export const StackExample3 = () => {
+export const StackSpace3 = () => {
   return (
     <Stack space={8}>
       <Stack space={1}>
