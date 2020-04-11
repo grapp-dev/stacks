@@ -1,0 +1,71 @@
+---
+id: tiles
+title: Tiles
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+- use `Tiles` to render a grid of components with equal spacing between them
+- other `Stacks` components can be nested to create more complex white space rules
+
+### `columns`
+
+- type: `number`
+- required: `yes`
+
+::: div doc-example
+```tsx
+<Tiles space={2} columns={3}>
+  <Placeholder />
+  <Placeholder />
+  <Placeholder />
+  <Placeholder />
+  <Placeholder />
+</Tiles>
+```
+
+  ::: div doc-example__image
+  <img src={useBaseUrl('img/tiles-1.png')} />
+  :::
+:::
+
+::: div doc-example
+```tsx
+<Tiles space={2} columns={2}>
+  <Columns space={2}>
+    <Column>
+      <Placeholder />
+    </Column>
+    <Column>
+      <Placeholder />
+    </Column>
+  </Columns>
+  <Placeholder />
+  <Placeholder />
+  <Stack space={2}>
+    <Placeholder height={46} />
+    <Placeholder height={46} />
+  </Stack>
+</Tiles>
+```
+
+  ::: div doc-example__image
+  <img src={useBaseUrl('img/tiles-2.png')} />
+  :::
+:::
+
+### `space`
+
+- type: `number`
+- required: `no`
+- default: `0`
+
+### `testID`
+
+- type: `string`
+- required: `no`
+
+### `style`
+
+- type: `StyleProp<ViewStyle>`
+- required: `no`

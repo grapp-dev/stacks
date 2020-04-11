@@ -1,4 +1,0 @@
----
-id: tiles
-title: Tiles
----
