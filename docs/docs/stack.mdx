@@ -1,0 +1,118 @@
+---
+id: stack
+title: Stack
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+- distribute white space evenly between components (vertically)
+- multiple `Stack` components can be nested to create more complex white space rules
+
+### `space`
+
+- type: `number`
+- required: `no`
+- default: `0`
+
+<Tabs
+  defaultValue="space-1"
+  values={[
+    { label: '#1', value: 'space-1', },
+    { label: '#2', value: 'space-2', },
+    { label: '#3', value: 'space-3', },
+  ]
+}>
+<TabItem value="space-1">
+
+```tsx
+<Stack space={1}>
+  <Placeholder />
+  <Placeholder />
+  <Placeholder />
+</Stack>
+```
+
+</TabItem>
+<TabItem value="space-2">
+
+```tsx
+<Stack space={4}>
+  <Placeholder />
+  <Placeholder />
+  <Placeholder />
+</Stack>
+```
+
+</TabItem>
+<TabItem value="space-3">
+
+```tsx
+<Stack space={8}>
+  <Stack space={1}>
+    <Placeholder />
+    <Placeholder />
+  </Stack>
+  <Stack space={1}>
+    <Placeholder />
+    <Placeholder />
+    <Placeholder />
+  </Stack>
+</Stack>
+```
+
+</TabItem>
+</Tabs>
+
+| #1 | #2 | #3 |
+| -- | -- | -- |
+| ![screen](/docs/assets/stack-example-1.png) | ![screen](/docs/assets/stack-example-2.png) | ![screen](/docs/assets/stack-example-3.png) |
+
+### `align`
+
+- type: `'left' | 'center' | 'right'`
+- required: `no`
+- default: `left`
+
+<Tabs
+  defaultValue="align-1"
+  values={[
+    { label: '#1', value: 'align-1', },
+    { label: '#2', value: 'align-2', },
+  ]
+}>
+<TabItem value="align-1">
+
+```tsx
+<Stack space={1} align="center">
+  <Placeholder width={140} />
+  <Placeholder width={200} />
+</Stack>
+```
+
+</TabItem>
+<TabItem value="align-2">
+
+```tsx
+<Stack space={1} align="right">
+  <Placeholder width={140} />
+  <Placeholder width={200} />
+</Stack>
+```
+
+</TabItem>
+</Tabs>
+
+| #1 | #2 |
+| -- | -- |
+| ![screen](/docs/assets/stack-example-4.png) | ![screen](/docs/assets/stack-example-5.png) |
+
+### `testID`
+
+- type: `string`
+- required: `no`
+
+### `style`
+
+- type: `StyleProp<ViewStyle>`
+- required: `no`
