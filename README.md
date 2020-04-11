@@ -123,11 +123,17 @@ const Profile = () => {
             </Columns>
             <Divider />
           </Stack>
+          <Text>Photos</Text>
           <Tiles columns={4} space={2}>
             <Photo source="…" />
             <Photo source="…" />
             <Photo source="…" />
-            // it's just for the example purposes, normally we all use an array and `map` 🙈
+          </Tiles>
+          <Text style={styles.highlight}>Followers</Text>
+          <Tiles columns={8} space={2}>
+            <Avatar source="…" />
+            <Avatar source="…" />
+            <Avatar source="…" />
           </Tiles>
         </Stack>
       </Box>
