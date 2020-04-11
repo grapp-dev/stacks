@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
   warning: {
     position: 'absolute',
-    top: 24,
+    top: 44,
     left: 24,
     right: 24,
   },
@@ -39,9 +39,9 @@ const styles = StyleSheet.create({
 
 const calculateColumnWidth = (options: Options) => {
   const { width, columns, gutter, margin } = options
-  return Math.floor((width - ((columns - 1) * gutter + 2 * margin)) / columns)
+  return (width - ((columns - 1) * gutter + 2 * margin)) / columns
 }
-const calculatePageWidth = (options: Options) => {
+const calculateGridWidth = (options: Options) => {
   const { width, columns, gutter, margin } = options
   return width * columns + (columns - 1) * gutter + 2 * margin
 }
@@ -59,7 +59,7 @@ export const Grid = (props: Props) => {
     width,
     ...options,
   })
-  const pageWidth = calculatePageWidth({
+  const gridWidth = calculateGridWidth({
     width: columnWidth,
     ...options,
   })
@@ -83,11 +83,11 @@ export const Grid = (props: Props) => {
       pointerEvents="none"
     >
       {grid}
-      {pageWidth !== width ? (
+      {gridWidth !== width ? (
         <View style={styles.warning}>
           <Text
             style={styles.text}
-          >{`Calculated page width (${pageWidth}) is different than window width (${width}). Adjust the grid options.`}</Text>
+          >{`Calculated grid width (${gridWidth}) is different than window width (${width}). Adjust the grid options.`}</Text>
         </View>
       ) : null}
     </View>
