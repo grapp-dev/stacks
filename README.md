@@ -58,7 +58,7 @@ In short, the spacing value unit here is a logical pixel, the same as you've bee
 
 Consistent and clear!
 
-Another required thing, you always have to pass `style` property to your components if you want to use them within **Stacks** components, like so:
+Another required thing, you always have to pass `style` property to your components if you want to use them properly within **Stacks** components.
 
 ```tsx
 import { View, ViewProps } from 'react-native'
@@ -85,9 +85,9 @@ export const Placeholder = (props: Props) => {
 
 The following example shows how simple is building screens without using neither _margin_ nor _padding_ properties in your style sheets objects. For debugging purposes, you may want to turn the debug mode on (pass the `debug` property to the provider) or use the customizable Grid component.
 
-|  | Debug mode on | Grid component |
-| -- | ------------- | ------------- |
-| ![screen](assets/example.png) | ![screen](assets/example-debug.png)  | ![screen](assets/example-grid.png) |
+|                               | Debug mode on                       | Grid component                     |
+| ----------------------------- | ----------------------------------- | ---------------------------------- |
+| ![screen](assets/example.png) | ![screen](assets/example-debug.png) | ![screen](assets/example-grid.png) |
 
 ```tsx
 import React from 'react'
