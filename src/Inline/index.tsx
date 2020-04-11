@@ -17,19 +17,22 @@ export const Inline = (props: Props) => {
   const debugStyle = useDebugStyle()
 
   return (
-    <View style={[style, wrapOf('wrap'), directionOf('row')]} testID={testID}>
-      {Children.map(children, (child, index) => {
-        return isValidElement(child)
-          ? cloneElement(child, {
-              ...child.props,
-              style: [
-                child.props.style,
-                debugStyle,
-                isLast(index) ? styles.noMarginRight : { marginRight: margin },
-              ],
-            })
-          : null
-      })}
+    <View style={style} testID={testID}>
+      <View style={[wrapOf('wrap'), directionOf('row'), { marginTop: -margin }]}>
+        {Children.map(children, (child, index) => {
+          return isValidElement(child)
+            ? cloneElement(child, {
+                ...child.props,
+                style: [
+                  child.props.style,
+                  debugStyle,
+                  isLast(index) ? styles.noMarginRight : { marginRight: margin },
+                  { marginTop: margin },
+                ],
+              })
+            : null
+        })}
+      </View>
     </View>
   )
 }
