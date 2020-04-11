@@ -1,4 +1,0 @@
----
-id: columns
-title: Columns
----
