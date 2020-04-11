@@ -7,7 +7,4 @@ export const styles = StyleSheet.create({
     color: '#8a8a8a',
     textTransform: 'uppercase',
   },
-  photoHeight: {
-    height: 50,
-  },
 })
