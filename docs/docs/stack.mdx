@@ -3,8 +3,6 @@ id: stack
 title: Stack
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 - distribute white space evenly between components (vertically)
@@ -16,16 +14,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 - required: `no`
 - default: `0`
 
-<Tabs
-  defaultValue="space-1"
-  values={[
-    { label: '#1', value: 'space-1', },
-    { label: '#2', value: 'space-2', },
-    { label: '#3', value: 'space-3', },
-  ]
-}>
-<TabItem value="space-1">
-
+::: div doc-example
 ```tsx
 <Stack space={1}>
   <Placeholder />
@@ -34,9 +23,12 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 </Stack>
 ```
 
-</TabItem>
-<TabItem value="space-2">
+  ::: div doc-example__image
+  <img src={useBaseUrl('img/stack-space-1.png')} />
+  :::
+:::
 
+::: div doc-example
 ```tsx
 <Stack space={4}>
   <Placeholder />
@@ -45,9 +37,12 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 </Stack>
 ```
 
-</TabItem>
-<TabItem value="space-3">
+  ::: div doc-example__image
+  <img src={useBaseUrl('img/stack-space-2.png')} />
+  :::
+:::
 
+::: div doc-example
 ```tsx
 <Stack space={8}>
   <Stack space={1}>
@@ -62,12 +57,10 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 </Stack>
 ```
 
-</TabItem>
-</Tabs>
-
-| #1 | #2 | #3 |
-| -- | -- | -- |
-| <img src={useBaseUrl('img/stack-space-1.png')} /> | <img src={useBaseUrl('img/stack-space-2.png')} /> | <img src={useBaseUrl('img/stack-space-3.png')} /> |
+  ::: div doc-example__image
+  <img src={useBaseUrl('img/stack-space-3.png')} />
+  :::
+:::
 
 ### `align`
 
@@ -75,38 +68,33 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 - required: `no`
 - default: `left`
 
-<Tabs
-  defaultValue="align-1"
-  values={[
-    { label: '#1', value: 'align-1', },
-    { label: '#2', value: 'align-2', },
-  ]
-}>
-<TabItem value="align-1">
-
+::: div doc-example
 ```tsx
 <Stack space={1} align="center">
-  <Placeholder width={140} />
-  <Placeholder width={200} />
+  <Placeholder width={120} />
+  <Placeholder width={180} />
+  <Placeholder width={240} />
 </Stack>
 ```
 
-</TabItem>
-<TabItem value="align-2">
+  ::: div doc-example__image
+  <img src={useBaseUrl('img/stack-align-1.png')} />
+  :::
+:::
 
+::: div doc-example
 ```tsx
 <Stack space={1} align="right">
-  <Placeholder width={140} />
-  <Placeholder width={200} />
+  <Placeholder width={120} />
+  <Placeholder width={180} />
+  <Placeholder width={240} />
 </Stack>
 ```
 
-</TabItem>
-</Tabs>
-
-| #1 | #2 |
-| -- | -- |
-| <img src={useBaseUrl('img/stack-align-1.png')} /> | <img src={useBaseUrl('img/stack-align-2.png')} /> |
+  ::: div doc-example__image
+  <img src={useBaseUrl('img/stack-align-2.png')} />
+  :::
+:::
 
 ### `testID`
 
