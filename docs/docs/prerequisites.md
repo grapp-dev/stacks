@@ -31,7 +31,7 @@ In short, the spacing value unit here is a logical pixel, the same as you've bee
 
 Consistent and clear!
 
-Another required thing, you always have to pass `style` property to your components if you want to use them within **Stacks** components, like so:
+Another required thing, you always have to pass `style` property to your components if you want to use them properly within **Stacks** components.
 
 ```tsx
 import { View, ViewProps } from 'react-native'
