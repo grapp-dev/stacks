@@ -129,7 +129,7 @@ const Profile = () => {
             <Photo source="…" />
             <Photo source="…" />
           </Tiles>
-          <Text style={styles.highlight}>Followers</Text>
+          <Text>Followers</Text>
           <Tiles columns={8} space={2}>
             <Avatar source="…" />
             <Avatar source="…" />
