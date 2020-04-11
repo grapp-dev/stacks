@@ -55,3 +55,20 @@ html[data-theme='dark'] {
 .hero .hero__subtitle {
   font-size: 1.2rem;
 }
+
+.doc-example {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(41, 45, 62);
+  margin-bottom: var(--ifm-leading);
+}
+
+.doc-example > div {
+  margin: 0;
+  flex: 1;
+}
+
+.doc-example__image {
+  flex: 0.4 !important;
+  line-height: 0;
+}
