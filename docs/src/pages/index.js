@@ -13,16 +13,14 @@ const features = [
     description: <>Use Stacks components to distribute white space evenly between components.</>,
   },
   {
-    title: <>Debug your layout quickly</>,
+    title: <>Debug your layout</>,
     // imageUrl: 'img/undraw_docusaurus_tree.svg',
-    description: <>Use debug mode to investigate your layout.</>,
+    description: <>With debug mode, you can investigate non-trivial visual issues.</>,
   },
   {
     title: <>Add design system grid</>,
     // imageUrl: 'img/undraw_docusaurus_react.svg',
-    description: (
-      <>Use a customizable grid for having sure that your components are aligned properly.</>
-    ),
+    description: <>Use a customizable grid to ensure that your components are aligned properly.</>,
   },
 ]
 
