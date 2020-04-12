@@ -63,6 +63,12 @@ html[data-theme='dark'] {
   margin-bottom: var(--ifm-leading);
 }
 
+@media (max-width: 576px) {
+  .doc-example {
+    flex-direction: column;
+  }
+}
+
 .doc-example > div {
   margin: 0;
   flex: 1;
