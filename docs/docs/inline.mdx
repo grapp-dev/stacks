@@ -6,6 +6,7 @@ title: Inline
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 - use `Inline` to render a set of components in a row with equal spacing around them, wrapping onto multiple lines when necessary
+- `Inline` supports horizontal alignment of its children
 - multiple `Inline` components can be nested to create more complex white space rules
 
 ### `space`
@@ -47,6 +48,44 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
   ::: div doc-example__image
   <img src={useBaseUrl('img/inline-space-2.png')} />
+  :::
+:::
+
+### `align`
+
+- type: `'left' | 'center' | 'right'`
+- required: `no`
+- default: `left`
+
+::: div doc-example
+```tsx
+<Inline space={2} align="center">
+  <Placeholder height={60} width={90} />
+  <Placeholder height={60} width={60} />
+  <Placeholder height={60} width={120} />
+  <Placeholder height={60} width={100} />
+  <Placeholder height={60} width={100} />
+</Inline>
+```
+
+  ::: div doc-example__image
+  <img src={useBaseUrl('img/inline-align-1.png')} />
+  :::
+:::
+
+::: div doc-example
+```tsx
+<Inline space={2} align="right">
+  <Placeholder height={60} width={90} />
+  <Placeholder height={60} width={60} />
+  <Placeholder height={60} width={120} />
+  <Placeholder height={60} width={100} />
+  <Placeholder height={60} width={100} />
+</Inline>
+```
+
+  ::: div doc-example__image
+  <img src={useBaseUrl('img/inline-align-2.png')} />
   :::
 :::
 
