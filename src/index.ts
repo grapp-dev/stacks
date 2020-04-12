@@ -7,17 +7,4 @@ export { Tiles, Props as TilesProps } from './Tiles'
 export { FillObject } from './FillObject'
 export { Grid } from './Grid'
 export { Provider, useSpacing } from './context'
-export {
-  alignTo,
-  justifyTo,
-  flexOf,
-  directionOf,
-  wrapOf,
-  styles,
-  AxisX,
-  AxisY,
-  Space,
-  Flex,
-  Direction,
-  Wrap,
-} from './utils'
+export { styles, AxisX, AxisY, Space, Flex, Direction, Wrap } from './utils'
