@@ -1,7 +1,7 @@
 {
   "name": "@mobily/stacks",
   "description": "⚡ Build React Native views blazingly fast.",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf ./dist && rm -f ./tsconfig.tsbuildinfo",
