@@ -33,7 +33,7 @@ type StyleProps = TakeNumbers<
   >
 >
 
-export interface Props<T> extends StyleProps, ViewProps {
+export interface Props<T extends Direction> extends StyleProps, ViewProps {
   children: React.ReactNode
   flex?: Flex
   direction?: T
@@ -44,7 +44,7 @@ export interface Props<T> extends StyleProps, ViewProps {
   wrap?: Wrap
 }
 
-export const Box = <T extends string>(props: Props<T>) => {
+export const Box = <T extends Direction>(props: Props<T>) => {
   const {
     children,
     flex = 'content',
