@@ -17,6 +17,8 @@ import {
 import { Tiles1, Tiles2 } from 'screens/Docs/Tiles'
 import { InlineSpace1, InlineSpace2, InlineAlign1, InlineAlign2 } from 'screens/Docs/Inline'
 import { GridContent, Grid1, Grid2, Grid3 } from 'screens/Docs/Grid'
+import { Box1 } from 'screens/Docs/Box'
+import { FillObject1 } from 'screens/Docs/FillObject'
 
 export const Root = () => {
   return (
@@ -45,7 +47,9 @@ export const Root = () => {
           {/* <InlineAlign1 /> */}
           {/* <InlineAlign2 /> */}
           {/* <GridContent paddingX={4} space={8} /> */}
+          {/* <Box1 /> */}
         </SafeAreaView>
+        {/* <FillObject1 /> */}
         {/* <Grid margin={4} gutter={2} columns={8} opacity={0.2} /> */}
         {/* <Grid1 /> */}
         {/* <Grid2 /> */}
