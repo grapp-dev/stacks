@@ -41,7 +41,7 @@ type StyleProps = TakeNumbers<
 >
 
 export interface Props<T extends Direction> extends StyleProps, ViewProps {
-  children: React.ReactNode
+  children?: React.ReactNode
   flex?: Flex
   direction?: T
   paddingX?: number
