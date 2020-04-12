@@ -55,6 +55,9 @@ export const styles = StyleSheet.create({
   flexBasis14: {
     flexBasis: '25%',
   },
+  flexBasis34: {
+    flexBasis: '75%',
+  },
   flexBasis15: {
     flexBasis: '20%',
   },
@@ -118,6 +121,9 @@ export const styles = StyleSheet.create({
   fullWidth: {
     width: '100%',
   },
+  fullHeight: {
+    height: '100%',
+  },
   shrink: {
     flexShrink: 1,
   },
@@ -180,6 +186,8 @@ export const flexOf = (flex?: Flex) => {
       return styles.flexBasis23
     case '1/4':
       return styles.flexBasis14
+    case '3/4':
+      return styles.flexBasis34
     case '1/5':
       return styles.flexBasis15
     case '2/5':
