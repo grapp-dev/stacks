@@ -29,3 +29,27 @@ export const InlineSpace2 = () => {
     </Inline>
   )
 }
+
+export const InlineAlign1 = () => {
+  return (
+    <Inline space={2} align="center">
+      <Placeholder height={60} width={90} />
+      <Placeholder height={60} width={60} />
+      <Placeholder height={60} width={120} />
+      <Placeholder height={60} width={100} />
+      <Placeholder height={60} width={100} />
+    </Inline>
+  )
+}
+
+export const InlineAlign2 = () => {
+  return (
+    <Inline space={2} align="right">
+      <Placeholder height={60} width={90} />
+      <Placeholder height={60} width={60} />
+      <Placeholder height={60} width={120} />
+      <Placeholder height={60} width={100} />
+      <Placeholder height={60} width={100} />
+    </Inline>
+  )
+}

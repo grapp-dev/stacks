@@ -15,7 +15,7 @@ import {
   ColumnsAlignX2,
 } from 'screens/Docs/Columns'
 import { Tiles1, Tiles2 } from 'screens/Docs/Tiles'
-import { InlineSpace1, InlineSpace2 } from 'screens/Docs/Inline'
+import { InlineSpace1, InlineSpace2, InlineAlign1, InlineAlign2 } from 'screens/Docs/Inline'
 import { GridContent, Grid1, Grid2, Grid3 } from 'screens/Docs/Grid'
 
 export const Root = () => {
@@ -42,6 +42,8 @@ export const Root = () => {
           {/* <Tiles2 /> */}
           {/* <InlineSpace1 /> */}
           {/* <InlineSpace2 /> */}
+          {/* <InlineAlign1 /> */}
+          {/* <InlineAlign2 /> */}
           {/* <GridContent paddingX={4} space={8} /> */}
         </SafeAreaView>
         {/* <Grid margin={4} gutter={2} columns={8} opacity={0.2} /> */}
