@@ -1,0 +1,180 @@
+---
+id: box
+title: Box
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+- `Box` is the most low-level layout component provided by `Stacks`
+- `Box` provides a set of `padding` and `margins` options which can be used to create container elements with spacing multiplied by a default value passed to the provider
+
+```tsx
+import { Box, Stack, Tiles, styles } from '@mobily/stacks'
+
+<Box direction="row" padding={2}>
+  <Box flex="fluid">
+    <Box flex="fluid" alignX="center" alignY="center" style={styles.fullWidth}>
+      <Placeholder width={160} height={160} />
+    </Box>
+  </Box>
+  <Box flex="1/3">
+    <Box marginBottom={5} style={styles.fullWidth}>
+      <Stack space={1}>
+        <Placeholder height={20} />
+        <Placeholder height={20} />
+        <Placeholder height={20} />
+        <Placeholder height={20} />
+      </Stack>
+    </Box>
+    <Box style={styles.fullWidth}>
+      <Tiles columns={2} space={1}>
+        <Placeholder height={50} />
+        <Placeholder height={50} />
+        <Placeholder height={50} />
+        <Placeholder height={50} />
+      </Tiles>
+    </Box>
+  </Box>
+</Box>
+```
+
+| | Debug mode |
+| --- | --- |
+| <img src={useBaseUrl('img/box-1.png')} /> | <img src={useBaseUrl('img/box-1-debug.png')} />) |
+
+### `flex`
+
+- type: `'content' | 'fluid' | '1/2' | '1/3' | '2/3' | '1/4' | '3/4' | '1/5' | '2/5' | '3/5' | '4/5'`
+- required: `no`
+- default: `content`
+
+### `direction`
+
+- type: `'row' | 'column' | 'row-reverse' | 'column-reverse'`
+- required: `no`
+- default: `column`
+
+### `alignX`
+
+- type: `'left' | 'center' | 'right'`
+  - if direction is `row` or `row-reverse` you can also use: `'between' | 'around' | 'evenly'`
+- required: `no`
+- default: `left`
+
+### `alignY`
+
+- type: `'top' | 'center' | 'bottom'`
+- required: `no`
+- default: `top`
+
+### `wrap`
+
+- type: `'wrap' | 'nowrap' | 'wrap-reverse'`
+- required: `no`
+- default: `nowrap`
+
+### `padding`
+
+- type: `number`
+- required: `no`
+
+### `paddingX`
+
+- type: `number`
+- required: `no`
+
+### `paddingY`
+
+- type: `number`
+- required: `no`
+
+### `paddingTop`
+
+- type: `number`
+- required: `no`
+
+### `paddingBottom`
+
+- type: `number`
+- required: `no`
+
+### `paddingLeft`
+
+- type: `number`
+- required: `no`
+
+### `paddingRight`
+
+- type: `number`
+- required: `no`
+
+### `paddingStart`
+
+- type: `number`
+- required: `no`
+
+### `paddingEnd`
+
+- type: `number`
+- required: `no`
+
+### `margin`
+
+- type: `number`
+- required: `no`
+
+### `marginX`
+
+- type: `number`
+- required: `no`
+
+### `marginY`
+
+- type: `number`
+- required: `no`
+
+### `marginTop`
+
+- type: `number`
+- required: `no`
+
+### `marginBottom`
+
+- type: `number`
+- required: `no`
+
+### `marginLeft`
+
+- type: `number`
+- required: `no`
+
+### `marginRight`
+
+- type: `number`
+- required: `no`
+
+### `marginStart`
+
+- type: `number`
+- required: `no`
+
+### `marginEnd`
+
+- type: `number`
+- required: `no`
+
+### `testID`
+
+- type: `string`
+- required: `no`
+
+### `style`
+
+- type: `StyleProp<ViewStyle>`
+- required: `no`
+
+:::tip
+
+`Box` inherits all `View` props.
+
+:::
