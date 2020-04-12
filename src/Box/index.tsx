@@ -30,6 +30,13 @@ type StyleProps = TakeNumbers<
     | 'paddingRight'
     | 'paddingEnd'
     | 'paddingStart'
+    | 'margin'
+    | 'marginTop'
+    | 'marginBottom'
+    | 'marginLeft'
+    | 'marginRight'
+    | 'marginEnd'
+    | 'marginStart'
   >
 >
 
@@ -39,6 +46,8 @@ export interface Props<T extends Direction> extends StyleProps, ViewProps {
   direction?: T
   paddingX?: number
   paddingY?: number
+  marginX?: number
+  marginY?: number
   alignX?: ExtractAlignX<T>
   alignY?: AxisY
   wrap?: Wrap
@@ -58,6 +67,15 @@ export const Box = <T extends Direction>(props: Props<T>) => {
     paddingRight,
     paddingEnd,
     paddingStart,
+    margin,
+    marginX,
+    marginY,
+    marginTop,
+    marginBottom,
+    marginLeft,
+    marginRight,
+    marginEnd,
+    marginStart,
     alignX,
     alignY,
     style,
@@ -76,6 +94,15 @@ export const Box = <T extends Direction>(props: Props<T>) => {
     ['paddingRight', paddingRight],
     ['paddingEnd', paddingEnd],
     ['paddingStart', paddingStart],
+    ['margin', margin],
+    ['marginHorizontal', marginX],
+    ['marginVertical', marginY],
+    ['marginTop', marginTop],
+    ['marginBottom', marginBottom],
+    ['marginLeft', marginLeft],
+    ['marginRight', marginRight],
+    ['marginEnd', marginEnd],
+    ['marginStart', marginStart],
   ]
   const box = list.reduce((acc, tuple) => {
     const [name, value] = tuple
@@ -83,7 +110,7 @@ export const Box = <T extends Direction>(props: Props<T>) => {
   }, {})
   const alignments =
     direction === 'column' || direction === 'column-reverse'
-      ? [alignTo(alignX), justifyTo(alignY)]
+      ? [alignTo(alignX as AxisX), justifyTo(alignY)]
       : [alignTo(alignY), justifyTo(alignX)]
 
   return (
