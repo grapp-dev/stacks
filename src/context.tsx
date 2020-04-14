@@ -21,7 +21,7 @@ type UseSpacing = {
 export const useSpacing: UseSpacing = (space?: number): any => {
   const { spacing } = useContext(Context)
   const multiply = (n: number) => n * spacing
-  return space ? multiply(space) : multiply
+  return space !== undefined ? multiply(space) : multiply
 }
 
 export const useDebugStyle = () => {
