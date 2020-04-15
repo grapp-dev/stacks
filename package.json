@@ -6,8 +6,11 @@
   "scripts": {
     "clean": "rm -rf ./dist && rm -f ./tsconfig.tsbuildinfo",
     "build": "tsc --outDir ./dist",
+    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
+    "types": "tsc -p ./tsconfig.json --noEmit --composite false",
     "test": "jest --passWithNoTests",
     "test:watch": "jest --watch",
+    "ci:check": "concurrently 'yarn test' 'yarn lint' 'yarn types' --names \"TEST,LINT,TYPES\" -c \"bgGreen.bold,bgMagenta.bold,bgBlue.bold\" --kill-others-on-fail",
     "generate:contributors": "yarn all-contributors generate",
     "generate:package": "bash ./scripts/package.sh"
   },
