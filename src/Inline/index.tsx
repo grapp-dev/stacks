@@ -1,6 +1,6 @@
 import React, { Children, cloneElement, isValidElement } from 'react'
 import { View, ViewProps } from 'react-native'
-import { wrapOf, directionOf, justifyTo, AxisX } from '../utils'
+import { wrapOf, directionOf, justifyTo, AxisX, styles } from '../utils'
 import { useSpacing, useDebugStyle } from '../context'
 
 export interface Props {
@@ -26,11 +26,17 @@ export const Inline = (props: Props) => {
           { marginTop: -margin, marginRight: -margin },
         ]}
       >
-        {Children.map(children, (child, _index) => {
+        {Children.map(children, child => {
           return isValidElement(child)
             ? cloneElement(child, {
                 ...child.props,
-                style: [child.props.style, debugStyle, { marginTop: margin, marginRight: margin }],
+                style: [
+                  child.props.style,
+                  debugStyle,
+                  styles.noMarginBottom,
+                  styles.noMarginLeft,
+                  { marginTop: margin, marginRight: margin },
+                ],
               })
             : null
         })}
