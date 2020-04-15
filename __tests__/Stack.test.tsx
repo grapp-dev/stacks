@@ -12,7 +12,8 @@ describe('Stack', () => {
         <Placeholder />
       </Stack>,
     )
-    const style = flattenStyle(toJSON())
+    const root = toJSON()
+    const style = flattenStyle(root)
 
     expect(style).toHaveProperty('flexDirection', 'column')
     expect(style).toHaveProperty('alignItems', 'flex-start')
@@ -25,7 +26,8 @@ describe('Stack', () => {
         <Placeholder />
       </Stack>,
     )
-    const style = flattenStyle(toJSON())
+    const root = toJSON()
+    const style = flattenStyle(root)
 
     expect(style).toHaveProperty('alignItems', 'center')
   })
@@ -37,7 +39,8 @@ describe('Stack', () => {
         <Placeholder />
       </Stack>,
     )
-    const style = flattenStyle(toJSON())
+    const root = toJSON()
+    const style = flattenStyle(root)
 
     expect(style).toHaveProperty('alignItems', 'flex-end')
   })
@@ -50,8 +53,8 @@ describe('Stack', () => {
         <Placeholder />
       </Stack>,
     )
-    const stack = toJSON()
-    const [placeholder1, placeholder2, placeholder3] = flattenChildrenStyle(stack)
+    const root = toJSON()
+    const [placeholder1, placeholder2, placeholder3] = flattenChildrenStyle(root)
 
     expect(placeholder1).toHaveProperty('marginBottom', 0)
     expect(placeholder2).toHaveProperty('marginBottom', 0)
@@ -66,8 +69,8 @@ describe('Stack', () => {
         <Placeholder />
       </Stack>,
     )
-    const stack = toJSON()
-    const [placeholder1, placeholder2, placeholder3] = flattenChildrenStyle(stack)
+    const root = toJSON()
+    const [placeholder1, placeholder2, placeholder3] = flattenChildrenStyle(root)
 
     expect(placeholder1).toHaveProperty('marginBottom', 0)
     expect(placeholder2).toHaveProperty('marginBottom', 0)
@@ -82,15 +85,15 @@ describe('Stack', () => {
         <Placeholder />
       </Stack>,
     )
-    const stack = toJSON()
-    const [placeholder1, placeholder2, placeholder3] = flattenChildrenStyle(stack)
+    const root = toJSON()
+    const [placeholder1, placeholder2, placeholder3] = flattenChildrenStyle(root)
 
     expect(placeholder1).toHaveProperty('marginBottom', 8)
     expect(placeholder2).toHaveProperty('marginBottom', 8)
     expect(placeholder3).toHaveProperty('marginBottom', 0)
   })
 
-  it('it should allow passing custom styles', () => {
+  it('should allow passing custom styles', () => {
     const { toJSON } = render(
       <Stack space={1} align="center" style={{ backgroundColor: '#fff', alignItems: 'flex-end' }}>
         <Placeholder
@@ -99,9 +102,9 @@ describe('Stack', () => {
         <Placeholder style={{ marginBottom: 10, marginTop: 20 }} />
       </Stack>,
     )
-    const stack = toJSON()
-    const style = flattenStyle(stack)
-    const [placeholder1, placeholder2] = flattenChildrenStyle(stack)
+    const root = toJSON()
+    const style = flattenStyle(root)
+    const [placeholder1, placeholder2] = flattenChildrenStyle(root)
 
     expect(style).toHaveProperty('alignItems', 'center')
     expect(style).toHaveProperty('backgroundColor', '#fff')
@@ -111,5 +114,36 @@ describe('Stack', () => {
     expect(placeholder1).toHaveProperty('marginTop', 0)
     expect(placeholder2).toHaveProperty('marginBottom', 0)
     expect(placeholder2).toHaveProperty('marginTop', 0)
+  })
+
+  it('should handle multiple Stack components', () => {
+    const { toJSON } = render(
+      <Stack space={8}>
+        <Stack space={2}>
+          <Placeholder />
+          <Placeholder />
+        </Stack>
+        <Placeholder />
+        <Stack space={4}>
+          <Placeholder />
+          <Placeholder />
+        </Stack>
+      </Stack>,
+    )
+    const root = toJSON()
+    const [innerStack1, , innerStack2] = root.children
+    const [stack1, placeholder1, stack2] = flattenChildrenStyle(root)
+    const [stack1Placeholder1, stack1Placeholder2] = flattenChildrenStyle(innerStack1)
+    const [stack2Placeholder1, stack2Placeholder2] = flattenChildrenStyle(innerStack2)
+
+    expect(stack1).toHaveProperty('marginBottom', 32)
+    expect(placeholder1).toHaveProperty('marginBottom', 32)
+    expect(stack2).toHaveProperty('marginBottom', 0)
+
+    expect(stack1Placeholder1).toHaveProperty('marginBottom', 8)
+    expect(stack1Placeholder2).toHaveProperty('marginBottom', 0)
+
+    expect(stack2Placeholder1).toHaveProperty('marginBottom', 16)
+    expect(stack2Placeholder2).toHaveProperty('marginBottom', 0)
   })
 })
