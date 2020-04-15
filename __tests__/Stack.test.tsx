@@ -12,9 +12,9 @@ describe('Stack', () => {
         <Placeholder />
       </Stack>,
     )
-    const stack = flattenStyle(toJSON())
+    const style = flattenStyle(toJSON())
 
-    expect(stack).toHaveProperty('flexDirection', 'column')
+    expect(style).toHaveProperty('flexDirection', 'column')
   })
 
   it('should align content along the left side by default', () => {
@@ -24,9 +24,9 @@ describe('Stack', () => {
         <Placeholder />
       </Stack>,
     )
-    const stack = flattenStyle(toJSON())
+    const style = flattenStyle(toJSON())
 
-    expect(stack).toHaveProperty('alignItems', 'flex-start')
+    expect(style).toHaveProperty('alignItems', 'flex-start')
   })
 
   it('should center content correctly', () => {
@@ -36,9 +36,9 @@ describe('Stack', () => {
         <Placeholder />
       </Stack>,
     )
-    const stack = flattenStyle(toJSON())
+    const style = flattenStyle(toJSON())
 
-    expect(stack).toHaveProperty('alignItems', 'center')
+    expect(style).toHaveProperty('alignItems', 'center')
   })
 
   it('should align content along the right side correctly', () => {
@@ -48,9 +48,9 @@ describe('Stack', () => {
         <Placeholder />
       </Stack>,
     )
-    const stack = flattenStyle(toJSON())
+    const style = flattenStyle(toJSON())
 
-    expect(stack).toHaveProperty('alignItems', 'flex-end')
+    expect(style).toHaveProperty('alignItems', 'flex-end')
   })
 
   it('should add no bottom margin to children components if `space` is not passed', () => {
@@ -99,5 +99,28 @@ describe('Stack', () => {
     expect(placeholder1).toHaveProperty('marginBottom', 8)
     expect(placeholder2).toHaveProperty('marginBottom', 8)
     expect(placeholder3).toHaveProperty('marginBottom', 0)
+  })
+
+  it('it should allow passing custom styles', () => {
+    const { toJSON } = render(
+      <Stack space={1} align="center" style={{ backgroundColor: '#fff', alignItems: 'flex-end' }}>
+        <Placeholder
+          style={{ borderWidth: 1, borderColor: '#ddd', marginBottom: 10, marginTop: 20 }}
+        />
+        <Placeholder style={{ marginBottom: 10, marginTop: 20 }} />
+      </Stack>,
+    )
+    const stack = toJSON()
+    const style = flattenStyle(stack)
+    const [placeholder1, placeholder2] = flattenChildrenStyle(stack)
+
+    expect(style).toHaveProperty('alignItems', 'center')
+    expect(style).toHaveProperty('backgroundColor', '#fff')
+    expect(placeholder1).toHaveProperty('borderWidth', 1)
+    expect(placeholder1).toHaveProperty('borderColor', '#ddd')
+    expect(placeholder1).toHaveProperty('marginBottom', 4)
+    expect(placeholder1).toHaveProperty('marginTop', 0)
+    expect(placeholder2).toHaveProperty('marginBottom', 0)
+    expect(placeholder2).toHaveProperty('marginTop', 0)
   })
 })
