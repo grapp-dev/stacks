@@ -19,6 +19,9 @@ export const Columns = (props: Props) => {
   const margin = useSpacing(space)
   const debugStyle = useDebugStyle()
 
+  const noLastMargin = reverse ? styles.noMarginLeft : styles.noMarginRight
+  const noOppositeMargin = reverse ? styles.noMarginRight : styles.noMarginLeft
+
   return (
     <View
       style={[
@@ -31,9 +34,8 @@ export const Columns = (props: Props) => {
       testID={testID}
     >
       {Children.map(children, (child, index) => {
-        const noMargin = reverse ? styles.noMarginLeft : styles.noMarginRight
         const marginStyle = isLast(index)
-          ? noMargin
+          ? noLastMargin
           : reverse
           ? { marginLeft: margin }
           : { marginRight: margin }
@@ -41,7 +43,7 @@ export const Columns = (props: Props) => {
         return isValidElement(child)
           ? cloneElement(child, {
               ...child.props,
-              style: [child.props.style, debugStyle, marginStyle],
+              style: [child.props.style, debugStyle, noOppositeMargin, marginStyle],
             })
           : null
       })}

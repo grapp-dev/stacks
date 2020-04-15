@@ -6,8 +6,11 @@
   "scripts": {
     "clean": "rm -rf ./dist && rm -f ./tsconfig.tsbuildinfo",
     "build": "tsc --outDir ./dist",
+    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
+    "types": "tsc -p ./tsconfig.json --noEmit --composite false",
     "test": "jest --passWithNoTests",
     "test:watch": "jest --watch",
+    "ci:check": "concurrently 'yarn test' 'yarn lint' 'yarn types' --names \"TEST,LINT,TYPES\" -c \"bgGreen.bold,bgMagenta.bold,bgBlue.bold\" --kill-others-on-fail",
     "generate:contributors": "yarn all-contributors generate",
     "generate:package": "bash ./scripts/package.sh"
   },
@@ -37,12 +40,15 @@
     "react-native": ">=0.59.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
     "@types/jest": "^25.1.4",
     "@types/react": "^16.9.32",
     "@types/react-native": "^0.62.1",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.25.0",
     "all-contributors-cli": "^6.14.0",
+    "babel-jest": "^25.3.0",
+    "concurrently": "^5.1.0",
     "coveralls": "^3.0.11",
     "docusaurus": "^2.0.0-alpha.50",
     "eslint": "^6.8.0",
@@ -50,10 +56,12 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
     "jest": "^25.2.0",
+    "metro-react-native-babel-preset": "^0.59.0",
     "prettier": "^2.0.2",
     "react": "^16.13.1",
     "react-native": "^0.62.1",
-    "ts-jest": "^25.2.1",
+    "react-native-testing-library": "^1.13.0",
+    "react-test-renderer": "^16.13.1",
     "typescript": "^3.8.3"
   },
   "cacheDirectories": [
