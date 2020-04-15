@@ -5,7 +5,7 @@ import { Stack } from '../src'
 import { Placeholder, flattenStyle, flattenChildrenStyle } from './utils'
 
 describe('Stack', () => {
-  it('should distribute content vertically by default', () => {
+  it('should distribute content vertically and align content along the left side by default', () => {
     const { toJSON } = render(
       <Stack>
         <Placeholder />
@@ -15,17 +15,6 @@ describe('Stack', () => {
     const style = flattenStyle(toJSON())
 
     expect(style).toHaveProperty('flexDirection', 'column')
-  })
-
-  it('should align content along the left side by default', () => {
-    const { toJSON } = render(
-      <Stack>
-        <Placeholder />
-        <Placeholder />
-      </Stack>,
-    )
-    const style = flattenStyle(toJSON())
-
     expect(style).toHaveProperty('alignItems', 'flex-start')
   })
 
