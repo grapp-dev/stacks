@@ -26,6 +26,7 @@ export const Stack = (props: Props) => {
               style: [
                 child.props.style,
                 debugStyle,
+                styles.noMarginTop,
                 isLast(index) ? styles.noMarginBottom : { marginBottom: margin },
               ],
             })
