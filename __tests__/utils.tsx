@@ -16,3 +16,4 @@ export const Placeholder = (props: Props) => {
 export const flattenStyle = (element: ReactElement) => StyleSheet.flatten(element.props.style)
 export const flattenChildrenStyle = (element: ReactElement & { children: ReactElement[] }) =>
   element.children.map(flattenStyle)
+export const abs = (n: number) => Math.abs(n)
