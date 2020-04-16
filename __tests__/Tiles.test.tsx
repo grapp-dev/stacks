@@ -15,9 +15,11 @@ describe('Tiles', () => {
     const root = toJSON()
     const style = flattenStyle(root)
 
-    expect(style).toHaveProperty('flexDirection', 'column')
-    expect(style).toHaveProperty('alignItems', 'flex-start')
-    expect(style).toHaveProperty('width', '100%')
+    expect(style).toEqual({
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      width: '100%',
+    })
   })
 
   it('should split children components into grid with correct number of columns and rows', () => {
@@ -58,13 +60,15 @@ describe('Tiles', () => {
     const [stack1, stack2] = flattenChildrenStyle(root)
     const [placeholder11, placeholder12] = flattenChildrenStyle(container1)
     const [placeholder21, placeholder22] = flattenChildrenStyle(container2)
+    const noMarginBottom = { marginBottom: 0 }
+    const noMarginRight = { marginRight: 0 }
 
-    expect(stack1).toHaveProperty('marginBottom', 0)
-    expect(stack2).toHaveProperty('marginBottom', 0)
-    expect(placeholder11).toHaveProperty('marginRight', 0)
-    expect(placeholder12).toHaveProperty('marginRight', 0)
-    expect(placeholder21).toHaveProperty('marginRight', 0)
-    expect(placeholder22).toHaveProperty('marginRight', 0)
+    expect(stack1).toMatchObject(noMarginBottom)
+    expect(stack2).toMatchObject(noMarginBottom)
+    expect(placeholder11).toMatchObject(noMarginRight)
+    expect(placeholder12).toMatchObject(noMarginRight)
+    expect(placeholder21).toMatchObject(noMarginRight)
+    expect(placeholder22).toMatchObject(noMarginRight)
   })
 
   it('should add no margin to children components if space is not passed', () => {
@@ -81,13 +85,15 @@ describe('Tiles', () => {
     const [stack1, stack2] = flattenChildrenStyle(root)
     const [placeholder11, placeholder12] = flattenChildrenStyle(container1)
     const [placeholder21, placeholder22] = flattenChildrenStyle(container2)
+    const noMarginBottom = { marginBottom: 0 }
+    const noMarginRight = { marginRight: 0 }
 
-    expect(stack1).toHaveProperty('marginBottom', 0)
-    expect(stack2).toHaveProperty('marginBottom', 0)
-    expect(placeholder11).toHaveProperty('marginRight', 0)
-    expect(placeholder12).toHaveProperty('marginRight', 0)
-    expect(placeholder21).toHaveProperty('marginRight', 0)
-    expect(placeholder22).toHaveProperty('marginRight', 0)
+    expect(stack1).toMatchObject(noMarginBottom)
+    expect(stack2).toMatchObject(noMarginBottom)
+    expect(placeholder11).toMatchObject(noMarginRight)
+    expect(placeholder12).toMatchObject(noMarginRight)
+    expect(placeholder21).toMatchObject(noMarginRight)
+    expect(placeholder22).toMatchObject(noMarginRight)
   })
 
   it('should add proper margin to children components if space is greater than 0', () => {
@@ -107,15 +113,19 @@ describe('Tiles', () => {
     const [placeholder11, placeholder12] = flattenChildrenStyle(container1)
     const [placeholder21, placeholder22] = flattenChildrenStyle(container2)
     const [placeholder31, placeholder32] = flattenChildrenStyle(container3)
+    const withMarginBottom = { marginBottom: 8 }
+    const noMarginBottom = { marginBottom: 0 }
+    const withMarginRight = { marginRight: 8 }
+    const noMarginRight = { marginRight: 0 }
 
-    expect(stack1).toHaveProperty('marginBottom', 8)
-    expect(stack2).toHaveProperty('marginBottom', 8)
-    expect(stack3).toHaveProperty('marginBottom', 0)
-    expect(placeholder11).toHaveProperty('marginRight', 8)
-    expect(placeholder12).toHaveProperty('marginRight', 0)
-    expect(placeholder21).toHaveProperty('marginRight', 8)
-    expect(placeholder22).toHaveProperty('marginRight', 0)
-    expect(placeholder31).toHaveProperty('marginRight', 8)
-    expect(placeholder32).toHaveProperty('marginRight', 0)
+    expect(stack1).toMatchObject(withMarginBottom)
+    expect(stack2).toMatchObject(withMarginBottom)
+    expect(stack3).toMatchObject(noMarginBottom)
+    expect(placeholder11).toMatchObject(withMarginRight)
+    expect(placeholder12).toMatchObject(noMarginRight)
+    expect(placeholder21).toMatchObject(withMarginRight)
+    expect(placeholder22).toMatchObject(noMarginRight)
+    expect(placeholder31).toMatchObject(withMarginRight)
+    expect(placeholder32).toMatchObject(noMarginRight)
   })
 })
