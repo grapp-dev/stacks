@@ -15,8 +15,11 @@ describe('Stack', () => {
     const root = toJSON()
     const style = flattenStyle(root)
 
-    expect(style).toHaveProperty('flexDirection', 'column')
-    expect(style).toHaveProperty('alignItems', 'flex-start')
+    expect(style).toEqual({
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      width: '100%',
+    })
   })
 
   it('should center content correctly', () => {
@@ -29,7 +32,7 @@ describe('Stack', () => {
     const root = toJSON()
     const style = flattenStyle(root)
 
-    expect(style).toHaveProperty('alignItems', 'center')
+    expect(style).toMatchObject({ alignItems: 'center' })
   })
 
   it('should align content along the right side correctly', () => {
@@ -42,7 +45,7 @@ describe('Stack', () => {
     const root = toJSON()
     const style = flattenStyle(root)
 
-    expect(style).toHaveProperty('alignItems', 'flex-end')
+    expect(style).toMatchObject({ alignItems: 'flex-end' })
   })
 
   it('should add no bottom margin to children components if `space` is not passed', () => {
@@ -55,10 +58,11 @@ describe('Stack', () => {
     )
     const root = toJSON()
     const [placeholder1, placeholder2, placeholder3] = flattenChildrenStyle(root)
+    const noMargin = { marginBottom: 0 }
 
-    expect(placeholder1).toHaveProperty('marginBottom', 0)
-    expect(placeholder2).toHaveProperty('marginBottom', 0)
-    expect(placeholder3).toHaveProperty('marginBottom', 0)
+    expect(placeholder1).toMatchObject(noMargin)
+    expect(placeholder2).toMatchObject(noMargin)
+    expect(placeholder3).toMatchObject(noMargin)
   })
 
   it('should add no bottom margin to children components if `space` equals 0', () => {
@@ -71,10 +75,11 @@ describe('Stack', () => {
     )
     const root = toJSON()
     const [placeholder1, placeholder2, placeholder3] = flattenChildrenStyle(root)
+    const noMargin = { marginBottom: 0 }
 
-    expect(placeholder1).toHaveProperty('marginBottom', 0)
-    expect(placeholder2).toHaveProperty('marginBottom', 0)
-    expect(placeholder3).toHaveProperty('marginBottom', 0)
+    expect(placeholder1).toMatchObject(noMargin)
+    expect(placeholder2).toMatchObject(noMargin)
+    expect(placeholder3).toMatchObject(noMargin)
   })
 
   it('should add proper bottom margin to children components if `space` is greater than 0', () => {
@@ -87,10 +92,12 @@ describe('Stack', () => {
     )
     const root = toJSON()
     const [placeholder1, placeholder2, placeholder3] = flattenChildrenStyle(root)
+    const noMargin = { marginBottom: 0 }
+    const withMargin = { marginBottom: 8 }
 
-    expect(placeholder1).toHaveProperty('marginBottom', 8)
-    expect(placeholder2).toHaveProperty('marginBottom', 8)
-    expect(placeholder3).toHaveProperty('marginBottom', 0)
+    expect(placeholder1).toMatchObject(withMargin)
+    expect(placeholder2).toMatchObject(withMargin)
+    expect(placeholder3).toMatchObject(noMargin)
   })
 
   it('should allow passing custom styles', () => {
@@ -106,14 +113,20 @@ describe('Stack', () => {
     const style = flattenStyle(root)
     const [placeholder1, placeholder2] = flattenChildrenStyle(root)
 
-    expect(style).toHaveProperty('alignItems', 'center')
-    expect(style).toHaveProperty('backgroundColor', '#fff')
-    expect(placeholder1).toHaveProperty('borderWidth', 1)
-    expect(placeholder1).toHaveProperty('borderColor', '#ddd')
-    expect(placeholder1).toHaveProperty('marginBottom', 4)
-    expect(placeholder1).toHaveProperty('marginTop', 0)
-    expect(placeholder2).toHaveProperty('marginBottom', 0)
-    expect(placeholder2).toHaveProperty('marginTop', 0)
+    expect(style).toMatchObject({
+      backgroundColor: '#fff',
+      alignItems: 'center',
+    })
+    expect(placeholder1).toMatchObject({
+      borderWidth: 1,
+      borderColor: '#ddd',
+      marginBottom: 4,
+      marginTop: 0,
+    })
+    expect(placeholder2).toMatchObject({
+      marginBottom: 0,
+      marginTop: 0,
+    })
   })
 
   it('should handle multiple Stack components', () => {
@@ -136,14 +149,14 @@ describe('Stack', () => {
     const [stack1Placeholder1, stack1Placeholder2] = flattenChildrenStyle(innerStack1)
     const [stack2Placeholder1, stack2Placeholder2] = flattenChildrenStyle(innerStack2)
 
-    expect(stack1).toHaveProperty('marginBottom', 32)
-    expect(placeholder1).toHaveProperty('marginBottom', 32)
-    expect(stack2).toHaveProperty('marginBottom', 0)
+    expect(stack1).toMatchObject({ marginBottom: 32 })
+    expect(placeholder1).toMatchObject({ marginBottom: 32 })
+    expect(stack2).toMatchObject({ marginBottom: 0 })
 
-    expect(stack1Placeholder1).toHaveProperty('marginBottom', 8)
-    expect(stack1Placeholder2).toHaveProperty('marginBottom', 0)
+    expect(stack1Placeholder1).toMatchObject({ marginBottom: 8 })
+    expect(stack1Placeholder2).toMatchObject({ marginBottom: 0 })
 
-    expect(stack2Placeholder1).toHaveProperty('marginBottom', 16)
-    expect(stack2Placeholder2).toHaveProperty('marginBottom', 0)
+    expect(stack2Placeholder1).toMatchObject({ marginBottom: 16 })
+    expect(stack2Placeholder2).toMatchObject({ marginBottom: 0 })
   })
 })
