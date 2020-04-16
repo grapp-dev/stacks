@@ -98,6 +98,32 @@ describe('Inline', () => {
     expect(placeholder3).toMatchObject(withMargin)
   })
 
+  it('should center content correctly', () => {
+    const { toJSON } = render(
+      <Inline align="center">
+        <Placeholder />
+        <Placeholder />
+      </Inline>,
+    )
+    const root = toJSON()
+    const [inner] = flattenChildrenStyle(root)
+
+    expect(inner).toMatchObject({ justifyContent: 'center' })
+  })
+
+  it('should align content along the right side correctly', () => {
+    const { toJSON } = render(
+      <Inline align="right">
+        <Placeholder />
+        <Placeholder />
+      </Inline>,
+    )
+    const root = toJSON()
+    const [inner] = flattenChildrenStyle(root)
+
+    expect(inner).toMatchObject({ justifyContent: 'flex-end' })
+  })
+
   it('should allow passing custom styles', () => {
     const { toJSON } = render(
       <Inline space={1}>
