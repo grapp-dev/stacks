@@ -7,6 +7,7 @@ module.exports = {
   modulePaths: ['<rootDir>/src'],
   moduleDirectories: ['<rootDir>/node_modules'],
   testPathIgnorePatterns: ['node_modules', '<rootDir>/dist', '<rootDir>/example'],
+  coveragePathIgnorePatterns: ['node_modules', '<rootDir>/__tests__'],
   restoreMocks: true,
   transform: {
     '^.+\\.[t|j]sx?$': ['babel-jest'],
