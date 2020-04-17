@@ -4,7 +4,14 @@ import { Provider as Stacks, Grid } from '@mobily/stacks'
 import { Profile } from 'screens/Profile'
 import { Playground } from 'screens/Playground'
 
-import { StackSpace1, StackSpace2, StackSpace3, StackAlign1, StackAlign2 } from 'screens/Docs/Stack'
+import {
+  StackSpace1,
+  StackSpace2,
+  StackSpace3,
+  StackAlign1,
+  StackAlign2,
+  StackAlign3,
+} from 'screens/Docs/Stack'
 import {
   ColumnsSpace1,
   ColumnsSpace2,
@@ -33,6 +40,7 @@ export const Root = () => {
           {/* <StackSpace3 /> */}
           {/* <StackAlign1 /> */}
           {/* <StackAlign2 /> */}
+          {/* <StackAlign3 /> */}
           {/* <ColumnsSpace1 /> */}
           {/* <ColumnsSpace2 /> */}
           {/* <ColumnsSpace3 /> */}

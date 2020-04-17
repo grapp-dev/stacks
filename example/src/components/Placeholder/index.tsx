@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const Placeholder = (props: Props) => {
-  const { width = '100%', height = 100, style } = props
+  const { width, height = 100, style } = props
 
   return <View style={[styles.root, { width, height }, style]} />
 }

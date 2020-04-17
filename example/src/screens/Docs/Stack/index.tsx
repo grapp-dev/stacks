@@ -57,3 +57,13 @@ export const StackAlign2 = () => {
     </Stack>
   )
 }
+
+export const StackAlign3 = () => {
+  return (
+    <Stack space={1}>
+      <Placeholder width={120} />
+      <Placeholder />
+      <Placeholder />
+    </Stack>
+  )
+}
