@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
   root: {
     ...StyleSheet.absoluteFillObject,
     flexDirection: 'row',
-    height: '100%',
   },
   column: {
     height: '100%',
