@@ -88,6 +88,28 @@ describe('Columns', () => {
     expect(column10).toMatchObject({ flexBasis: '80%' })
   })
 
+  it('should display correct number of columns', () => {
+    const { toJSON } = render(
+      <Columns>
+        <Column>
+          <Placeholder />
+        </Column>
+        <Column>
+          <Placeholder />
+        </Column>
+        <Column>
+          <Placeholder />
+        </Column>
+        <Column>
+          <Placeholder />
+        </Column>
+      </Columns>,
+    )
+    const root = toJSON()
+
+    expect(root.children).toHaveLength(4)
+  })
+
   it('should center columns vertically', () => {
     const { toJSON } = render(
       <Columns alignY="center">
