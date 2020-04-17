@@ -17,7 +17,7 @@ describe('Stack', () => {
 
     expect(style).toEqual({
       flexDirection: 'column',
-      alignItems: 'flex-start',
+      alignItems: 'stretch',
       width: '100%',
     })
   })
