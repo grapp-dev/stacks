@@ -154,6 +154,7 @@ export const setAlign = (dir?: AxisX | AxisY) => {
     case 'bottom':
     case 'right':
       return styles.alignEnd
+    case 'top':
     case 'left':
       return styles.alignStart
     default:
