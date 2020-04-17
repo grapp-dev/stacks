@@ -5,7 +5,7 @@ import { Stack } from '../src'
 import { Placeholder, flattenStyle, flattenChildrenStyle } from './utils'
 
 describe('Stack', () => {
-  it('should distribute content vertically and align content along the left side by default', () => {
+  it('should distribute content vertically', () => {
     const { toJSON } = render(
       <Stack>
         <Placeholder />

@@ -5,7 +5,7 @@ import { Tiles } from '../src'
 import { Placeholder, flattenStyle, flattenChildrenStyle } from './utils'
 
 describe('Tiles', () => {
-  it('should distribute content vertically and align content along the left side by default', () => {
+  it('should distribute rows vertically', () => {
     const { toJSON } = render(
       <Tiles columns={2}>
         <Placeholder />
