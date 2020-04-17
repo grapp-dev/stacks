@@ -39,10 +39,10 @@ describe('Tiles', () => {
     const [container1, container2, container3] = root.children
     const [, , empty] = container3.children
 
-    expect(root.children.length).toBe(3)
-    expect(container1.children.length).toBe(3)
-    expect(container2.children.length).toBe(3)
-    expect(container3.children.length).toBe(3)
+    expect(root.children).toHaveLength(3)
+    expect(container1.children).toHaveLength(3)
+    expect(container2.children).toHaveLength(3)
+    expect(container3.children).toHaveLength(3)
     expect(empty.children).toBeNull()
   })
 
