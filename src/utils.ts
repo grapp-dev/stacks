@@ -1,8 +1,8 @@
 import { Children } from 'react'
 import { StyleSheet } from 'react-native'
 
-export type AxisX = 'left' | 'center' | 'right'
-export type AxisY = 'top' | 'center' | 'bottom'
+export type AxisX = 'left' | 'center' | 'right' | 'stretch'
+export type AxisY = 'top' | 'center' | 'bottom' | 'stretch'
 export type Space = 'between' | 'around' | 'evenly'
 export type Flex =
   | 'content'
@@ -78,6 +78,9 @@ export const styles = StyleSheet.create({
   },
   alignEnd: {
     alignItems: 'flex-end',
+  },
+  alignStretch: {
+    alignItems: 'stretch',
   },
   justifyStart: {
     justifyContent: 'flex-start',
