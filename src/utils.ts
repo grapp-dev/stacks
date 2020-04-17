@@ -147,19 +147,21 @@ export const styles = StyleSheet.create({
   },
 })
 
-export const alignTo = (dir?: AxisX | AxisY) => {
+export const setAlign = (dir?: AxisX | AxisY) => {
   switch (dir) {
     case 'center':
       return styles.alignCenter
     case 'bottom':
     case 'right':
       return styles.alignEnd
-    default:
+    case 'left':
       return styles.alignStart
+    default:
+      return styles.alignStretch
   }
 }
 
-export const justifyTo = (dir?: AxisX | AxisY | Space) => {
+export const setJustify = (dir?: AxisX | AxisY | Space) => {
   switch (dir) {
     case 'center':
       return styles.justifyCenter
@@ -177,7 +179,7 @@ export const justifyTo = (dir?: AxisX | AxisY | Space) => {
   }
 }
 
-export const flexOf = (flex?: Flex) => {
+export const setFlex = (flex?: Flex) => {
   switch (flex) {
     case 'content':
       return styles.flexContent
@@ -204,7 +206,7 @@ export const flexOf = (flex?: Flex) => {
   }
 }
 
-export const directionOf = (dir?: Direction) => {
+export const setDirection = (dir?: Direction) => {
   switch (dir) {
     case 'row':
       return styles.directionRow
@@ -217,7 +219,7 @@ export const directionOf = (dir?: Direction) => {
   }
 }
 
-export const wrapOf = (wrap?: Wrap) => {
+export const setWrap = (wrap?: Wrap) => {
   switch (wrap) {
     case 'wrap':
       return styles.wrap

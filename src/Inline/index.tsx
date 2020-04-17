@@ -1,6 +1,6 @@
 import React, { Children, cloneElement, isValidElement } from 'react'
 import { View, ViewProps } from 'react-native'
-import { wrapOf, directionOf, justifyTo, AxisX, styles } from '../utils'
+import { setWrap, setDirection, setJustify, AxisX, styles } from '../utils'
 import { useSpacing, useDebugStyle } from '../context'
 
 export interface Props {
@@ -20,9 +20,9 @@ export const Inline = (props: Props) => {
     <View style={style} testID={testID}>
       <View
         style={[
-          wrapOf('wrap'),
-          justifyTo(align),
-          directionOf('row'),
+          setWrap('wrap'),
+          setJustify(align),
+          setDirection('row'),
           { marginTop: -margin, marginRight: -margin },
         ]}
       >

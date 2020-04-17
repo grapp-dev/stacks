@@ -2,7 +2,7 @@ import React, { Children } from 'react'
 import { View, ViewProps } from 'react-native'
 
 import { Stack } from '../Stack'
-import { lastFactory, splitEvery, directionOf, styles } from '../utils'
+import { lastFactory, splitEvery, setDirection, styles } from '../utils'
 import { useSpacing, useDebugStyle } from '../context'
 
 export interface Props {
@@ -27,7 +27,7 @@ export const Tiles = (props: Props) => {
         const isLast = lastFactory(filledArray)
 
         return (
-          <View style={[styles.fullWidth, directionOf('row')]} key={index}>
+          <View style={[styles.fullWidth, setDirection('row')]} key={index}>
             {filledArray.map((child, innerIndex) => {
               return (
                 <View

@@ -1,6 +1,6 @@
 import React, { Children, cloneElement, isValidElement } from 'react'
 import { View, ViewProps } from 'react-native'
-import { lastFactory, styles, directionOf, alignTo, AxisX } from '../utils'
+import { lastFactory, styles, setDirection, setAlign, AxisX } from '../utils'
 import { useSpacing, useDebugStyle } from '../context'
 
 export interface Props {
@@ -18,7 +18,10 @@ export const Stack = (props: Props) => {
   const debugStyle = useDebugStyle()
 
   return (
-    <View style={[style, styles.fullWidth, directionOf('column'), alignTo(align)]} testID={testID}>
+    <View
+      style={[style, styles.fullWidth, setDirection('column'), setAlign(align)]}
+      testID={testID}
+    >
       {Children.map(children, (child, index) => {
         return isValidElement(child)
           ? cloneElement(child, {

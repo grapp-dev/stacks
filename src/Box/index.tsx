@@ -1,21 +1,24 @@
 import React from 'react'
 import { View, ViewStyle, ViewProps } from 'react-native'
 import {
-  flexOf,
-  directionOf,
+  setFlex,
+  setDirection,
+  setAlign,
+  setJustify,
+  setWrap,
   AxisX,
   AxisY,
   Space,
   Flex,
   Wrap,
   Direction,
-  alignTo,
-  justifyTo,
-  wrapOf,
 } from '../utils'
 import { useSpacing, useDebugStyle } from '../context'
 
-type ExtractAlignX<T> = T extends 'row' | 'row-reverse' ? AxisX | Space : AxisX
+type ExtractAlignX<T> = T extends 'column' | 'column-reverse'
+  ? AxisX
+  : Exclude<AxisX, 'stretch'> | Space
+type ExtractAlignY<T> = T extends 'column' | 'column-reverse' ? Exclude<AxisY, 'stretch'> : AxisY
 
 type SpacingTuple = [keyof ViewStyle, number | undefined]
 type TakeNumbers<T> = { [P in keyof T]: number }
@@ -49,7 +52,7 @@ export interface Props<T extends Direction> extends StyleProps, ViewProps {
   marginX?: number
   marginY?: number
   alignX?: ExtractAlignX<T>
-  alignY?: AxisY
+  alignY?: ExtractAlignY<T>
   wrap?: Wrap
 }
 
@@ -110,8 +113,8 @@ export const Box = <T extends Direction>(props: Props<T>) => {
   }, {})
   const alignments =
     direction === 'column' || direction === 'column-reverse'
-      ? [alignTo(alignX as AxisX), justifyTo(alignY)]
-      : [alignTo(alignY), justifyTo(alignX)]
+      ? [setAlign(alignX as AxisX), setJustify(alignY)]
+      : [setAlign(alignY), setJustify(alignX)]
 
   return (
     <View
@@ -119,9 +122,9 @@ export const Box = <T extends Direction>(props: Props<T>) => {
       style={[
         style,
         box,
-        flexOf(flex),
-        directionOf(direction as Direction),
-        wrapOf(wrap),
+        setFlex(flex),
+        setDirection(direction as Direction),
+        setWrap(wrap),
         debugStyle,
         ...alignments,
       ]}
