@@ -48,6 +48,19 @@ describe('Stack', () => {
     expect(style).toMatchObject({ alignItems: 'flex-end' })
   })
 
+  it('should align content along the left side correctly', () => {
+    const { toJSON } = render(
+      <Stack align="left">
+        <Placeholder />
+        <Placeholder />
+      </Stack>,
+    )
+    const root = toJSON()
+    const style = flattenStyle(root)
+
+    expect(style).toMatchObject({ alignItems: 'flex-start' })
+  })
+
   it('should add no bottom margin to children components if `space` is not passed', () => {
     const { toJSON } = render(
       <Stack>
