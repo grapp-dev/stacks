@@ -39,6 +39,7 @@ export const splitEvery = <T>(n: number, list: T[]) => {
 export const styles = StyleSheet.create({
   flexContent: {
     flex: 0,
+    flexBasis: 'auto',
   },
   flexFluid: {
     flex: 1,
