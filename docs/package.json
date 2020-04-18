@@ -12,9 +12,11 @@
     "@docusaurus/core": "^2.0.0-alpha.50",
     "@docusaurus/preset-classic": "^2.0.0-alpha.50",
     "classnames": "^2.2.6",
+    "common-tags": "^1.8.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "remark-containers": "^1.1.2"
+    "remark-containers": "^1.1.2",
+    "remark-shortcodes": "^0.3.1"
   },
   "browserslist": {
     "production": [
