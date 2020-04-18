@@ -1,3 +1,5 @@
+const { shortcodes } = require('./core/shortcodes')
+
 module.exports = {
   title: 'Stacks',
   tagline: '⚡ Build React Native views blazingly fast',
@@ -79,7 +81,11 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/',
-          remarkPlugins: [require('remark-containers')],
+          remarkPlugins: [
+            require('remark-containers'),
+            [require('remark-shortcodes'), { startBlock: '[[', endBlock: ']]' }],
+            shortcodes,
+          ],
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
