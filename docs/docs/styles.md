@@ -13,6 +13,7 @@ import { styles } from '@mobily/stacks'
 
 ```tsx
 flex: 0
+flexBasis: 'auto'
 ```
 
 ### `flexFluid`

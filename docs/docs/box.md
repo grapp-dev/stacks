@@ -3,44 +3,10 @@ id: box
 title: Box
 ---
 
-import useBaseUrl from '@docusaurus/useBaseUrl';
-
 - `Box` is the most low-level layout component provided by `Stacks`
 - `Box` provides a set of `padding` and `margins` options which can be used to create container elements with spacing multiplied by a default value passed to the provider
 
-```tsx
-import { Box, Stack, Tiles } from '@mobily/stacks'
-
-<Box direction="row" padding={2}>
-  <Box flex="fluid">
-    <Box flex="fluid" alignX="center" alignY="center">
-      <Placeholder width={160} height={160} />
-    </Box>
-  </Box>
-  <Box flex="1/3">
-    <Box marginBottom={5}>
-      <Stack space={1}>
-        <Placeholder height={20} />
-        <Placeholder height={20} />
-        <Placeholder height={20} />
-        <Placeholder height={20} />
-      </Stack>
-    </Box>
-    <Box>
-      <Tiles columns={2} space={1}>
-        <Placeholder height={50} />
-        <Placeholder height={50} />
-        <Placeholder height={50} />
-        <Placeholder height={50} />
-      </Tiles>
-    </Box>
-  </Box>
-</Box>
-```
-
-| | Debug mode |
-| --- | --- |
-| <img src={useBaseUrl('img/box-1.png')} /> | <img src={useBaseUrl('img/box-1-debug.png')} /> |
+[[ snack id="stacks-box" name="Box" ]]
 
 ### `flex`
 
