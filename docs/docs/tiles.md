@@ -21,12 +21,8 @@ title: Tiles
 - required: `no`
 - default: `0`
 
-### `testID`
+:::tip
 
-- type: `string`
-- required: `no`
+`Tiles` component inherits all [`View` props](https://reactnative.dev/docs/view).
 
-### `style`
-
-- type: `StyleProp<ViewStyle>`
-- required: `no`
+:::

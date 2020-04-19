@@ -45,12 +45,8 @@ title: Columns
 - required: `no`
 - default: `false`
 
-### `testID`
+:::tip
 
-- type: `string`
-- required: `no`
+`Columns` component inherits all [`View` props](https://reactnative.dev/docs/view).
 
-### `style`
-
-- type: `StyleProp<ViewStyle>`
-- required: `no`
+:::

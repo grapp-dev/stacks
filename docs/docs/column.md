@@ -15,12 +15,8 @@ title: Column
 - required: `no`
 - default: `left`
 
-### `testID`
+:::tip
 
-- type: `string`
-- required: `no`
+`Column` component inherits all [`View` props](https://reactnative.dev/docs/view).
 
-### `style`
-
-- type: `StyleProp<ViewStyle>`
-- required: `no`
+:::

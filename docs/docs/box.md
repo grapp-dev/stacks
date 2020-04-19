@@ -144,6 +144,6 @@ title: Box
 
 :::tip
 
-`Box` inherits all `View` props.
+`Box` component inherits all [`View` props](https://reactnative.dev/docs/view).
 
 :::

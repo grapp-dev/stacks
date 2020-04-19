@@ -9,6 +9,6 @@ title: FillObject
 
 :::tip
 
-`FillObject` inherits all `Box` props and `View` props as well.
+`FillObject` component inherits all `Box` and [`View`](https://reactnative.dev/docs/view) props.
 
 :::

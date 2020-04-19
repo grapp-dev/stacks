@@ -25,12 +25,8 @@ title: Inline
 
 [[ snack id="stacks-inline-align" name="Inline (align)" ]]
 
-### `testID`
+:::tip
 
-- type: `string`
-- required: `no`
+`Inline` component inherits all [`View` props](https://reactnative.dev/docs/view).
 
-### `style`
-
-- type: `StyleProp<ViewStyle>`
-- required: `no`
+:::
