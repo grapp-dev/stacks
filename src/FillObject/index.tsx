@@ -10,7 +10,7 @@ export const FillObject = <T extends Direction>(props: Props<T>) => {
   const debugStyle = useDebugStyle()
 
   return (
-    <Box {...rest} style={[style, debugStyle, StyleSheet.absoluteFill]}>
+    <Box style={[style, debugStyle, StyleSheet.absoluteFill]} {...rest}>
       {children}
     </Box>
   )

@@ -3,21 +3,19 @@ import { View, ViewProps } from 'react-native'
 import { setWrap, setDirection, setJustify, AxisX, styles } from '../utils'
 import { useSpacing, useDebugStyle } from '../context'
 
-export interface Props {
+export interface Props extends ViewProps {
   children: React.ReactNode
   space?: number
   align?: AxisX
-  style?: ViewProps['style']
-  testID?: ViewProps['testID']
 }
 
 export const Inline = (props: Props) => {
-  const { children, space = 0, style, align, testID } = props
+  const { children, space = 0, style, align, ...rest } = props
   const margin = useSpacing(space)
   const debugStyle = useDebugStyle()
 
   return (
-    <View style={style} testID={testID}>
+    <View style={style} {...rest}>
       <View
         style={[
           setWrap('wrap'),

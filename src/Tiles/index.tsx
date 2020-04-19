@@ -5,23 +5,21 @@ import { Stack } from '../Stack'
 import { lastFactory, splitEvery, setDirection, styles } from '../utils'
 import { useSpacing, useDebugStyle } from '../context'
 
-export interface Props {
+export interface Props extends ViewProps {
   children: React.ReactNode
   columns: number
   space?: number
-  style?: ViewProps['style']
-  testID?: ViewProps['testID']
 }
 
 export const Tiles = (props: Props) => {
-  const { children, columns, space = 0, style, testID } = props
+  const { children, columns, space = 0, style, ...rest } = props
   const arr = splitEvery(columns, Children.toArray(children))
   const margin = useSpacing(space)
   const filledColumns = new Array(columns)
   const debugStyle = useDebugStyle()
 
   return (
-    <Stack space={space} style={style} testID={testID}>
+    <Stack space={space} style={style} {...rest}>
       {arr.map((innerChildren, index) => {
         const filledArray = filledColumns.fill(null).map((x, y) => innerChildren[y] || x)
         const isLast = lastFactory(filledArray)

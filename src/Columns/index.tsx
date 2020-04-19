@@ -12,18 +12,16 @@ import {
 } from '../utils'
 import { useSpacing, useDebugStyle } from '../context'
 
-export interface Props {
+export interface Props extends ViewProps {
   children: React.ReactNode
   space?: number
   reverse?: boolean
   alignY?: AxisY
   alignX?: Exclude<AxisX, 'stretch'> | Space
-  style?: ViewProps['style']
-  testID?: ViewProps['testID']
 }
 
 export const Columns = (props: Props) => {
-  const { children, space = 0, reverse = false, alignX, alignY, style, testID } = props
+  const { children, space = 0, reverse = false, alignX, alignY, style, ...rest } = props
   const isLast = lastFactory(children)
   const margin = useSpacing(space)
   const debugStyle = useDebugStyle()
@@ -40,7 +38,7 @@ export const Columns = (props: Props) => {
         setAlign(alignY),
         setJustify(alignX),
       ]}
-      testID={testID}
+      {...rest}
     >
       {Children.map(children, (child, index) => {
         const marginStyle = isLast(index)

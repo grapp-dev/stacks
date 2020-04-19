@@ -118,7 +118,6 @@ export const Box = <T extends Direction>(props: Props<T>) => {
 
   return (
     <View
-      {...rest}
       style={[
         style,
         box,
@@ -128,6 +127,7 @@ export const Box = <T extends Direction>(props: Props<T>) => {
         debugStyle,
         ...alignments,
       ]}
+      {...rest}
     >
       {children}
     </View>
