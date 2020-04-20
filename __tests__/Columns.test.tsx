@@ -76,16 +76,16 @@ describe('Columns', () => {
       column10,
     ] = flattenChildrenStyle(root)
 
-    expect(column1).toMatchObject({ flex: 0 })
-    expect(column2).toMatchObject({ flexBasis: '50%' })
-    expect(column3).toMatchObject({ flexBasis: '33%' })
-    expect(column4).toMatchObject({ flexBasis: '25%' })
-    expect(column5).toMatchObject({ flexBasis: '20%' })
-    expect(column6).toMatchObject({ flexBasis: '66%' })
-    expect(column7).toMatchObject({ flexBasis: '40%' })
-    expect(column8).toMatchObject({ flexBasis: '75%' })
-    expect(column9).toMatchObject({ flexBasis: '60%' })
-    expect(column10).toMatchObject({ flexBasis: '80%' })
+    expect(column1).toMatchObject({ flex: 0, flexShrink: 1 })
+    expect(column2).toMatchObject({ flexBasis: '50%', flexShrink: 1 })
+    expect(column3).toMatchObject({ flexBasis: '33%', flexShrink: 1 })
+    expect(column4).toMatchObject({ flexBasis: '25%', flexShrink: 1 })
+    expect(column5).toMatchObject({ flexBasis: '20%', flexShrink: 1 })
+    expect(column6).toMatchObject({ flexBasis: '66%', flexShrink: 1 })
+    expect(column7).toMatchObject({ flexBasis: '40%', flexShrink: 1 })
+    expect(column8).toMatchObject({ flexBasis: '75%', flexShrink: 1 })
+    expect(column9).toMatchObject({ flexBasis: '60%', flexShrink: 1 })
+    expect(column10).toMatchObject({ flexBasis: '80%', flexShrink: 1 })
   })
 
   it('should display correct number of columns', () => {
@@ -331,5 +331,36 @@ describe('Columns', () => {
     expect(column1).toMatchObject(withMargin)
     expect(column2).toMatchObject(withMargin)
     expect(column3).toMatchObject(noMargin)
+  })
+
+  it('should handle multiple Columns components', () => {
+    const { toJSON } = render(
+      <Columns space={8}>
+        <Column>
+          <Columns space={2}>
+            <Column>
+              <Placeholder />
+            </Column>
+            <Column>
+              <Placeholder />
+            </Column>
+          </Columns>
+        </Column>
+        <Column>
+          <Placeholder />
+        </Column>
+      </Columns>,
+    )
+    const root = toJSON()
+    const [column1] = root.children
+    const [rootColumn1, rootColumn2] = flattenChildrenStyle(root)
+    const [innerColumns] = column1.children
+    const [innerColumn1, innerColumn2] = flattenChildrenStyle(innerColumns)
+
+    expect(rootColumn1).toMatchObject({ marginRight: 32 })
+    expect(rootColumn2).toMatchObject({ marginRight: 0 })
+
+    expect(innerColumn1).toMatchObject({ marginRight: 8 })
+    expect(innerColumn2).toMatchObject({ marginRight: 0 })
   })
 })
