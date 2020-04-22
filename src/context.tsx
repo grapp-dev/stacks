@@ -55,8 +55,14 @@ export const useBreakpoint = () => {
 
 export const useDebugStyle = () => {
   const { debug } = useStacks()
+
+  if (!debug) {
+    return undefined
+  }
+
   const backgroundColor = useMemo(() => randomColor(), [])
-  return debug ? { backgroundColor } : undefined
+
+  return { backgroundColor }
 }
 
 export const StacksProvider = (props: Props) => {
