@@ -30,7 +30,7 @@ npm install @mobily/stacks --save
 
 ### Prerequisites
 
-To use **Stacks** properly you need to pass a default spacing value to `StacksProvider` at the top of your React tree.
+To use **Stacks** properly you need to pass a default spacing value to `StacksProvider` at the top of your `react` tree.
 
 ```tsx
 import { StacksProvider } from '@mobily/stacks'
