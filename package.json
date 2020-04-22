@@ -66,5 +66,8 @@
   },
   "cacheDirectories": [
     "node_modules"
-  ]
+  ],
+  "dependencies": {
+    "wonka": "^4.0.9"
+  }
 }
