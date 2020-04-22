@@ -59,7 +59,7 @@ export const useDebugStyle = () => {
   return debug ? { backgroundColor } : undefined
 }
 
-export const Provider = (props: Props) => {
+export const StacksProvider = (props: Props) => {
   const { spacing = 4, debug = false, children, breakpoints } = props
   const mergedBreakpoints = Object.assign({}, defaultBreakpoints, breakpoints)
 
