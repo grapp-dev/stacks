@@ -1,6 +1,6 @@
 import React from 'react'
 import { SafeAreaView, StatusBar } from 'react-native'
-import { Provider as Stacks, Grid } from '@mobily/stacks'
+import { StacksProvider, Grid } from '@mobily/stacks'
 import { Profile } from 'screens/Profile'
 import { Playground } from 'screens/Playground'
 
@@ -31,7 +31,7 @@ export const Root = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <Stacks spacing={4} debug={false}>
+      <StacksProvider spacing={4} debug={true}>
         <SafeAreaView>
           <Profile />
           {/* <Playground /> */}
@@ -62,7 +62,7 @@ export const Root = () => {
         {/* <Grid1 /> */}
         {/* <Grid2 /> */}
         {/* <Grid3 /> */}
-      </Stacks>
+      </StacksProvider>
     </>
   )
 }
