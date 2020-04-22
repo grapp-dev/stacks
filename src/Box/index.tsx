@@ -1,29 +1,30 @@
 import React from 'react'
 import { View, ViewStyle, ViewProps } from 'react-native'
 import {
-  setFlex,
-  setDirection,
-  setAlign,
-  setJustify,
-  setWrap,
+  resolveFlex,
+  resolveDirection,
+  resolveAlign,
+  resolveJustify,
+  resolveWrap,
   AxisX,
   AxisY,
   Space,
   Flex,
   Wrap,
   Direction,
+  ResponsiveProp,
 } from '../utils'
-import { useSpacing, useDebugStyle } from '../context'
+import { useSpacing, useDebugStyle, useBreakpoint } from '../context'
 
 type ExtractAlignX<T> = T extends 'column' | 'column-reverse'
   ? AxisX
   : Exclude<AxisX, 'stretch'> | Space
 type ExtractAlignY<T> = T extends 'column' | 'column-reverse' ? Exclude<AxisY, 'stretch'> : AxisY
 
-type SpacingTuple = [keyof ViewStyle, number | undefined]
-type TakeNumbers<T> = { [P in keyof T]: number }
+type SpacingTuple = [keyof ViewStyle, ResponsiveProp<number> | undefined]
+type ResponsiveProps<T> = { [P in keyof T]: ResponsiveProp<number> }
 
-type StyleProps = TakeNumbers<
+type StyleProps = ResponsiveProps<
   Pick<
     ViewStyle,
     | 'padding'
@@ -46,13 +47,13 @@ type StyleProps = TakeNumbers<
 export interface Props<T extends Direction> extends StyleProps, ViewProps {
   children?: React.ReactNode
   flex?: Flex
-  direction?: T
-  paddingX?: number
-  paddingY?: number
-  marginX?: number
-  marginY?: number
-  alignX?: ExtractAlignX<T>
-  alignY?: ExtractAlignY<T>
+  direction?: ResponsiveProp<T>
+  paddingX?: ResponsiveProp<number>
+  paddingY?: ResponsiveProp<number>
+  marginX?: ResponsiveProp<number>
+  marginY?: ResponsiveProp<number>
+  alignX?: ResponsiveProp<ExtractAlignX<T>>
+  alignY?: ResponsiveProp<ExtractAlignY<T>>
   wrap?: Wrap
 }
 
@@ -60,7 +61,7 @@ export const Box = <T extends Direction>(props: Props<T>) => {
   const {
     children,
     flex = 'content',
-    direction = 'column',
+    direction: responsiveDirection = 'column',
     padding,
     paddingX,
     paddingY,
@@ -79,12 +80,13 @@ export const Box = <T extends Direction>(props: Props<T>) => {
     marginRight,
     marginEnd,
     marginStart,
-    alignX,
-    alignY,
+    alignX: responsiveAlignX,
+    alignY: responsiveAlignY,
     style,
     wrap,
     ...rest
   } = props
+  const { resolveResponsiveProp } = useBreakpoint()
   const spacing = useSpacing()
   const debugStyle = useDebugStyle()
   const list: SpacingTuple[] = [
@@ -109,21 +111,24 @@ export const Box = <T extends Direction>(props: Props<T>) => {
   ]
   const box = list.reduce((acc, tuple) => {
     const [name, value] = tuple
-    return value ? { ...acc, [name]: spacing(value) } : acc
+    return value ? { ...acc, [name]: spacing(resolveResponsiveProp(value)) } : acc
   }, {})
+  const direction = resolveResponsiveProp(responsiveDirection)
+  const alignX = resolveResponsiveProp(responsiveAlignX)
+  const alignY = resolveResponsiveProp(responsiveAlignY)
   const alignments =
     direction === 'column' || direction === 'column-reverse'
-      ? [setAlign(alignX as AxisX), setJustify(alignY)]
-      : [setAlign(alignY), setJustify(alignX)]
+      ? [resolveAlign(alignX as AxisX), resolveJustify(alignY)]
+      : [resolveAlign(alignY), resolveJustify(alignX)]
 
   return (
     <View
       style={[
         style,
         box,
-        setFlex(flex),
-        setDirection(direction as Direction),
-        setWrap(wrap),
+        resolveFlex(flex),
+        resolveDirection(direction as Direction),
+        resolveWrap(wrap),
         debugStyle,
         ...alignments,
       ]}

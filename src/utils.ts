@@ -1,5 +1,6 @@
-import { Children } from 'react'
-import { StyleSheet } from 'react-native'
+import { Children, useState, useEffect } from 'react'
+import { StyleSheet, Dimensions, ScaledSize, Platform } from 'react-native'
+import { make, pipe, share, publish, debounce, onPush } from 'wonka'
 
 export type AxisX = 'left' | 'center' | 'right' | 'stretch'
 export type AxisY = 'top' | 'center' | 'bottom' | 'stretch'
@@ -19,8 +20,78 @@ export type Flex =
 export type Direction = 'row' | 'column' | 'row-reverse' | 'column-reverse'
 export type Wrap = 'wrap' | 'nowrap' | 'wrap-reverse'
 
+export type Breakpoint = 'mobile' | 'tablet' | 'desktop'
+export type Breakpoints = {
+  [key in Exclude<Breakpoint, 'mobile'>]: number
+}
+export type ResponsiveProp<T> = T | Readonly<[T, T]> | Readonly<[T, T, T]>
+
+interface Layout {
+  window: ScaledSize
+}
+
+interface ResponsivePropOptions {
+  breakpoints: Breakpoints
+  width: number
+}
+
+interface CollapsibleOptions {
+  currentBreakpoint: Breakpoint
+  margin: number
+  reverse?: boolean
+  collapseBelow?: Exclude<Breakpoint, 'mobile'>
+}
+
+const dimensionsSource = pipe(
+  make<Layout>(observer => {
+    const { next } = observer
+    const handleChange = (layout: Layout) => {
+      next(layout)
+    }
+
+    Dimensions.addEventListener('change', handleChange)
+
+    return () => {
+      Dimensions.removeEventListener('change', handleChange)
+    }
+  }),
+  share,
+)
+
+const isWidthGtFactory = (width: number) => (breakpoint: number) => width >= breakpoint
+const whenReversedFactory = (reverse?: boolean) => <T, X>(reverseValue: T, value: X) =>
+  reverse ? reverseValue : value
 const randomNumber = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min)
 const randomByte = () => randomNumber(0, 255)
+
+const normalizeResponsiveProp = <T>(value: ResponsiveProp<T>): Readonly<[T, T, T]> => {
+  if (typeof value === 'string' || typeof value === 'number') {
+    return [value, value, value]
+  }
+
+  if ('length' in value) {
+    const { length } = value
+
+    if (length === 2) {
+      const [mobileValue, tabletValue] = value
+      return [mobileValue, tabletValue, tabletValue]
+    }
+
+    if (length === 3) {
+      return value as Readonly<[T, T, T]>
+    }
+
+    if (length === 1) {
+      const [mobileValue] = value
+      return [mobileValue, mobileValue, mobileValue]
+    }
+
+    throw new Error(`Invalid responsive prop length: ${JSON.stringify(value)}`)
+  }
+
+  throw new Error(`Invalid responsive prop value: ${JSON.stringify(value)}`)
+}
+
 export const randomColor = () =>
   `rgba(${[randomByte(), randomByte(), randomByte(), 0.2].join(',')})`
 
@@ -148,7 +219,7 @@ export const styles = StyleSheet.create({
   },
 })
 
-export const setAlign = (dir?: AxisX | AxisY) => {
+export const resolveAlign = (dir?: AxisX | AxisY) => {
   switch (dir) {
     case 'center':
       return styles.alignCenter
@@ -163,7 +234,7 @@ export const setAlign = (dir?: AxisX | AxisY) => {
   }
 }
 
-export const setJustify = (dir?: AxisX | AxisY | Space) => {
+export const resolveJustify = (dir?: AxisX | AxisY | Space) => {
   switch (dir) {
     case 'center':
       return styles.justifyCenter
@@ -181,7 +252,7 @@ export const setJustify = (dir?: AxisX | AxisY | Space) => {
   }
 }
 
-export const setFlex = (flex?: Flex) => {
+export const resolveFlex = (flex?: Flex) => {
   switch (flex) {
     case 'content':
       return styles.flexContent
@@ -208,7 +279,7 @@ export const setFlex = (flex?: Flex) => {
   }
 }
 
-export const setDirection = (dir?: Direction) => {
+export const resolveDirection = (dir?: Direction) => {
   switch (dir) {
     case 'row':
       return styles.directionRow
@@ -221,7 +292,7 @@ export const setDirection = (dir?: Direction) => {
   }
 }
 
-export const setWrap = (wrap?: Wrap) => {
+export const resolveWrap = (wrap?: Wrap) => {
   switch (wrap) {
     case 'wrap':
       return styles.wrap
@@ -229,5 +300,96 @@ export const setWrap = (wrap?: Wrap) => {
       return styles.wrapReverse
     default:
       return styles.noWrap
+  }
+}
+
+export const useWindowDimensions = () => {
+  const [dimensions, setDimensions] = useState(() => Dimensions.get('window'))
+
+  useEffect(() => {
+    const subscription = pipe(
+      dimensionsSource,
+      debounce(() => (Platform.OS === 'web' ? 60 : 0)),
+      onPush(layout => setDimensions(layout.window)),
+      publish,
+    )
+
+    return () => subscription.unsubscribe()
+  }, [])
+
+  return dimensions
+}
+
+export const resolveResponsivePropFactory = (options: ResponsivePropOptions) => <
+  T extends string | number | undefined
+>(
+  value: ResponsiveProp<T>,
+): T => {
+  if (typeof value === 'undefined') {
+    return undefined as T
+  }
+
+  const { width, breakpoints } = options
+  const { desktop, tablet } = breakpoints
+  const [mobileValue, tabletValue, desktopValue] = normalizeResponsiveProp(value)
+  const isWidthGt = isWidthGtFactory(width)
+
+  switch (true) {
+    case isWidthGt(desktop):
+      return desktopValue
+    case isWidthGt(tablet):
+      return tabletValue
+    default:
+      return mobileValue
+  }
+}
+
+export const resolveCurrentBreakpoint = (options: ResponsivePropOptions): Breakpoint => {
+  const { width, breakpoints } = options
+  const { desktop, tablet } = breakpoints
+  const isWidthGt = isWidthGtFactory(width)
+
+  switch (true) {
+    case isWidthGt(desktop):
+      return 'desktop'
+    case isWidthGt(tablet):
+      return 'tablet'
+    default:
+      return 'mobile'
+  }
+}
+
+export const resolveCollapsibleProps = (options: CollapsibleOptions) => {
+  const { currentBreakpoint, collapseBelow, reverse, margin } = options
+  const whenReversed = whenReversedFactory(reverse)
+
+  if (
+    (collapseBelow === 'tablet' && currentBreakpoint === 'mobile') ||
+    (collapseBelow === 'desktop' && currentBreakpoint !== 'desktop')
+  ) {
+    const noLastMargin = whenReversed(styles.noMarginBottom, styles.noMarginTop)
+    const noOppositeMargin = whenReversed(styles.noMarginTop, styles.noMarginBottom)
+    const direction: Direction = whenReversed('column-reverse', 'column')
+    const spacing = whenReversed({ marginTop: margin }, { marginBottom: margin })
+
+    return {
+      noLastMargin,
+      noOppositeMargin,
+      spacing,
+      direction,
+      columnStyle: styles.fullWidth,
+    }
+  }
+
+  const noLastMargin = whenReversed(styles.noMarginLeft, styles.noMarginRight)
+  const noOppositeMargin = whenReversed(styles.noMarginRight, styles.noMarginLeft)
+  const direction: Direction = whenReversed('row-reverse', 'row')
+  const spacing = whenReversed({ marginLeft: margin }, { marginRight: margin })
+
+  return {
+    noLastMargin,
+    noOppositeMargin,
+    spacing,
+    direction,
   }
 }

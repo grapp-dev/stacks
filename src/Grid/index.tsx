@@ -1,6 +1,7 @@
 import React from 'react'
-import { View, Text, StyleSheet, useWindowDimensions } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import { useSpacing } from '../context'
+import { useWindowDimensions } from '../utils'
 
 interface Props {
   columns?: number
