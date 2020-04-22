@@ -132,16 +132,6 @@ title: Box
 - type: `number`
 - required: `no`
 
-### `testID`
-
-- type: `string`
-- required: `no`
-
-### `style`
-
-- type: `StyleProp<ViewStyle>`
-- required: `no`
-
 :::tip
 
 `Box` component inherits all [`View` props](https://reactnative.dev/docs/view).
