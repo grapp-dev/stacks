@@ -11,7 +11,7 @@ title: Column
 
 ### `align`
 
-- type: `'left' | 'center' | 'right'`
+- type: `ResponsiveProp<'left' | 'center' | 'right'>`
 - required: `no`
 - default: `left`
 

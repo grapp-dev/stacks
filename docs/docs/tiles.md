@@ -8,7 +8,7 @@ title: Tiles
 
 ### `columns`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `yes`
 
 [[ snack id="stacks-tiles" name="Tiles" ]]
@@ -17,7 +17,7 @@ title: Tiles
 
 ### `space`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 - default: `0`
 

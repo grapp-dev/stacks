@@ -9,7 +9,7 @@ title: Inline
 
 ### `space`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 - default: `0`
 
@@ -19,7 +19,7 @@ title: Inline
 
 ### `align`
 
-- type: `'left' | 'center' | 'right'`
+- type: `ResponsiveProp<'left' | 'center' | 'right'>`
 - required: `no`
 - default: `left`
 

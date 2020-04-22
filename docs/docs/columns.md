@@ -12,7 +12,7 @@ title: Columns
 
 ### `space`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 - default: `0`
 
@@ -25,7 +25,7 @@ title: Columns
 
 ### `alignY`
 
-- type: `'top' | 'center' | 'bottom' | 'stretch'`
+- type: `ResponsiveProp<'top' | 'center' | 'bottom' | 'stretch'>`
 - required: `no`
 - default: `stretch`
 
@@ -33,7 +33,7 @@ title: Columns
 
 ### `alignX`
 
-- type: `'left' | 'center' | 'right' | 'between' | 'around' | 'evenly'`
+- type: `ResponsiveProp<'left' | 'center' | 'right' | 'between' | 'around' | 'evenly'>`
 - required: `no`
 - default: `left`
 
@@ -44,6 +44,11 @@ title: Columns
 - type: `boolean`
 - required: `no`
 - default: `false`
+
+### `collapseBelow`
+
+- type: `'tablet' | 'desktop'`
+- required: `no`
 
 :::tip
 

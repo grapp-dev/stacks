@@ -8,7 +8,7 @@ title: Stack
 
 ### `space`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 - default: `0`
 
@@ -18,7 +18,7 @@ title: Stack
 
 ### `align`
 
-- type: `'left' | 'center' | 'right' | 'stretch'`
+- type: `ResponsiveProp<'left' | 'center' | 'right' | 'stretch'>`
 - required: `no`
 - default: `stretch`
 

@@ -4,7 +4,7 @@ title: Box
 ---
 
 - `Box` is the most low-level layout component provided by `Stacks`
-- `Box` provides a set of `padding` and `margins` options which can be used to create container elements with spacing multiplied by a default value passed to the provider
+- `Box` provides a set of `padding` and `margins` options which can be used to create container elements with spacing multiplied by a value passed to the provider
 
 [[ snack id="stacks-box" name="Box" ]]
 
@@ -16,23 +16,23 @@ title: Box
 
 ### `direction`
 
-- type: `'row' | 'column' | 'row-reverse' | 'column-reverse'`
+- type: `ResponsiveProp<'row' | 'column' | 'row-reverse' | 'column-reverse'>`
 - required: `no`
 - default: `column`
 
 ### `alignX`
 
 - type:
-  - if direction is `row` or `row-reverse`: `'left' | 'center' | 'right' | 'between' | 'around' | 'evenly'`
-  - if direction is `column` or `column-reverse`: `'left' | 'center' | 'right' | 'stretch'`
+  - if direction is `row` or `row-reverse`: `ResponsiveProp<'left' | 'center' | 'right' | 'between' | 'around' | 'evenly'>`
+  - if direction is `column` or `column-reverse`: `ResponsiveProp<'left' | 'center' | 'right' | 'stretch'>`
 - required: `no`
 - default: `left`
 
 ### `alignY`
 
 - type:
-  - if direction is `row` or `row-reverse`: `'top' | 'center' | 'bottom' | 'stretch'`
-  - if direction is `column` or `column-reverse`: `'top' | 'center' | 'bottom'`
+  - if direction is `row` or `row-reverse`: `ResponsiveProp<'top' | 'center' | 'bottom' | 'stretch'>`
+  - if direction is `column` or `column-reverse`: `ResponsiveProp<'top' | 'center' | 'bottom'>`
 - required: `no`
 - default: `top`
 
@@ -44,92 +44,92 @@ title: Box
 
 ### `padding`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 
 ### `paddingX`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 
 ### `paddingY`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 
 ### `paddingTop`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 
 ### `paddingBottom`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 
 ### `paddingLeft`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 
 ### `paddingRight`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 
 ### `paddingStart`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 
 ### `paddingEnd`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 
 ### `margin`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 
 ### `marginX`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 
 ### `marginY`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 
 ### `marginTop`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 
 ### `marginBottom`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 
 ### `marginLeft`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 
 ### `marginRight`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 
 ### `marginStart`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 
 ### `marginEnd`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 
 :::tip
