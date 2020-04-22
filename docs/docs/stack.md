@@ -3,8 +3,7 @@ id: stack
 title: Stack
 ---
 
-- distribute white space evenly between components (vertically)
-- multiple `Stack` components can be nested to create more complex white space rules
+`Stack` distributes white space evenly between components (vertically).
 
 ### `space`
 

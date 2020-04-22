@@ -3,8 +3,7 @@ id: tiles
 title: Tiles
 ---
 
-- use `Tiles` to render a grid of components with equal spacing between them
-- other `Stacks` components can be nested to create more complex white space rules
+`Tiles` renders a grid of components with equal spacing between them.
 
 ### `columns`
 

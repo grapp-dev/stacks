@@ -3,9 +3,7 @@ id: inline
 title: Inline
 ---
 
-- use `Inline` to render a set of components in a row with equal spacing around them, wrapping onto multiple lines when necessary
-- `Inline` supports horizontal alignment of its children
-- multiple `Inline` components can be nested to create more complex white space rules
+`Inline` renders a set of components in a row with equal spacing around them, wrapping onto multiple lines when necessary and it also supports the horizontal alignment of its children.
 
 ### `space`
 

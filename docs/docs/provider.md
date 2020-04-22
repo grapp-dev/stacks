@@ -1,9 +1,9 @@
 ---
 id: provider
-title: Provider
+title: StacksProvider
 ---
 
-Pass a default spacing value (a logical pixel) to a `Provider` at the top of your React tree.
+Use `StacksProvider` at the top of your `react` tree to overwrite default options.
 
 ```tsx
 import { StacksProvider } from '@mobily/stacks'

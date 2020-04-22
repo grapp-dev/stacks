@@ -3,12 +3,7 @@ id: columns
 title: Columns
 ---
 
-- use `Columns` and `Column` to lay out content horizontally
-- customise the width of each column individually (all columns are of equal width by default)
-- set column width to `content` to ensure that it's only as wide as the content within it
-- you can align columns vertically with the `alignY` prop
-- you can align columns horizontally with the `alignX` prop
-- multiple `Columns` components can be nested to create more complex white space rules
+`Columns` (and `Column`) lays out content horizontally. You may want to customize the width of each column individually (all columns are of equal width by default) or set column width to `content` to ensure that it's only as wide as the content within it. Furthermore, you can align columns vertically with the `alignY` prop or horizontally with the `alignX` prop. Last, but not least, you can provide the `collapseBelow` prop to stack the columns vertically on smaller screens.
 
 ### `space`
 

@@ -3,7 +3,7 @@ id: use-spacing
 title: useSpacing
 ---
 
-- use `useSpacing` hook in your custom components to ensure that they follow proper spacing rules
+`useSpacing` allows using proper spacing rules in your custom components.
 
 ```tsx
 import { useSpacing } from '@mobily/stacks'
