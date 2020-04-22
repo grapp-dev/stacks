@@ -17,7 +17,8 @@ module.exports = {
       react: pathToNodeModules('react'),
       'react-native': pathToNodeModules('react-native'),
       '@babel/runtime': pathToNodeModules('@babel/runtime'),
+      wonka: pathToRoot('node_modules', 'wonka'),
     },
   },
-  watchFolders: [pathToRoot('src')],
+  watchFolders: [pathToRoot('src'), pathToRoot('node_modules', 'wonka')],
 }
