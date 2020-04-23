@@ -11,11 +11,11 @@ title: Column
 
 ### `align`
 
-- type: `'left' | 'center' | 'right'`
+- type: `ResponsiveProp<'left' | 'center' | 'right'>`
 - required: `no`
 - default: `left`
 
-:::tip
+:::note
 
 `Column` component inherits all [`View` props](https://reactnative.dev/docs/view).
 

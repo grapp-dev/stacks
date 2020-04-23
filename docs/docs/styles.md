@@ -3,7 +3,7 @@ id: styles
 title: styles
 ---
 
-- `Stacks` provides a stylesheet object to cover popular use cases
+`Stacks` provides a stylesheet object to cover popular use cases.
 
 ```tsx
 import { styles } from '@mobily/stacks'

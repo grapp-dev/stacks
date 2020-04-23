@@ -30,16 +30,16 @@ npm install @mobily/stacks --save
 
 ### Prerequisites
 
-To use **Stacks** properly you need to pass a default spacing value to a `Provider` at the top of your React tree.
+To use **Stacks** properly you need to pass a default spacing value to `StacksProvider` at the top of your `react` tree.
 
 ```tsx
-import { Provider as Stacks } from '@mobily/stacks'
+import { StacksProvider } from '@mobily/stacks'
 
 const App = () => {
   return (
-    <Stacks spacing={4}>
+    <StacksProvider spacing={4}>
       …
-    </Stacks>
+    </StacksProvider>
   )
 }
 ```
@@ -47,13 +47,13 @@ const App = () => {
 In short, the spacing value unit here is a logical pixel, the same as you've been using before for either _margin_ or _padding_. **Stacks** will automatically multiply the default spacing value by value of `space` (`padding` as well) passed to the components, for instance:
 
 ```tsx
-<Stacks spacing={4}>…</Stacks>
+<StacksProvider spacing={4}>…</StacksProvider>
 
 <Stack space={2}>…</Stack>
-// ⬆️ 4 * 2 = 8 logical pixels of the bottom margin
+// ⬆️ 4 * 2 = 8 logical pixels
 
 <Box padding={3}>…</Box>
-// ⬆️ 4 * 3 = 12 logical pixels of the padding
+// ⬆️ 4 * 3 = 12 logical pixels
 ```
 
 Consistent and clear!
@@ -79,6 +79,42 @@ export const Placeholder = (props: Props) => {
     </View>
   )
 }
+```
+
+## Breakpoints
+
+`Stacks`, similarly to `Braid` supports the `responsive props` format which allows you to specify an array of values for different screen sizes. Therefore, if you need to customize the spacing, number of columns, or alignments per screen size, then the `responsive props` are for you.
+
+```tsx
+type ResponsiveProp<T> = T | Readonly<[T, T]> | Readonly<[T, T, T]>
+```
+
+There are three available breakpoints: `mobile` (default, `Stacks` components are mobile-first), `tablet` and `desktop`.
+
+```
+type Breakpoint = 'mobile' | 'tablet' | 'desktop'
+```
+
+You can define custom breakpoints in the provider.
+
+```tsx
+import { StacksProvider } from '@mobily/stacks'
+
+const App = () => {
+  return (
+    <StacksProvider spacing={4} breakpoints={{ tablet: 762, desktop: 992 }}>
+      …
+    </StacksProvider>
+  )
+}
+```
+
+For example, if you wanted small spacing on mobile but medium spacing from tablet upwards:
+
+```tsx
+<Stack space={[1, 4]}>
+  …
+</Stack>
 ```
 
 ## Example

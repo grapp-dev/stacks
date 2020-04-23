@@ -1,18 +1,18 @@
 ---
 id: provider
-title: Provider
+title: StacksProvider
 ---
 
-Pass a default spacing value (a logical pixel) to a `Provider` at the top of your React tree.
+Use `StacksProvider` at the top of your `react` tree to overwrite default options.
 
 ```tsx
-import { Provider as Stacks } from '@mobily/stacks'
+import { StacksProvider } from '@mobily/stacks'
 
 const App = () => {
   return (
-    <Stacks spacing={4}>
+    <StacksProvider spacing={4}>
       …
-    </Stacks>
+    </StacksProvider>
   )
 }
 ```
@@ -28,3 +28,9 @@ const App = () => {
 - type: `boolean`
 - required: `no`
 - default: `false`
+
+### `breakpoints`
+
+- type: `{ tablet: number, desktop: number }`
+- required: `no`
+- default: `{ tablet: 768, desktop: 992 }`

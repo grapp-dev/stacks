@@ -3,12 +3,11 @@ id: stack
 title: Stack
 ---
 
-- distribute white space evenly between components (vertically)
-- multiple `Stack` components can be nested to create more complex white space rules
+`Stack` distributes white space evenly between components (vertically).
 
 ### `space`
 
-- type: `number`
+- type: `ResponsiveProp<number>`
 - required: `no`
 - default: `0`
 
@@ -18,13 +17,13 @@ title: Stack
 
 ### `align`
 
-- type: `'left' | 'center' | 'right' | 'stretch'`
+- type: `ResponsiveProp<'left' | 'center' | 'right' | 'stretch'>`
 - required: `no`
 - default: `stretch`
 
 [[ snack id="stacks-stack-align" name="Stack (align)" ]]
 
-:::tip
+:::note
 
 `Stack` component inherits all [`View` props](https://reactnative.dev/docs/view).
 

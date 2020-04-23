@@ -9,6 +9,7 @@ module.exports = {
   organizationName: 'mobily',
   projectName: 'stacks',
   themeConfig: {
+    sidebarCollapsible: false,
     navbar: {
       title: 'Stacks',
       // logo: {
@@ -17,15 +18,33 @@ module.exports = {
       // },
       links: [
         {
-          to: 'docs/motivation',
-          activeBasePath: 'docs',
           label: 'Docs',
           position: 'left',
+          activeBasePath: 'docs',
+          items: [
+            {
+              to: 'docs/stack',
+              label: 'Components',
+            },
+            {
+              to: 'docs/use-stacks',
+              label: 'Hooks',
+            },
+            {
+              to: 'docs/provider',
+              label: 'Other',
+            },
+          ],
         },
         {
           href: 'https://github.com/mobily/stacks',
           label: 'Github',
-          position: 'left',
+          position: 'right',
+        },
+        {
+          href: 'https://twitter.com/__marcin_',
+          label: 'Twitter',
+          position: 'right',
         },
       ],
     },
@@ -40,7 +59,11 @@ module.exports = {
             },
             {
               label: 'Components',
-              to: 'docs/box',
+              to: 'docs/stack',
+            },
+            {
+              label: 'Hooks',
+              to: 'docs/use-stacks',
             },
             {
               label: 'Other',
@@ -68,10 +91,14 @@ module.exports = {
               label: 'Twitter',
               href: 'https://twitter.com/__marcin_',
             },
+            {
+              label: 'Github',
+              href: 'https://github.com/mobily',
+            },
           ],
         },
       ],
-      copyright: `Built with Docusaurus.`,
+      copyright: `Built with Docusaurus ❤️`,
     },
   },
   presets: [
@@ -88,7 +115,7 @@ module.exports = {
           ],
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: [require.resolve('./src/css/custom.css')],
         },
       },
     ],

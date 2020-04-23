@@ -1,7 +1,8 @@
 module.exports = {
   someSidebar: {
-    'Getting Started': ['motivation', 'installation', 'prerequisites'],
-    Components: ['stack', 'columns', 'column', 'tiles', 'inline', 'box', 'fill-object'],
-    Other: ['provider', 'grid', 'use-spacing', 'styles'],
+    'Getting Started': ['motivation', 'installation', 'prerequisites', 'breakpoints'],
+    Components: ['stack', 'columns', 'column', 'tiles', 'inline', 'box', 'hidden', 'fill-object'],
+    Hooks: ['use-stacks', 'use-spacing', 'use-breakpoint'],
+    Other: ['provider', 'grid', 'styles'],
   },
 }

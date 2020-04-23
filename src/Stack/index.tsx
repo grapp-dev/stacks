@@ -1,22 +1,35 @@
 import React, { Children, cloneElement, isValidElement } from 'react'
 import { View, ViewProps } from 'react-native'
-import { lastFactory, styles, setDirection, setAlign, AxisX } from '../utils'
-import { useSpacing, useDebugStyle } from '../context'
+import {
+  lastFactory,
+  resolveDirection,
+  resolveAlign,
+  styles,
+  AxisX,
+  ResponsiveProp,
+} from '../utils'
+import { useBreakpoint, useDebugStyle, useSpacing } from '../context'
 
 export interface Props extends ViewProps {
   children: React.ReactNode
-  space?: number
-  align?: AxisX
+  space?: ResponsiveProp<number>
+  align?: ResponsiveProp<AxisX>
 }
 
 export const Stack = (props: Props) => {
-  const { children, space = 0, align, style, ...rest } = props
-  const margin = useSpacing(space)
-  const isLast = lastFactory(children)
+  const { children, space = 0, align: responsiveAlign, style, ...rest } = props
+  const { resolveResponsiveProp } = useBreakpoint()
   const debugStyle = useDebugStyle()
 
+  const margin = useSpacing(resolveResponsiveProp(space))
+  const align = resolveResponsiveProp(responsiveAlign)
+  const isLast = lastFactory(children)
+
   return (
-    <View style={[style, styles.fullWidth, setDirection('column'), setAlign(align)]} {...rest}>
+    <View
+      style={[style, styles.fullWidth, resolveDirection('column'), resolveAlign(align)]}
+      {...rest}
+    >
       {Children.map(children, (child, index) => {
         return isValidElement(child)
           ? cloneElement(child, {

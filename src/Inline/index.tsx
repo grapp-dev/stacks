@@ -1,26 +1,35 @@
 import React, { Children, cloneElement, isValidElement } from 'react'
 import { View, ViewProps } from 'react-native'
-import { setWrap, setDirection, setJustify, AxisX, styles } from '../utils'
-import { useSpacing, useDebugStyle } from '../context'
+import {
+  resolveWrap,
+  resolveDirection,
+  resolveJustify,
+  styles,
+  AxisX,
+  ResponsiveProp,
+} from '../utils'
+import { useSpacing, useDebugStyle, useBreakpoint } from '../context'
 
 export interface Props extends ViewProps {
   children: React.ReactNode
-  space?: number
-  align?: AxisX
+  space?: ResponsiveProp<number>
+  align?: ResponsiveProp<AxisX>
 }
 
 export const Inline = (props: Props) => {
-  const { children, space = 0, style, align, ...rest } = props
-  const margin = useSpacing(space)
+  const { children, space = 0, style, align: responsiveAlign, ...rest } = props
+  const { resolveResponsiveProp } = useBreakpoint()
+  const margin = useSpacing(resolveResponsiveProp(space))
+  const align = resolveResponsiveProp(responsiveAlign)
   const debugStyle = useDebugStyle()
 
   return (
     <View style={style} {...rest}>
       <View
         style={[
-          setWrap('wrap'),
-          setJustify(align),
-          setDirection('row'),
+          resolveWrap('wrap'),
+          resolveJustify(align),
+          resolveDirection('row'),
           { marginTop: -margin, marginRight: -margin },
         ]}
       >
