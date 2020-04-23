@@ -48,8 +48,8 @@ h3 {
   font-weight: 500;
 }
 
-.features_src-pages- {
-  min-height: 315px;
+.main-features > section {
+  min-height: 320px;
 }
 
 .main-features {
