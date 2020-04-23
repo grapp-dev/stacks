@@ -20,7 +20,7 @@ title: Tiles
 - required: `no`
 - default: `0`
 
-:::tip
+:::note
 
 `Tiles` component inherits all [`View` props](https://reactnative.dev/docs/view).
 

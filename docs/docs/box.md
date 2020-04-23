@@ -131,7 +131,7 @@ title: Box
 - type: `ResponsiveProp<number>`
 - required: `no`
 
-:::tip
+:::note
 
 `Box` component inherits all [`View` props](https://reactnative.dev/docs/view).
 

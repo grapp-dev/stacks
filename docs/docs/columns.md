@@ -45,7 +45,7 @@ title: Columns
 - type: `'tablet' | 'desktop'`
 - required: `no`
 
-:::tip
+:::note
 
 `Columns` component inherits all [`View` props](https://reactnative.dev/docs/view).
 

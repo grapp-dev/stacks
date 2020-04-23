@@ -23,7 +23,7 @@ title: Inline
 
 [[ snack id="stacks-inline-align" name="Inline (align)" ]]
 
-:::tip
+:::note
 
 `Inline` component inherits all [`View` props](https://reactnative.dev/docs/view).
 

@@ -15,7 +15,7 @@ title: Column
 - required: `no`
 - default: `left`
 
-:::tip
+:::note
 
 `Column` component inherits all [`View` props](https://reactnative.dev/docs/view).
 

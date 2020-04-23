@@ -50,10 +50,10 @@ In short, the spacing value unit here is a logical pixel, the same as you've bee
 <StacksProvider spacing={4}>…</StacksProvider>
 
 <Stack space={2}>…</Stack>
-// ⬆️ 4 * 2 = 8 logical pixels of the bottom margin
+// ⬆️ 4 * 2 = 8 logical pixels
 
 <Box padding={3}>…</Box>
-// ⬆️ 4 * 3 = 12 logical pixels of the padding
+// ⬆️ 4 * 3 = 12 logical pixels
 ```
 
 Consistent and clear!

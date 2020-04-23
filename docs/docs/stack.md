@@ -23,7 +23,7 @@ title: Stack
 
 [[ snack id="stacks-stack-align" name="Stack (align)" ]]
 
-:::tip
+:::note
 
 `Stack` component inherits all [`View` props](https://reactnative.dev/docs/view).
 

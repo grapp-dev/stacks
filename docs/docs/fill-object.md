@@ -7,7 +7,7 @@ title: FillObject
 
 [[ snack id="stacks-fill-object" name="FillObject" ]]
 
-:::tip
+:::note
 
 `FillObject` component inherits all `Box` and [`View`](https://reactnative.dev/docs/view) props.
 
