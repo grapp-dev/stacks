@@ -7,4 +7,15 @@ export { Tiles, Props as TilesProps } from './Tiles'
 export { FillObject } from './FillObject'
 export { Grid } from './Grid'
 export { StacksProvider, useSpacing, useStacks, useBreakpoint } from './context'
-export { styles, useWindowDimensions, AxisX, AxisY, Space, Flex, Direction, Wrap } from './utils'
+export {
+  styles,
+  useWindowDimensions,
+  AxisX,
+  AxisY,
+  Space,
+  Flex,
+  Direction,
+  Wrap,
+  Breakpoint,
+  ResponsiveProp,
+} from './utils'
