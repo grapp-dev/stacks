@@ -359,14 +359,19 @@ export const resolveCurrentBreakpoint = (options: ResponsivePropOptions): Breakp
   }
 }
 
+export const isCurrentBreakpointBelow = (currentBreakpoint: Breakpoint, below?: Breakpoint) =>
+  (below === 'tablet' && currentBreakpoint === 'mobile') ||
+  (below === 'desktop' && currentBreakpoint !== 'desktop')
+
+export const isCurrentBreakpointAbove = (currentBreakpoint: Breakpoint, above?: Breakpoint) =>
+  (above === 'tablet' && currentBreakpoint === 'desktop') ||
+  (above === 'mobile' && currentBreakpoint !== 'mobile')
+
 export const resolveCollapsibleProps = (options: CollapsibleOptions) => {
   const { currentBreakpoint, collapseBelow, reverse, margin } = options
   const whenReversed = whenReversedFactory(reverse)
 
-  if (
-    (collapseBelow === 'tablet' && currentBreakpoint === 'mobile') ||
-    (collapseBelow === 'desktop' && currentBreakpoint !== 'desktop')
-  ) {
+  if (isCurrentBreakpointBelow(currentBreakpoint, collapseBelow)) {
     const noLastMargin = whenReversed(styles.noMarginBottom, styles.noMarginTop)
     const noOppositeMargin = whenReversed(styles.noMarginTop, styles.noMarginBottom)
     const direction: Direction = whenReversed('column-reverse', 'column')
