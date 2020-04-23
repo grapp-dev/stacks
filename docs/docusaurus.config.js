@@ -40,7 +40,11 @@ module.exports = {
             },
             {
               label: 'Components',
-              to: 'docs/box',
+              to: 'docs/stack',
+            },
+            {
+              label: 'Hooks',
+              to: 'docs/use-stacks',
             },
             {
               label: 'Other',
@@ -68,10 +72,14 @@ module.exports = {
               label: 'Twitter',
               href: 'https://twitter.com/__marcin_',
             },
+            {
+              label: 'Github',
+              href: 'https://github.com/mobily',
+            },
           ],
         },
       ],
-      copyright: `Built with Docusaurus.`,
+      copyright: `Built with Docusaurus ❤️`,
     },
   },
   presets: [
@@ -88,7 +96,7 @@ module.exports = {
           ],
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: [require.resolve('./src/css/custom.css')],
         },
       },
     ],

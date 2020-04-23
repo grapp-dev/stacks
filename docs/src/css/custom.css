@@ -1,11 +1,6 @@
 /* stylelint-disable docusaurus/copyright-header */
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-/* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #2A6CDE;
   --ifm-color-primary-dark: rgb(33, 175, 144);
@@ -18,7 +13,11 @@
 
   --custom-background-color-features: #fff;
   --custom-hero-background-color: #F5F6F7;
-  --custom-hero-text-color: inherit;
+  --custom-hero-text-color: #1f2125;
+  --custom-background-image-features: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.03' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+  --ifm-font-family-base: Roboto, system-ui, -apple-system, Segoe UI, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont,
+    'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
 .docusaurus-highlight-code-line {
@@ -32,14 +31,29 @@ html[data-theme='dark'] {
   --custom-background-color-features: #2F3238;
   --custom-hero-background-color: #1f2125;
   --custom-hero-text-color: #fff;
+  --custom-background-image-features: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
 
   --ifm-color-primary: #79AAFF;
   --ifm-background-color: #1f2125;
   --ifm-contents-border-color: #2F3238;
 }
 
+h3 {
+  font-weight: 500;
+}
+
 .features_src-pages- {
-  background-color: var(--custom-background-color-features);
+  min-height: 315px;
+}
+
+.main-features {
+  background-color: var(--custom-hero-background-color);
+  background-image: var(--custom-background-image-features);
+}
+
+.main-features__container {
+  color: var(--custom-hero-text-color);
+  text-align: center;
 }
 
 .hero.hero--primary {
@@ -49,11 +63,10 @@ html[data-theme='dark'] {
 
 .hero .hero__title {
   font-size: 3.4rem;
-  font-style: italic;
 }
 
 .hero .hero__subtitle {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .doc-example {

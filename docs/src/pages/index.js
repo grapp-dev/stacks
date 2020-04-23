@@ -43,10 +43,7 @@ function Home() {
   const context = useDocusaurusContext()
   const { siteConfig = {} } = context
   return (
-    <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
-    >
+    <Layout title="Stacks" description="⚡ Build React Native views blazingly fast">
       <header className={classnames('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
@@ -64,10 +61,10 @@ function Home() {
           </div>
         </div>
       </header>
-      <main>
+      <main className="main-features">
         {features && features.length && (
           <section className={styles.features}>
-            <div className="container">
+            <div className="container main-features__container">
               <div className="row">
                 {features.map((props, idx) => (
                   <Feature key={idx} {...props} />
