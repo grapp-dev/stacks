@@ -102,7 +102,7 @@ import { StacksProvider } from '@mobily/stacks'
 
 const App = () => {
   return (
-    <StacksProvider spacing={4} breakpoints={{ tablet: 762, desktop: 992 }}>
+    <StacksProvider spacing={4} breakpoints={{ tablet: 768, desktop: 992 }}>
       …
     </StacksProvider>
   )
