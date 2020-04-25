@@ -178,6 +178,32 @@ For example, if you wanted small spacing on mobile but medium spacing from table
 </Stack>
 ```
 
+If you wanted top alignment on mobile and center on tablet upwards.
+
+```tsx
+<Columns space={1} alignY={['top', 'center']}>
+  <Column>
+    …
+  </Column>
+  <Column>
+    …
+  </Column>
+</Columns>
+```
+
+If you would like the columns to stack vertically on smaller screens, you can provide the `collapseBelow` prop.
+
+```tsx
+<Columns space={1} collapseBelow="tablet">
+  <Column>
+    …
+  </Column>
+  <Column>
+    …
+  </Column>
+</Columns>
+```
+
 ## Api Reference
 
 Full documentation is available [here](https://mobily.github.io/stacks).
