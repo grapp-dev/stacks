@@ -11,9 +11,7 @@ title: Stack
 - required: `no`
 - default: `0`
 
-[[ snack id="stacks-stack-space" name="Stack (space)" ]]
-
-[[ snack id="stacks-stack-nested-stacks" name="Stack (nested)" ]]
+[[ codesandbox id="stack-space-qr2bi" ]]
 
 ### `align`
 
@@ -21,7 +19,7 @@ title: Stack
 - required: `no`
 - default: `stretch`
 
-[[ snack id="stacks-stack-align" name="Stack (align)" ]]
+[[ codesandbox id="stack-align-fid63" ]]
 
 :::note
 

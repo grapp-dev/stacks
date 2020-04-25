@@ -5,25 +5,16 @@ const randomId = () => Math.random().toString(36).substr(2, 10)
 
 const transform = (type, attrs) => {
   switch (type) {
-    case 'snack':
+    case 'codesandbox':
       return oneLine`
 <div class="snack-player">
   <div class="snack" style="margin-top: 15px; margin-bottom: 15px">
-      <div style="
-        overflow: hidden;
-        background: #fafafa;
-        border: 1px solid rgba(0, 0, 0, .08);
-        border-radius: 4px;
-        height: 505px;
-        width: 100%;
-      ">
-      <iframe src="https://snack.expo.io/embedded/@mobily/${
-        attrs.id
-      }?preview=true&amp;platform=web&amp;iframeId=${randomId()}&amp;name=${
-        attrs.name
-      }&amp;theme=light" height="100%" width="100%" frameborder="0" data-snack-iframe="true" style="display: block;"></iframe>
+    <iframe src="https://codesandbox.io/embed/${attrs.id}?fontsize=14&hidenavigation=1&theme=dark"
+      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+      title="stacks-stack-breakpoint"
+      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr"
+      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>
     </div>
-  </div>
 </div>
 `
   }

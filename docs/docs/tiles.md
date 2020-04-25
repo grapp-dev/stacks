@@ -10,9 +10,9 @@ title: Tiles
 - type: `ResponsiveProp<number>`
 - required: `yes`
 
-[[ snack id="stacks-tiles" name="Tiles" ]]
+[[ codesandbox id="tiles-vou2t" ]]
 
-[[ snack id="stacks-tiles-nested" name="Tiles (nested)" ]]
+[[ codesandbox id="tiles-nested-990xn" ]]
 
 ### `space`
 

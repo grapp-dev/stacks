@@ -5,7 +5,7 @@ title: Box
 
 `Box` is the most low-level layout component provided by `Stacks`. It provides a set of `padding` and `margin` options which can be used to create container elements with spacing multiplied by a value passed to the provider.
 
-[[ snack id="stacks-box" name="Box" ]]
+[[ codesandbox id="box-r01j1" ]]
 
 ### `flex`
 

@@ -11,9 +11,7 @@ title: Inline
 - required: `no`
 - default: `0`
 
-[[ snack id="stacks-inline" name="Inline" ]]
-
-[[ snack id="stacks-inline-nested" name="Inline (nested)" ]]
+[[ codesandbox id="inline-06xeq" ]]
 
 ### `align`
 
@@ -21,7 +19,7 @@ title: Inline
 - required: `no`
 - default: `left`
 
-[[ snack id="stacks-inline-align" name="Inline (align)" ]]
+[[ codesandbox id="inline-align-7qldu" ]]
 
 :::note
 

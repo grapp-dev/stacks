@@ -11,11 +11,11 @@ title: Columns
 - required: `no`
 - default: `0`
 
-[[ snack id="stacks-columns-space" name="Columns (space)" ]]
+[[ codesandbox id="columns-space-3igi0" ]]
 
-[[ snack id="stacks-columns-content-width" name="Columns (content width)" ]]
+[[ codesandbox id="columns-content-width-e0w6i" ]]
 
-[[ snack id="stacks-columns-nested-columns" name="Columns (nested)" ]]
+[[ codesandbox id="columns-nested-ljhcd" ]]
 
 
 ### `alignY`
@@ -24,7 +24,7 @@ title: Columns
 - required: `no`
 - default: `stretch`
 
-[[ snack id="stacks-columns-align-y" name="Columns (alignY)" ]]
+[[ codesandbox id="columns-align-y-v7i77"]]
 
 ### `alignX`
 
@@ -32,7 +32,7 @@ title: Columns
 - required: `no`
 - default: `left`
 
-[[ snack id="stacks-columns-align-x" name="Columns (alignX)" ]]
+[[ codesandbox id="columns-align-x-g3byu" ]]
 
 ### `reverse`
 
