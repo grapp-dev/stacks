@@ -81,42 +81,6 @@ export const Placeholder = (props: Props) => {
 }
 ```
 
-## Breakpoints
-
-`Stacks`, similarly to `Braid` supports the `responsive props` format which allows you to specify an array of values for different screen sizes. Therefore, if you need to customize the spacing, number of columns, or alignments per screen size, then the `responsive props` are for you.
-
-```tsx
-type ResponsiveProp<T> = T | Readonly<[T, T]> | Readonly<[T, T, T]>
-```
-
-There are three available breakpoints: `mobile` (default, `Stacks` components are mobile-first), `tablet` and `desktop`.
-
-```
-type Breakpoint = 'mobile' | 'tablet' | 'desktop'
-```
-
-You can define custom breakpoints in the provider.
-
-```tsx
-import { StacksProvider } from '@mobily/stacks'
-
-const App = () => {
-  return (
-    <StacksProvider spacing={4} breakpoints={{ tablet: 768, desktop: 992 }}>
-      …
-    </StacksProvider>
-  )
-}
-```
-
-For example, if you wanted small spacing on mobile but medium spacing from tablet upwards:
-
-```tsx
-<Stack space={[1, 4]}>
-  …
-</Stack>
-```
-
 ## Example
 
 The following example shows how simple is building screens without using neither _margin_ nor _padding_ properties in your style sheets objects. For debugging purposes, you may want to turn the debug mode on (pass the `debug` property to the provider) or use the customizable Grid component.
@@ -176,6 +140,42 @@ const Profile = () => {
     </ScrollView>
   )
 }
+```
+
+## Breakpoints
+
+`Stacks`, similarly to `Braid` supports the `responsive props` format which allows you to specify an array of values for different screen sizes. Therefore, if you need to customize the spacing, number of columns, or alignments per screen size, then the `responsive props` are for you.
+
+```tsx
+type ResponsiveProp<T> = T | Readonly<[T, T]> | Readonly<[T, T, T]>
+```
+
+There are three available breakpoints: `mobile` (default, `Stacks` components are mobile-first), `tablet` and `desktop`.
+
+```
+type Breakpoint = 'mobile' | 'tablet' | 'desktop'
+```
+
+You can define custom breakpoints in the provider.
+
+```tsx
+import { StacksProvider } from '@mobily/stacks'
+
+const App = () => {
+  return (
+    <StacksProvider spacing={4} breakpoints={{ tablet: 768, desktop: 992 }}>
+      …
+    </StacksProvider>
+  )
+}
+```
+
+For example, if you wanted small spacing on mobile but medium spacing from tablet upwards:
+
+```tsx
+<Stack space={[1, 4]}>
+  …
+</Stack>
 ```
 
 ## Api Reference
