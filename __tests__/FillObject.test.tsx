@@ -4,7 +4,7 @@ import { FillObject } from '../src'
 
 import { Placeholder, flattenStyle } from './utils'
 
-describe('Grid', () => {
+describe('FillObject', () => {
   it('should fill the screen', () => {
     const { toJSON } = render(
       <FillObject>

@@ -1,10 +1,41 @@
 import React from 'react'
 import { render } from 'react-native-testing-library'
-import { Inline } from '../src'
+import { Inline, ResponsiveProp } from '../src'
 
-import { Placeholder, flattenStyle, flattenChildrenStyle, abs } from './utils'
+import {
+  Placeholder,
+  flattenStyle,
+  flattenChildrenStyle,
+  resizeToDesktop,
+  resizeToTablet,
+} from './utils'
 
 describe('Inline', () => {
+  const inspectMarginFactory = (space?: ResponsiveProp<number>) => (margin: number) => {
+    const { toJSON } = render(
+      <Inline space={space}>
+        <Placeholder width={60} />
+        <Placeholder width={60} />
+        <Placeholder width={60} />
+      </Inline>,
+    )
+    const root = toJSON()
+    const [inner] = flattenChildrenStyle(root)
+    const [container] = root.children
+    const [placeholder1, placeholder2, placeholder3] = flattenChildrenStyle(container)
+    const withMargin = {
+      marginTop: margin,
+      marginRight: margin,
+    }
+
+    expect(inner.marginTop).toBe(-margin)
+    expect(inner.marginRight).toBe(-margin)
+
+    expect(placeholder1).toMatchObject(withMargin)
+    expect(placeholder2).toMatchObject(withMargin)
+    expect(placeholder3).toMatchObject(withMargin)
+  }
+
   it('should distribute content horizontally and wrap inner content', () => {
     const { toJSON } = render(
       <Inline>
@@ -24,78 +55,18 @@ describe('Inline', () => {
   })
 
   it('should add no margin to children components if `space` is not passed', () => {
-    const { toJSON } = render(
-      <Inline>
-        <Placeholder width={60} />
-        <Placeholder width={60} />
-        <Placeholder width={60} />
-      </Inline>,
-    )
-    const root = toJSON()
-    const [inner] = flattenChildrenStyle(root)
-    const [container] = root.children
-    const [placeholder1, placeholder2, placeholder3] = flattenChildrenStyle(container)
-    const noMargin = {
-      marginTop: 0,
-      marginRight: 0,
-    }
-
-    expect(abs(inner.marginTop)).toBe(0)
-    expect(abs(inner.marginRight)).toBe(0)
-
-    expect(placeholder1).toMatchObject(noMargin)
-    expect(placeholder2).toMatchObject(noMargin)
-    expect(placeholder3).toMatchObject(noMargin)
+    const inspectMargin = inspectMarginFactory()
+    inspectMargin(0)
   })
 
   it('should add no margin to children components if `space` equals 0', () => {
-    const { toJSON } = render(
-      <Inline space={0}>
-        <Placeholder width={60} />
-        <Placeholder width={60} />
-        <Placeholder width={60} />
-      </Inline>,
-    )
-    const root = toJSON()
-    const [inner] = flattenChildrenStyle(root)
-    const [container] = root.children
-    const [placeholder1, placeholder2, placeholder3] = flattenChildrenStyle(container)
-    const noMargin = {
-      marginTop: 0,
-      marginRight: 0,
-    }
-
-    expect(abs(inner.marginTop)).toBe(0)
-    expect(abs(inner.marginRight)).toBe(0)
-
-    expect(placeholder1).toMatchObject(noMargin)
-    expect(placeholder2).toMatchObject(noMargin)
-    expect(placeholder3).toMatchObject(noMargin)
+    const inspectMargin = inspectMarginFactory(0)
+    inspectMargin(0)
   })
 
   it('should add proper margin to children components if `space` is greater than 0', () => {
-    const { toJSON } = render(
-      <Inline space={2}>
-        <Placeholder width={60} />
-        <Placeholder width={60} />
-        <Placeholder width={60} />
-      </Inline>,
-    )
-    const root = toJSON()
-    const [inner] = flattenChildrenStyle(root)
-    const [container] = root.children
-    const [placeholder1, placeholder2, placeholder3] = flattenChildrenStyle(container)
-    const withMargin = {
-      marginTop: 8,
-      marginRight: 8,
-    }
-
-    expect(inner.marginTop).toBe(-8)
-    expect(inner.marginRight).toBe(-8)
-
-    expect(placeholder1).toMatchObject(withMargin)
-    expect(placeholder2).toMatchObject(withMargin)
-    expect(placeholder3).toMatchObject(withMargin)
+    const inspectMargin = inspectMarginFactory(2)
+    inspectMargin(8)
   })
 
   it('should center content correctly', () => {
@@ -153,5 +124,25 @@ describe('Inline', () => {
       marginBottom: 0,
       marginLeft: 0,
     })
+  })
+
+  it('should handle tablet screen size upwards', () => {
+    const inspectMargin = inspectMarginFactory([1, 3])
+
+    inspectMargin(4)
+    resizeToTablet()
+    inspectMargin(12)
+    resizeToDesktop()
+    inspectMargin(12)
+  })
+
+  it('should handle desktop screen size', () => {
+    const inspectMargin = inspectMarginFactory([1, 3, 5])
+
+    inspectMargin(4)
+    resizeToTablet()
+    inspectMargin(12)
+    resizeToDesktop()
+    inspectMargin(20)
   })
 })
