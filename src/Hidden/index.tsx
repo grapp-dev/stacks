@@ -3,7 +3,7 @@ import React from 'react'
 import { useBreakpoint } from '../context'
 import { isCurrentBreakpointBelow, isCurrentBreakpointAbove, Breakpoint } from '../utils'
 
-interface Props {
+export interface Props {
   children: React.ReactNode
   below?: Exclude<Breakpoint, 'mobile'>
   above?: Exclude<Breakpoint, 'desktop'>
@@ -18,7 +18,7 @@ export const Hidden = (props: Props) => {
   }
 
   return isCurrentBreakpointBelow(currentBreakpoint, below) ||
-    isCurrentBreakpointAbove(currentBreakpoint, above)
-    ? null
-    : children
+    isCurrentBreakpointAbove(currentBreakpoint, above) ? null : (
+    <>{children}</>
+  )
 }

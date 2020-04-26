@@ -5,7 +5,7 @@ export { Column, Props as ColumnProps } from './Column'
 export { Inline } from './Inline'
 export { Tiles, Props as TilesProps } from './Tiles'
 export { FillObject } from './FillObject'
-export { Hidden } from './Hidden'
+export { Hidden, Props as HiddenProps } from './Hidden'
 export { Grid } from './Grid'
 export { StacksProvider, useSpacing, useStacks, useBreakpoint } from './context'
 export {
