@@ -152,7 +152,7 @@ type ResponsiveProp<T> = T | Readonly<[T, T]> | Readonly<[T, T, T]>
 
 There are three available breakpoints: `mobile` (default, `Stacks` components are mobile-first), `tablet` and `desktop`.
 
-```
+```ts
 type Breakpoint = 'mobile' | 'tablet' | 'desktop'
 ```
 
