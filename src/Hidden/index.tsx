@@ -9,7 +9,7 @@ export interface Props {
   above?: Exclude<Breakpoint, 'desktop'>
 }
 
-export const Hidden = (props: Props) => {
+export const Hidden = (props: Props): JSX.Element | null => {
   const { children, below, above } = props
   const { currentBreakpoint } = useBreakpoint()
 
