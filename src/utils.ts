@@ -95,7 +95,7 @@ const normalizeResponsiveProp = <T>(value: ResponsiveProp<T>): Readonly<[T, T, T
 export const randomColor = () =>
   `rgba(${[randomByte(), randomByte(), randomByte(), 0.2].join(',')})`
 
-export const lastFactory = (elements: React.ReactNode) => (index: number) =>
+export const lastFactory = (elements: ReturnType<typeof Children.toArray>) => (index: number) =>
   index === Children.count(elements) - 1
 
 export const splitEvery = <T>(n: number, list: T[]) => {

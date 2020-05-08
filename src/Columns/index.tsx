@@ -36,7 +36,8 @@ export const Columns = (props: Props) => {
     ...rest
   } = props
   const { resolveResponsiveProp, currentBreakpoint } = useBreakpoint()
-  const isLast = lastFactory(children)
+  const elements = Children.toArray(children)
+  const isLast = lastFactory(elements)
   const debugStyle = useDebugStyle()
 
   const alignX = resolveResponsiveProp(responsiveAlignX)
@@ -67,7 +68,7 @@ export const Columns = (props: Props) => {
       ]}
       {...rest}
     >
-      {Children.map(children, (child, index) => {
+      {elements.map((child, index) => {
         const marginStyle = isLast(index) ? noLastMargin : spacing
 
         return isValidElement(child)

@@ -22,6 +22,7 @@ export const Inline = (props: Props) => {
   const margin = useSpacing(resolveResponsiveProp(space))
   const align = resolveResponsiveProp(responsiveAlign)
   const debugStyle = useDebugStyle()
+  const elements = Children.toArray(children)
 
   return (
     <View style={style} {...rest}>
@@ -33,7 +34,7 @@ export const Inline = (props: Props) => {
           { marginTop: -margin, marginRight: -margin },
         ]}
       >
-        {Children.map(children, child => {
+        {elements.map(child => {
           return isValidElement(child)
             ? cloneElement(child, {
                 ...child.props,

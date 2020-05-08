@@ -23,14 +23,15 @@ export const Stack = (props: Props) => {
 
   const margin = useSpacing(resolveResponsiveProp(space))
   const align = resolveResponsiveProp(responsiveAlign)
-  const isLast = lastFactory(children)
+  const elements = Children.toArray(children)
+  const isLast = lastFactory(elements)
 
   return (
     <View
       style={[style, styles.fullWidth, resolveDirection('column'), resolveAlign(align)]}
       {...rest}
     >
-      {Children.map(children, (child, index) => {
+      {elements.map((child, index) => {
         return isValidElement(child)
           ? cloneElement(child, {
               ...child.props,
