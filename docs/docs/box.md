@@ -41,7 +41,6 @@ title: Box
   - if direction is `row` or `row-reverse`: `ResponsiveProp<'top' | 'center' | 'bottom' | 'stretch'>`
   - if direction is `column` or `column-reverse`: `ResponsiveProp<'top' | 'center' | 'bottom'>`
 - required: `no`
-- default: `top`
 
 ### `wrap`
 
