@@ -6,6 +6,7 @@ import {
   resolveAlign,
   resolveJustify,
   resolveWrap,
+  resolveAlignSelf,
   AxisX,
   AxisY,
   Space,
@@ -46,7 +47,7 @@ type StyleProps = ResponsiveProps<
 
 export interface Props<T extends Direction> extends StyleProps, ViewProps {
   children?: React.ReactNode
-  flex?: Flex
+  flex?: ResponsiveProps<Flex>
   direction?: ResponsiveProp<T>
   paddingX?: ResponsiveProp<number>
   paddingY?: ResponsiveProp<number>
@@ -54,13 +55,14 @@ export interface Props<T extends Direction> extends StyleProps, ViewProps {
   marginY?: ResponsiveProp<number>
   alignX?: ResponsiveProp<ExtractAlignX<T>>
   alignY?: ResponsiveProp<ExtractAlignY<T>>
+  alignSelf?: ResponsiveProp<ExtractAlignY<T>>
   wrap?: Wrap
 }
 
 export const Box = <T extends Direction>(props: Props<T>) => {
   const {
     children,
-    flex = 'content',
+    flex: responsiveFlex = 'content',
     direction: responsiveDirection = 'column',
     padding,
     paddingX,
@@ -82,6 +84,7 @@ export const Box = <T extends Direction>(props: Props<T>) => {
     marginStart,
     alignX: responsiveAlignX,
     alignY: responsiveAlignY,
+    alignSelf: responsiveAlignSelf,
     style,
     wrap,
     ...rest
@@ -116,6 +119,9 @@ export const Box = <T extends Direction>(props: Props<T>) => {
   const direction = resolveResponsiveProp(responsiveDirection)
   const alignX = resolveResponsiveProp(responsiveAlignX)
   const alignY = resolveResponsiveProp(responsiveAlignY)
+  const alignSelf = resolveResponsiveProp(responsiveAlignSelf)
+  const flex = resolveResponsiveProp(responsiveFlex)
+
   const alignments =
     direction === 'column' || direction === 'column-reverse'
       ? [resolveAlign(alignX as AxisX), resolveJustify(alignY)]
@@ -129,6 +135,7 @@ export const Box = <T extends Direction>(props: Props<T>) => {
         resolveFlex(flex),
         resolveDirection(direction as Direction),
         resolveWrap(wrap),
+        resolveAlignSelf(alignSelf),
         debugStyle,
         ...alignments,
       ]}

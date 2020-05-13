@@ -154,6 +154,18 @@ export const styles = StyleSheet.create({
   alignStretch: {
     alignItems: 'stretch',
   },
+  alignSelfStart: {
+    alignSelf: 'flex-start',
+  },
+  alignSelfCenter: {
+    alignSelf: 'center',
+  },
+  alignSelfEnd: {
+    alignSelf: 'flex-end',
+  },
+  alignSelfStretch: {
+    alignSelf: 'stretch',
+  },
   justifyStart: {
     justifyContent: 'flex-start',
   },
@@ -231,6 +243,21 @@ export const resolveAlign = (dir?: AxisX | AxisY) => {
       return styles.alignStart
     default:
       return styles.alignStretch
+  }
+}
+
+export const resolveAlignSelf = (dir?: AxisX | AxisY) => {
+  switch (dir) {
+    case 'center':
+      return styles.alignSelfCenter
+    case 'bottom':
+    case 'right':
+      return styles.alignSelfEnd
+    case 'top':
+    case 'left':
+      return styles.alignSelfStart
+    case 'stretch':
+      return styles.alignSelfStretch
   }
 }
 
