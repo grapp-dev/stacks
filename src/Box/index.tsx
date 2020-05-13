@@ -23,9 +23,9 @@ type ExtractAlignX<T> = T extends 'column' | 'column-reverse'
 type ExtractAlignY<T> = T extends 'column' | 'column-reverse' ? Exclude<AxisY, 'stretch'> : AxisY
 
 type SpacingTuple = [keyof ViewStyle, ResponsiveProp<number> | undefined]
-type ResponsiveProps<T> = { [P in keyof T]: ResponsiveProp<number> }
+type BoxResponsiveProps<T> = { [P in keyof T]: ResponsiveProp<number> }
 
-type StyleProps = ResponsiveProps<
+type StyleProps = BoxResponsiveProps<
   Pick<
     ViewStyle,
     | 'padding'
@@ -47,7 +47,7 @@ type StyleProps = ResponsiveProps<
 
 export interface Props<T extends Direction> extends StyleProps, ViewProps {
   children?: React.ReactNode
-  flex?: ResponsiveProps<Flex>
+  flex?: ResponsiveProp<Flex>
   direction?: ResponsiveProp<T>
   paddingX?: ResponsiveProp<number>
   paddingY?: ResponsiveProp<number>
