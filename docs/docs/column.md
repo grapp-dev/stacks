@@ -9,12 +9,6 @@ title: Column
 - required: `no`
 - default: `fluid`
 
-### `align`
-
-- type: `ResponsiveProp<'left' | 'center' | 'right'>`
-- required: `no`
-- default: `left`
-
 :::note
 
 `Column` component inherits all [`View` props](https://reactnative.dev/docs/view).

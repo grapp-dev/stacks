@@ -9,7 +9,7 @@ title: Box
 
 ### `flex`
 
-- type: `'content' | 'fluid' | '1/2' | '1/3' | '2/3' | '1/4' | '3/4' | '1/5' | '2/5' | '3/5' | '4/5'`
+- type: `ResponsiveProp<'content' | 'fluid' | '1/2' | '1/3' | '2/3' | '1/4' | '3/4' | '1/5' | '2/5' | '3/5' | '4/5'>`
 - required: `no`
 - default: `content`
 
@@ -28,6 +28,14 @@ title: Box
 - default: `left`
 
 ### `alignY`
+
+- type:
+  - if direction is `row` or `row-reverse`: `ResponsiveProp<'top' | 'center' | 'bottom' | 'stretch'>`
+  - if direction is `column` or `column-reverse`: `ResponsiveProp<'top' | 'center' | 'bottom'>`
+- required: `no`
+- default: `top`
+
+### `alignSelf`
 
 - type:
   - if direction is `row` or `row-reverse`: `ResponsiveProp<'top' | 'center' | 'bottom' | 'stretch'>`
