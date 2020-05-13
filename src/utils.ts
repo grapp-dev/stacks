@@ -382,7 +382,7 @@ export const resolveCollapsibleProps = (options: CollapsibleOptions) => {
       noOppositeMargin,
       spacing,
       direction,
-      columnStyle: styles.fullWidth,
+      isCollapsed: true,
     }
   }
 
@@ -396,5 +396,6 @@ export const resolveCollapsibleProps = (options: CollapsibleOptions) => {
     noOppositeMargin,
     spacing,
     direction,
+    isCollapsed: false,
   }
 }

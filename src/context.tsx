@@ -14,6 +14,10 @@ interface Config {
   breakpoints: Breakpoints
 }
 
+interface ColumnsConfig {
+  isCollapsed: boolean
+}
+
 interface Props {
   children: React.ReactNode
   spacing?: number
@@ -29,12 +33,18 @@ const Context = createContext<Config>({
   breakpoints: defaultBreakpoints,
 })
 
+export const ColumnsContext = createContext<ColumnsConfig>({
+  isCollapsed: false,
+})
+
 type UseSpacing = {
   (space: number): number
   (): (space: number) => number
 }
 
 export const useStacks = () => useContext(Context)
+
+export const useColumns = () => useContext(ColumnsContext)
 
 export const useSpacing: UseSpacing = (space?: number): any => {
   const { spacing } = useStacks()

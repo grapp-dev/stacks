@@ -13,7 +13,7 @@ import {
   ResponsiveProp,
   Breakpoint,
 } from '../utils'
-import { useBreakpoint, useDebugStyle, useSpacing } from '../context'
+import { ColumnsContext, useBreakpoint, useDebugStyle, useSpacing } from '../context'
 
 export interface Props extends ViewProps {
   children: React.ReactNode
@@ -49,7 +49,7 @@ export const Columns = (props: Props) => {
     noOppositeMargin,
     spacing,
     direction,
-    columnStyle,
+    isCollapsed,
   } = resolveCollapsibleProps({
     currentBreakpoint,
     collapseBelow,
@@ -58,26 +58,28 @@ export const Columns = (props: Props) => {
   })
 
   return (
-    <View
-      style={[
-        style,
-        styles.fullWidth,
-        resolveDirection(direction),
-        resolveAlign(alignY),
-        resolveJustify(alignX),
-      ]}
-      {...rest}
-    >
-      {elements.map((child, index) => {
-        const marginStyle = isLast(index) ? noLastMargin : spacing
+    <ColumnsContext.Provider value={{ isCollapsed }}>
+      <View
+        style={[
+          style,
+          styles.fullWidth,
+          resolveDirection(direction),
+          resolveAlign(alignY),
+          resolveJustify(alignX),
+        ]}
+        {...rest}
+      >
+        {elements.map((child, index) => {
+          const marginStyle = isLast(index) ? noLastMargin : spacing
 
-        return isValidElement(child)
-          ? cloneElement(child, {
-              ...child.props,
-              style: [child.props.style, columnStyle, debugStyle, noOppositeMargin, marginStyle],
-            })
-          : null
-      })}
-    </View>
+          return isValidElement(child)
+            ? cloneElement(child, {
+                ...child.props,
+                style: [child.props.style, debugStyle, noOppositeMargin, marginStyle],
+              })
+            : null
+        })}
+      </View>
+    </ColumnsContext.Provider>
   )
 }
