@@ -28,7 +28,7 @@ export const Stack = (props: Props) => {
 
   return (
     <View
-      style={[style, styles.fullWidth, resolveDirection('column'), resolveAlign(align)]}
+      style={[styles.fullWidth, style, resolveDirection('column'), resolveAlign(align)]}
       {...rest}
     >
       {elements.map((child, index) => {

@@ -61,8 +61,8 @@ export const Columns = (props: Props) => {
     <ColumnsContext.Provider value={{ isCollapsed }}>
       <View
         style={[
-          style,
           styles.fullWidth,
+          style,
           resolveDirection(direction),
           resolveAlign(alignY),
           resolveJustify(alignX),
