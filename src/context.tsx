@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useRef } from 'react'
+import { ViewStyle } from 'react-native'
 
 import {
   Breakpoints,
@@ -65,14 +66,11 @@ export const useBreakpoint = () => {
 
 export const useDebugStyle = () => {
   const { debug } = useStacks()
+  const stylesRef = useRef<ViewStyle>()
 
-  if (!debug) {
-    return undefined
-  }
+  stylesRef.current = debug ? { backgroundColor: randomColor() } : undefined
 
-  const backgroundColorRef = useRef(randomColor())
-
-  return { backgroundColor: backgroundColorRef.current }
+  return stylesRef.current
 }
 
 export const StacksProvider = (props: Props) => {
