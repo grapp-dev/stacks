@@ -1,6 +1,7 @@
-import { Children, useState, useEffect } from 'react'
-import { StyleSheet, Dimensions, ScaledSize, Platform } from 'react-native'
-import { make, pipe, share, publish, debounce, onPush } from 'wonka'
+import { Children, useEffect, useState } from 'react'
+import { Dimensions, Platform, ScaledSize, StyleSheet } from 'react-native'
+
+import { debounce, make, onPush, pipe, publish, share } from 'wonka'
 
 export type AxisX = 'left' | 'center' | 'right' | 'stretch'
 export type AxisY = 'top' | 'center' | 'bottom' | 'stretch'

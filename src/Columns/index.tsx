@@ -1,17 +1,18 @@
 import React, { Children, cloneElement, isValidElement } from 'react'
 import { View, ViewProps } from 'react-native'
+
 import {
-  resolveCollapsibleProps,
+  AxisX,
+  AxisY,
+  Breakpoint,
+  ResponsiveProp,
+  Space,
   lastFactory,
-  resolveDirection,
   resolveAlign,
+  resolveCollapsibleProps,
+  resolveDirection,
   resolveJustify,
   styles,
-  AxisY,
-  Space,
-  AxisX,
-  ResponsiveProp,
-  Breakpoint,
 } from '../utils'
 import { ColumnsContext, useBreakpoint, useDebugStyle, useSpacing } from '../context'
 

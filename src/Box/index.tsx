@@ -1,21 +1,22 @@
 import React from 'react'
-import { View, ViewStyle, ViewProps } from 'react-native'
+import { View, ViewProps, ViewStyle } from 'react-native'
+
 import {
-  resolveFlex,
-  resolveDirection,
-  resolveAlign,
-  resolveJustify,
-  resolveWrap,
-  resolveAlignSelf,
   AxisX,
   AxisY,
-  Space,
-  Flex,
-  Wrap,
   Direction,
+  Flex,
   ResponsiveProp,
+  Space,
+  Wrap,
+  resolveAlign,
+  resolveAlignSelf,
+  resolveDirection,
+  resolveFlex,
+  resolveJustify,
+  resolveWrap,
 } from '../utils'
-import { useSpacing, useDebugStyle, useBreakpoint } from '../context'
+import { useBreakpoint, useDebugStyle, useSpacing } from '../context'
 
 type ExtractAlignX<T> = T extends 'column' | 'column-reverse'
   ? AxisX

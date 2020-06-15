@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, ViewProps } from 'react-native'
-import { resolveFlex, styles, Flex } from '../utils'
+
+import { Flex, resolveFlex, styles } from '../utils'
 import { useColumns } from '../context'
 
 export interface Props extends ViewProps {

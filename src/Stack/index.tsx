@@ -1,12 +1,13 @@
 import React, { Children, cloneElement, isValidElement } from 'react'
 import { View, ViewProps } from 'react-native'
+
 import {
-  lastFactory,
-  resolveDirection,
-  resolveAlign,
-  styles,
   AxisX,
   ResponsiveProp,
+  lastFactory,
+  resolveAlign,
+  resolveDirection,
+  styles,
 } from '../utils'
 import { useBreakpoint, useDebugStyle, useSpacing } from '../context'
 

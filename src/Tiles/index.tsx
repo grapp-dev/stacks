@@ -1,8 +1,8 @@
 import React, { Children, useMemo } from 'react'
 import { View, ViewProps } from 'react-native'
 
+import { ResponsiveProp, lastFactory, resolveDirection, splitEvery, styles } from '../utils'
 import { Stack } from '../Stack'
-import { lastFactory, splitEvery, resolveDirection, styles, ResponsiveProp } from '../utils'
 import { useBreakpoint, useDebugStyle, useSpacing } from '../context'
 
 export interface Props extends ViewProps {

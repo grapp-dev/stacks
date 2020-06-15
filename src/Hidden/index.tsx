@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, ViewProps } from 'react-native'
 
+import { Breakpoint, isCurrentBreakpointAbove, isCurrentBreakpointBelow } from '../utils'
 import { useBreakpoint } from '../context'
-import { isCurrentBreakpointBelow, isCurrentBreakpointAbove, Breakpoint } from '../utils'
 
 export interface Props {
   children: React.ReactNode

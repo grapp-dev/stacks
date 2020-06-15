@@ -1,14 +1,15 @@
 import React, { Children, cloneElement, isValidElement } from 'react'
 import { View, ViewProps } from 'react-native'
+
 import {
-  resolveWrap,
-  resolveDirection,
-  resolveJustify,
-  styles,
   AxisX,
   ResponsiveProp,
+  resolveDirection,
+  resolveJustify,
+  resolveWrap,
+  styles,
 } from '../utils'
-import { useSpacing, useDebugStyle, useBreakpoint } from '../context'
+import { useBreakpoint, useDebugStyle, useSpacing } from '../context'
 
 export interface Props extends ViewProps {
   children: React.ReactNode

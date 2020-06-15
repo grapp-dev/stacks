@@ -1,10 +1,10 @@
 import React, { createContext, useContext, useMemo } from 'react'
 
 import {
-  randomColor,
   Breakpoints,
-  resolveResponsivePropFactory,
+  randomColor,
   resolveCurrentBreakpoint,
+  resolveResponsivePropFactory,
   useWindowDimensions,
 } from './utils'
 
