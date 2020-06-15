@@ -332,7 +332,7 @@ DEPENDENCIES:
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  trunk:
+  https://cdn.cocoapods.org/:
     - boost-for-react-native
     - CocoaAsyncSocket
     - CocoaLibEvent
