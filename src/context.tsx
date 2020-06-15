@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useMemo } from 'react'
+import React, { createContext, useContext, useRef } from 'react'
 
 import {
   Breakpoints,
@@ -70,9 +70,9 @@ export const useDebugStyle = () => {
     return undefined
   }
 
-  const backgroundColor = useMemo(() => randomColor(), [])
+  const backgroundColorRef = useRef(randomColor())
 
-  return { backgroundColor }
+  return { backgroundColor: backgroundColorRef.current }
 }
 
 export const StacksProvider = (props: Props) => {
