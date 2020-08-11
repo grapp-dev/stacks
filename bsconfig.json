@@ -1,0 +1,28 @@
+{
+  "name": "@mobily/stacks",
+  "version": "0.10.0",
+  "namespace": false,
+  "bsc-flags": ["-bs-super-errors", "-bs-no-version-header"],
+  "reason": {
+    "react-jsx": 3
+  },
+  "refmt": 3,
+  "gentypeconfig": {
+    "language": "typescript",
+    "importPath": "relative"
+  },
+  "suffix": ".bs.js",
+  "package-specs": {
+    "module": "es6",
+    "in-source": true
+  },
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "bs-dependencies": ["reason-react", "reason-react-native"],
+  "bs-dev-dependencies": [],
+  "ppx-flags": []
+}
