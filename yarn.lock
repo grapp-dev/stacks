@@ -2481,6 +2481,11 @@ browserslist@^4.0.0, browserslist@^4.11.0, browserslist@^4.8.3, browserslist@^4.
     node-releases "^1.1.53"
     pkg-up "^2.0.0"
 
+bs-platform@^8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-8.2.0.tgz#f3f4c06d5710a4c782f0ed030b1fe11e74a0a6d7"
+  integrity sha512-quvmUac/ZxGDsT7L5+6RNXrLPvLHkWFownacaqlwVoyAm770bPyupTRU49ALPGk3HpjfD5eE+lpGdOSPtuwJiA==
+
 bser@2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/bser/-/bser-2.1.1.tgz#e6787da20ece9d07998533cfd9de6f5c38f4bc05"
@@ -4788,6 +4793,11 @@ gensync@^1.0.0-beta.1:
   version "1.0.0-beta.1"
   resolved "https://registry.yarnpkg.com/gensync/-/gensync-1.0.0-beta.1.tgz#58f4361ff987e5ff6e1e7a210827aa371eaac269"
   integrity sha512-r8EC6NO1sngH/zdD9fiRDLdcgnbayXah+mLgManTaIZJqEC1MZstmnox8KpnI2/fxQwrp5OpCOYWLp4rBl4Jcg==
+
+gentype@^3.31.0:
+  version "3.31.0"
+  resolved "https://registry.yarnpkg.com/gentype/-/gentype-3.31.0.tgz#0f48ecd8d75f34eb70bfe03a22f08489fbc3b594"
+  integrity sha512-S+l+9rpSBUDeMU0OwwXrSEP7LSYpDw/r0E7tX4EqIuCpsrGAaoWRIbi6SLfU2BEitDDQZoE5mIi77Rm6TdyDvw==
 
 get-caller-file@^1.0.1:
   version "1.0.3"
@@ -8978,6 +8988,16 @@ readdirp@^2.2.1:
     graceful-fs "^4.1.11"
     micromatch "^3.1.10"
     readable-stream "^2.0.2"
+
+reason-react-native@^0.62.3:
+  version "0.62.3"
+  resolved "https://registry.yarnpkg.com/reason-react-native/-/reason-react-native-0.62.3.tgz#a2653e735b5a006c7efcb20dcdf0e2ebe922cf8f"
+  integrity sha512-PA//0AZVVEB8iJKjYxOoFarXrMhhr7H++k9n7SmwVNy+XeUtwCiTIytqi29dCILtfNieHfT7+WTPpEzg2koOBg==
+
+reason-react@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/reason-react/-/reason-react-0.9.1.tgz#30a887158200b659aa03e2d75ff4cc54dc462bb0"
+  integrity sha512-nlH0O2TDy9KzOLOW+vlEQk4ExHOeciyzFdoLcsmmiit6hx6H5+CVDrwJ+8aiaLT/kqK5xFOjy4PS7PftWz4plA==
 
 rechoir@^0.6.2:
   version "0.6.2"
