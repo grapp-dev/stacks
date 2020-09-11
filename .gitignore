@@ -18,3 +18,4 @@ lib/
 .bsb.lock
 
 *.bs.js
+*.gen.tsx
