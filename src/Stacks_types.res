@@ -19,18 +19,18 @@ type space = [#between | #around | #evenly]
 type direction = [#row | #rowReverse | #column | #columnReverse]
 type wrap = [#wrap | #nowrap]
 
-type flex = [
+type width = [
   | #content
   | #fluid
-  | #flex12
-  | #flex13
-  | #flex23
-  | #flex14
-  | #flex34
-  | #flex15
-  | #flex25
-  | #flex35
-  | #flex45
+  | #width12
+  | #width13
+  | #width23
+  | #width14
+  | #width34
+  | #width15
+  | #width25
+  | #width35
+  | #width45
 ]
 
 @genType.as("ResponsiveProp")

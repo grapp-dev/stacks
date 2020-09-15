@@ -10,7 +10,7 @@ open Stacks_utils
 export make = (
   ~children,
   // Column props
-  ~width: flex=#fluid,
+  ~width: width=#fluid,
   // View props
   // ~accessibilityActions=?,
   ~accessibilityComponentType=?,

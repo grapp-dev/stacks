@@ -120,7 +120,7 @@ let resolveAlignItemsY = Belt.Option.map(_, value =>
   | #center => styles["alignCenter"]
   | #bottom => styles["alignEnd"]
   | #top => styles["alignStart"]
-  | _ => styles["alignStretch"]
+  | #stretch => styles["alignStretch"]
   }
 )
 
@@ -129,7 +129,7 @@ let resolveAlignSelf = Belt.Option.map(_, value =>
   | #center => styles["alignSelfCenter"]
   | #bottom | #right => styles["alignSelfEnd"]
   | #top | #left => styles["alignSelfStart"]
-  | _ => styles["alignSelfStretch"]
+  | #stretch => styles["alignSelfStretch"]
   }
 )
 
@@ -155,16 +155,16 @@ let resolveJustifyContentY = Belt.Option.map(_, value =>
 let resolveFlexBasis = Belt.Option.map(_, value =>
   switch value {
   | #content => styles["flexContent"]
-  | #flex12 => styles["flexBasis12"]
-  | #flex13 => styles["flexBasis13"]
-  | #flex14 => styles["flexBasis14"]
-  | #flex23 => styles["flexBasis23"]
-  | #flex34 => styles["flexBasis34"]
-  | #flex15 => styles["flexBasis15"]
-  | #flex25 => styles["flexBasis25"]
-  | #flex35 => styles["flexBasis35"]
-  | #flex45 => styles["flexBasis45"]
   | #fluid => styles["flexFluid"]
+  | #width12 => styles["flexBasis12"]
+  | #width13 => styles["flexBasis13"]
+  | #width14 => styles["flexBasis14"]
+  | #width23 => styles["flexBasis23"]
+  | #width34 => styles["flexBasis34"]
+  | #width15 => styles["flexBasis15"]
+  | #width25 => styles["flexBasis25"]
+  | #width35 => styles["flexBasis35"]
+  | #width45 => styles["flexBasis45"]
   }
 )
 
