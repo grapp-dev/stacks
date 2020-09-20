@@ -11,16 +11,31 @@ let justifyContent = value => viewStyle(~justifyContent=value, ())
 let flexDirection = value => viewStyle(~flexDirection=value, ())
 let flexWrap = value => viewStyle(~flexWrap=value, ())
 
-let marginTop = value => Some(viewStyle(~marginTop=value |> dp, ()))
-let marginRight = value => Some(viewStyle(~marginRight=value |> dp, ()))
-let marginLeft = value => Some(viewStyle(~marginLeft=value |> dp, ()))
-let marginBottom = value => Some(viewStyle(~marginBottom=value |> dp, ()))
+export margin = value => viewStyle(~margin=value |> dp, ())
+export marginTop = value => viewStyle(~marginTop=value |> dp, ())
+export marginRight = value => viewStyle(~marginRight=value |> dp, ())
+export marginLeft = value => viewStyle(~marginLeft=value |> dp, ())
+export marginBottom = value => viewStyle(~marginBottom=value |> dp, ())
+export marginStart = value => viewStyle(~marginStart=value |> dp, ())
+export marginEnd = value => viewStyle(~marginEnd=value |> dp, ())
+export padding = value => viewStyle(~padding=value |> dp, ())
+export paddingTop = value => viewStyle(~paddingTop=value |> dp, ())
+export paddingRight = value => viewStyle(~paddingRight=value |> dp, ())
+export paddingLeft = value => viewStyle(~paddingLeft=value |> dp, ())
+export paddingBottom = value => viewStyle(~paddingBottom=value |> dp, ())
+export paddingStart = value => viewStyle(~paddingStart=value |> dp, ())
+export paddingEnd = value => viewStyle(~paddingEnd=value |> dp, ())
 
-let isLastElement = (elements, index) => Belt.Array.length(elements) |> pred == index
+export top = value => viewStyle(~top=value, ())
+export right = value => viewStyle(~right=value, ())
+export bottom = value => viewStyle(~bottom=value, ())
+export left = value => viewStyle(~left=value, ())
+
+export isLastElement = (elements, index) => Belt.Array.length(elements) |> pred == index
 
 let weakMap: WeakMap.t<React.element, ref<int>> = WeakMap.make()
 let counter = ref(1)
-let rec uid = element =>
+export rec uid = element =>
   switch WeakMap.get(weakMap, element) {
   | Some(id) => id.contents |> string_of_int
   | None =>
@@ -34,7 +49,7 @@ let rec uid = element =>
     }
   }
 
-let randomColor = () => {
+export randomColor = () => {
   open Js.Array2
 
   let arr = Belt.Array.makeBy(3, _ => Js.Math.random_int(0, 255))
@@ -61,7 +76,7 @@ let drop = (i, xs) => {
   sliceToEnd(xs, start)
 }
 
-let rec splitEvery = (size, xs) => {
+export rec splitEvery = (size, xs) => {
   size < 1
     ? [xs]
     : xs |> Belt.Array.length <= size
@@ -69,7 +84,7 @@ let rec splitEvery = (size, xs) => {
     : xs |> drop(size) |> splitEvery(size) |> Belt.Array.concat([xs |> take(size)])
 }
 
-let styles = StyleSheet.create({
+export styles = StyleSheet.create({
   "fullWidth": viewStyle(~width=100. |> pct, ()),
   "fullHeight": viewStyle(~height=100. |> pct, ()),
   "flexContent": viewStyle(~flex=0., ~flexBasis=auto, ()),
@@ -106,7 +121,7 @@ let styles = StyleSheet.create({
   "shrink": viewStyle(~flexShrink=1., ()),
 })
 
-let resolveAlignItemsX = Belt.Option.map(_, value =>
+export resolveAlignItemsX = Belt.Option.map(_, value =>
   switch value {
   | #center => styles["alignCenter"]
   | #right => styles["alignEnd"]
@@ -115,7 +130,7 @@ let resolveAlignItemsX = Belt.Option.map(_, value =>
   }
 )
 
-let resolveAlignItemsY = Belt.Option.map(_, value =>
+export resolveAlignItemsY = Belt.Option.map(_, value =>
   switch value {
   | #center => styles["alignCenter"]
   | #bottom => styles["alignEnd"]
@@ -124,7 +139,16 @@ let resolveAlignItemsY = Belt.Option.map(_, value =>
   }
 )
 
-let resolveAlignSelf = Belt.Option.map(_, value =>
+export resolveAlignItems = Belt.Option.map(_, value => {
+  switch value {
+  | #top | #left => styles["alignStart"]
+  | #bottom | #right => styles["alignEnd"]
+  | #center => styles["alignCenter"]
+  | _ => styles["alignStretch"]
+  }
+})
+
+export resolveAlignSelf = Belt.Option.map(_, value =>
   switch value {
   | #center => styles["alignSelfCenter"]
   | #bottom | #right => styles["alignSelfEnd"]
@@ -133,7 +157,7 @@ let resolveAlignSelf = Belt.Option.map(_, value =>
   }
 )
 
-let resolveJustifyContentX = Belt.Option.map(_, value =>
+export resolveJustifyContentX = Belt.Option.map(_, value =>
   switch value {
   | #center => styles["justifyCenter"]
   | #right => styles["justifyEnd"]
@@ -144,7 +168,7 @@ let resolveJustifyContentX = Belt.Option.map(_, value =>
   }
 )
 
-let resolveJustifyContentY = Belt.Option.map(_, value =>
+export resolveJustifyContentY = Belt.Option.map(_, value =>
   switch value {
   | #top => styles["justifyStart"]
   | #center => styles["justifyCenter"]
@@ -152,23 +176,34 @@ let resolveJustifyContentY = Belt.Option.map(_, value =>
   }
 )
 
-let resolveFlexBasis = Belt.Option.map(_, value =>
+export resolveJustifyContent = Belt.Option.map(_, value => {
+  switch value {
+  | #bottom | #right => styles["justifyEnd"]
+  | #center => styles["justifyCenter"]
+  | #around => styles["justifySpaceAround"]
+  | #between => styles["justifySpaceBetween"]
+  | #evenly => styles["justifySpaceEvenly"]
+  | _ => styles["justifyStart"]
+  }
+})
+
+export resolveFlexBasis = Belt.Option.map(_, value =>
   switch value {
   | #content => styles["flexContent"]
   | #fluid => styles["flexFluid"]
-  | #width12 => styles["flexBasis12"]
-  | #width13 => styles["flexBasis13"]
-  | #width14 => styles["flexBasis14"]
-  | #width23 => styles["flexBasis23"]
-  | #width34 => styles["flexBasis34"]
-  | #width15 => styles["flexBasis15"]
-  | #width25 => styles["flexBasis25"]
-  | #width35 => styles["flexBasis35"]
-  | #width45 => styles["flexBasis45"]
+  | #x12 => styles["flexBasis12"]
+  | #x13 => styles["flexBasis13"]
+  | #x14 => styles["flexBasis14"]
+  | #x23 => styles["flexBasis23"]
+  | #x34 => styles["flexBasis34"]
+  | #x15 => styles["flexBasis15"]
+  | #x25 => styles["flexBasis25"]
+  | #x35 => styles["flexBasis35"]
+  | #x45 => styles["flexBasis45"]
   }
 )
 
-let resolveDirection = Belt.Option.map(_, value =>
+export resolveDirection = Belt.Option.map(_, value =>
   switch value {
   | #row => styles["directionRow"]
   | #column => styles["directionColumn"]
@@ -177,14 +212,14 @@ let resolveDirection = Belt.Option.map(_, value =>
   }
 )
 
-let resolveWrap = Belt.Option.map(_, value =>
+export resolveWrap = Belt.Option.map(_, value =>
   switch value {
   | #wrap => styles["wrap"]
   | #nowrap => styles["nowrap"]
   }
 )
 
-let dimensionsSource = {
+export dimensionsSource = {
   open Wonka
 
   make((. observer) => {
@@ -196,7 +231,7 @@ let dimensionsSource = {
   }) |> share
 }
 
-let resolveCurrentBreakpoint = (currentWidth, breakpoints) => {
+export resolveCurrentBreakpoint = (currentWidth, breakpoints) => {
   let {tablet, desktop} = breakpoints
 
   switch currentWidth {
@@ -206,7 +241,8 @@ let resolveCurrentBreakpoint = (currentWidth, breakpoints) => {
   }
 }
 
-let normalizeResponsiveProp = values =>
+@genType.import("./Stacks_utils")
+export normalizeResponsiveProp = values =>
   switch values {
   | [mobile, tablet, desktop] => (mobile, tablet, desktop)
   | [mobile, tablet] => (mobile, tablet, tablet)
@@ -214,7 +250,7 @@ let normalizeResponsiveProp = values =>
   | _ => failwith("Invalid responsive prop length.")
   }
 
-let resolveResponsiveProp = (currentWidth, breakpoints) => {
+export resolveResponsiveProp = (currentWidth, breakpoints) => {
   let {tablet, desktop} = breakpoints
 
   (. values) => {
@@ -254,7 +290,7 @@ let isBreakpointAbove = (breakpoint, above) => {
   isAbove
 }
 
-let resolveCollapsibleProps = (~collapseBelow, ~reverse, ~currentBreakpoint) => {
+export resolveCollapsibleProps = (~collapseBelow, ~reverse, ~currentBreakpoint) => {
   open Belt.Option
 
   let isCollapsed = isBreakpointBelow(currentBreakpoint, collapseBelow)
