@@ -1,11 +1,11 @@
 {
-  "name": "stacks-example",
+  "name": "stacks-typescript-example",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start:android": "react-native run-android",
-    "start:ios": "react-native run-ios",
-    "dev": "react-native start"
+    "start:android": "yarn react-native run-android",
+    "start:ios": "yarn react-native run-ios",
+    "dev": "yarn react-native start"
   },
   "dependencies": {
     "react": "16.11.0",
@@ -14,6 +14,7 @@
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/runtime": "^7.9.2",
+    "@mobily/stacks": "link:../../",
     "@react-native-community/eslint-config": "^1.0.0",
     "@types/react-native": "^0.62.0",
     "@types/react-test-renderer": "16.9.2",

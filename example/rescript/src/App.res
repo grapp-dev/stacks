@@ -102,7 +102,7 @@ let app = () =>
           </Columns>
           <Box direction=[#row] padding=[2.]>
             <Box flex=[#fluid] alignY=[#center] padding=[2.]> <Placeholder height=160. /> </Box>
-            <Box flex=[#f13]>
+            <Box flex=[#x13]>
               <Box marginBottom=[4.]>
                 <Stack space=[1.]>
                   <Placeholder height=20. />

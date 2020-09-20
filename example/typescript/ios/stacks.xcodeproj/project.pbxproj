@@ -44,7 +44,7 @@
 		00E356EE1AD99517003FC87E /* stacksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = stacksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* stacksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = stacksTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* stacks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = stacks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* Stacks (Typescript).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stacks (Typescript).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = stacks/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = stacks/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -174,7 +174,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* stacks.app */,
+				13B07F961A680F5B00A75B9A /* Stacks (Typescript).app */,
 				00E356EE1AD99517003FC87E /* stacksTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* stacks-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* stacks-tvOSTests.xctest */,
@@ -194,7 +194,6 @@
 				977BB1CD8D724B8A39664D10 /* Pods-stacks-tvOSTests.debug.xcconfig */,
 				410AA23B817DB8D2BDCD44DC /* Pods-stacks-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -237,7 +236,7 @@
 			);
 			name = stacks;
 			productName = stacks;
-			productReference = 13B07F961A680F5B00A75B9A /* stacks.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* Stacks (Typescript).app */;
 			productType = "com.apple.product-type.application";
 		};
 		2D02E47A1E0B4A5D006451C7 /* stacks-tvOS */ = {
@@ -642,8 +641,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = stacks;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.stacks.typescript;
+				PRODUCT_NAME = "Stacks (Typescript)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -664,8 +663,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = stacks;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.stacks.typescript;
+				PRODUCT_NAME = "Stacks (Typescript)";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

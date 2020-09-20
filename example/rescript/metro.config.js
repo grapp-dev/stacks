@@ -1,7 +1,6 @@
-const path = require('path');
-const pathToRoot = (...args) => path.resolve(__dirname, '..', '..', ...args);
-const pathToNodeModules = (module) =>
-  pathToRoot('example', 'reason', 'node_modules', module);
+const path = require('path')
+const pathToRoot = (...args) => path.resolve(__dirname, '..', '..', ...args)
+const pathToNodeModules = module => pathToRoot('example', 'rescript', 'node_modules', module)
 
 module.exports = {
   transformer: {
@@ -12,7 +11,7 @@ module.exports = {
       },
     }),
   },
-  projectRoot: pathToRoot('example', 'reason'),
+  projectRoot: pathToRoot('example', 'rescript'),
   resolver: {
     extraNodeModules: {
       react: pathToNodeModules('react'),
@@ -28,4 +27,4 @@ module.exports = {
     pathToRoot('node_modules', 'wonka'),
     pathToRoot('node_modules', 'bs-platform'),
   ],
-};
+}

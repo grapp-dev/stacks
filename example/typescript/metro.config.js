@@ -1,6 +1,6 @@
 const path = require('path')
-const pathToRoot = (...args) => path.resolve(__dirname, '..', ...args)
-const pathToNodeModules = module => pathToRoot('example', 'node_modules', module)
+const pathToRoot = (...args) => path.resolve(__dirname, '..', '..', ...args)
+const pathToNodeModules = module => pathToRoot('example', 'typescript', 'node_modules', module)
 
 module.exports = {
   transformer: {
@@ -11,7 +11,7 @@ module.exports = {
       },
     }),
   },
-  projectRoot: pathToRoot('example'),
+  projectRoot: pathToRoot('example', 'typescript'),
   resolver: {
     extraNodeModules: {
       react: pathToNodeModules('react'),

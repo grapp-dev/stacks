@@ -34,7 +34,7 @@ export const Root = () => {
       <StacksProvider spacing={4} debug={true}>
         <SafeAreaView>
           <Profile />
-          {/* <Playground /> */}
+          <Playground />
           {/* <StackSpace1 /> */}
           {/* <StackSpace2 /> */}
           {/* <StackSpace3 /> */}
