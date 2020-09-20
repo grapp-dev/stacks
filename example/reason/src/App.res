@@ -6,7 +6,7 @@ let styles = {
   open Style
 
   StyleSheet.create({
-    "view": style(~width=100. |> pct, ()),
+    "view": style(~width=100. |> pct, ~paddingLeft=16. |> dp, ~paddingRight=16. |> dp, ()),
     "columns": style(~height=100. |> dp, ()),
     "scrollView": style(~backgroundColor="lightgray", ()),
     "stack1": style(~backgroundColor="red", ()),
@@ -16,11 +16,15 @@ let styles = {
 
 module Placeholder = {
   @react.component
-  let make = (~width, ~height) => {
+  let make = (~width=?, ~height=100.) => {
     <View
       style={
         open Style
-        viewStyle(~backgroundColor="gray", ~width=width |> dp, ~height=height |> dp, ())
+
+        arrayOption([
+          Some(viewStyle(~backgroundColor="gray", ~height=height |> dp, ())),
+          width->Belt.Option.map(width => viewStyle(~width=width |> dp, ())),
+        ])
       }
     />
   }
@@ -96,8 +100,31 @@ let app = () =>
             <Column width=#content> <Placeholder width=40. height=120. /> </Column>
             <Column width=#content> <Placeholder width=40. height=60. /> </Column>
           </Columns>
+          <Box direction=[#row] padding=[2.]>
+            <Box flex=[#fluid] alignY=[#center] padding=[2.]> <Placeholder height=160. /> </Box>
+            <Box flex=[#f13]>
+              <Box marginBottom=[4.]>
+                <Stack space=[1.]>
+                  <Placeholder height=20. />
+                  <Placeholder height=20. />
+                  <Placeholder height=20. />
+                  <Placeholder height=20. />
+                </Stack>
+              </Box>
+              <Box>
+                <Tiles columns=[2] space=[1.]>
+                  <Placeholder height=50. />
+                  <Placeholder height=50. />
+                  <Placeholder height=50. />
+                  <Placeholder height=50. />
+                </Tiles>
+              </Box>
+            </Box>
+          </Box>
         </Stack>
-        <FillView> <Text> {"fill view"->React.string} </Text> </FillView>
+        <FillView padding=[4.] alignX=[#center] alignY=[#center]>
+          <Text> {"fill view"->React.string} </Text>
+        </FillView>
       </View>
     </SafeAreaView>
   </StacksProvider>
