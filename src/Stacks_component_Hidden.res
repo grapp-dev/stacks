@@ -2,10 +2,10 @@ open Stacks_hooks
 open Stacks_utils
 
 @react.component
-export make = (
-  ~children,
+let make = (
   ~below: option<[#tablet | #desktop]>=?,
   ~above: option<[#mobile | #tablet]>=?,
+  ~children,
 ) => {
   let currentBreakpoint = useCurrentBreakpoint()
   let isHidden = switch (below, above) {

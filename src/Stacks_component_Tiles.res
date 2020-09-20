@@ -1,17 +1,15 @@
 open ReactNative
 
-open Stacks_types
 open Stacks_hooks
 open Stacks_utils
 
 module Stack = Stacks_component_Stack
 
 @react.component
-export make = (
-  ~children,
+let make = (
   // Tiles props
-  ~columns: responsiveProp<int>,
-  ~space: option<responsiveProp<float>>=?,
+  ~columns,
+  ~space=?,
   // View props
   // ~accessibilityActions=?,
   ~accessibilityComponentType=?,
@@ -53,6 +51,7 @@ export make = (
   ~shouldRasterizeIOS=?,
   ~style=?,
   ~testID=?,
+  ~children,
   // React Native Web props
   ~onMouseDown=?,
   ~onMouseEnter=?,
@@ -66,7 +65,7 @@ export make = (
   let space' = useSpacing(space')
   let debugStyle = useDebugStyle()
   let style' = Style.arrayOption([Some(styles["fullWidth"]), resolveDirection(Some(#row))])
-  let columns = columns->Belt.Option.getWithDefault(0)
+  let columns = columns->Belt.Option.getWithDefault(1)
   let children = children |> React.Children.toArray |> splitEvery(columns)
 
   <Stack
@@ -126,7 +125,7 @@ export make = (
         let style = {
           Style.arrayOption([
             Some(styles["flexFluid"]),
-            isLast(index) ? None : marginRight(space'),
+            isLast(index) ? None : Some(marginRight(space')),
             child == React.null ? None : debugStyle,
           ])
         }

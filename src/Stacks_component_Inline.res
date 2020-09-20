@@ -1,15 +1,13 @@
 open ReactNative
 
-open Stacks_types
 open Stacks_hooks
 open Stacks_utils
 
 @react.component
-export make = (
-  ~children,
+let make = (
   // Inline props
-  ~space: option<responsiveProp<float>>=?,
-  ~align: option<responsiveProp<[axisX | space]>>=?,
+  ~space=?,
+  ~align=?,
   // View props
   // ~accessibilityActions=?,
   ~accessibilityComponentType=?,
@@ -51,6 +49,7 @@ export make = (
   ~shouldRasterizeIOS=?,
   ~style=?,
   ~testID=?,
+  ~children,
   // React Native Web props
   ~onMouseDown=?,
   ~onMouseEnter=?,
@@ -67,10 +66,9 @@ export make = (
     resolveWrap(Some(#wrap)),
     resolveDirection(Some(#row)),
     resolveJustifyContentX(align),
-    marginTop(-.space),
-    marginRight(-.space),
+    Some(marginTop(-.space)),
+    Some(marginRight(-.space)),
   ])
-
   let children = React.Children.toArray(children)
 
   <View
@@ -123,7 +121,7 @@ export make = (
     <View style=style'> {Js.Array2.map(children, child => {
         <View
           key={uid(child)}
-          style={Style.arrayOption([debugStyle, marginTop(space), marginRight(space)])}>
+          style={Style.arrayOption([debugStyle, Some(marginTop(space)), Some(marginRight(space))])}>
           child
         </View>
       }) |> React.array} </View>

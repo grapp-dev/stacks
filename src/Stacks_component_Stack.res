@@ -1,15 +1,13 @@
 open ReactNative
 
-open Stacks_types
 open Stacks_hooks
 open Stacks_utils
 
 @react.component
-export make = (
-  ~children,
+let make = (
   // Stack props
-  ~space: option<responsiveProp<float>>=?,
-  ~align: option<responsiveProp<[axisX | stretch]>>=?,
+  ~space=?,
+  ~align=?,
   // View props
   // ~accessibilityActions=?,
   ~accessibilityComponentType=?,
@@ -51,6 +49,7 @@ export make = (
   ~shouldRasterizeIOS=?,
   ~style=?,
   ~testID=?,
+  ~children,
   // React Native Web props
   ~onMouseDown=?,
   ~onMouseEnter=?,
@@ -125,7 +124,7 @@ export make = (
         key={uid(child)}
         style={Style.arrayOption([
           Some(styles["fullWidth"]),
-          isLast(index) ? None : marginBottom(space),
+          isLast(index) ? None : Some(marginBottom(space)),
         ])}>
         child
       </View>

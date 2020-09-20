@@ -6,3 +6,4 @@ module Columns = Stacks_component_Columns
 module Column = Stacks_component_Column
 module Box = Stacks_component_Box
 module Hidden = Stacks_component_Hidden
+module Grid = Stacks_component_Grid

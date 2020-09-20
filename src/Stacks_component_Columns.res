@@ -21,14 +21,13 @@ module Context = {
 }
 
 @react.component
-export make = (
-  ~children,
+let make = (
   // Columns props
-  ~space: option<responsiveProp<float>>=?,
-  ~reverse: option<bool>=?,
-  ~alignX: option<responsiveProp<[axisX | space]>>=?,
-  ~alignY: option<responsiveProp<axisY>>=?,
-  ~collapseBelow: option<[#tablet | #desktop]>=?,
+  ~space=?,
+  ~reverse=?,
+  ~alignX=?,
+  ~alignY=?,
+  ~collapseBelow=?,
   // View props
   // ~accessibilityActions=?,
   ~accessibilityComponentType=?,
@@ -70,6 +69,7 @@ export make = (
   ~shouldRasterizeIOS=?,
   ~style=?,
   ~testID=?,
+  ~children,
   // React Native Web props
   ~onMouseDown=?,
   ~onMouseEnter=?,
@@ -91,8 +91,8 @@ export make = (
   let style = Style.arrayOption([Some(styles["fullWidth"]), debugStyle, style])
   let style' = {
     let arr = isCollapsed
-      ? [Some(styles["fullWidth"]), marginTop(-.space)]
-      : [resolveJustifyContentX(alignX), resolveAlignItemsY(alignY), marginLeft(-.space)]
+      ? [Some(styles["fullWidth"]), Some(marginTop(-.space))]
+      : [resolveJustifyContentX(alignX), resolveAlignItemsY(alignY), Some(marginLeft(-.space))]
 
     arr->Belt.Array.concat([resolveDirection(Some(direction))])->Style.arrayOption
   }

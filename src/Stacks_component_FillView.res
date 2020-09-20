@@ -1,13 +1,38 @@
 open ReactNative
 
+open Stacks_types
+open Stacks_hooks
+
+module Box = Stacks_component_Box
+
 @react.component
-export make = (
-  ~children,
+let make = (
   // FillView props
-  ~top: option<Style.size>=?,
-  ~right: option<Style.size>=?,
-  ~bottom: option<Style.size>=?,
-  ~left: option<Style.size>=?,
+  ~top: option<responsiveProp<Style.size>>=?,
+  ~right: option<responsiveProp<Style.size>>=?,
+  ~bottom: option<responsiveProp<Style.size>>=?,
+  ~left: option<responsiveProp<Style.size>>=?,
+  // Box props
+  ~padding=?,
+  ~paddingTop=?,
+  ~paddingBottom=?,
+  ~paddingLeft=?,
+  ~paddingRight=?,
+  ~paddingEnd=?,
+  ~paddingStart=?,
+  ~margin=?,
+  ~marginTop=?,
+  ~marginBottom=?,
+  ~marginLeft=?,
+  ~marginRight=?,
+  ~marginEnd=?,
+  ~marginStart=?,
+  ~alignX=?,
+  ~alignY=?,
+  ~alignSelf=?,
+  ~direction=?,
+  ~wrap=?,
+  ~flex=?,
   // View props
   // ~accessibilityActions=?,
   ~accessibilityComponentType=?,
@@ -49,6 +74,7 @@ export make = (
   ~shouldRasterizeIOS=?,
   ~style=?,
   ~testID=?,
+  ~children=?,
   // React Native Web props
   ~onMouseDown=?,
   ~onMouseEnter=?,
@@ -58,10 +84,11 @@ export make = (
   ~onMouseOut=?,
   ~onMouseUp=?,
 ) => {
-  let top = Belt.Option.map(top, top => Style.viewStyle(~top, ()))
-  let right = Belt.Option.map(right, right => Style.viewStyle(~right, ()))
-  let bottom = Belt.Option.map(bottom, bottom => Style.viewStyle(~bottom, ()))
-  let left = Belt.Option.map(left, left => Style.viewStyle(~left, ()))
+  let resolveResponsiveProp = useResponsiveProp()
+  let top = top->resolveResponsiveProp(. _)->Belt.Option.map(Stacks_utils.top)
+  let right = right->resolveResponsiveProp(. _)->Belt.Option.map(Stacks_utils.right)
+  let bottom = bottom->resolveResponsiveProp(. _)->Belt.Option.map(Stacks_utils.bottom)
+  let left = left->resolveResponsiveProp(. _)->Belt.Option.map(Stacks_utils.left)
   let style = Style.arrayOption([
     Some(StyleSheet.absoluteFillObject),
     top,
@@ -71,7 +98,27 @@ export make = (
     style,
   ])
 
-  <View
+  <Box
+    ?padding
+    ?paddingTop
+    ?paddingBottom
+    ?paddingLeft
+    ?paddingRight
+    ?paddingEnd
+    ?paddingStart
+    ?margin
+    ?marginTop
+    ?marginBottom
+    ?marginLeft
+    ?marginRight
+    ?marginEnd
+    ?marginStart
+    ?alignX
+    ?alignY
+    ?alignSelf
+    ?direction
+    ?wrap
+    ?flex
     ?accessibilityComponentType
     ?accessibilityElementsHidden
     ?accessibilityHint
@@ -118,6 +165,6 @@ export make = (
     ?onMouseOut
     ?onMouseUp
     style>
-    children
-  </View>
+    {children->Belt.Option.getWithDefault(React.null)}
+  </Box>
 }

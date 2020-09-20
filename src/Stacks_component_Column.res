@@ -2,15 +2,13 @@ open ReactNative
 
 open Stacks_component_Columns.Context
 
-open Stacks_types
 open Stacks_hooks
 open Stacks_utils
 
 @react.component
-export make = (
-  ~children,
+let make = (
   // Column props
-  ~width: width=#fluid,
+  ~width=#fluid,
   // View props
   // ~accessibilityActions=?,
   ~accessibilityComponentType=?,
@@ -52,6 +50,7 @@ export make = (
   ~shouldRasterizeIOS=?,
   ~style=?,
   ~testID=?,
+  ~children,
   // React Native Web props
   ~onMouseDown=?,
   ~onMouseEnter=?,
@@ -65,8 +64,8 @@ export make = (
   let debugStyle = useDebugStyle()
   let style = {
     let arr = isCollapsed
-      ? [Some(styles["fullWidth"]), marginTop(space)]
-      : [resolveFlexBasis(Some(width)), Some(styles["shrink"]), marginLeft(space)]
+      ? [Some(styles["fullWidth"]), Some(marginTop(space))]
+      : [resolveFlexBasis(Some(width)), Some(styles["shrink"]), Some(marginLeft(space))]
 
     arr->Belt.Array.concat([debugStyle, style])->Style.arrayOption
   }
