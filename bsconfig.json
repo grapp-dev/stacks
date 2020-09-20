@@ -9,7 +9,16 @@
   "refmt": 3,
   "gentypeconfig": {
     "language": "typescript",
-    "importPath": "relative"
+    "importPath": "relative",
+    "shims": {
+      "ReasonReact": "ReasonReact",
+      "ReactNative": "ReactNative",
+      "ReactEvent": "ReactEvent"
+    },
+    "debug": {
+      "all": false
+    },
+    "exportInterfaces": false
   },
   "suffix": ".bs.js",
   "package-specs": {
