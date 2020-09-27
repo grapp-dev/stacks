@@ -1,29 +1,30 @@
 {
   "compilerOptions": {
-    "jsx": "react",
-    "lib": ["esnext"],
-    "forceConsistentCasingInFileNames": false,
-    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
     "esModuleInterop": true,
-    "isolatedModules": false,
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "esnext",
-    "module": "commonjs",
-    "allowJs": false,
-    "composite": true,
-    "declaration": true,
-    "noImplicitAny": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "removeComments": true,
-    "outDir": "dist",
-    "rootDir": "src",
-    "baseUrl": "src",
-    "moduleResolution": "node"
+    "rootDir": "./src",
+    "baseUrl": ".",
+    "outDir": "dist/cjs",
+    "types": [
+      "@types/node",
+      "@types/jest"
+    ],
+    "lib": ["dom", "esnext"],
+    "jsx": "react",
+    "declaration": false,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "esnext",
+    "strict": false,
+    "noImplicitAny": false,
+    "noUnusedParameters": false,
+    "sourceMap": true,
+    "pretty": true
   },
-  "exclude": ["**/*.test.ts", "playground"],
-  "include": [
-    "./src/**/*"
+  "exclude": [
+    "./example/**/*",
+    "./__tests__/**/*"
   ]
 }
