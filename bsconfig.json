@@ -29,6 +29,11 @@
     {
       "dir": "src",
       "subdirs": true
+    },
+    {
+      "dir": "__tests__",
+      "type": "dev",
+      "subdirs": true
     }
   ],
   "bs-dependencies": [
@@ -36,6 +41,8 @@
     "reason-react-native",
     "wonka"
   ],
-  "bs-dev-dependencies": [],
+  "bs-dev-dependencies": [
+    "reason-test-framework"
+  ],
   "ppx-flags": []
 }
