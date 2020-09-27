@@ -5,7 +5,8 @@
   "scripts": {
     "start:android": "yarn react-native run-android",
     "start:ios": "yarn react-native run-ios",
-    "dev": "yarn react-native start"
+    "dev": "yarn react-native start",
+    "postinstall": "bash ./scripts/link.sh"
   },
   "dependencies": {
     "react": "16.11.0",
@@ -14,7 +15,6 @@
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/runtime": "^7.9.2",
-    "@mobily/stacks": "link:../../",
     "@react-native-community/eslint-config": "^1.0.0",
     "@types/react-native": "^0.62.0",
     "@types/react-test-renderer": "16.9.2",

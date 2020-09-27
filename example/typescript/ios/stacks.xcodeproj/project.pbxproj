@@ -641,7 +641,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.stacks.typescript;
+				PRODUCT_BUNDLE_IDENTIFIER = example.stacks.typescript;
 				PRODUCT_NAME = "Stacks (Typescript)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -663,7 +663,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.stacks.typescript;
+				PRODUCT_BUNDLE_IDENTIFIER = example.stacks.typescript;
 				PRODUCT_NAME = "Stacks (Typescript)";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

@@ -8,18 +8,19 @@
     "start:android": "yarn react-native run-android",
     "re:clean": "yarn bsb -clean-world",
     "re:dev": "yarn bsb -clean-world -make-world -w",
-    "re:build": "yarn bsb -clean-world -make-world"
+    "re:build": "yarn bsb -clean-world -make-world",
+    "postinstall": "bash ./scripts/link.sh"
   },
   "dependencies": {
     "react": "^16.11.0",
     "react-native": "^0.62.0",
     "reason-react": "^0.9.0",
-    "reason-react-native": "^0.62.3"
+    "reason-react-native": "^0.62.3",
+    "wonka": "^4.0.14"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/runtime": "^7.6.2",
-    "@mobily/stacks": "link:../../",
     "babel-jest": "^24.9.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "bs-platform": "^8.2.0",

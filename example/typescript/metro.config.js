@@ -1,7 +1,3 @@
-const path = require('path')
-const pathToRoot = (...args) => path.resolve(__dirname, '..', '..', ...args)
-const pathToNodeModules = module => pathToRoot('example', 'typescript', 'node_modules', module)
-
 module.exports = {
   transformer: {
     getTransformOptions: async () => ({
@@ -11,14 +7,4 @@ module.exports = {
       },
     }),
   },
-  projectRoot: pathToRoot('example', 'typescript'),
-  resolver: {
-    extraNodeModules: {
-      react: pathToNodeModules('react'),
-      'react-native': pathToNodeModules('react-native'),
-      '@babel/runtime': pathToNodeModules('@babel/runtime'),
-      wonka: pathToRoot('node_modules', 'wonka'),
-    },
-  },
-  watchFolders: [pathToRoot('src'), pathToRoot('node_modules', 'wonka')],
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { ScrollView, Text, useWindowDimensions } from 'react-native'
-import { Stack, Box, Columns, Column, Tiles, useSpacing } from '@mobily/stacks'
+import { Stack, Box, Columns, Column, Tiles, useSpacingHandler } from '@mobily/stacks'
 
 import { Avatar } from 'components/Avatar'
 import { Divider } from 'components/Divider'
@@ -15,8 +15,8 @@ import { photos, avatars } from '../seeds'
 
 export const Profile = () => {
   const { width } = useWindowDimensions()
-  const spacing = useSpacing()
-  const getTileHeight = (n: number) => (width - spacing(n) * 2 - spacing(2) * 3) / n
+  const resolveSpacing = useSpacingHandler()
+  const getTileHeight = (n: number) => (width - resolveSpacing(n) * 2 - resolveSpacing(2) * 3) / n
 
   return (
     <ScrollView>

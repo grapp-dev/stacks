@@ -15,5 +15,5 @@
       "subdirs": true
     }
   ],
-  "bs-dependencies": ["reason-react", "reason-react-native", "@mobily/stacks"]
+  "bs-dependencies": ["reason-react", "reason-react-native", "@mobily/stacks", "wonka"]
 }
