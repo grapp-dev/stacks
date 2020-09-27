@@ -1,20 +1,38 @@
 {
   "name": "@mobily/stacks",
   "description": "⚡ Build React Native views blazingly fast.",
-  "version": "0.9.4",
+  "version": "1.0.0",
+  "source": "./src/Stacks.ts",
+  "main": "./dist/stacks.js",
+  "module": "./dist/stacks.mjs",
+  "types": "./dist/types/src/Stacks.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/stacks.mjs",
+      "require": "./dist/stacks.js",
+      "types": "./dist/types/src/Stacks.d.ts",
+      "source": "./src/Stacks.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
+  "files": [
+    "src",
+    "dist",
+    "*.md",
+    "index.js.flow",
+    "bsconfig.json",
+    "package.json"
+  ],
   "scripts": {
+    "build": "yarn rollup -c rollup.config.js && yarn generate:flow",
     "clean": "rm -rf ./dist && rm -f ./tsconfig.tsbuildinfo",
-    "build": "tsc --outDir ./dist",
-    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
-    "types": "tsc -p ./tsconfig.json --noEmit --composite false",
-    "test": "jest --coverage",
-    "test:watch": "jest --watch",
-    "ci:check": "concurrently 'yarn test' 'yarn lint' 'yarn types' --names \"TEST,LINT,TYPES\" -c \"bgGreen.bold,bgMagenta.bold,bgBlue.bold\" --kill-others-on-fail",
-    "generate:contributors": "yarn all-contributors generate",
-    "generate:package": "bash ./scripts/package.sh",
+    "test": "yarn jest --coverage",
     "re:clean": "yarn bsb -clean-world",
     "re:build": "yarn bsb -make-world",
-    "re:dev": "yarn bsb -make-world -w"
+    "re:dev": "yarn bsb -make-world -w",
+    "generate:flow": "node ./scripts/generate-flow-files.js",
+    "generate:contributors": "yarn all-contributors generate"
   },
   "engines": {
     "node": ">= 10.*"
@@ -27,10 +45,14 @@
     "react-native",
     "react",
     "typescript",
+    "rescript",
+    "reason",
+    "flow",
     "stacks",
-    "layout"
+    "layout",
+    "ui"
   ],
-  "author": "mobily",
+  "author": "Marcin Dziewulski <hello@mobily.pl>",
   "homepage": "https://mobily.github.io/stacks",
   "bugs": "https://github.com/mobily/stacks/issues",
   "repository": {
@@ -39,7 +61,8 @@
   },
   "peerDependencies": {
     "react": ">=16.8.0",
-    "react-native": ">=0.59.0"
+    "react-native": ">=0.59.0",
+    "wonka": "^4.0.14"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
@@ -75,8 +98,5 @@
   },
   "cacheDirectories": [
     "node_modules"
-  ],
-  "dependencies": {
-    "wonka": "^4.0.14"
-  }
+  ]
 }
