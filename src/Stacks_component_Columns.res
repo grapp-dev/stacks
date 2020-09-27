@@ -5,9 +5,9 @@ open Stacks_hooks
 open Stacks_utils
 
 module Context = {
-  type t = {isCollapsed: bool, space: float}
+  type t = {isCollapsed: bool, space: float, debugStyle: option<Style.t>}
 
-  let context = React.createContext({isCollapsed: false, space: 0.})
+  let context = React.createContext({isCollapsed: false, space: 0., debugStyle: None})
   let useColumns = () => React.useContext(context)
 
   module Provider = {
@@ -88,15 +88,20 @@ let make = (
     ~reverse,
     ~currentBreakpoint,
   )
-  let style = Style.arrayOption([Some(styles["fullWidth"]), debugStyle, style])
-  let style' = {
+  let negativeSpace = -.space
+  let style = Style.arrayOption([Some(styles["fullWidth"]), style])
+  let containerStyle = {
     let arr = isCollapsed
-      ? [Some(styles["fullWidth"]), Some(marginTop(-.space))]
-      : [resolveJustifyContentX(alignX), resolveAlignItemsY(alignY), Some(marginLeft(-.space))]
+      ? [Some(styles["fullWidth"]), Some(marginTop(. negativeSpace))]
+      : [
+          resolveJustifyContentX(alignX),
+          resolveAlignItemsY(alignY),
+          Some(marginLeft(. negativeSpace)),
+        ]
 
-    arr->Belt.Array.concat([resolveDirection(Some(direction))])->Style.arrayOption
+    Style.arrayOption(Belt.Array.concat(arr, [resolveDirection(Some(direction))]))
   }
-  let config: Context.t = {isCollapsed: isCollapsed, space: space}
+  let config: Context.t = {isCollapsed: isCollapsed, space: space, debugStyle: debugStyle}
 
   <Context.Provider value={config}>
     <View
@@ -146,7 +151,7 @@ let make = (
       ?onMouseOut
       ?onMouseUp
       style>
-      <View style=style'> children </View>
+      <View style=containerStyle> children </View>
     </View>
   </Context.Provider>
 }

@@ -8,3 +8,6 @@ module WeakMap = {
 
   let get = (weakMap, key) => has(weakMap, key) ? Some(get(weakMap, key)) : None
 }
+
+@bs.module("react")
+external isValidElement: React.element => bool = "isValidElement"

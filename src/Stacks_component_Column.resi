@@ -3,7 +3,7 @@ open Stacks_types
 
 @react.component
 export make: (
-  ~width: flex=?,
+  ~width: responsiveProp<flex>=?,
   ~accessibilityComponentType: Stacks_types.accessibilityComponentType=?,
   ~accessibilityElementsHidden: bool=?,
   ~accessibilityHint: string=?,

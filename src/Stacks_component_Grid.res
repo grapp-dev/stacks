@@ -68,7 +68,7 @@ let make = (~gutter=4., ~margin=4., ~columns=8, ~opacity=0.1) => {
     open Style
     array([styles["root"], viewStyle(~paddingLeft=gutter |> dp, ~paddingRight=gutter |> dp, ())])
   }
-  let grid = columns->Belt.Array.makeBy(index => {
+  let grid = columns->Belt.Array.makeByU((. index) => {
     let key = index |> string_of_int
     <View key style={columnStyle} />
   })->React.array

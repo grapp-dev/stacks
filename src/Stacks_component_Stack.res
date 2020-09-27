@@ -62,13 +62,7 @@ let make = (
   let (space, align) = useResponsiveProp2(space, align)
   let space = useSpacing(space)
   let debugStyle = useDebugStyle()
-  let style = Style.arrayOption([
-    Some(styles["fullWidth"]),
-    resolveDirection(Some(#column)),
-    resolveAlignItemsX(align),
-    debugStyle,
-    style,
-  ])
+  let style = Style.arrayOption([Some(styles["fullWidth"]), resolveDirection(Some(#column)), style])
   let children = React.Children.toArray(children)
   let isLast = isLastElement(children)
 
@@ -124,7 +118,9 @@ let make = (
         key={uid(child)}
         style={Style.arrayOption([
           Some(styles["fullWidth"]),
-          isLast(index) ? None : Some(marginBottom(space)),
+          resolveAlignItemsX(align),
+          debugStyle,
+          isLast(index) ? None : Some(marginBottom(. space)),
         ])}>
         child
       </View>

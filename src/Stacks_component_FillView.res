@@ -85,10 +85,10 @@ let make = (
   ~onMouseUp=?,
 ) => {
   let resolveResponsiveProp = useResponsiveProp()
-  let top = top->resolveResponsiveProp(. _)->Belt.Option.map(Stacks_utils.top)
-  let right = right->resolveResponsiveProp(. _)->Belt.Option.map(Stacks_utils.right)
-  let bottom = bottom->resolveResponsiveProp(. _)->Belt.Option.map(Stacks_utils.bottom)
-  let left = left->resolveResponsiveProp(. _)->Belt.Option.map(Stacks_utils.left)
+  let top = Belt.Option.mapU(resolveResponsiveProp(. top), Stacks_utils.top)
+  let right = Belt.Option.mapU(resolveResponsiveProp(. right), Stacks_utils.right)
+  let bottom = Belt.Option.mapU(resolveResponsiveProp(. bottom), Stacks_utils.bottom)
+  let left = Belt.Option.mapU(resolveResponsiveProp(. left), Stacks_utils.left)
   let style = Style.arrayOption([
     Some(StyleSheet.absoluteFillObject),
     top,

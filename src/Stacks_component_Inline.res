@@ -61,13 +61,14 @@ let make = (
 ) => {
   let (space, align) = useResponsiveProp2(space, align)
   let space = useSpacing(space)
+  let nagativeSpace = -.space
   let debugStyle = useDebugStyle()
-  let style' = Style.arrayOption([
+  let containerStyle = Style.arrayOption([
     resolveWrap(Some(#wrap)),
     resolveDirection(Some(#row)),
     resolveJustifyContentX(align),
-    Some(marginTop(-.space)),
-    Some(marginRight(-.space)),
+    Some(marginTop(. nagativeSpace)),
+    Some(marginRight(. nagativeSpace)),
   ])
   let children = React.Children.toArray(children)
 
@@ -118,10 +119,14 @@ let make = (
     ?onMouseOut
     ?onMouseUp
     ?style>
-    <View style=style'> {Js.Array2.map(children, child => {
+    <View style=containerStyle> {Js.Array2.map(children, child => {
         <View
           key={uid(child)}
-          style={Style.arrayOption([debugStyle, Some(marginTop(space)), Some(marginRight(space))])}>
+          style={Style.arrayOption([
+            debugStyle,
+            Some(marginTop(. space)),
+            Some(marginRight(. space)),
+          ])}>
           child
         </View>
       }) |> React.array} </View>

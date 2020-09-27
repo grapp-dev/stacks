@@ -8,7 +8,7 @@ open Stacks_utils
 @react.component
 let make = (
   // Column props
-  ~width=#fluid,
+  ~width=[#fluid],
   // View props
   // ~accessibilityActions=?,
   ~accessibilityComponentType=?,
@@ -60,14 +60,15 @@ let make = (
   ~onMouseOut=?,
   ~onMouseUp=?,
 ) => {
-  let {isCollapsed, space} = useColumns()
-  let debugStyle = useDebugStyle()
+  let {isCollapsed, space, debugStyle} = useColumns()
+  let resolveResponsiveProp = useResponsiveProp()
+  let width = resolveResponsiveProp(. Some(width))
   let style = {
     let arr = isCollapsed
-      ? [Some(styles["fullWidth"]), Some(marginTop(space))]
-      : [resolveFlexBasis(Some(width)), Some(styles["shrink"]), Some(marginLeft(space))]
+      ? [Some(styles["fullWidth"]), Some(marginTop(. space))]
+      : [resolveFlexBasis(width), Some(styles["shrink"]), Some(marginLeft(. space))]
 
-    arr->Belt.Array.concat([debugStyle, style])->Style.arrayOption
+    Style.arrayOption(Belt.Array.concat(arr, [debugStyle, style]))
   }
 
   <View

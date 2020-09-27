@@ -4,9 +4,9 @@ open Stacks_types
 open Stacks_utils
 open Stacks_context
 
-export useStacks = () => React.useContext(context)
+let useStacks = () => React.useContext(context)
 
-export useWindowDimensions = () => {
+let useWindowDimensions = () => {
   let (dimensions, setDimensions) = React.useState(() => Dimensions.get(#window))
 
   React.useEffect0(() => {
@@ -24,18 +24,20 @@ export useWindowDimensions = () => {
   dimensions
 }
 
-export useSpacing = Belt.Option.mapWithDefault(_, 0., value => {
+let useSpacing = Belt.Option.mapWithDefaultU(_, 0., (. value) => {
   let {spacing} = useStacks()
   spacing *. value
 })
 
-export useSpacingHandler = () => {
+let useSpacingHelpers = () => {
   let {spacing} = useStacks()
-  let multiply = (. value) => Belt.Option.map(value, value => spacing *. value)
-  multiply
+  let multiply = (. value) => spacing *. value
+  let divide = (. value) => value /. spacing
+
+  {multiply: multiply, divide: divide}
 }
 
-export useCurrentBreakpoint = () => {
+let useCurrentBreakpoint = () => {
   let {breakpoints} = useStacks()
   let dimensions = useWindowDimensions()
   let currentBreakpoint = resolveCurrentBreakpoint(dimensions.width, breakpoints)
@@ -43,7 +45,7 @@ export useCurrentBreakpoint = () => {
   currentBreakpoint
 }
 
-export useDebugStyle = () => {
+let useDebugStyle = () => {
   let {debug} = useStacks()
   let style = React.useRef(None)
 
@@ -52,7 +54,7 @@ export useDebugStyle = () => {
   style.current
 }
 
-export useResponsiveProp = () => {
+let useResponsiveProp = () => {
   let {breakpoints} = useStacks()
   let dimensions = useWindowDimensions()
   let resolveResponsiveProp = resolveResponsiveProp(dimensions.width, breakpoints)
@@ -63,91 +65,91 @@ export useResponsiveProp = () => {
 let useResponsiveProp2 = (prop0, prop1) => {
   let {breakpoints} = useStacks()
   let dimensions = useWindowDimensions()
-  let resolveResponsiveProp = values => {
+  let resolveResponsiveProp = (. values) => {
     let resolve = resolveResponsiveProp(dimensions.width, breakpoints)
     resolve(. values)
   }
 
-  (resolveResponsiveProp(prop0), resolveResponsiveProp(prop1))
+  (resolveResponsiveProp(. prop0), resolveResponsiveProp(. prop1))
 }
 
 let useResponsiveProp3 = (prop0, prop1, prop2) => {
   let {breakpoints} = useStacks()
   let dimensions = useWindowDimensions()
-  let resolveResponsiveProp = values => {
+  let resolveResponsiveProp = (. values) => {
     let resolve = resolveResponsiveProp(dimensions.width, breakpoints)
     resolve(. values)
   }
 
-  (resolveResponsiveProp(prop0), resolveResponsiveProp(prop1), resolveResponsiveProp(prop2))
+  (resolveResponsiveProp(. prop0), resolveResponsiveProp(. prop1), resolveResponsiveProp(. prop2))
 }
 
 let useResponsiveProp4 = (prop0, prop1, prop2, prop3) => {
   let {breakpoints} = useStacks()
   let dimensions = useWindowDimensions()
-  let resolveResponsiveProp = values => {
+  let resolveResponsiveProp = (. values) => {
     let resolve = resolveResponsiveProp(dimensions.width, breakpoints)
     resolve(. values)
   }
 
   (
-    resolveResponsiveProp(prop0),
-    resolveResponsiveProp(prop1),
-    resolveResponsiveProp(prop2),
-    resolveResponsiveProp(prop3),
+    resolveResponsiveProp(. prop0),
+    resolveResponsiveProp(. prop1),
+    resolveResponsiveProp(. prop2),
+    resolveResponsiveProp(. prop3),
   )
 }
 
 let useResponsiveProp5 = (prop0, prop1, prop2, prop3, prop4) => {
   let {breakpoints} = useStacks()
   let dimensions = useWindowDimensions()
-  let resolveResponsiveProp = values => {
+  let resolveResponsiveProp = (. values) => {
     let resolve = resolveResponsiveProp(dimensions.width, breakpoints)
     resolve(. values)
   }
 
   (
-    resolveResponsiveProp(prop0),
-    resolveResponsiveProp(prop1),
-    resolveResponsiveProp(prop2),
-    resolveResponsiveProp(prop3),
-    resolveResponsiveProp(prop4),
+    resolveResponsiveProp(. prop0),
+    resolveResponsiveProp(. prop1),
+    resolveResponsiveProp(. prop2),
+    resolveResponsiveProp(. prop3),
+    resolveResponsiveProp(. prop4),
   )
 }
 
 let useResponsiveProp6 = (prop0, prop1, prop2, prop3, prop4, prop5) => {
   let {breakpoints} = useStacks()
   let dimensions = useWindowDimensions()
-  let resolveResponsiveProp = values => {
+  let resolveResponsiveProp = (. values) => {
     let resolve = resolveResponsiveProp(dimensions.width, breakpoints)
     resolve(. values)
   }
 
   (
-    resolveResponsiveProp(prop0),
-    resolveResponsiveProp(prop1),
-    resolveResponsiveProp(prop2),
-    resolveResponsiveProp(prop3),
-    resolveResponsiveProp(prop4),
-    resolveResponsiveProp(prop5),
+    resolveResponsiveProp(. prop0),
+    resolveResponsiveProp(. prop1),
+    resolveResponsiveProp(. prop2),
+    resolveResponsiveProp(. prop3),
+    resolveResponsiveProp(. prop4),
+    resolveResponsiveProp(. prop5),
   )
 }
 
 let useResponsiveProp7 = (prop0, prop1, prop2, prop3, prop4, prop5, prop6) => {
   let {breakpoints} = useStacks()
   let dimensions = useWindowDimensions()
-  let resolveResponsiveProp = values => {
+  let resolveResponsiveProp = (. values) => {
     let resolve = resolveResponsiveProp(dimensions.width, breakpoints)
     resolve(. values)
   }
 
   (
-    resolveResponsiveProp(prop0),
-    resolveResponsiveProp(prop1),
-    resolveResponsiveProp(prop2),
-    resolveResponsiveProp(prop3),
-    resolveResponsiveProp(prop4),
-    resolveResponsiveProp(prop5),
-    resolveResponsiveProp(prop6),
+    resolveResponsiveProp(. prop0),
+    resolveResponsiveProp(. prop1),
+    resolveResponsiveProp(. prop2),
+    resolveResponsiveProp(. prop3),
+    resolveResponsiveProp(. prop4),
+    resolveResponsiveProp(. prop5),
+    resolveResponsiveProp(. prop6),
   )
 }

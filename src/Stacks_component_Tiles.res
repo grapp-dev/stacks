@@ -2,6 +2,7 @@ open ReactNative
 
 open Stacks_hooks
 open Stacks_utils
+open Stacks_extras
 
 module Stack = Stacks_component_Stack
 
@@ -61,11 +62,11 @@ let make = (
   ~onMouseOut=?,
   ~onMouseUp=?,
 ) => {
-  let (space', columns) = useResponsiveProp2(space, Some(columns))
-  let space' = useSpacing(space')
+  let (tileSpace, columns) = useResponsiveProp2(space, Some(columns))
+  let tileSpace = useSpacing(tileSpace)
   let debugStyle = useDebugStyle()
-  let style' = Style.arrayOption([Some(styles["fullWidth"]), resolveDirection(Some(#row))])
-  let columns = columns->Belt.Option.getWithDefault(1)
+  let rowStyle = Style.arrayOption([Some(styles["fullWidth"]), resolveDirection(Some(#row))])
+  let columns = Belt.Option.getWithDefault(columns, 1)
   let children = children |> React.Children.toArray |> splitEvery(columns)
 
   <Stack
@@ -117,7 +118,7 @@ let make = (
     ?onMouseUp
     ?style>
     {Js.Array2.map(children, arr => {
-      let arr = Belt.Array.makeBy(columns, index =>
+      let arr = Belt.Array.makeByU(columns, (. index) =>
         arr->Belt.Array.get(index)->Belt.Option.getWithDefault(React.null)
       )
       let isLast = isLastElement(arr)
@@ -125,14 +126,14 @@ let make = (
         let style = {
           Style.arrayOption([
             Some(styles["flexFluid"]),
-            isLast(index) ? None : Some(marginRight(space')),
-            child == React.null ? None : debugStyle,
+            isLast(index) ? None : Some(marginRight(. tileSpace)),
+            isValidElement(child) ? debugStyle : None,
           ])
         }
         <View key={uid(child)} style> child </View>
       }) |> React.array
 
-      <View style=style'> tiles </View>
+      <View style=rowStyle> tiles </View>
     }) |> React.array}
   </Stack>
 }

@@ -2,7 +2,7 @@ open ReactNative
 open Stacks_types
 
 module Context: {
-  type t = {isCollapsed: bool, space: float}
+  type t = {isCollapsed: bool, space: float, debugStyle: option<Style.t>}
 
   let context: React.Context.t<t>
   let useColumns: unit => t

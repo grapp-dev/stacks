@@ -78,38 +78,38 @@ let make = (
   ~onMouseOut=?,
   ~onMouseUp=?,
 ) => {
-  let spacing = useSpacingHandler()
   let {breakpoints} = useStacks()
+  let {multiply} = useSpacingHelpers()
   let dimensions = useWindowDimensions()
   let debugStyle = useDebugStyle()
 
-  let resolveResponsiveProp = values => {
+  let resolveResponsiveProp = (. values) => {
     let resolve = resolveResponsiveProp(dimensions.width, breakpoints)
     resolve(. values)
   }
-  let propToDp = value => value |> resolveResponsiveProp |> spacing(. _)
+  let propToDp = (. value) => Belt.Option.mapU(resolveResponsiveProp(. value), multiply)
 
-  let padding = padding->propToDp->Belt.Option.map(Stacks_utils.padding)
-  let paddingTop = paddingTop->propToDp->Belt.Option.map(Stacks_utils.paddingTop)
-  let paddingBottom = paddingBottom->propToDp->Belt.Option.map(Stacks_utils.paddingBottom)
-  let paddingLeft = paddingLeft->propToDp->Belt.Option.map(Stacks_utils.paddingLeft)
-  let paddingRight = paddingRight->propToDp->Belt.Option.map(Stacks_utils.paddingRight)
-  let paddingEnd = paddingEnd->propToDp->Belt.Option.map(Stacks_utils.paddingEnd)
-  let paddingStart = paddingStart->propToDp->Belt.Option.map(Stacks_utils.paddingStart)
-  let margin = margin->propToDp->Belt.Option.map(Stacks_utils.margin)
-  let marginTop = marginTop->propToDp->Belt.Option.map(Stacks_utils.marginTop)
-  let marginBottom = marginBottom->propToDp->Belt.Option.map(Stacks_utils.marginBottom)
-  let marginLeft = marginLeft->propToDp->Belt.Option.map(Stacks_utils.marginLeft)
-  let marginRight = marginRight->propToDp->Belt.Option.map(Stacks_utils.marginRight)
-  let marginEnd = marginEnd->propToDp->Belt.Option.map(Stacks_utils.marginEnd)
-  let marginStart = marginStart->propToDp->Belt.Option.map(Stacks_utils.marginStart)
+  let padding = Belt.Option.mapU(propToDp(. padding), Stacks_utils.padding)
+  let paddingTop = Belt.Option.mapU(propToDp(. paddingTop), Stacks_utils.paddingTop)
+  let paddingBottom = Belt.Option.mapU(propToDp(. paddingBottom), Stacks_utils.paddingBottom)
+  let paddingLeft = Belt.Option.mapU(propToDp(. paddingLeft), Stacks_utils.paddingLeft)
+  let paddingRight = Belt.Option.mapU(propToDp(. paddingRight), Stacks_utils.paddingRight)
+  let paddingEnd = Belt.Option.mapU(propToDp(. paddingEnd), Stacks_utils.paddingEnd)
+  let paddingStart = Belt.Option.mapU(propToDp(. paddingStart), Stacks_utils.paddingStart)
+  let margin = Belt.Option.mapU(propToDp(. margin), Stacks_utils.margin)
+  let marginTop = Belt.Option.mapU(propToDp(. marginTop), Stacks_utils.marginTop)
+  let marginBottom = Belt.Option.mapU(propToDp(. marginBottom), Stacks_utils.marginBottom)
+  let marginLeft = Belt.Option.mapU(propToDp(. marginLeft), Stacks_utils.marginLeft)
+  let marginRight = Belt.Option.mapU(propToDp(. marginRight), Stacks_utils.marginRight)
+  let marginEnd = Belt.Option.mapU(propToDp(. marginEnd), Stacks_utils.marginEnd)
+  let marginStart = Belt.Option.mapU(propToDp(. marginStart), Stacks_utils.marginStart)
 
-  let alignX = resolveResponsiveProp(alignX)
-  let alignY = resolveResponsiveProp(alignY)
-  let alignSelf = resolveResponsiveProp(alignSelf)
-  let direction = resolveResponsiveProp(direction)
-  let wrap = resolveResponsiveProp(wrap)
-  let flex = resolveResponsiveProp(flex)
+  let alignX = resolveResponsiveProp(. alignX)
+  let alignY = resolveResponsiveProp(. alignY)
+  let alignSelf = resolveResponsiveProp(. alignSelf)
+  let direction = resolveResponsiveProp(. direction)
+  let wrap = resolveResponsiveProp(. wrap)
+  let flex = resolveResponsiveProp(. flex)
 
   let style = {
     let (alignX, alignY) = {

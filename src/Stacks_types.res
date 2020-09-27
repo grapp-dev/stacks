@@ -16,35 +16,34 @@ export type axisY = [#top | #center | #bottom]
 export type space = [#between | #around | #evenly]
 export type direction = [#row | #rowReverse | #column | #columnReverse]
 export type wrap = [#wrap | #nowrap]
+
+@genType.import("./Stacks_types")
 export type flex = [
   | #content
   | #fluid
-  | @genType.as("1/2")
-  #x12
-  | @genType.as("1/3")
-  #x13
-  | @genType.as("2/3")
-  #x23
-  | @genType.as("1/4")
-  #x14
-  | @genType.as("3/4")
-  #x34
-  | @genType.as("1/5")
-  #x15
-  | @genType.as("2/5")
-  #x25
-  | @genType.as("3/5")
-  #x35
-  | @genType.as("4/5")
-  #x45
+  | #x12
+  | #x13
+  | #x23
+  | #x14
+  | #x34
+  | #x15
+  | #x25
+  | #x35
+  | #x45
 ]
 
 @genType.import("./Stacks_types")
 type responsiveProp<'a> = array<'a>
+
+@genType.import("./Stacks_types")
 export type normalizedProp<'a> = ('a, 'a, 'a)
 export type collapsibleProps = {
   direction: direction,
   isCollapsed: bool,
+}
+export type spacingHelpers = {
+  multiply: (. float) => float,
+  divide: (. float) => float,
 }
 
 export type pointerEvents = [
@@ -85,6 +84,8 @@ export type accessibilityRole = [
   | #navigation
   | #region
 ]
+
+// @genType.import("./Stacks_types")
 export type importantForAccessibility = [
   | #auto
   | #yes
