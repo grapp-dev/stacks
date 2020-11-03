@@ -78,9 +78,8 @@ let make = (
   ~onMouseOut=?,
   ~onMouseUp=?,
 ) => {
-  let {breakpoints} = useStacks()
+  let {breakpoints, dimensions} = useStacks()
   let {multiply} = useSpacingHelpers()
-  let dimensions = useWindowDimensions()
   let debugStyle = useDebugStyle()
 
   let resolveResponsiveProp = (. values) => {

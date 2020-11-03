@@ -117,7 +117,7 @@ let make = (
     ?onMouseOut
     ?onMouseUp
     ?style>
-    {Js.Array2.map(children, arr => {
+    {Js.Array2.mapi(children, (arr, index) => {
       let arr = Belt.Array.makeByU(columns, (. index) =>
         arr->Belt.Array.get(index)->Belt.Option.getWithDefault(React.null)
       )
@@ -130,10 +130,10 @@ let make = (
             isValidElement(child) ? debugStyle : None,
           ])
         }
-        <View key={uid(child)} style> child </View>
+        <View key={index |> string_of_int} style> child </View>
       }) |> React.array
 
-      <View style=rowStyle> tiles </View>
+      <View key={index |> string_of_int} style=rowStyle> tiles </View>
     }) |> React.array}
   </Stack>
 }

@@ -119,9 +119,9 @@ let make = (
     ?onMouseOut
     ?onMouseUp
     ?style>
-    <View style=containerStyle> {Js.Array2.map(children, child => {
+    <View style=containerStyle> {Js.Array2.mapi(children, (child, index) => {
         <View
-          key={uid(child)}
+          key={index |> string_of_int}
           style={Style.arrayOption([
             debugStyle,
             Some(marginTop(. space)),

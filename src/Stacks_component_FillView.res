@@ -1,6 +1,5 @@
 open ReactNative
 
-open Stacks_types
 open Stacks_hooks
 
 module Box = Stacks_component_Box
@@ -8,10 +7,10 @@ module Box = Stacks_component_Box
 @react.component
 let make = (
   // FillView props
-  ~top: option<responsiveProp<Style.size>>=?,
-  ~right: option<responsiveProp<Style.size>>=?,
-  ~bottom: option<responsiveProp<Style.size>>=?,
-  ~left: option<responsiveProp<Style.size>>=?,
+  ~top=?,
+  ~right=?,
+  ~bottom=?,
+  ~left=?,
   // Box props
   ~padding=?,
   ~paddingTop=?,

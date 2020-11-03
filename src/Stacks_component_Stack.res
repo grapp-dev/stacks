@@ -115,7 +115,7 @@ let make = (
     style>
     {Js.Array2.mapi(children, (child, index) => {
       <View
-        key={uid(child)}
+        key={index |> string_of_int}
         style={Style.arrayOption([
           Some(styles["fullWidth"]),
           resolveAlignItemsX(align),

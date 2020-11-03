@@ -1,6 +1,7 @@
 open ReactNative
 
 open Stacks_hooks
+open Stacks_types
 
 type options = {
   width: float,
@@ -42,7 +43,7 @@ let styles = {
 
 @react.component
 let make = (~gutter=4., ~margin=4., ~columns=8, ~opacity=0.1) => {
-  let dimensions = useWindowDimensions()
+  let {dimensions} = useStacks()
   let options = {
     gutter: gutter,
     margin: margin,
@@ -73,7 +74,7 @@ let make = (~gutter=4., ~margin=4., ~columns=8, ~opacity=0.1) => {
     <View key style={columnStyle} />
   })->React.array
 
-  <View pointerEvents=#none style={gridStyle}>
+  <View pointerEvents={#none} style={gridStyle}>
     grid
     {gridWidth != dimensions.width
       ? <View style={styles["warning"]}>
