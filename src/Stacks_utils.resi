@@ -1,6 +1,8 @@
 open Stacks_types
 
 let margin: (. float) => ReactNative.Style.t
+let marginX: (. float) => ReactNative.Style.t
+let marginY: (. float) => ReactNative.Style.t
 let marginTop: (. float) => ReactNative.Style.t
 let marginRight: (. float) => ReactNative.Style.t
 let marginLeft: (. float) => ReactNative.Style.t
@@ -8,6 +10,8 @@ let marginBottom: (. float) => ReactNative.Style.t
 let marginStart: (. float) => ReactNative.Style.t
 let marginEnd: (. float) => ReactNative.Style.t
 let padding: (. float) => ReactNative.Style.t
+let paddingX: (. float) => ReactNative.Style.t
+let paddingY: (. float) => ReactNative.Style.t
 let paddingTop: (. float) => ReactNative.Style.t
 let paddingRight: (. float) => ReactNative.Style.t
 let paddingLeft: (. float) => ReactNative.Style.t

@@ -9,6 +9,8 @@ external normalizeResponsiveProp: responsiveProp<'a> => normalizedProp<'a> =
   "normalizeResponsiveProp"
 
 let margin = (. value) => viewStyle(~margin=value |> dp, ())
+let marginX = (. value) => viewStyle(~marginHorizontal=value |> dp, ())
+let marginY = (. value) => viewStyle(~marginVertical=value |> dp, ())
 let marginTop = (. value) => viewStyle(~marginTop=value |> dp, ())
 let marginRight = (. value) => viewStyle(~marginRight=value |> dp, ())
 let marginLeft = (. value) => viewStyle(~marginLeft=value |> dp, ())
@@ -16,6 +18,8 @@ let marginBottom = (. value) => viewStyle(~marginBottom=value |> dp, ())
 let marginStart = (. value) => viewStyle(~marginStart=value |> dp, ())
 let marginEnd = (. value) => viewStyle(~marginEnd=value |> dp, ())
 let padding = (. value) => viewStyle(~padding=value |> dp, ())
+let paddingX = (. value) => viewStyle(~paddingHorizontal=value |> dp, ())
+let paddingY = (. value) => viewStyle(~paddingVertical=value |> dp, ())
 let paddingTop = (. value) => viewStyle(~paddingTop=value |> dp, ())
 let paddingRight = (. value) => viewStyle(~paddingRight=value |> dp, ())
 let paddingLeft = (. value) => viewStyle(~paddingLeft=value |> dp, ())

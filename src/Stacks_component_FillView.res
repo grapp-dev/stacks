@@ -13,6 +13,8 @@ let make = (
   ~left=?,
   // Box props
   ~padding=?,
+  ~paddingX=?,
+  ~paddingY=?,
   ~paddingTop=?,
   ~paddingBottom=?,
   ~paddingLeft=?,
@@ -20,6 +22,8 @@ let make = (
   ~paddingEnd=?,
   ~paddingStart=?,
   ~margin=?,
+  ~marginX=?,
+  ~marginY=?,
   ~marginTop=?,
   ~marginBottom=?,
   ~marginLeft=?,
@@ -99,6 +103,8 @@ let make = (
 
   <Box
     ?padding
+    ?paddingX
+    ?paddingY
     ?paddingTop
     ?paddingBottom
     ?paddingLeft
@@ -106,6 +112,8 @@ let make = (
     ?paddingEnd
     ?paddingStart
     ?margin
+    ?marginX
+    ?marginY
     ?marginTop
     ?marginBottom
     ?marginLeft

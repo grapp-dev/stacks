@@ -4,6 +4,8 @@ open Stacks_types
 @react.component
 export make: (
   ~padding: responsiveProp<float>=?,
+  ~paddingX: responsiveProp<float>=?,
+  ~paddingY: responsiveProp<float>=?,
   ~paddingTop: responsiveProp<float>=?,
   ~paddingBottom: responsiveProp<float>=?,
   ~paddingLeft: responsiveProp<float>=?,
@@ -11,6 +13,8 @@ export make: (
   ~paddingEnd: responsiveProp<float>=?,
   ~paddingStart: responsiveProp<float>=?,
   ~margin: responsiveProp<float>=?,
+  ~marginX: responsiveProp<float>=?,
+  ~marginY: responsiveProp<float>=?,
   ~marginTop: responsiveProp<float>=?,
   ~marginBottom: responsiveProp<float>=?,
   ~marginLeft: responsiveProp<float>=?,

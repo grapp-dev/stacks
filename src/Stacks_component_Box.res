@@ -8,6 +8,8 @@ open Stacks_utils
 let make = (
   // Box props
   ~padding=?,
+  ~paddingX=?,
+  ~paddingY=?,
   ~paddingTop=?,
   ~paddingBottom=?,
   ~paddingLeft=?,
@@ -15,6 +17,8 @@ let make = (
   ~paddingEnd=?,
   ~paddingStart=?,
   ~margin=?,
+  ~marginX=?,
+  ~marginY=?,
   ~marginTop=?,
   ~marginBottom=?,
   ~marginLeft=?,
@@ -89,6 +93,8 @@ let make = (
   let propToDp = (. value) => Belt.Option.mapU(resolveResponsiveProp(. value), multiply)
 
   let padding = Belt.Option.mapU(propToDp(. padding), Stacks_utils.padding)
+  let paddingX = Belt.Option.mapU(propToDp(. paddingX), Stacks_utils.paddingX)
+  let paddingY = Belt.Option.mapU(propToDp(. paddingY), Stacks_utils.paddingY)
   let paddingTop = Belt.Option.mapU(propToDp(. paddingTop), Stacks_utils.paddingTop)
   let paddingBottom = Belt.Option.mapU(propToDp(. paddingBottom), Stacks_utils.paddingBottom)
   let paddingLeft = Belt.Option.mapU(propToDp(. paddingLeft), Stacks_utils.paddingLeft)
@@ -96,6 +102,8 @@ let make = (
   let paddingEnd = Belt.Option.mapU(propToDp(. paddingEnd), Stacks_utils.paddingEnd)
   let paddingStart = Belt.Option.mapU(propToDp(. paddingStart), Stacks_utils.paddingStart)
   let margin = Belt.Option.mapU(propToDp(. margin), Stacks_utils.margin)
+  let marginX = Belt.Option.mapU(propToDp(. marginX), Stacks_utils.marginX)
+  let marginY = Belt.Option.mapU(propToDp(. marginY), Stacks_utils.marginY)
   let marginTop = Belt.Option.mapU(propToDp(. marginTop), Stacks_utils.marginTop)
   let marginBottom = Belt.Option.mapU(propToDp(. marginBottom), Stacks_utils.marginBottom)
   let marginLeft = Belt.Option.mapU(propToDp(. marginLeft), Stacks_utils.marginLeft)
@@ -122,6 +130,8 @@ let make = (
 
     Style.arrayOption([
       padding,
+      paddingX,
+      paddingY,
       paddingTop,
       paddingBottom,
       paddingLeft,
@@ -129,6 +139,8 @@ let make = (
       paddingEnd,
       paddingStart,
       margin,
+      marginX,
+      marginY,
       marginTop,
       marginBottom,
       marginLeft,
