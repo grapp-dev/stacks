@@ -1,4 +1,5 @@
 let context: React.Context.t<Stacks_types.context>
+export useWindowDimensions: unit => ReactNative.Dimensions.displayMetrics
 
 module StacksProvider: {
   @react.component
