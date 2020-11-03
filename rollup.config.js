@@ -17,7 +17,7 @@ const name = path.basename(pkgInfo.main, '.js')
 
 const config = {
   input: './src/Stacks.ts',
-  external: ['react', 'react-native', 'wonka'],
+  external: ['react', 'react-native'],
   treeshake: {
     propertyReadSideEffects: false,
   },
@@ -60,6 +60,7 @@ const makePlugins = ({ isProduction }) =>
     babel({
       babelrc: false,
       extensions: ['ts', 'tsx', 'js'],
+      presets: [],
       exclude: 'node_modules/**',
       plugins: ['babel-plugin-closure-elimination'],
     }),
