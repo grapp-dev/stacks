@@ -30,22 +30,6 @@ let left = (. value) => viewStyle(~left=value, ())
 
 let isLastElement = (elements, index) => Belt.Array.length(elements) |> pred == index
 
-let weakMap = WeakMap.make()
-let counter = ref(1)
-let rec uid = element =>
-  switch WeakMap.get(weakMap, element) {
-  | Some(id) => id.contents |> string_of_int
-  | None =>
-    counter := counter.contents |> succ
-
-    if isValidElement(element) {
-      WeakMap.set(weakMap, element, counter)
-      uid(element)
-    } else {
-      counter.contents |> succ |> string_of_int
-    }
-  }
-
 let randomColor = () => {
   open Js.Array2
 

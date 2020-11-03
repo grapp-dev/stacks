@@ -19,9 +19,6 @@ let right: (. ReactNative.Style.size) => ReactNative.Style.t
 let bottom: (. ReactNative.Style.size) => ReactNative.Style.t
 let left: (. ReactNative.Style.size) => ReactNative.Style.t
 let isLastElement: (array<'a>, int) => bool
-let weakMap: Stacks_extras.WeakMap.t<React.element, ref<int>>
-let counter: ref<int>
-let uid: React.element => string
 let randomColor: unit => string
 let take: (int, array<'a>) => array<'a>
 let drop: (int, array<'a>) => array<'a>
