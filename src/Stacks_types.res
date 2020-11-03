@@ -7,6 +7,7 @@ export type context = {
   debug: bool,
   spacing: float,
   breakpoints: breakpoints,
+  dimensions: ReactNative.Dimensions.displayMetrics,
 }
 
 export type breakpoint = [#mobile | #tablet | #desktop]
@@ -34,6 +35,9 @@ export type flex = [
 
 @genType.import("./Stacks_types")
 type responsiveProp<'a> = array<'a>
+
+@genType.import("./Stacks_types")
+export type resolveResponsiveProp<'a> = (. option<responsiveProp<'a>>) => option<'a>
 
 @genType.import("./Stacks_types")
 export type normalizedProp<'a> = ('a, 'a, 'a)

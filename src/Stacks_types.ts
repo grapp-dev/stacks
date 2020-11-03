@@ -12,3 +12,6 @@ export type flex =
   | '2/5'
   | '3/5'
   | '4/5'
+export type resolveResponsiveProp<T = unknown> = <X>(
+  arg0: null | undefined | responsiveProp<X>,
+) => X | undefined
