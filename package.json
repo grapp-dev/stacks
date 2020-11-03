@@ -1,7 +1,7 @@
 {
   "name": "@mobily/stacks",
   "description": "⚡ Build React Native views blazingly fast.",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "source": "./src/Stacks.ts",
   "main": "./dist/stacks.js",
   "module": "./dist/stacks.mjs",
