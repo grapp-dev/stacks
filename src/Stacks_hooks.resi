@@ -1,12 +1,11 @@
 open Stacks_types
 
 export useStacks: unit => context
-export useWindowDimensions: unit => ReactNative.Dimensions.displayMetrics
 export useSpacing: option<float> => float
 export useSpacingHelpers: unit => spacingHelpers
 export useCurrentBreakpoint: unit => breakpoint
 export useDebugStyle: unit => option<ReactNative.Style.t>
-export useResponsiveProp: (unit, . option<responsiveProp<'a>>) => option<'a>
+export useResponsiveProp: unit => resolveResponsiveProp<'a>
 let useResponsiveProp2: (
   option<responsiveProp<'a>>,
   option<responsiveProp<'b>>,
