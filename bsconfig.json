@@ -1,0 +1,48 @@
+{
+  "name": "@mobily/stacks",
+  "version": "0.10.0",
+  "namespace": false,
+  "bsc-flags": ["-bs-super-errors", "-bs-no-version-header"],
+  "reason": {
+    "react-jsx": 3
+  },
+  "refmt": 3,
+  "gentypeconfig": {
+    "language": "typescript",
+    "importPath": "relative",
+    "shims": {
+      "ReasonReact": "ReasonReact",
+      "ReactNative": "ReactNative",
+      "ReactEvent": "ReactEvent"
+    },
+    "debug": {
+      "all": false
+    },
+    "exportInterfaces": false
+  },
+  "suffix": ".bs.js",
+  "package-specs": {
+    "module": "es6",
+    "in-source": true
+  },
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    },
+    {
+      "dir": "__tests__",
+      "type": "dev",
+      "subdirs": true
+    }
+  ],
+  "bs-dependencies": [
+    "reason-react",
+    "reason-react-native",
+    "wonka"
+  ],
+  "bs-dev-dependencies": [
+    "reason-test-framework"
+  ],
+  "ppx-flags": []
+}

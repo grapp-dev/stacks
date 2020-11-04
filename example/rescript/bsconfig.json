@@ -1,0 +1,19 @@
+{
+  "name": "stacks-rescript-example",
+  "refmt": 3,
+  "reason": {
+    "react-jsx": 3
+  },
+  "package-specs": {
+    "module": "es6",
+    "in-source": true
+  },
+  "suffix": ".bs.js",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "bs-dependencies": ["reason-react", "reason-react-native", "@mobily/stacks", "wonka"]
+}

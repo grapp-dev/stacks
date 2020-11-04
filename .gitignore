@@ -11,3 +11,11 @@ coverage/
 
 dist/
 playground/
+
+lib/
+
+.merlin
+.bsb.lock
+
+*.bs.js
+*.gen.tsx
