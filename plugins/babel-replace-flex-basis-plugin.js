@@ -20,7 +20,7 @@ const visitor = (path, state) => {
   })
 }
 
-export const replaceFlexBasis = () => {
+exports.replaceFlexBasis = () => {
   return {
     visitor: {
       StringLiteral: visitor,
