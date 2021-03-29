@@ -25,7 +25,8 @@
     "package.json"
   ],
   "scripts": {
-    "build": "yarn rollup -c rollup.config.js && yarn generate:flow",
+    "build": "bash ./scripts/build.sh",
+    "esbuild": "node esbuild.config.js",
     "clean": "rm -rf ./dist && rm -f ./tsconfig.tsbuildinfo",
     "test": "yarn jest --coverage",
     "re:clean": "yarn bsb -clean-world",
