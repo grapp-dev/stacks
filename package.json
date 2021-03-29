@@ -2,6 +2,8 @@
   "name": "@mobily/stacks",
   "description": "⚡ Build React Native views blazingly fast.",
   "version": "1.0.3",
+  "license": "MIT",
+  "author": "Marcin Dziewulski <hello@mobily.pl>",
   "source": "./src/Stacks.ts",
   "main": "./dist/stacks.js",
   "module": "./dist/stacks.mjs",
@@ -41,19 +43,16 @@
   "publishConfig": {
     "access": "public"
   },
-  "license": "MIT",
   "keywords": [
     "react-native",
     "react",
     "typescript",
     "rescript",
-    "reason",
     "flow",
     "stacks",
     "layout",
     "ui"
   ],
-  "author": "Marcin Dziewulski <hello@mobily.pl>",
   "homepage": "https://mobily.github.io/stacks",
   "bugs": "https://github.com/mobily/stacks/issues",
   "repository": {
