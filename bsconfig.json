@@ -1,6 +1,6 @@
 {
   "name": "@mobily/stacks",
-  "version": "0.10.0",
+  "version": "1.0.3",
   "namespace": false,
   "bsc-flags": ["-bs-super-errors", "-bs-no-version-header"],
   "reason": {
@@ -37,8 +37,8 @@
     }
   ],
   "bs-dependencies": [
-    "reason-react",
-    "reason-react-native",
+    "@rescript/react",
+    "rescript-react-native",
     "wonka"
   ],
   "bs-dev-dependencies": [
