@@ -2,7 +2,7 @@
 
 yarn re:clean
 yarn re:build
-yarn test
+# yarn test
 yarn clean
 yarn esbuild
 yarn tsc
