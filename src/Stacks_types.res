@@ -52,6 +52,7 @@ type responsiveProp<'a> = array<'a>
 @genType.import("./Stacks_types")
 type normalizedProp<'a> = ('a, 'a, 'a)
 
+@genType.import("./Stacks_types")
 type resolveResponsiveProp<'a> = option<responsiveProp<'a>> => option<'a>
 external wrap: 'a => resolveResponsiveProp<'b> = "%identity"
 

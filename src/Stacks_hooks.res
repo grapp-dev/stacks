@@ -41,7 +41,7 @@ let useDebugStyle = () => {
 }
 
 @gentype
-let useResponsiveProp = () => {
+let useResponsiveProp: unit => resolveResponsiveProp<'a> = () => {
   let {breakpoints, dimensions} = useStacks()
   let resolveResponsiveProp = resolveResponsiveProp(dimensions.width, breakpoints)
 
