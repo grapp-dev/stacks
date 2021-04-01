@@ -4,6 +4,8 @@ open Stacks_types
 open Stacks_hooks
 open Stacks_utils
 
+module Box = Stacks_component_Box
+
 module Context = {
   type t = {isCollapsed: bool, space: float, debugStyle: option<Style.t>}
 
@@ -20,7 +22,7 @@ module Context = {
   }
 }
 
-@react.component
+@react.component @gentype
 let make = (
   // Columns props
   ~space=?,
@@ -28,9 +30,27 @@ let make = (
   ~alignX=?,
   ~alignY=?,
   ~collapseBelow=?,
+  // Box props
+  ~padding=?,
+  ~paddingX=?,
+  ~paddingY=?,
+  ~paddingTop=?,
+  ~paddingBottom=?,
+  ~paddingLeft=?,
+  ~paddingRight=?,
+  ~paddingEnd=?,
+  ~paddingStart=?,
+  ~margin=?,
+  ~marginX=?,
+  ~marginY=?,
+  ~marginTop=?,
+  ~marginBottom=?,
+  ~marginLeft=?,
+  ~marginRight=?,
+  ~marginEnd=?,
+  ~marginStart=?,
   // View props
-  // ~accessibilityActions=?,
-  ~accessibilityComponentType=?,
+  ~accessibilityActions=?,
   ~accessibilityElementsHidden=?,
   ~accessibilityHint=?,
   ~accessibilityIgnoresInvertColors=?,
@@ -38,7 +58,6 @@ let make = (
   ~accessibilityLiveRegion=?,
   ~accessibilityRole=?,
   ~accessibilityState=?,
-  ~accessibilityTraits=?,
   ~accessibilityValue=?,
   ~accessibilityViewIsModal=?,
   ~accessible=?,
@@ -80,8 +99,11 @@ let make = (
   ~onMouseUp=?,
 ) => {
   let currentBreakpoint = useCurrentBreakpoint()
-  let (space, alignX, alignY) = useResponsiveProp3(space, alignX, alignY)
-  let space = useSpacing(space)
+  let resolveResponsiveProp = useResponsiveProp()
+  let alignX = wrap(resolveResponsiveProp, alignX)
+  let alignY = wrap(resolveResponsiveProp, alignY)
+  let space = useSpacing(resolveResponsiveProp(space))
+
   let debugStyle = useDebugStyle()
   let {isCollapsed, direction} = resolveCollapsibleProps(
     ~collapseBelow,
@@ -92,11 +114,11 @@ let make = (
   let style = Style.arrayOption([Some(styles["fullWidth"]), style])
   let containerStyle = {
     let arr = isCollapsed
-      ? [Some(styles["fullWidth"]), Some(marginTop(. negativeSpace))]
+      ? [Some(styles["fullWidth"]), Some(Stacks_utils.marginTop(. negativeSpace))]
       : [
           resolveJustifyContentX(alignX),
           resolveAlignItemsY(alignY),
-          Some(marginLeft(. negativeSpace)),
+          Some(Stacks_utils.marginLeft(. negativeSpace)),
         ]
 
     Style.arrayOption(Belt.Array.concat(arr, [resolveDirection(Some(direction))]))
@@ -104,8 +126,26 @@ let make = (
   let config: Context.t = {isCollapsed: isCollapsed, space: space, debugStyle: debugStyle}
 
   <Context.Provider value={config}>
-    <View
-      ?accessibilityComponentType
+    <Box
+      ?padding
+      ?paddingX
+      ?paddingY
+      ?paddingTop
+      ?paddingBottom
+      ?paddingLeft
+      ?paddingRight
+      ?paddingEnd
+      ?paddingStart
+      ?margin
+      ?marginX
+      ?marginY
+      ?marginTop
+      ?marginBottom
+      ?marginLeft
+      ?marginRight
+      ?marginEnd
+      ?marginStart
+      ?accessibilityActions
       ?accessibilityElementsHidden
       ?accessibilityHint
       ?accessibilityIgnoresInvertColors
@@ -113,7 +153,6 @@ let make = (
       ?accessibilityLiveRegion
       ?accessibilityRole
       ?accessibilityState
-      ?accessibilityTraits
       ?accessibilityValue
       ?accessibilityViewIsModal
       ?accessible
@@ -152,6 +191,6 @@ let make = (
       ?onMouseUp
       style>
       <View style=containerStyle> children </View>
-    </View>
+    </Box>
   </Context.Provider>
 }

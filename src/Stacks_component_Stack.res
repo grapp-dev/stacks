@@ -2,15 +2,37 @@ open ReactNative
 
 open Stacks_hooks
 open Stacks_utils
+open Stacks_types
 
-@react.component
+module Box = Stacks_component_Box
+
+@react.component @gentype
 let make = (
   // Stack props
-  ~space=?,
-  ~align=?,
+  ~space: option<responsiveProp<float>>=?,
+  ~align: option<responsiveProp<[axisX | stretch]>>=?,
+  ~horizontal: option<responsiveProp<bool>>=?,
+  // Box props
+  ~padding=?,
+  ~paddingX=?,
+  ~paddingY=?,
+  ~paddingTop=?,
+  ~paddingBottom=?,
+  ~paddingLeft=?,
+  ~paddingRight=?,
+  ~paddingEnd=?,
+  ~paddingStart=?,
+  ~margin=?,
+  ~marginX=?,
+  ~marginY=?,
+  ~marginTop=?,
+  ~marginBottom=?,
+  ~marginLeft=?,
+  ~marginRight=?,
+  ~marginEnd=?,
+  ~marginStart=?,
   // View props
-  // ~accessibilityActions=?,
-  ~accessibilityComponentType=?,
+  ~accessibilityActions=?,
   ~accessibilityElementsHidden=?,
   ~accessibilityHint=?,
   ~accessibilityIgnoresInvertColors=?,
@@ -18,7 +40,6 @@ let make = (
   ~accessibilityLiveRegion=?,
   ~accessibilityRole=?,
   ~accessibilityState=?,
-  ~accessibilityTraits=?,
   ~accessibilityValue=?,
   ~accessibilityViewIsModal=?,
   ~accessible=?,
@@ -59,15 +80,48 @@ let make = (
   ~onMouseOut=?,
   ~onMouseUp=?,
 ) => {
-  let (space, align) = useResponsiveProp2(space, align)
-  let space = useSpacing(space)
+  let resolveResponsiveProp = useResponsiveProp()
+  let space = useSpacing(resolveResponsiveProp(space))
+  let align = wrap(resolveResponsiveProp, align)
+  let horizontal = wrap(resolveResponsiveProp, horizontal)
+  let width = horizontal->Belt.Option.flatMapU((. value) => {
+    value ? None : Some(styles["fullWidth"])
+  })
+  let direction = horizontal->Belt.Option.mapWithDefaultU(#column, (. value) => {
+    value ? #row : #column
+  })
+  let marginFn =
+    horizontal
+    ->Belt.Option.mapU((. value) => {
+      value ? Stacks_utils.marginRight : Stacks_utils.marginBottom
+    })
+    ->Belt.Option.getWithDefault(Stacks_utils.marginBottom)
   let debugStyle = useDebugStyle()
-  let style = Style.arrayOption([Some(styles["fullWidth"]), resolveDirection(Some(#column)), style])
+  let style = Style.arrayOption([width, style])
   let children = React.Children.toArray(children)
   let isLast = isLastElement(children)
 
-  <View
-    ?accessibilityComponentType
+  <Box
+    direction=[direction]
+    ?padding
+    ?paddingX
+    ?paddingY
+    ?paddingTop
+    ?paddingBottom
+    ?paddingLeft
+    ?paddingRight
+    ?paddingEnd
+    ?paddingStart
+    ?margin
+    ?marginX
+    ?marginY
+    ?marginTop
+    ?marginBottom
+    ?marginLeft
+    ?marginRight
+    ?marginEnd
+    ?marginStart
+    ?accessibilityActions
     ?accessibilityElementsHidden
     ?accessibilityHint
     ?accessibilityIgnoresInvertColors
@@ -75,7 +129,6 @@ let make = (
     ?accessibilityLiveRegion
     ?accessibilityRole
     ?accessibilityState
-    ?accessibilityTraits
     ?accessibilityValue
     ?accessibilityViewIsModal
     ?accessible
@@ -113,17 +166,17 @@ let make = (
     ?onMouseOut
     ?onMouseUp
     style>
-    {Js.Array2.mapi(children, (child, index) => {
+    {Belt.Array.mapWithIndexU(children, (. index, child) => {
       <View
         key={index |> string_of_int}
         style={Style.arrayOption([
-          Some(styles["fullWidth"]),
+          width,
           resolveAlignItemsX(align),
           debugStyle,
-          isLast(index) ? None : Some(marginBottom(. space)),
+          isLast(index) ? None : Some(marginFn(. space)),
         ])}>
         child
       </View>
     }) |> React.array}
-  </View>
+  </Box>
 }

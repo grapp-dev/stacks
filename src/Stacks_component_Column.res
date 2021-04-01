@@ -4,14 +4,26 @@ open Stacks_component_Columns.Context
 
 open Stacks_hooks
 open Stacks_utils
+open Stacks_types
 
-@react.component
+module Box = Stacks_component_Box
+
+@react.component @gentype
 let make = (
   // Column props
-  ~width=[#fluid],
+  ~width: responsiveProp<flex>=[#fluid],
+  // Box props
+  ~padding=?,
+  ~paddingX=?,
+  ~paddingY=?,
+  ~paddingTop=?,
+  ~paddingBottom=?,
+  ~paddingLeft=?,
+  ~paddingRight=?,
+  ~paddingEnd=?,
+  ~paddingStart=?,
   // View props
-  // ~accessibilityActions=?,
-  ~accessibilityComponentType=?,
+  ~accessibilityActions=?,
   ~accessibilityElementsHidden=?,
   ~accessibilityHint=?,
   ~accessibilityIgnoresInvertColors=?,
@@ -19,7 +31,6 @@ let make = (
   ~accessibilityLiveRegion=?,
   ~accessibilityRole=?,
   ~accessibilityState=?,
-  ~accessibilityTraits=?,
   ~accessibilityValue=?,
   ~accessibilityViewIsModal=?,
   ~accessible=?,
@@ -62,7 +73,7 @@ let make = (
 ) => {
   let {isCollapsed, space, debugStyle} = useColumns()
   let resolveResponsiveProp = useResponsiveProp()
-  let width = resolveResponsiveProp(. Some(width))
+  let width = resolveResponsiveProp(Some(width))
   let style = {
     let arr = isCollapsed
       ? [Some(styles["fullWidth"]), Some(marginTop(. space))]
@@ -71,8 +82,17 @@ let make = (
     Style.arrayOption(Belt.Array.concat(arr, [debugStyle, style]))
   }
 
-  <View
-    ?accessibilityComponentType
+  <Box
+    ?padding
+    ?paddingX
+    ?paddingY
+    ?paddingTop
+    ?paddingBottom
+    ?paddingLeft
+    ?paddingRight
+    ?paddingEnd
+    ?paddingStart
+    ?accessibilityActions
     ?accessibilityElementsHidden
     ?accessibilityHint
     ?accessibilityIgnoresInvertColors
@@ -80,7 +100,6 @@ let make = (
     ?accessibilityLiveRegion
     ?accessibilityRole
     ?accessibilityState
-    ?accessibilityTraits
     ?accessibilityValue
     ?accessibilityViewIsModal
     ?accessible
@@ -119,5 +138,5 @@ let make = (
     ?onMouseUp
     style>
     children
-  </View>
+  </Box>
 }

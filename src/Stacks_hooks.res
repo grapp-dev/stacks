@@ -4,13 +4,16 @@ open Stacks_types
 open Stacks_utils
 open Stacks_context
 
+@gentype
 let useStacks = () => React.useContext(context)
 
+@gentype
 let useSpacing = Belt.Option.mapWithDefaultU(_, 0., (. value) => {
   let {spacing} = useStacks()
   spacing *. value
 })
 
+@gentype
 let useSpacingHelpers = () => {
   let {spacing} = useStacks()
   let multiply = (. value) => spacing *. value
@@ -19,6 +22,7 @@ let useSpacingHelpers = () => {
   {multiply: multiply, divide: divide}
 }
 
+@gentype
 let useCurrentBreakpoint = () => {
   let {breakpoints, dimensions} = useStacks()
   let currentBreakpoint = resolveCurrentBreakpoint(dimensions.width, breakpoints)
@@ -26,6 +30,7 @@ let useCurrentBreakpoint = () => {
   currentBreakpoint
 }
 
+@gentype
 let useDebugStyle = () => {
   let {debug} = useStacks()
   let style = React.useRef(None)
@@ -35,6 +40,7 @@ let useDebugStyle = () => {
   style.current
 }
 
+@gentype
 let useResponsiveProp = () => {
   let {breakpoints, dimensions} = useStacks()
   let resolveResponsiveProp = resolveResponsiveProp(dimensions.width, breakpoints)
@@ -42,88 +48,21 @@ let useResponsiveProp = () => {
   resolveResponsiveProp
 }
 
-let useResponsiveProp2 = (prop0, prop1) => {
-  let {breakpoints, dimensions} = useStacks()
-  let resolveResponsiveProp = (. values) => {
-    let resolve = resolveResponsiveProp(dimensions.width, breakpoints)
-    resolve(. values)
-  }
+@gentype
+let useWindowDimensions = () => {
+  let (dimensions, setDimensions) = React.useState(() => Dimensions.get(#window))
 
-  (resolveResponsiveProp(. prop0), resolveResponsiveProp(. prop1))
-}
+  React.useEffect0(() => {
+    let subscription = {
+      open Wonka
+      dimensionsSource
+      |> debounce((. _) => Platform.os == Platform.web ? 60 : 0)
+      |> onPush((. layout: Dimensions.handler) => setDimensions(_ => layout.window))
+      |> publish
+    }
 
-let useResponsiveProp3 = (prop0, prop1, prop2) => {
-  let {breakpoints, dimensions} = useStacks()
-  let resolveResponsiveProp = (. values) => {
-    let resolve = resolveResponsiveProp(dimensions.width, breakpoints)
-    resolve(. values)
-  }
+    Some(subscription.unsubscribe)
+  })
 
-  (resolveResponsiveProp(. prop0), resolveResponsiveProp(. prop1), resolveResponsiveProp(. prop2))
-}
-
-let useResponsiveProp4 = (prop0, prop1, prop2, prop3) => {
-  let {breakpoints, dimensions} = useStacks()
-  let resolveResponsiveProp = (. values) => {
-    let resolve = resolveResponsiveProp(dimensions.width, breakpoints)
-    resolve(. values)
-  }
-
-  (
-    resolveResponsiveProp(. prop0),
-    resolveResponsiveProp(. prop1),
-    resolveResponsiveProp(. prop2),
-    resolveResponsiveProp(. prop3),
-  )
-}
-
-let useResponsiveProp5 = (prop0, prop1, prop2, prop3, prop4) => {
-  let {breakpoints, dimensions} = useStacks()
-  let resolveResponsiveProp = (. values) => {
-    let resolve = resolveResponsiveProp(dimensions.width, breakpoints)
-    resolve(. values)
-  }
-
-  (
-    resolveResponsiveProp(. prop0),
-    resolveResponsiveProp(. prop1),
-    resolveResponsiveProp(. prop2),
-    resolveResponsiveProp(. prop3),
-    resolveResponsiveProp(. prop4),
-  )
-}
-
-let useResponsiveProp6 = (prop0, prop1, prop2, prop3, prop4, prop5) => {
-  let {breakpoints, dimensions} = useStacks()
-  let resolveResponsiveProp = (. values) => {
-    let resolve = resolveResponsiveProp(dimensions.width, breakpoints)
-    resolve(. values)
-  }
-
-  (
-    resolveResponsiveProp(. prop0),
-    resolveResponsiveProp(. prop1),
-    resolveResponsiveProp(. prop2),
-    resolveResponsiveProp(. prop3),
-    resolveResponsiveProp(. prop4),
-    resolveResponsiveProp(. prop5),
-  )
-}
-
-let useResponsiveProp7 = (prop0, prop1, prop2, prop3, prop4, prop5, prop6) => {
-  let {breakpoints, dimensions} = useStacks()
-  let resolveResponsiveProp = (. values) => {
-    let resolve = resolveResponsiveProp(dimensions.width, breakpoints)
-    resolve(. values)
-  }
-
-  (
-    resolveResponsiveProp(. prop0),
-    resolveResponsiveProp(. prop1),
-    resolveResponsiveProp(. prop2),
-    resolveResponsiveProp(. prop3),
-    resolveResponsiveProp(. prop4),
-    resolveResponsiveProp(. prop5),
-    resolveResponsiveProp(. prop6),
-  )
+  dimensions
 }

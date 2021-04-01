@@ -2,18 +2,36 @@ open ReactNative
 
 open Stacks_hooks
 open Stacks_utils
-open Stacks_extras
+open Stacks_types
 
 module Stack = Stacks_component_Stack
 
-@react.component
+@react.component @gentype
 let make = (
   // Tiles props
   ~columns,
-  ~space=?,
+  ~space=[0.],
+  // Box props
+  ~padding=?,
+  ~paddingX=?,
+  ~paddingY=?,
+  ~paddingTop=?,
+  ~paddingBottom=?,
+  ~paddingLeft=?,
+  ~paddingRight=?,
+  ~paddingEnd=?,
+  ~paddingStart=?,
+  ~margin=?,
+  ~marginX=?,
+  ~marginY=?,
+  ~marginTop=?,
+  ~marginBottom=?,
+  ~marginLeft=?,
+  ~marginRight=?,
+  ~marginEnd=?,
+  ~marginStart=?,
   // View props
-  // ~accessibilityActions=?,
-  ~accessibilityComponentType=?,
+  ~accessibilityActions=?,
   ~accessibilityElementsHidden=?,
   ~accessibilityHint=?,
   ~accessibilityIgnoresInvertColors=?,
@@ -21,7 +39,6 @@ let make = (
   ~accessibilityLiveRegion=?,
   ~accessibilityRole=?,
   ~accessibilityState=?,
-  ~accessibilityTraits=?,
   ~accessibilityValue=?,
   ~accessibilityViewIsModal=?,
   ~accessible=?,
@@ -62,16 +79,35 @@ let make = (
   ~onMouseOut=?,
   ~onMouseUp=?,
 ) => {
-  let (tileSpace, columns) = useResponsiveProp2(space, Some(columns))
-  let tileSpace = useSpacing(tileSpace)
+  let resolveResponsiveProp = useResponsiveProp()
+  let columns = wrap(resolveResponsiveProp, Some(columns))
+  let tileSpace = useSpacing(resolveResponsiveProp(Some(space)))
   let debugStyle = useDebugStyle()
   let rowStyle = Style.arrayOption([Some(styles["fullWidth"]), resolveDirection(Some(#row))])
   let columns = Belt.Option.getWithDefault(columns, 1)
   let children = children |> React.Children.toArray |> splitEvery(columns)
 
   <Stack
-    ?space
-    ?accessibilityComponentType
+    space
+    ?padding
+    ?paddingX
+    ?paddingY
+    ?paddingTop
+    ?paddingBottom
+    ?paddingLeft
+    ?paddingRight
+    ?paddingEnd
+    ?paddingStart
+    ?margin
+    ?marginX
+    ?marginY
+    ?marginTop
+    ?marginBottom
+    ?marginLeft
+    ?marginRight
+    ?marginEnd
+    ?marginStart
+    ?accessibilityActions
     ?accessibilityElementsHidden
     ?accessibilityHint
     ?accessibilityIgnoresInvertColors
@@ -79,7 +115,6 @@ let make = (
     ?accessibilityLiveRegion
     ?accessibilityRole
     ?accessibilityState
-    ?accessibilityTraits
     ?accessibilityValue
     ?accessibilityViewIsModal
     ?accessible
@@ -117,16 +152,16 @@ let make = (
     ?onMouseOut
     ?onMouseUp
     ?style>
-    {Js.Array2.mapi(children, (arr, index) => {
+    {Belt.Array.mapWithIndexU(children, (. index, arr) => {
       let arr = Belt.Array.makeByU(columns, (. index) =>
         arr->Belt.Array.get(index)->Belt.Option.getWithDefault(React.null)
       )
       let isLast = isLastElement(arr)
-      let tiles = Js.Array2.mapi(arr, (child, index) => {
+      let tiles = Belt.Array.mapWithIndexU(arr, (. index, child) => {
         let style = {
           Style.arrayOption([
             Some(styles["flexFluid"]),
-            isLast(index) ? None : Some(marginRight(. tileSpace)),
+            isLast(index) ? None : Some(Stacks_utils.marginRight(. tileSpace)),
             isValidElement(child) ? debugStyle : None,
           ])
         }

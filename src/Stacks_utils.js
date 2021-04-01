@@ -1,7 +1,5 @@
-import { responsiveProp as ResponsiveProp } from './Stacks_types'
-
-export const normalizeResponsiveProp = <T>(value: ResponsiveProp<T>): Readonly<[T, T, T]> => {
-  if (typeof value === 'string' || typeof value === 'number') {
+export const normalizeResponsiveProp = value => {
+  if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
     return [value, value, value]
   }
 
@@ -14,7 +12,7 @@ export const normalizeResponsiveProp = <T>(value: ResponsiveProp<T>): Readonly<[
     }
 
     if (length === 3) {
-      return value as Readonly<[T, T, T]>
+      return value
     }
 
     if (length === 1) {

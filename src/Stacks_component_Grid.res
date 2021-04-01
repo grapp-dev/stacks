@@ -41,7 +41,7 @@ let styles = {
   })
 }
 
-@react.component
+@react.component @gentype
 let make = (~gutter=4., ~margin=4., ~columns=8, ~opacity=0.1) => {
   let {dimensions} = useStacks()
   let options = {
@@ -69,18 +69,20 @@ let make = (~gutter=4., ~margin=4., ~columns=8, ~opacity=0.1) => {
     open Style
     array([styles["root"], viewStyle(~paddingLeft=gutter |> dp, ~paddingRight=gutter |> dp, ())])
   }
-  let grid = columns->Belt.Array.makeByU((. index) => {
-    let key = index |> string_of_int
-    <View key style={columnStyle} />
-  })->React.array
+  let grid =
+    columns
+    ->Belt.Array.makeByU((. index) => {
+      let key = index |> string_of_int
+      <View key style={columnStyle} />
+    })
+    ->React.array
 
   <View pointerEvents={#none} style={gridStyle}>
     grid
     {gridWidth != dimensions.width
       ? <View style={styles["warning"]}>
           <Text style={styles["text"]}>
-            {`Calculated grid width (${gridWidth |> Js.Float.toString}) is different than window width (${dimensions.width |> Js.Float.toString}). Adjust the grid options.`
-              |> React.string}
+            {`Calculated grid width (${gridWidth |> Js.Float.toString}) is different than window width (${dimensions.width |> Js.Float.toString}). Adjust the grid options.` |> React.string}
           </Text>
         </View>
       : React.null}

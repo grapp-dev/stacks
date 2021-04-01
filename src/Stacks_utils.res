@@ -2,9 +2,11 @@ open ReactNative
 open ReactNative.Style
 
 open Stacks_types
-open Stacks_extras
 
-@bs.module("./Stacks_utils")
+@module("react")
+external isValidElement: React.element => bool = "isValidElement"
+
+@module("./Stacks_utils")
 external normalizeResponsiveProp: responsiveProp<'a> => normalizedProp<'a> =
   "normalizeResponsiveProp"
 
@@ -220,28 +222,28 @@ let resolveCurrentBreakpoint = (currentWidth, breakpoints) => {
   let {tablet, desktop} = breakpoints
 
   switch currentWidth {
-  | width when width < tablet => #mobile
-  | width when width < desktop => #tablet
+  | width if width < tablet => #mobile
+  | width if width < desktop => #tablet
   | _ => #desktop
   }
 }
 
-let resolveResponsiveProp = (currentWidth, breakpoints) => {
+let resolveResponsiveProp: (float, breakpoints, option<responsiveProp<'a>>) => option<'b> = (
+  currentWidth,
+  breakpoints,
+  values,
+) => {
   let {tablet, desktop} = breakpoints
 
-  (. values) => {
-    let responsiveProp = Belt.Option.mapU(values, (. values) => {
-      let (mobileValue, tabletValue, desktopValue) = normalizeResponsiveProp(values)
+  Belt.Option.mapU(values, (. values) => {
+    let (mobileValue, tabletValue, desktopValue) = normalizeResponsiveProp(values)
 
-      switch currentWidth {
-      | width when width < tablet => mobileValue
-      | width when width < desktop => tabletValue
-      | _ => desktopValue
-      }
-    })
-
-    responsiveProp
-  }
+    switch currentWidth {
+    | width if width < tablet => mobileValue
+    | width if width < desktop => tabletValue
+    | _ => desktopValue
+    }
+  })
 }
 
 let isBreakpointBelow = (breakpoint, below) => {

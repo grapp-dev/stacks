@@ -7,10 +7,7 @@ export { make as Tiles, Props as TilesProps } from './Stacks_component_Tiles.gen
 export { make as FillView } from './Stacks_component_FillView.gen'
 export { make as Hidden, Props as HiddenProps } from './Stacks_component_Hidden.gen'
 export { make as Grid } from './Stacks_component_Grid.gen'
-export { StacksProvider_make as StacksProvider, useWindowDimensions } from './Stacks_context.gen'
-
-export * from './Stacks_utils.gen'
-export * from './Stacks_hooks.gen'
+export { make as StacksProvider } from './Stacks_component_Provider.gen'
 
 export {
   flex as Flex,

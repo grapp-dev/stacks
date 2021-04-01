@@ -1,7 +1,7 @@
 open Stacks_hooks
 open Stacks_utils
 
-@react.component
+@react.component @gentype
 let make = (~below=?, ~above=?, ~children) => {
   let currentBreakpoint = useCurrentBreakpoint()
   let isHidden = switch (below, above) {

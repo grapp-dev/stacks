@@ -4,7 +4,7 @@ open Stacks_hooks
 
 module Box = Stacks_component_Box
 
-@react.component
+@react.component @gentype
 let make = (
   // FillView props
   ~top=?,
@@ -37,8 +37,7 @@ let make = (
   ~wrap=?,
   ~flex=?,
   // View props
-  // ~accessibilityActions=?,
-  ~accessibilityComponentType=?,
+  ~accessibilityActions=?,
   ~accessibilityElementsHidden=?,
   ~accessibilityHint=?,
   ~accessibilityIgnoresInvertColors=?,
@@ -46,7 +45,6 @@ let make = (
   ~accessibilityLiveRegion=?,
   ~accessibilityRole=?,
   ~accessibilityState=?,
-  ~accessibilityTraits=?,
   ~accessibilityValue=?,
   ~accessibilityViewIsModal=?,
   ~accessible=?,
@@ -88,10 +86,10 @@ let make = (
   ~onMouseUp=?,
 ) => {
   let resolveResponsiveProp = useResponsiveProp()
-  let top = Belt.Option.mapU(resolveResponsiveProp(. top), Stacks_utils.top)
-  let right = Belt.Option.mapU(resolveResponsiveProp(. right), Stacks_utils.right)
-  let bottom = Belt.Option.mapU(resolveResponsiveProp(. bottom), Stacks_utils.bottom)
-  let left = Belt.Option.mapU(resolveResponsiveProp(. left), Stacks_utils.left)
+  let top = Belt.Option.mapU(resolveResponsiveProp(top), Stacks_utils.top)
+  let right = Belt.Option.mapU(resolveResponsiveProp(right), Stacks_utils.right)
+  let bottom = Belt.Option.mapU(resolveResponsiveProp(bottom), Stacks_utils.bottom)
+  let left = Belt.Option.mapU(resolveResponsiveProp(left), Stacks_utils.left)
   let style = Style.arrayOption([
     Some(StyleSheet.absoluteFillObject),
     top,
@@ -126,7 +124,7 @@ let make = (
     ?direction
     ?wrap
     ?flex
-    ?accessibilityComponentType
+    ?accessibilityActions
     ?accessibilityElementsHidden
     ?accessibilityHint
     ?accessibilityIgnoresInvertColors
@@ -134,7 +132,6 @@ let make = (
     ?accessibilityLiveRegion
     ?accessibilityRole
     ?accessibilityState
-    ?accessibilityTraits
     ?accessibilityValue
     ?accessibilityViewIsModal
     ?accessible

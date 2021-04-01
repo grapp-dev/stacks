@@ -1,25 +1,39 @@
-export type breakpoints = {
+@gentype
+type breakpoints = {
   tablet: float,
   desktop: float,
 }
 
-export type context = {
+@gentype
+type context = {
   debug: bool,
   spacing: float,
   breakpoints: breakpoints,
   dimensions: ReactNative.Dimensions.displayMetrics,
 }
 
-export type breakpoint = [#mobile | #tablet | #desktop]
-export type stretch = [#stretch]
-export type axisX = [#left | #center | #right]
-export type axisY = [#top | #center | #bottom]
-export type space = [#between | #around | #evenly]
-export type direction = [#row | #rowReverse | #column | #columnReverse]
-export type wrap = [#wrap | #nowrap]
+@gentype
+type breakpoint = [#mobile | #tablet | #desktop]
+@gentype
+type stretch = [#stretch]
+@gentype
+type axisX = [#left | #center | #right]
+@gentype
+type axisY = [#top | #center | #bottom]
+@gentype
+type space = [#between | #around | #evenly]
+@gentype
+type direction = [
+  | #row
+  | @genType.as("row-reverse") #rowReverse
+  | #column
+  | @genType.as("column-reverse") #columnReverse
+]
+@gentype
+type wrap = [#wrap | #nowrap]
 
 @genType.import("./Stacks_types")
-export type flex = [
+type flex = [
   | #content
   | #fluid
   | #x12
@@ -35,65 +49,36 @@ export type flex = [
 
 @genType.import("./Stacks_types")
 type responsiveProp<'a> = array<'a>
-
 @genType.import("./Stacks_types")
-export type resolveResponsiveProp<'a> = (. option<responsiveProp<'a>>) => option<'a>
+type normalizedProp<'a> = ('a, 'a, 'a)
 
-@genType.import("./Stacks_types")
-export type normalizedProp<'a> = ('a, 'a, 'a)
-export type collapsibleProps = {
+type resolveResponsiveProp<'a> = option<responsiveProp<'a>> => option<'a>
+external wrap: 'a => resolveResponsiveProp<'b> = "%identity"
+
+@gentype
+type collapsibleProps = {
   direction: direction,
   isCollapsed: bool,
 }
-export type spacingHelpers = {
+
+@gentype
+type spacingHelpers = {
   multiply: (. float) => float,
   divide: (. float) => float,
 }
 
-export type pointerEvents = [
+@gentype
+type pointerEvents = [
   | #auto
   | #none
-  | @genType.as("box-none")
-  #boxNone
-  | @genType.as("box-only")
-  #boxOnly
-]
-export type accessibilityComponentType = [
-  | #none
-  | #button
-  | #radiobutton_checked
-  | #radiobutton_unchecked
-]
-export type accessibilityLiveRegion = [#none | #polite | #assertive]
-export type accessibilityRole = [
-  | #none
-  | #button
-  | #link
-  | #search
-  | #image
-  | #keyboardkey
-  | #text
-  | #adjustable
-  | #header
-  | #summary
-  | #imagebutton
-  | #article
-  | #banner
-  | #complementary
-  | #contentinfo
-  | #form
-  | #list
-  | #listitem
-  | #main
-  | #navigation
-  | #region
+  | @genType.as("box-none") #boxNone
+  | @genType.as("box-only") #boxOnly
 ]
 
-// @genType.import("./Stacks_types")
-export type importantForAccessibility = [
+@gentype
+type importantForAccessibility = [
   | #auto
   | #yes
   | #no
-  | @genType.as("no-hide-descendants")
-  #noHideDescendants
+  | @genType.as("no-hide-descendants") #noHideDescendants
 ]

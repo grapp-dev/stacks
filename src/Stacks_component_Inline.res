@@ -2,15 +2,36 @@ open ReactNative
 
 open Stacks_hooks
 open Stacks_utils
+open Stacks_types
 
-@react.component
+module Box = Stacks_component_Box
+
+@react.component @gentype
 let make = (
   // Inline props
   ~space=?,
   ~align=?,
+  // Box props
+  ~padding=?,
+  ~paddingX=?,
+  ~paddingY=?,
+  ~paddingTop=?,
+  ~paddingBottom=?,
+  ~paddingLeft=?,
+  ~paddingRight=?,
+  ~paddingEnd=?,
+  ~paddingStart=?,
+  ~margin=?,
+  ~marginX=?,
+  ~marginY=?,
+  ~marginTop=?,
+  ~marginBottom=?,
+  ~marginLeft=?,
+  ~marginRight=?,
+  ~marginEnd=?,
+  ~marginStart=?,
   // View props
-  // ~accessibilityActions=?,
-  ~accessibilityComponentType=?,
+  ~accessibilityActions=?,
   ~accessibilityElementsHidden=?,
   ~accessibilityHint=?,
   ~accessibilityIgnoresInvertColors=?,
@@ -18,7 +39,6 @@ let make = (
   ~accessibilityLiveRegion=?,
   ~accessibilityRole=?,
   ~accessibilityState=?,
-  ~accessibilityTraits=?,
   ~accessibilityValue=?,
   ~accessibilityViewIsModal=?,
   ~accessible=?,
@@ -59,21 +79,40 @@ let make = (
   ~onMouseOut=?,
   ~onMouseUp=?,
 ) => {
-  let (space, align) = useResponsiveProp2(space, align)
-  let space = useSpacing(space)
-  let nagativeSpace = -.space
+  let resolveResponsiveProp = useResponsiveProp()
+  let align = wrap(resolveResponsiveProp, align)
+  let space = useSpacing(resolveResponsiveProp(space))
+  let negativeSpace = -.space
   let debugStyle = useDebugStyle()
   let containerStyle = Style.arrayOption([
     resolveWrap(Some(#wrap)),
     resolveDirection(Some(#row)),
     resolveJustifyContentX(align),
-    Some(marginTop(. nagativeSpace)),
-    Some(marginRight(. nagativeSpace)),
+    Some(Stacks_utils.marginTop(. negativeSpace)),
+    Some(Stacks_utils.marginRight(. negativeSpace)),
   ])
   let children = React.Children.toArray(children)
 
-  <View
-    ?accessibilityComponentType
+  <Box
+    ?padding
+    ?paddingX
+    ?paddingY
+    ?paddingTop
+    ?paddingBottom
+    ?paddingLeft
+    ?paddingRight
+    ?paddingEnd
+    ?paddingStart
+    ?margin
+    ?marginX
+    ?marginY
+    ?marginTop
+    ?marginBottom
+    ?marginLeft
+    ?marginRight
+    ?marginEnd
+    ?marginStart
+    ?accessibilityActions
     ?accessibilityElementsHidden
     ?accessibilityHint
     ?accessibilityIgnoresInvertColors
@@ -81,7 +120,6 @@ let make = (
     ?accessibilityLiveRegion
     ?accessibilityRole
     ?accessibilityState
-    ?accessibilityTraits
     ?accessibilityValue
     ?accessibilityViewIsModal
     ?accessible
@@ -119,16 +157,18 @@ let make = (
     ?onMouseOut
     ?onMouseUp
     ?style>
-    <View style=containerStyle> {Js.Array2.mapi(children, (child, index) => {
+    <View style=containerStyle>
+      {Belt.Array.mapWithIndexU(children, (. index, child) => {
         <View
           key={index |> string_of_int}
           style={Style.arrayOption([
             debugStyle,
-            Some(marginTop(. space)),
-            Some(marginRight(. space)),
+            Some(Stacks_utils.marginTop(. space)),
+            Some(Stacks_utils.marginRight(. space)),
           ])}>
           child
         </View>
-      }) |> React.array} </View>
-  </View>
+      }) |> React.array}
+    </View>
+  </Box>
 }
