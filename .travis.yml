@@ -14,5 +14,5 @@ notifications:
     on_failure: always
 cache: yarn
 script:
-  - yarn ci:check
+  - yarn build
   - cat coverage/lcov.info | node_modules/.bin/coveralls || echo "Coveralls upload failed"
