@@ -9,6 +9,8 @@ export { make as Hidden, Props as HiddenProps } from './Stacks_component_Hidden.
 export { make as Grid } from './Stacks_component_Grid.gen'
 export { make as StacksProvider } from './Stacks_component_Provider.gen'
 
+export * from './Stacks_hooks.gen'
+
 export {
   flex as Flex,
   axisX as AxisX,
