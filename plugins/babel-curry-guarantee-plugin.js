@@ -1,4 +1,4 @@
-exports.curryGuaranteePlugin = ({ types: t }) => {
+exports.curryGuarantee = ({ types: t }) => {
   const curryFnName = /^_(\d)$/
   const lengthId = t.identifier('length')
   const bindId = t.identifier('bind')
