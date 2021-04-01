@@ -1,13 +1,14 @@
 const esbuild = require('esbuild')
 const { babel } = require('./plugins/esbuild-babel-plugin')
-const { curryGuaranteePlugin } = require('./plugins/babel-curry-guarantee-plugin')
-const { replaceFlexBasis } = require('./plugins/babel-replace-flex-basis-plugin')
+const { curryGuarantee } = require('./plugins/babel-curry-guarantee-plugin')
+const { replaceLiterals } = require('./plugins/babel-replace-literals-plugin')
+const { rewriteProps } = require('./plugins/babel-rewrite-props-plugin')
 
 const handleError = () => process.exit(1)
 const build = (outfile, options) => {
   return esbuild
     .build({
-      entryPoints: ['src/Stacks.bs.js'],
+      entryPoints: ['src/Stacks.js'],
       bundle: true,
       format: 'cjs',
       outfile: `dist/${outfile}`,
@@ -26,15 +27,16 @@ const build = (outfile, options) => {
                   },
                 },
               ],
-              curryGuaranteePlugin,
+              rewriteProps,
+              curryGuarantee,
+              replaceLiterals,
               'closure-elimination',
-              'minify-dead-code-elimination',
             ],
           },
         }),
       ],
       minify: false,
-      external: ['wonka', 'react', 'react-native'],
+      external: ['react', 'react-native', 'wonka'],
       logLevel: 'info',
       ...options,
     })
