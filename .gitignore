@@ -10,8 +10,6 @@ coverage/
 *.tsbuildinfo
 
 dist/
-playground/
-
 lib/
 
 .merlin
