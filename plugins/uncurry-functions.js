@@ -1,4 +1,4 @@
-exports.curryGuarantee = (j, source) => {
+exports.uncurryFunctions = (j, source) => {
   const curryRe = /^_(\d)$/
 
   return j(source)
