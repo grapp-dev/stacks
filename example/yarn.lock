@@ -912,6 +912,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/eslint-plugin/-/eslint-plugin-1.1.0.tgz#e42b1bef12d2415411519fd528e64b593b1363dc"
   integrity sha512-W/J0fNYVO01tioHjvYWQ9m6RgndVtbElzYozBq1ZPrHO/iCzlqoySHl4gO/fpCl9QEFjvJfjPgtPMTMlsoq5DQ==
 
+"@rescript/react@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@rescript/react/-/react-0.10.1.tgz#ddce66ba664a104354d559c350ca4ebf17ab5a26"
+  integrity sha512-5eIfGnV1yhjv03ktK6fQ6iEfsZKXKXXrq5hx4+ngEY4R/RU8o/oH9ne375m9RJMugV/jsE8hMoEeSSg2YQy3Ag==
+
 "@types/eslint-visitor-keys@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@types/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#1ee30d79544ca84d68d4b3cdb0af4f205663dd2d"
@@ -1451,6 +1456,11 @@ browserslist@^4.14.5, browserslist@^4.16.3:
     electron-to-chromium "^1.3.649"
     escalade "^3.1.1"
     node-releases "^1.1.70"
+
+bs-platform@^9.0.2:
+  version "9.0.2"
+  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-9.0.2.tgz#a6eac70eb8924a322556dacaccbfbc9b2a0d3a37"
+  integrity sha512-Ye9JqJ4Oa7mcjjoOVRYI8Uc2Cf8N7jQLWDcdUplY7996d/YErSR7WitmV7XnSwr4EvdrbwjEsg1NxNjUQv3ChA==
 
 bser@2.1.1:
   version "2.1.1"
@@ -4500,6 +4510,11 @@ require-main-filename@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/require-main-filename/-/require-main-filename-2.0.0.tgz#d0b329ecc7cc0f61649f62215be69af54aa8989b"
   integrity sha512-NKN5kMDylKuldxYLSUfrbo5Tuzh4hd+2E8NPPX02mZtn1VuREQToYe/ZdlJy+J3uCpfaiGF05e7B8W0iXbQHmg==
+
+rescript-react-native@^0.64.2:
+  version "0.64.2"
+  resolved "https://registry.yarnpkg.com/rescript-react-native/-/rescript-react-native-0.64.2.tgz#01b6f7bc210d6af5d3b2db04ae46a27cdb0bed98"
+  integrity sha512-gj/RwquWhQh17JiK6AlyIMkh8wy0U8tIRAiWlZyfShS06/5qCIgMlkJbYY/b4UiJNxYASDKeJNIRWyH3fJ8wVQ==
 
 reselect@^4.0.0:
   version "4.0.0"

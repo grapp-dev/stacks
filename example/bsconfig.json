@@ -1,5 +1,5 @@
 {
-  "name": "stacks-rescript-example",
+  "name": "stacks-example",
   "refmt": 3,
   "reason": {
     "react-jsx": 3
@@ -11,9 +11,14 @@
   "suffix": ".bs.js",
   "sources": [
     {
-      "dir": "src",
+      "dir": "src/rescript",
       "subdirs": true
     }
   ],
-  "bs-dependencies": ["reason-react", "reason-react-native", "@mobily/stacks", "wonka"]
+  "bs-dependencies": [
+    "@rescript/react",
+    "rescript-react-native",
+    "@mobily/stacks",
+    "wonka"
+  ]
 }
