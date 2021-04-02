@@ -23,8 +23,8 @@ pipe(
     const content = entry.replace(/.\/dist\//g, './')
     return fromPromise(
       Promise.all([
-        writeFile(pathToDist('stacks.js.flow'), content, defaultEncoding),
-        writeFile(pathToDist('stacks.mjs.flow'), content, defaultEncoding),
+        writeFile(pathToDist('index.js.flow'), content, defaultEncoding),
+        writeFile(pathToDist('index.mjs.flow'), content, defaultEncoding),
       ]),
     )
   }),
