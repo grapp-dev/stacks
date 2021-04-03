@@ -8,7 +8,7 @@ export const TabLabel = props => {
   const { type } = props
   const isTs = type === 'ts'
   const label = isTs ? 'TypeScript' : 'ReScript'
-  const Logo = isTs ? ResLogo : TsLogo
+  const Logo = isTs ? TsLogo : ResLogo
 
   return (
     <div style={{ display: 'flex', alignItems: 'center' }}>

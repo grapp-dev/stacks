@@ -9,7 +9,7 @@ module.exports = function (context, options) {
           alias: {
             react: path.resolve(__dirname, '..', 'node_modules', 'react'),
             'react-native$': 'react-native-web',
-            '@mobily/stacks': path.resolve(__dirname, '..', '..', 'dist', 'index.js'),
+            '@mobily/stacks': path.resolve(__dirname, '..', '..', 'dist', 'index.min.js'),
           },
         },
       }
