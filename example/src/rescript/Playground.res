@@ -89,6 +89,11 @@ let make = () => {
           </Box>
         </Box>
       </Box>
+      <Stack space=[4.] horizontal=[true]>
+        <Text> {"T1"->React.string} </Text>
+        <Text> {"T2"->React.string} </Text>
+        <Text> {"T3"->React.string} </Text>
+      </Stack>
     </Stack>
   </Box>
 }
