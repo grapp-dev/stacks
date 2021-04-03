@@ -64,8 +64,8 @@ type collapsibleProps = {
 
 @gentype
 type spacingHelpers = {
-  multiply: (. float) => float,
-  divide: (. float) => float,
+  multiply: float => float,
+  divide: float => float,
 }
 
 @gentype

@@ -5,6 +5,25 @@ open Stacks_utils
 open Stacks_context
 
 @gentype
+let useWindowDimensions = () => {
+  let (dimensions, setDimensions) = React.useState(() => Dimensions.get(#window))
+
+  React.useEffect0(() => {
+    let subscription = {
+      open Wonka
+      dimensionsSource
+      |> debounce((. _) => Platform.os == Platform.web ? 60 : 0)
+      |> onPush((. layout: Dimensions.handler) => setDimensions(_ => layout.window))
+      |> publish
+    }
+
+    Some(subscription.unsubscribe)
+  })
+
+  dimensions
+}
+
+@gentype
 let useStacks = () => React.useContext(context)
 
 @gentype
@@ -24,7 +43,8 @@ let useSpacingHelpers = () => {
 
 @gentype
 let useCurrentBreakpoint = () => {
-  let {breakpoints, dimensions} = useStacks()
+  let {breakpoints} = useStacks()
+  let dimensions = useWindowDimensions()
   let currentBreakpoint = resolveCurrentBreakpoint(dimensions.width, breakpoints)
 
   currentBreakpoint
@@ -42,27 +62,9 @@ let useDebugStyle = () => {
 
 @gentype
 let useResponsiveProp: unit => resolveResponsiveProp<'a> = () => {
-  let {breakpoints, dimensions} = useStacks()
+  let {breakpoints} = useStacks()
+  let dimensions = useWindowDimensions()
   let resolveResponsiveProp = resolveResponsiveProp(dimensions.width, breakpoints)
 
   resolveResponsiveProp
-}
-
-@gentype
-let useWindowDimensions = () => {
-  let (dimensions, setDimensions) = React.useState(() => Dimensions.get(#window))
-
-  React.useEffect0(() => {
-    let subscription = {
-      open Wonka
-      dimensionsSource
-      |> debounce((. _) => Platform.os == Platform.web ? 60 : 0)
-      |> onPush((. layout: Dimensions.handler) => setDimensions(_ => layout.window))
-      |> publish
-    }
-
-    Some(subscription.unsubscribe)
-  })
-
-  dimensions
 }
