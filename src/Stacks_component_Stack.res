@@ -9,9 +9,9 @@ module Box = Stacks_component_Box
 @react.component @gentype
 let make = (
   // Stack props
-  ~space: option<responsiveProp<float>>=?,
+  ~space=?,
   ~align: option<responsiveProp<[axisX | stretch]>>=?,
-  ~horizontal: option<responsiveProp<bool>>=?,
+  ~horizontal=?,
   // Box props
   ~padding=?,
   ~paddingX=?,

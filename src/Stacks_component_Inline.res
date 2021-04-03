@@ -10,7 +10,7 @@ module Box = Stacks_component_Box
 let make = (
   // Inline props
   ~space=?,
-  ~align=?,
+  ~align: option<responsiveProp<[axisX | space]>>=?,
   // Box props
   ~padding=?,
   ~paddingX=?,

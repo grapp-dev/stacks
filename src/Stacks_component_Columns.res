@@ -27,9 +27,9 @@ let make = (
   // Columns props
   ~space=?,
   ~reverse=?,
-  ~alignX=?,
-  ~alignY=?,
-  ~collapseBelow=?,
+  ~alignX: option<responsiveProp<[axisX | space]>>=?,
+  ~alignY: option<responsiveProp<axisY>>=?,
+  ~collapseBelow: option<[#tablet | #desktop]>=?,
   // Box props
   ~padding=?,
   ~paddingX=?,
