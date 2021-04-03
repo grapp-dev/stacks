@@ -1,18 +1,29 @@
 # ⚡ Stacks &middot; [![Build Status](https://img.shields.io/travis/com/mobily/stacks.svg?style=flat-square&logo=travis)](https://travis-ci.com/mobily/stacks) [![Coverage](https://img.shields.io/coveralls/github/mobily/stacks.svg?style=flat-square&logo=coveralls)](https://coveralls.io/github/mobily/stacks?branch=master) [![npm](https://img.shields.io/npm/v/@mobily/stacks.svg?style=flat-square&logo=npm)](https://www.npmjs.com/package/@mobily/stacks)  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/mobily/stacks/blob/master/LICENSE)
 
-> Build React Native views blazingly fast.
+> Build React Native layouts quickly with ease and fun.
 
 ## Motivation
 
-Disclaimer: **Stacks** is not yet another full design system.
-
-[Max Stoiber](https://github.com/mxstbr) has recently written an interesting [article](https://mxstbr.com/thoughts/margin) about why margin is considered harmful. There are three main disadvantages of using margin:
+[Max Stoiber](https://github.com/mxstbr) has written an interesting [article](https://mxstbr.com/thoughts/margin) about why margin is considered harmful. There are three main disadvantages of using margin:
 
 - margin breaks component encapsulation
 - margin makes reusability harder
 - margin conflicts with how designers think
 
-I fully agree with this point of view. To me, it's obvious that handling margins across the entire project is simply difficult and might be not scalable. For web projects, a design system called [Braid](https://seek-oss.github.io/braid-design-system/foundations/layout) has developer-friendly API for building layouts. However, a similar library was missing for React Native based projects. Therefore, **Stacks** has been created and it adopts Braid Layouts API with subtle differences.
+It's obvious that handling margins across the entire project is simply difficult and might be not scalable. For web projects, a design system called [Braid](https://seek-oss.github.io/braid-design-system/foundations/layout) has developer-friendly API for building layouts. However, a similar library was missing for React Native based projects. Therefore, **Stacks** has been created and it adopts Braid Layouts API with subtle differences.
+
+## Compatibility
+
+`Stacks` is written in [ReScript](https://rescript-lang.org/). It is compiled using BuckleScript to plain JavaScript and has typings for TypeScript and Flow.
+
+This means that out of the box `Stacks` is usable in any project that use the following:
+
+- plain JavaScript
+- TypeScript
+- Flow
+- ReScript
+
+`Stacks` is supported in React Native and React Native Web projects.
 
 ## Getting started
 
@@ -28,35 +39,35 @@ or with `npm`
 npm install @mobily/stacks --save
 ```
 
-### Prerequisites
+### ReScript
 
-To use **Stacks** properly you need to pass a default spacing value to `StacksProvider` at the top of your `react` tree.
+`Stacks` dependant on the following libraries, which you also have to install:
+- `rescript-react-native`
+- `@rescript-react`
+- `wonka`
 
-```tsx
-import { StacksProvider } from '@mobily/stacks'
+```shell
+yarn add @rescript/react rescript-react-native wonka
+```
 
-const App = () => {
-  return (
-    <StacksProvider spacing={4}>
-      …
-    </StacksProvider>
-  )
+or with `npm`
+
+```shell
+npm install @rescript/react rescript-react-native wonka --save
+```
+
+Once all dependencies are installed, add them to `bs-dependencies` in your `bsconfig.json`:
+
+```json
+{
+  "bs-dependencies": [
+    "@mobily/stacks",
+    "@rescript/react",
+    "rescript-react-native",
+    "wonka"
+  ]
 }
 ```
-
-In short, the spacing value unit here is a logical pixel, the same as you've been using before for either _margin_ or _padding_. **Stacks** will automatically multiply the default spacing value by value of `space` (`padding` as well) passed to the components, for instance:
-
-```tsx
-<StacksProvider spacing={4}>…</StacksProvider>
-
-<Stack space={2}>…</Stack>
-// ⬆️ 4 * 2 = 8 logical pixels
-
-<Box padding={3}>…</Box>
-// ⬆️ 4 * 3 = 12 logical pixels
-```
-
-Consistent and clear!
 
 ## Example
 
@@ -117,68 +128,6 @@ const Profile = () => {
     </ScrollView>
   )
 }
-```
-
-## Breakpoints
-
-`Stacks`, similarly to `Braid` supports the `responsive props` format which allows you to specify an array of values for different screen sizes. Therefore, if you need to customize the spacing, number of columns, or alignments per screen size, then the `responsive props` are for you.
-
-```tsx
-type ResponsiveProp<T> = T | Readonly<[T, T]> | Readonly<[T, T, T]>
-```
-
-There are three available breakpoints: `mobile` (default, `Stacks` components are mobile-first), `tablet` and `desktop`.
-
-```ts
-type Breakpoint = 'mobile' | 'tablet' | 'desktop'
-```
-
-You can define custom breakpoints in the provider.
-
-```tsx
-import { StacksProvider } from '@mobily/stacks'
-
-const App = () => {
-  return (
-    <StacksProvider spacing={4} breakpoints={{ tablet: 768, desktop: 992 }}>
-      …
-    </StacksProvider>
-  )
-}
-```
-
-For example, if you wanted small spacing on mobile but medium spacing from tablet upwards:
-
-```tsx
-<Stack space={[1, 4]}>
-  …
-</Stack>
-```
-
-If you wanted top alignment on mobile and center on tablet upwards.
-
-```tsx
-<Columns space={1} alignY={['top', 'center']}>
-  <Column>
-    …
-  </Column>
-  <Column>
-    …
-  </Column>
-</Columns>
-```
-
-If you would like the columns to stack vertically on smaller screens, you can provide the `collapseBelow` prop.
-
-```tsx
-<Columns space={1} collapseBelow="tablet">
-  <Column>
-    …
-  </Column>
-  <Column>
-    …
-  </Column>
-</Columns>
 ```
 
 ## Api Reference
