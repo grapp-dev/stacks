@@ -6,12 +6,12 @@
   "author": "Marcin Dziewulski <hello@mobily.pl>",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
-  "types": "./dist/types/Stacks.d.ts",
+  "types": "./dist/types/src/Stacks.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
       "require": "./dist/index.js",
-      "types": "./dist/types/Stacks.d.ts"
+      "types": "./dist/types/src/Stacks.d.ts"
     },
     "./package.json": "./package.json"
   },

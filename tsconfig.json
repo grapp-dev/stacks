@@ -4,7 +4,7 @@
     "emitDeclarationOnly": true,
     "rootDir": "./src",
     "baseUrl": ".",
-    "outDir": "dist/types",
+    "outDir": "dist/types/src",
     "lib": ["esnext"],
     "jsx": "react",
     "declaration": true,

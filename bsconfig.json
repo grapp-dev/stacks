@@ -11,7 +11,7 @@
     "language": "typescript",
     "importPath": "relative",
     "shims": {
-      "ReasonReact": "ReasonReact",
+      "React": "React",
       "ReactNative": "ReactNative",
       "ReactEvent": "ReactEvent"
     },
