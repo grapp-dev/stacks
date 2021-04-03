@@ -1,5 +1,5 @@
 import React from 'react'
-import * as Stacks from '../../../../'
+import * as Stacks from '@mobily/stacks'
 
 import { View, Text, StyleSheet } from 'react-native'
 

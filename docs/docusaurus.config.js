@@ -1,4 +1,3 @@
-const { shortcodes } = require('./core/shortcodes')
 const path = require('path')
 const root = require('../package.json')
 
@@ -38,19 +37,19 @@ module.exports = {
           items: [
             {
               label: 'Getting started',
-              to: 'docs/motivation',
+              to: 'docs/getting-started',
             },
             {
               label: 'Components',
-              to: 'docs/stack',
+              to: 'docs/components/box',
             },
             {
               label: 'Hooks',
-              to: 'docs/use-stacks',
+              to: 'docs/hooks/use-current-breakpoint',
             },
             {
               label: 'Other',
-              to: 'docs/provider',
+              to: 'docs/other/stacks-provider',
             },
           ],
         },
@@ -94,12 +93,6 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/',
-          remarkPlugins: [
-            require('remark-containers'),
-            [require('remark-shortcodes'), { startBlock: '[[', endBlock: ']]' }],
-            shortcodes,
-          ],
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

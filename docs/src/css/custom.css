@@ -14,7 +14,8 @@
   --custom-background-color-features: #fff;
   --custom-hero-background-color: #F5F6F7;
   --custom-hero-text-color: #1f2125;
-  --custom-background-image-features: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.03' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+  --custom-background-color-features: #fff;
+
   --ifm-font-family-base: Roboto, system-ui, -apple-system, Segoe UI, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont,
     'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol';
@@ -31,7 +32,7 @@ html[data-theme='dark'] {
   --custom-background-color-features: #2F3238;
   --custom-hero-background-color: #1f2125;
   --custom-hero-text-color: #fff;
-  --custom-background-image-features: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+  --custom-background-color-features: #fff;
 
   --ifm-color-primary: #79aaff;
   --ifm-color-primary-dark: #5392ff;
@@ -48,13 +49,20 @@ h3 {
   font-weight: 500;
 }
 
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .main-features > section {
   min-height: 320px;
 }
 
 .main-features {
-  background-color: var(--custom-hero-background-color);
-  background-image: var(--custom-background-image-features);
+  background-color: var(--custom-background-color-features);
+  flex: 3;
+  display: flex;
+  align-items: center;
 }
 
 .main-features__container {
@@ -65,6 +73,7 @@ h3 {
 .hero.hero--primary {
   --ifm-hero-background-color: var(--custom-hero-background-color);
   --ifm-hero-text-color: var(--custom-hero-text-color);
+  flex: 1;
 }
 
 .hero .hero__title {

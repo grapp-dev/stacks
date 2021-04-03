@@ -17,9 +17,7 @@
     "clsx": "^1.1.1",
     "common-tags": "^1.8.0",
     "react": "^16.8.4",
-    "react-dom": "^17.0.2",
-    "remark-containers": "^1.1.2",
-    "remark-shortcodes": "^0.3.1"
+    "react-dom": "^17.0.2"
   },
   "browserslist": {
     "production": [

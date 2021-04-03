@@ -1,23 +1,18 @@
 import React, { Fragment } from 'react'
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
-
-// {isTs ? (
-//   <>
-//     <span style={{ marginLeft: 8 }}>|</span>
-//     <img src={`/stacks/img/flowlogo.svg`} width={18} height={18} style={{ marginLeft: 8 }} />
-//     <span style={{ marginLeft: 8, lineHeight: 1 }}>Flow</span>
-//   </>
-// ) : null}
+import ResLogo from '../static/img/reslogo.svg'
+import TsLogo from '../static/img/tslogo.svg'
 
 export const TabLabel = props => {
   const { type } = props
   const isTs = type === 'ts'
   const label = isTs ? 'TypeScript' : 'ReScript'
+  const Logo = isTs ? ResLogo : TsLogo
 
   return (
     <div style={{ display: 'flex', alignItems: 'center' }}>
-      <img src={`/stacks/img/${type}logo.svg`} width={17} height={17} />
+      <Logo width={17} height={17} />
       <span style={{ marginLeft: 8, lineHeight: 1, fontSize: '0.95rem', paddingTop: 2 }}>
         {label}
       </span>
@@ -73,8 +68,7 @@ export const Props = props => {
             type:
             <ul>
               <li>
-                <img
-                  src="/stacks/img/tslogo.svg"
+                <TsLogo
                   width={17}
                   height={17}
                   style={{ marginRight: 8, position: 'relative', top: 3 }}
@@ -82,8 +76,7 @@ export const Props = props => {
                 <code>{rawTsType ? rawTsType : mapType(type)}</code>
               </li>
               <li>
-                <img
-                  src="/stacks/img/reslogo.svg"
+                <ResLogo
                   width={17}
                   height={17}
                   style={{ marginRight: 8, position: 'relative', top: 3 }}
