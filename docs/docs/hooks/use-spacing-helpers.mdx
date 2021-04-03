@@ -26,8 +26,8 @@ declare const useSpacingHelpers: () => SpacingHelpers
 
 ```res
 type spacingHelpers = {
-  multiply: float => float,
-  divide: float => float,
+  multiply: (. float) => float,
+  divide: (. float) => float,
 }
 
 let useSpacingHelpers: unit => spacingHelpers
