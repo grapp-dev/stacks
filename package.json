@@ -17,7 +17,7 @@
   },
   "sideEffects": false,
   "files": [
-    "src",
+    "src/*.res",
     "dist",
     "*.md",
     "index.js.flow",
