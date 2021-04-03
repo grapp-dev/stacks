@@ -1,0 +1,25 @@
+---
+id: hidden
+title: Hidden
+---
+
+import { Props, BoxProps } from '../../core/components';
+
+`Hidden` takes `below` and `above` props in which you can define when to render components placed within it (based on the current breakpoint).
+
+## Props
+
+<Props
+  data={[
+    {
+      name: 'below',
+      type: '#tablet | #desktop',
+      required: false,
+    },
+    {
+      name: 'above',
+      type: '#mobile | #tablet',
+      required: false,
+    },
+  ]}
+/>

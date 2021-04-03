@@ -1,0 +1,77 @@
+---
+id: tiles
+title: Tiles
+---
+
+import { Props, BoxProps } from '../../core/components';
+
+`Tiles` renders a grid of components with equal spacing between them.
+
+:::note
+
+`Tiles` component accepts [`View`](https://reactnative.dev/docs/view) props.
+
+:::
+
+## Examples
+
+Simple usage.
+
+```jsx live
+function() {
+  return (
+    <Tiles space={2} columns={3}>
+      <Placeholder />
+      <Placeholder />
+      <Placeholder />
+      <Placeholder />
+      <Placeholder />
+    </Tiles>
+  )
+}
+```
+
+Other `Stacks` components used in `Tiles`.
+
+```jsx live
+function() {
+  return (
+    <Tiles space={2} columns={2}>
+      <Columns space={2}>
+        <Column>
+          <Placeholder />
+        </Column>
+        <Column>
+          <Placeholder />
+        </Column>
+      </Columns>
+      <Placeholder />
+      <Placeholder />
+      <Stack space={2}>
+        <Placeholder height={46} />
+        <Placeholder height={46} />
+      </Stack>
+    </Tiles>
+  )
+}
+```
+
+## Props
+
+<Props
+  data={[
+    {
+      name: 'columns',
+      type: 'responsiveProp<int>',
+      required: true,
+    },
+    {
+      name: 'space',
+      type: 'responsiveProp<float>',
+      required: false,
+    },
+  ]} />
+
+## Box Props
+
+<BoxProps />

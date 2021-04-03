@@ -1,0 +1,73 @@
+---
+id: installation
+title: Installation
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import { defaultTabsProps } from '../core/components';
+
+The installation is straightforward, you can use either `yarn` or `npm`.
+
+:::important
+
+Stacks requires `react >=16.8.0` and `react-native >=0.59.0` due to hooks implementation.
+
+:::
+
+<Tabs {...defaultTabsProps}>
+<TabItem value="typescript">
+
+```shell
+yarn add @mobily/stacks
+```
+
+or with `npm`
+
+```shell
+npm install @mobily/stacks --save
+```
+
+</TabItem>
+<TabItem value="rescript">
+
+```shell
+yarn add @mobily/stacks
+```
+
+or with `npm`
+
+```shell
+npm install @mobily/stacks --save
+```
+
+`Stacks` dependant on the following libraries, which you also have to install:
+- `rescript-react-native`
+- `@rescript-react`
+- `wonka`
+
+```shell
+yarn add @rescript/react rescript-react-native wonka
+```
+
+or with `npm`
+
+```shell
+npm install @rescript/react rescript-react-native wonka --save
+```
+
+Once all dependencies are installed, add them to `bs-dependencies` in your `bsconfig.json`:
+
+```json
+{
+  "bs-dependencies": [
+    "@mobily/stacks",
+    "@rescript/react",
+    "rescript-react-native",
+    "wonka"
+  ]
+}
+```
+
+</TabItem>
+</Tabs>

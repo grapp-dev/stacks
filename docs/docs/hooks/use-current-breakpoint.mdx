@@ -1,0 +1,41 @@
+---
+id: use-current-breakpoint
+title: useCurrentBreakpoint
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import { defaultTabsProps } from '../../core/components';
+
+It returns the current breakpoint value.
+
+<Tabs {...defaultTabsProps}>
+<TabItem value="typescript">
+
+```tsx
+declare const useCurrentBreakpoint: () => 'desktop' | 'mobile' | 'tablet'
+```
+
+</TabItem>
+<TabItem value="rescript">
+
+```res
+type breakpoint = [#mobile | #tablet | #desktop]
+
+let useCurrentBreakpoint: unit => breakpoint
+```
+
+</TabItem>
+</Tabs>
+
+## Example
+
+```jsx live
+function() {
+  const currentBreakpoint = useCurrentBreakpoint()
+
+  return (
+    <Text>{currentBreakpoint}</Text>
+  )
+}
+```

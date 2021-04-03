@@ -97,3 +97,11 @@ h3 {
   flex: 0.4 !important;
   line-height: 0;
 }
+
+.tabs__item {
+  border-bottom: none;
+}
+
+.tabs__item--active {
+  border-radius: var(--ifm-global-radius);
+}

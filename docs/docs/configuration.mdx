@@ -1,0 +1,73 @@
+---
+id: configuration
+title: Configuration
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import { defaultTabsProps } from '../core/components';
+
+To use **Stacks** properly you need to pass a default spacing value to `StacksProvider` at the top of your `react` tree.
+
+<Tabs {...defaultTabsProps}>
+<TabItem value="typescript">
+
+```tsx
+import { StacksProvider } from '@mobily/stacks'
+
+export const App = () => {
+  return (
+    <StacksProvider spacing={4}>
+      …
+    </StacksProvider>
+  )
+}
+```
+
+</TabItem>
+<TabItem value="rescript">
+
+```res
+open Stacks
+
+@react.component
+let make = () =>
+  <StacksProvider spacing=4.>
+    …
+  </StacksProvider>
+```
+
+</TabItem>
+</Tabs>
+
+
+The spacing value unit is a logical pixel, the same you've been using before for either _margin_ or _padding_. **Stacks** will automatically multiply the default spacing value by value of `space` passed to the components, for instance:
+
+<Tabs {...defaultTabsProps}>
+<TabItem value="typescript">
+
+```tsx
+<StacksProvider spacing={4}>…</StacksProvider>
+
+<Stack space={2}>…</Stack>
+// ⬆️ 4 * 2 = 8 logical pixels
+
+<Box padding={3}>…</Box>
+// ⬆️ 4 * 3 = 12 logical pixels
+```
+
+</TabItem>
+<TabItem value="rescript">
+
+```res
+<StacksProvider spacing=4.>…</StacksProvider>
+
+<Stack space=[2.]>…</Stack>
+// ⬆️ 4 * 2 = 8 logical pixels
+
+<Box padding=[3.]>…</Box>
+// ⬆️ 4 * 3 = 12 logical pixels
+```
+
+</TabItem>
+</Tabs>

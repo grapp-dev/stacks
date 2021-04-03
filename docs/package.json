@@ -9,12 +9,15 @@
     "deploy": "docusaurus deploy"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-alpha.50",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.50",
+    "@docusaurus/core": "^2.0.0-alpha.72",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.72",
+    "@docusaurus/theme-live-codeblock": "^2.0.0-alpha.72",
+    "@mdx-js/react": "^1.6.21",
     "classnames": "^2.2.6",
+    "clsx": "^1.1.1",
     "common-tags": "^1.8.0",
     "react": "^16.8.4",
-    "react-dom": "^16.8.4",
+    "react-dom": "^17.0.2",
     "remark-containers": "^1.1.2",
     "remark-shortcodes": "^0.3.1"
   },
@@ -29,5 +32,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "babel-plugin-module-resolver": "^4.1.0",
+    "babel-plugin-react-native-web": "^0.15.5",
+    "metro-react-native-babel-preset": "^0.65.2",
+    "react-native-web": "^0.15.5"
   }
 }

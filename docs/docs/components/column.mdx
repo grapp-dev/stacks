@@ -1,0 +1,62 @@
+---
+id: column
+title: Column
+---
+
+import { Props, BoxProps } from '../../core/components';
+
+Use the `Column` component along with `Columns`.
+
+:::note
+
+`Column` component accepts [`View`](https://reactnative.dev/docs/view) props.
+
+:::
+
+## Examples
+
+```jsx live
+function() {
+  return (
+    <Columns alignX="between">
+      <Column width="content">
+        <Placeholder width={100} />
+      </Column>
+      <Column width="1/2">
+        <Placeholder />
+      </Column>
+      <Column width="content">
+        <Placeholder width={100} />
+      </Column>
+    </Columns>
+  )
+}
+```
+
+## Props
+
+<Props
+  data={[
+    {
+      name: 'width',
+      type: 'responsiveProp<[#content | #fluid | #f12 | #f13 | #f23 | #f14 | #f34 | #f15 | #f25 | #f35 | #f45]>',
+      required: false,
+      defaultValue: 'fluid'
+    },
+  ]}
+/>
+
+
+## Box Props
+
+<BoxProps omit={[
+  'margin',
+  'marginX',
+  'marginY',
+  'marginTop',
+  'marginBottom',
+  'marginLeft',
+  'marginRight',
+  'marginStart',
+  'marginEnd',
+]} />

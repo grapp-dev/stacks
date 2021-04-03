@@ -1,41 +1,24 @@
 const { shortcodes } = require('./core/shortcodes')
+const path = require('path')
+const root = require('../package.json')
 
 module.exports = {
   title: 'Stacks',
   tagline: '⚡ Build React Native views blazingly fast',
   url: 'https://mobily.github.io',
   baseUrl: '/stacks/',
-  favicon: false,
+  favicon: 'img/favicon.ico',
   organizationName: 'mobily',
   projectName: 'stacks',
   themeConfig: {
     sidebarCollapsible: false,
     navbar: {
-      title: 'Stacks',
+      title: `Stacks (v${root.version})`,
       // logo: {
       //   alt: 'My Site Logo',
       //   src: 'img/logo.svg',
       // },
-      links: [
-        {
-          label: 'Docs',
-          position: 'left',
-          activeBasePath: 'docs',
-          items: [
-            {
-              to: 'docs/stack',
-              label: 'Components',
-            },
-            {
-              to: 'docs/use-stacks',
-              label: 'Hooks',
-            },
-            {
-              to: 'docs/provider',
-              label: 'Other',
-            },
-          ],
-        },
+      items: [
         {
           href: 'https://github.com/mobily/stacks',
           label: 'Github',
@@ -101,6 +84,10 @@ module.exports = {
       copyright: `Built with Docusaurus ❤️`,
     },
   },
+  plugins: [
+    '@docusaurus/theme-live-codeblock',
+    path.resolve(__dirname, 'plugins', 'react-native-web-plugin'),
+  ],
   presets: [
     [
       '@docusaurus/preset-classic',

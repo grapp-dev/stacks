@@ -1,0 +1,136 @@
+---
+id: columns
+title: Columns
+---
+
+import { Props, BoxProps } from '../../core/components';
+
+`Columns` (and `Column`) lays out content horizontally. You may want to customize the width of each column individually (all columns are of equal width by default) or set column width to `content` to ensure that it's only as wide as the content within it. Furthermore, you can align columns vertically with the `alignY` prop or horizontally with the `alignX` prop. You can also provide the `collapseBelow` prop to stack the columns vertically on smaller screens.
+
+:::note
+
+`Columns` component accepts [`View`](https://reactnative.dev/docs/view) props.
+
+:::
+
+## Examples
+
+Set spacing between columns and lay out content horizontally.
+
+```jsx live
+function() {
+  return (
+    <Columns space={1}>
+      <Column>
+        <Placeholder />
+      </Column>
+      <Column>
+        <Placeholder />
+      </Column>
+      <Column>
+        <Placeholder />
+      </Column>
+    </Columns>
+  )
+}
+```
+
+Multiple `Columns` components can be nested.
+
+```jsx live
+function() {
+  return (
+    <Columns space={10}>
+      <Column>
+        <Columns space={1}>
+          <Column>
+            <Placeholder />
+          </Column>
+          <Column>
+            <Placeholder />
+          </Column>
+        </Columns>
+      </Column>
+      <Column>
+        <Placeholder />
+      </Column>
+    </Columns>
+  )
+}
+```
+
+Set horizontal alignment.
+
+```jsx live
+function() {
+  return (
+    <Columns space={1} alignX="center">
+      <Column width="content">
+        <Placeholder width={80} />
+      </Column>
+      <Column width="content">
+        <Placeholder width={120} />
+      </Column>
+      <Column width="content">
+        <Placeholder width={80} />
+      </Column>
+    </Columns>
+  )
+}
+```
+
+Set vertical alignment.
+
+```jsx live
+function() {
+  return (
+    <Columns space={1} alignY="center">
+      <Column>
+        <Placeholder height={180} />
+      </Column>
+      <Column>
+        <Placeholder height={240} />
+      </Column>
+      <Column>
+        <Placeholder height={120} />
+      </Column>
+    </Columns>
+  )
+}
+```
+
+## Props
+
+<Props
+  data={[
+    {
+      name: 'space',
+      type: 'responsiveProp<float>',
+      required: false,
+    },
+    {
+      name: 'alignY',
+      type: 'responsiveProp<[#top | #center | #bottom | #stretch]>',
+      required: false,
+    },
+    {
+      name: 'alignX',
+      type: 'responsiveProp<[#left | #center | #right | #between | #around | #evenly]>',
+      required: false,
+    },
+    {
+      name: 'reverse',
+      type: 'bool',
+      required: false,
+    },
+    {
+      name: 'collapseBelow',
+      type: '#tablet | #desktop',
+      required: false,
+    }
+  ]}
+/>
+
+## Box Props
+
+<BoxProps />

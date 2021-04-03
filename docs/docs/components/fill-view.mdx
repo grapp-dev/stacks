@@ -1,0 +1,35 @@
+---
+id: fill-view
+title: FillView
+---
+
+import { Props, BoxProps } from '../../core/components';
+
+`FillView` covers a common pattern for creating overlays with position absolute and zero positioning.
+
+:::note
+
+`Columns` component accepts [`View`](https://reactnative.dev/docs/view) and `Box` props.
+
+:::
+
+## Example
+
+```jsx live
+function() {
+  return (
+    <PlaceholderView height={500}>
+      <FillView alignX="center" alignY="center" direction="row">
+        <Box flex="3/4">
+          <Stack space={1}>
+            <Placeholder height={60} />
+            <Placeholder height={60} />
+            <Placeholder height={60} />
+            <Placeholder height={60} />
+          </Stack>
+        </Box>
+      </FillView>
+    </PlaceholderView>
+  )
+}
+```

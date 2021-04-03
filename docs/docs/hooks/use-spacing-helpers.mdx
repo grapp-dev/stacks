@@ -1,0 +1,62 @@
+---
+id: use-spacing-helpers
+title: useSpacingHelpers
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import { defaultTabsProps } from '../../core/components';
+
+It returns two functions: `multiply` and `divide` allowing you to either multiply or divide by the `spacing` value passed to `StacksProvider`.
+
+<Tabs {...defaultTabsProps}>
+<TabItem value="typescript">
+
+```tsx
+declare type SpacingHelpers = {
+  readonly multiply: (value: number) => number
+  readonly divide: (value: number) => number
+}
+
+declare const useSpacingHelpers: () => SpacingHelpers
+```
+
+</TabItem>
+<TabItem value="rescript">
+
+```res
+type spacingHelpers = {
+  multiply: float => float,
+  divide: float => float,
+}
+
+let useSpacingHelpers: unit => spacingHelpers
+```
+
+</TabItem>
+</Tabs>
+
+## Example
+
+```jsx live
+function() {
+  const Card = props => {
+    const { marginBottom } = props
+    const { multiply } = useSpacingHelpers()
+
+    return (
+      <View style={{ marginBottom: multiply(marginBottom), backgroundColor: 'red' }}>
+        <Text>Debug</Text>
+      </View>
+    )
+  }
+
+  return (
+    <StacksProvider spacing={4}>
+      <Card marginBottom={2} />
+      <Card marginBottom={8} />
+      <Card />
+    </StacksProvider>
+  )
+}
+```

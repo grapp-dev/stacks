@@ -1,0 +1,104 @@
+---
+id: stack
+title: Stack
+---
+
+import { Props, BoxProps } from '../../core/components';
+
+`Stack` distributes white space evenly between components (vertically or horizontally if you set the `horizontal` prop to `true`).
+
+:::note
+
+`Stack` component accepts [`View`](https://reactnative.dev/docs/view) props.
+
+:::
+
+## Examples
+
+Set spacing between elements stacked vertically.
+
+```jsx live
+function() {
+  return (
+    <Stack space={1}>
+      <Placeholder />
+      <Placeholder />
+      <Placeholder />
+    </Stack>
+  )
+}
+```
+
+Multiple `Stack` components can be nested.
+
+```jsx live
+function() {
+  return (
+    <Stack space={10}>
+      <Stack space={2}>
+        <Placeholder />
+        <Placeholder />
+      </Stack>
+      <Stack space={2}>
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+      </Stack>
+    </Stack>
+  )
+}
+```
+
+Set horizontal alignment.
+
+```jsx live
+function() {
+  return (
+    <Stack space={1} align="center">
+      <Placeholder width={250} />
+      <Placeholder width={180} />
+      <Placeholder width={200} />
+    </Stack>
+  )
+}
+```
+
+Stack elements horizontally.
+
+```jsx live
+function() {
+  return (
+    <Stack space={1} horizontal={true}>
+      <Placeholder width={100} />
+      <Placeholder width={100} />
+      <Placeholder width={100} />
+    </Stack>
+  )
+}
+```
+
+## Props
+
+<Props
+  data={[
+    {
+      name: 'space',
+      type: 'responsiveProp<float>',
+      required: false,
+    },
+    {
+      name: 'align',
+      type: 'responsiveProp<[#left | #center | #right | #stretch]>',
+      required: false,
+    },
+    {
+      name: 'horizontal',
+      type: 'responsiveProp<bool>',
+      required: false,
+    }
+  ]}
+/>
+
+## Box Props
+
+<BoxProps />

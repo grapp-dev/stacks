@@ -1,0 +1,49 @@
+---
+id: use-responsive-prop
+title: useResponsiveProp
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import { defaultTabsProps } from '../../core/components';
+
+It returns a function that takes the `responsive props` format as a first argument. It's useful if you want to resolve responsive props in your components.
+
+<Tabs {...defaultTabsProps}>
+<TabItem value="typescript">
+
+```tsx
+declare const useResponsiveProp: <T>(value: ResponsiveProp<T> | null | undefined) => T | undefined;
+```
+
+</TabItem>
+<TabItem value="rescript">
+
+```res
+type resolveResponsiveProp<'a> = option<responsiveProp<'a>> => option<'a>
+
+let useResponsiveProp: unit => resolveResponsiveProp<'a>
+```
+
+</TabItem>
+</Tabs>
+
+## Example
+
+```jsx live
+function() {
+  const Card = props => {
+    const { size: responsiveSize } = props
+    const resolveResponsiveProp = useResponsiveProp()
+    const size = resolveResponsiveProp(responsiveSize)
+
+    return (
+      <Placeholder width={size} height={size} />
+    )
+  }
+
+  return (
+    <Card size={[100, 200, 300]} />
+  )
+}
+```

@@ -1,0 +1,52 @@
+---
+id: use-spacing
+title: useSpacing
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import { defaultTabsProps } from '../../core/components';
+
+It takes a numeric value, that is multiplied by the `spacing` value defined in `StacksProvider`.
+
+<Tabs {...defaultTabsProps}>
+<TabItem value="typescript">
+
+```tsx
+declare const useSpacing: (value: number | null | undefined) => number
+```
+
+</TabItem>
+<TabItem value="rescript">
+
+```res
+let useSpacing: option<float> => float
+```
+
+</TabItem>
+</Tabs>
+
+## Example
+
+```jsx live
+function() {
+  const Card = props => {
+    const { marginBottom } = props
+    const margin = useSpacing(marginBottom)
+
+    return (
+      <View style={{ marginBottom: margin, backgroundColor: 'red' }}>
+        <Text>Debug</Text>
+      </View>
+    )
+  }
+
+  return (
+    <StacksProvider spacing={4}>
+      <Card marginBottom={2} />
+      <Card marginBottom={8} />
+      <Card />
+    </StacksProvider>
+  )
+}
+```

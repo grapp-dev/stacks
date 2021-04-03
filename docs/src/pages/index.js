@@ -25,11 +25,7 @@ const features = [
   {
     title: <>Compatible with RN and RNW</>,
     imageUrl: 'img/feature-3.svg',
-    description: (
-      <>
-        Stacks components and utilities can be used in React Native, and React Native Web as well.
-      </>
-    ),
+    description: <>Stacks components can be used in React Native and React Native Web.</>,
   },
 ]
 
@@ -52,7 +48,7 @@ function Home() {
   const context = useDocusaurusContext()
   const { siteConfig = {} } = context
   return (
-    <Layout title="Stacks" description="⚡ Build React Native views blazingly fast">
+    <Layout title="Stacks" description="⚡ Build React Native layouts quickly with ease and fun.">
       <header className={classnames('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
@@ -60,7 +56,7 @@ function Home() {
           <div className={styles.buttons}>
             <Link
               className={classnames('button button--primary button--lg', styles.getStarted)}
-              to={useBaseUrl('docs/motivation')}
+              to={useBaseUrl('docs/getting-started')}
             >
               Get Started
             </Link>

@@ -1,0 +1,47 @@
+---
+id: use-window-dimensions
+title: useWindowDimensions
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import { defaultTabsProps } from '../../core/components';
+
+It returns the current window/screen size.
+
+<Tabs {...defaultTabsProps}>
+<TabItem value="typescript">
+
+```tsx
+declare const useWindowDimensions: () => ReactNative.ScaledSize
+```
+
+</TabItem>
+<TabItem value="rescript">
+
+```res
+let useWindowDimensions: unit => ReactNative.Dimensions.displayMetrics
+```
+
+</TabItem>
+</Tabs>
+
+## Example
+
+```jsx live
+function() {
+  const Card = props => {
+    const dimensions = useWindowDimensions()
+
+    return (
+      <Text>{JSON.stringify(dimensions)}</Text>
+    )
+  }
+
+  return (
+    <StacksProvider spacing={4}>
+      <Card />
+    </StacksProvider>
+  )
+}
+```

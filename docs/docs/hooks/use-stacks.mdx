@@ -1,0 +1,71 @@
+---
+id: use-stacks
+title: useStacks
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import { defaultTabsProps } from '../../core/components';
+
+It returns the `Stacks` context object.
+
+<Tabs {...defaultTabsProps}>
+<TabItem value="typescript">
+
+```tsx
+declare type Breakpoints = {
+  readonly tablet: number
+  readonly desktop: number
+}
+
+declare type Context = {
+  readonly debug: boolean
+  readonly spacing: number
+  readonly breakpoints: Breakpoints
+  readonly dimensions: ReactNative.ScaledSize
+};
+
+declare const useStacks: () => Context
+```
+
+</TabItem>
+<TabItem value="rescript">
+
+```res
+type breakpoints = {
+  tablet: float,
+  desktop: float,
+}
+
+type context = {
+  debug: bool,
+  spacing: float,
+  breakpoints: breakpoints,
+  dimensions: ReactNative.Dimensions.displayMetrics,
+}
+
+let useStacks: unit => context
+```
+
+</TabItem>
+</Tabs>
+
+## Example
+
+```jsx live
+function() {
+  const Card = props => {
+    const context = useStacks()
+
+    return (
+      <Text>{JSON.stringify(context)}</Text>
+    )
+  }
+
+  return (
+    <StacksProvider spacing={4}>
+      <Card />
+    </StacksProvider>
+  )
+}
+```
