@@ -14,7 +14,6 @@
   --custom-background-color-features: #fff;
   --custom-hero-background-color: #F5F6F7;
   --custom-hero-text-color: #1f2125;
-  --custom-background-color-features: #fff;
 
   --ifm-font-family-base: Roboto, system-ui, -apple-system, Segoe UI, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont,
     'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
@@ -32,7 +31,6 @@ html[data-theme='dark'] {
   --custom-background-color-features: #2F3238;
   --custom-hero-background-color: #1f2125;
   --custom-hero-text-color: #fff;
-  --custom-background-color-features: #fff;
 
   --ifm-color-primary: #79aaff;
   --ifm-color-primary-dark: #5392ff;
