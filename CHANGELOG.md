@@ -1,3 +1,18 @@
+### `v1.1.0`
+
+- `useBreakpoint` → `useCurrentBreakpoint`
+- `FillObject` → `FillView`
+- added `padding*` and `margin*` props to all components (only `Column` doesn't accept `margin*` props)
+- added `horizontal` prop to `Stack`
+- `useSpacing` doesn't return a function anymore
+- added `useSpacingHelpers` hook
+- added `useResponsiveProp`
+- added `useWindowDimensions`
+- added `useDebugStyle`
+- removed global `styles`
+- added ReScript and Flow support
+- fixed typings issues (TS)
+
 ### `v0.9.2`
 
 - 🐛 fix `Hidden` component implementation [668b22e](https://github.com/mobily/stacks/commit/668b22e91182179a44b20c3f228f4db39bb98b05)
