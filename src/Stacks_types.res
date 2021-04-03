@@ -25,14 +25,14 @@ type space = [#between | #around | #evenly]
 @gentype
 type direction = [
   | #row
-  | @genType.as("row-reverse") #rowReverse
+  | @gentype.as("row-reverse") #rowReverse
   | #column
-  | @genType.as("column-reverse") #columnReverse
+  | @gentype.as("column-reverse") #columnReverse
 ]
 @gentype
 type wrap = [#wrap | #nowrap]
 
-@genType.import("./Stacks_types")
+@gentype.import("./Stacks_types")
 type flex = [
   | #content
   | #fluid
@@ -47,12 +47,12 @@ type flex = [
   | #x45
 ]
 
-@genType.import("./Stacks_types")
+@gentype.import("./Stacks_types")
 type responsiveProp<'a> = array<'a>
-@genType.import("./Stacks_types")
+@gentype.import("./Stacks_types")
 type normalizedProp<'a> = ('a, 'a, 'a)
 
-@genType.import("./Stacks_types")
+@gentype.import("./Stacks_types")
 type resolveResponsiveProp<'a> = option<responsiveProp<'a>> => option<'a>
 external wrap: 'a => resolveResponsiveProp<'b> = "%identity"
 
@@ -72,8 +72,8 @@ type spacingHelpers = {
 type pointerEvents = [
   | #auto
   | #none
-  | @genType.as("box-none") #boxNone
-  | @genType.as("box-only") #boxOnly
+  | @gentype.as("box-none") #boxNone
+  | @gentype.as("box-only") #boxOnly
 ]
 
 @gentype
@@ -81,5 +81,5 @@ type importantForAccessibility = [
   | #auto
   | #yes
   | #no
-  | @genType.as("no-hide-descendants") #noHideDescendants
+  | @gentype.as("no-hide-descendants") #noHideDescendants
 ]
