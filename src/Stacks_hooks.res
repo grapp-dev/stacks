@@ -43,8 +43,7 @@ let useSpacingHelpers = () => {
 
 @gentype
 let useCurrentBreakpoint = () => {
-  let {breakpoints} = useStacks()
-  let dimensions = useWindowDimensions()
+  let {breakpoints, dimensions} = useStacks()
   let currentBreakpoint = resolveCurrentBreakpoint(dimensions.width, breakpoints)
 
   currentBreakpoint
@@ -62,8 +61,7 @@ let useDebugStyle = () => {
 
 @gentype
 let useResponsiveProp: unit => resolveResponsiveProp<'a> = () => {
-  let {breakpoints} = useStacks()
-  let dimensions = useWindowDimensions()
+  let {breakpoints, dimensions} = useStacks()
   let resolveResponsiveProp = resolveResponsiveProp(dimensions.width, breakpoints)
 
   resolveResponsiveProp
