@@ -1,5 +1,9 @@
 ### `v1.1.0`
 
+- fixed hooks implementation (`useResponsiveProp`, `useCurrentBreakpoint`)
+
+### `v1.1.0`
+
 - `useBreakpoint` → `useCurrentBreakpoint`
 - `FillObject` → `FillView`
 - added `padding*` and `margin*` props to all components (only `Column` doesn't accept `margin*` props)

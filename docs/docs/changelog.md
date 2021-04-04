@@ -3,6 +3,10 @@ id: changelog
 title: Changelog
 ---
 
+### `v1.1.1`
+
+- fixed hooks implementation (`useResponsiveProp`, `useCurrentBreakpoint`)
+
 ### `v1.1.0`
 
 - `useBreakpoint` → `useCurrentBreakpoint`
