@@ -3,6 +3,8 @@ import * as Stacks from '@mobily/stacks'
 
 import { View, Text, StyleSheet } from 'react-native'
 
+const { StacksProvider } = Stacks
+
 const styles = StyleSheet.create({
   root: {
     backgroundColor: '#ddd',
@@ -26,7 +28,7 @@ const PlaceholderView = props => {
 const App = props => {
   const { children } = props
 
-  return <Stacks.StacksProvider>{children}</Stacks.StacksProvider>
+  return <StacksProvider>{children}</StacksProvider>
 }
 
 const ReactLiveScope = {
