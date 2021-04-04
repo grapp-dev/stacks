@@ -40,7 +40,7 @@ let useSpacingHelpers: unit => spacingHelpers
 
 ```jsx live
 function() {
-  const Card = props => {
+  const DebugText = props => {
     const { marginBottom } = props
     const { multiply } = useSpacingHelpers()
 
@@ -53,9 +53,9 @@ function() {
 
   return (
     <StacksProvider spacing={4}>
-      <Card marginBottom={2} />
-      <Card marginBottom={8} />
-      <Card />
+      <DebugText marginBottom={2} />
+      <DebugText marginBottom={8} />
+      <DebugText />
     </StacksProvider>
   )
 }

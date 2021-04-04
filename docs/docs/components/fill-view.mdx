@@ -18,18 +18,20 @@ import { Props, BoxProps } from '../../core/components';
 ```jsx live
 function() {
   return (
-    <PlaceholderView height={500}>
-      <FillView alignX="center" alignY="center" direction="row">
-        <Box flex="3/4">
-          <Stack space={1}>
-            <Placeholder height={60} />
-            <Placeholder height={60} />
-            <Placeholder height={60} />
-            <Placeholder height={60} />
-          </Stack>
-        </Box>
-      </FillView>
-    </PlaceholderView>
+    <App>
+      <PlaceholderView height={500}>
+        <FillView alignX="center" alignY="center" direction="row">
+          <Box flex="3/4">
+            <Stack space={1}>
+              <Placeholder height={60} />
+              <Placeholder height={60} />
+              <Placeholder height={60} />
+              <Placeholder height={60} />
+            </Stack>
+          </Box>
+        </FillView>
+      </PlaceholderView>
+    </App>
   )
 }
 ```

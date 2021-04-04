@@ -54,7 +54,7 @@ let useStacks: unit => context
 
 ```jsx live
 function() {
-  const Card = props => {
+  const DebugText = () => {
     const context = useStacks()
 
     return (
@@ -64,7 +64,7 @@ function() {
 
   return (
     <StacksProvider spacing={4}>
-      <Card />
+      <DebugText />
     </StacksProvider>
   )
 }

@@ -30,7 +30,7 @@ let useSpacing: option<float> => float
 
 ```jsx live
 function() {
-  const Card = props => {
+  const DebugText = props => {
     const { marginBottom } = props
     const margin = useSpacing(marginBottom)
 
@@ -43,9 +43,9 @@ function() {
 
   return (
     <StacksProvider spacing={4}>
-      <Card marginBottom={2} />
-      <Card marginBottom={8} />
-      <Card />
+      <DebugText marginBottom={2} />
+      <DebugText marginBottom={8} />
+      <DebugText />
     </StacksProvider>
   )
 }

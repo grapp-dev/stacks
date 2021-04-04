@@ -32,10 +32,9 @@ let useResponsiveProp: unit => resolveResponsiveProp<'a>
 
 ```jsx live
 function() {
-  const Card = props => {
-    const { size: responsiveSize } = props
+  const ResponsivePlaceholder = props => {
     const resolveResponsiveProp = useResponsiveProp()
-    const size = resolveResponsiveProp(responsiveSize)
+    const size = resolveResponsiveProp(props.size)
 
     return (
       <Placeholder width={size} height={size} />
@@ -43,7 +42,9 @@ function() {
   }
 
   return (
-    <Card size={[100, 200, 300]} />
+    <App>
+      <ResponsivePlaceholder size={[100, 200, 300]} />
+    </App>
   )
 }
 ```

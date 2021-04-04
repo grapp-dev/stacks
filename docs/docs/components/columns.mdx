@@ -20,17 +20,19 @@ Set spacing between columns and lay out content horizontally.
 ```jsx live
 function() {
   return (
-    <Columns space={1}>
-      <Column>
-        <Placeholder />
-      </Column>
-      <Column>
-        <Placeholder />
-      </Column>
-      <Column>
-        <Placeholder />
-      </Column>
-    </Columns>
+    <App>
+      <Columns space={1}>
+        <Column>
+          <Placeholder />
+        </Column>
+        <Column>
+          <Placeholder />
+        </Column>
+        <Column>
+          <Placeholder />
+        </Column>
+      </Columns>
+    </App>
   )
 }
 ```
@@ -40,21 +42,24 @@ Multiple `Columns` components can be nested.
 ```jsx live
 function() {
   return (
-    <Columns space={10}>
-      <Column>
-        <Columns space={1}>
-          <Column>
-            <Placeholder />
-          </Column>
-          <Column>
-            <Placeholder />
-          </Column>
-        </Columns>
-      </Column>
-      <Column>
-        <Placeholder />
-      </Column>
-    </Columns>
+    <App>
+      <Columns space={10}>
+        <Column>
+          <Columns space={1}>
+            <Column>
+              <Placeholder />
+            </Column>
+            <Column>
+              <Placeholder />
+            </Column>
+          </Columns>
+        </Column>
+        <Column>
+          <Placeholder />
+        </Column>
+      </Columns>
+    </App>
+
   )
 }
 ```
@@ -64,17 +69,19 @@ Set horizontal alignment.
 ```jsx live
 function() {
   return (
-    <Columns space={1} alignX="center">
-      <Column width="content">
-        <Placeholder width={80} />
-      </Column>
-      <Column width="content">
-        <Placeholder width={120} />
-      </Column>
-      <Column width="content">
-        <Placeholder width={80} />
-      </Column>
-    </Columns>
+    <App>
+      <Columns space={1} alignX="center">
+        <Column width="content">
+          <Placeholder width={80} />
+        </Column>
+        <Column width="content">
+          <Placeholder width={120} />
+        </Column>
+        <Column width="content">
+          <Placeholder width={80} />
+        </Column>
+      </Columns>
+    </App>
   )
 }
 ```
@@ -84,17 +91,19 @@ Set vertical alignment.
 ```jsx live
 function() {
   return (
-    <Columns space={1} alignY="center">
-      <Column>
-        <Placeholder height={180} />
-      </Column>
-      <Column>
-        <Placeholder height={240} />
-      </Column>
-      <Column>
-        <Placeholder height={120} />
-      </Column>
-    </Columns>
+    <App>
+      <Columns space={1} alignY="center">
+        <Column>
+          <Placeholder height={180} />
+        </Column>
+        <Column>
+          <Placeholder height={240} />
+        </Column>
+        <Column>
+          <Placeholder height={120} />
+        </Column>
+      </Columns>
+    </App>
   )
 }
 ```

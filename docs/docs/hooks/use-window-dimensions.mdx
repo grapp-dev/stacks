@@ -30,18 +30,10 @@ let useWindowDimensions: unit => ReactNative.Dimensions.displayMetrics
 
 ```jsx live
 function() {
-  const Card = props => {
-    const dimensions = useWindowDimensions()
-
-    return (
-      <Text>{JSON.stringify(dimensions)}</Text>
-    )
-  }
+  const dimensions = useWindowDimensions()
 
   return (
-    <StacksProvider spacing={4}>
-      <Card />
-    </StacksProvider>
+    <Text>{JSON.stringify(dimensions)}</Text>
   )
 }
 ```

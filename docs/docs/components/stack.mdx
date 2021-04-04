@@ -20,11 +20,13 @@ Set spacing between elements stacked vertically.
 ```jsx live
 function() {
   return (
-    <Stack space={1}>
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-    </Stack>
+    <App>
+      <Stack space={1}>
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+      </Stack>
+    </App>
   )
 }
 ```
@@ -34,17 +36,19 @@ Multiple `Stack` components can be nested.
 ```jsx live
 function() {
   return (
-    <Stack space={10}>
-      <Stack space={2}>
-        <Placeholder />
-        <Placeholder />
+    <App>
+      <Stack space={10}>
+        <Stack space={2}>
+          <Placeholder />
+          <Placeholder />
+        </Stack>
+        <Stack space={2}>
+          <Placeholder />
+          <Placeholder />
+          <Placeholder />
+        </Stack>
       </Stack>
-      <Stack space={2}>
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-      </Stack>
-    </Stack>
+    </App>
   )
 }
 ```
@@ -54,11 +58,13 @@ Set horizontal alignment.
 ```jsx live
 function() {
   return (
-    <Stack space={1} align="center">
-      <Placeholder width={250} />
-      <Placeholder width={180} />
-      <Placeholder width={200} />
-    </Stack>
+    <App>
+      <Stack space={1} align="center">
+        <Placeholder width={250} />
+        <Placeholder width={180} />
+        <Placeholder width={200} />
+      </Stack>
+    </App>
   )
 }
 ```
@@ -68,11 +74,13 @@ Stack elements horizontally.
 ```jsx live
 function() {
   return (
-    <Stack space={1} horizontal={true}>
-      <Placeholder width={100} />
-      <Placeholder width={100} />
-      <Placeholder width={100} />
-    </Stack>
+    <App>
+      <Stack space={1} horizontal={true}>
+        <Placeholder width={100} />
+        <Placeholder width={100} />
+        <Placeholder width={100} />
+      </Stack>
+    </App>
   )
 }
 ```

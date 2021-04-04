@@ -20,13 +20,15 @@ Simple usage.
 ```jsx live
 function() {
   return (
-    <Tiles space={2} columns={3}>
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-      <Placeholder />
-    </Tiles>
+    <App>
+      <Tiles space={2} columns={3}>
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+      </Tiles>
+    </App>
   )
 }
 ```
@@ -36,22 +38,24 @@ Other `Stacks` components used in `Tiles`.
 ```jsx live
 function() {
   return (
-    <Tiles space={2} columns={2}>
-      <Columns space={2}>
-        <Column>
-          <Placeholder />
-        </Column>
-        <Column>
-          <Placeholder />
-        </Column>
-      </Columns>
-      <Placeholder />
-      <Placeholder />
-      <Stack space={2}>
-        <Placeholder height={46} />
-        <Placeholder height={46} />
-      </Stack>
-    </Tiles>
+    <App>
+      <Tiles space={2} columns={2}>
+        <Columns space={2}>
+          <Column>
+            <Placeholder />
+          </Column>
+          <Column>
+            <Placeholder />
+          </Column>
+        </Columns>
+        <Placeholder />
+        <Placeholder />
+        <Stack space={2}>
+          <Placeholder height={46} />
+          <Placeholder height={46} />
+        </Stack>
+      </Tiles>
+    </App>
   )
 }
 ```

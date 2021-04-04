@@ -20,14 +20,16 @@ Simple usage.
 ```jsx live
 function() {
   return (
-    <Inline space={2}>
-      <Placeholder width={90} />
-      <Placeholder width={60} />
-      <Placeholder width={120} />
-      <Placeholder width={200} />
-      <Placeholder width={100} />
-      <Placeholder width={140} />
-    </Inline>
+    <App>
+      <Inline space={2}>
+        <Placeholder width={90} />
+        <Placeholder width={60} />
+        <Placeholder width={120} />
+        <Placeholder width={200} />
+        <Placeholder width={100} />
+        <Placeholder width={140} />
+      </Inline>
+    </App>
   )
 }
 ```
@@ -37,16 +39,18 @@ Multiple `Inline` components can be nested.
 ```jsx live
 function() {
   return (
-    <Inline space={10}>
-      <Inline space={2}>
-        <Placeholder width={60} />
-        <Placeholder width={90} />
+    <App>
+      <Inline space={10}>
+        <Inline space={2}>
+          <Placeholder width={60} />
+          <Placeholder width={90} />
+        </Inline>
+        <Inline space={2}>
+          <Placeholder width={60} />
+          <Placeholder width={90} />
+        </Inline>
       </Inline>
-      <Inline space={2}>
-        <Placeholder width={60} />
-        <Placeholder width={90} />
-      </Inline>
-    </Inline>
+    </App>
   )
 }
 ```
@@ -56,13 +60,15 @@ Set horizontal alignment.
 ```jsx live
 function() {
   return (
-    <Inline space={2} align="center">
-      <Placeholder width={90} />
-      <Placeholder width={60} />
-      <Placeholder width={120} />
-      <Placeholder width={100} />
-      <Placeholder width={100} />
-    </Inline>
+    <App>
+      <Inline space={2} align="center">
+        <Placeholder width={90} />
+        <Placeholder width={60} />
+        <Placeholder width={120} />
+        <Placeholder width={100} />
+        <Placeholder width={100} />
+      </Inline>
+    </App>
   )
 }
 ```

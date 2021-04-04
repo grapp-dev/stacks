@@ -18,17 +18,19 @@ Use the `Column` component along with `Columns`.
 ```jsx live
 function() {
   return (
-    <Columns alignX="between">
-      <Column width="content">
-        <Placeholder width={100} />
-      </Column>
-      <Column width="1/2">
-        <Placeholder />
-      </Column>
-      <Column width="content">
-        <Placeholder width={100} />
-      </Column>
-    </Columns>
+    <App>
+      <Columns alignX="between">
+        <Column width="content">
+          <Placeholder width={100} />
+        </Column>
+        <Column width="1/2">
+          <Placeholder />
+        </Column>
+        <Column width="content">
+          <Placeholder width={100} />
+        </Column>
+      </Columns>
+    </App>
   )
 }
 ```

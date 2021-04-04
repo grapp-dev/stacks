@@ -23,6 +23,12 @@ const PlaceholderView = props => {
   return <View style={[{ width, height }, style]}>{children}</View>
 }
 
+const App = props => {
+  const { children } = props
+
+  return <Stacks.StacksProvider>{children}</Stacks.StacksProvider>
+}
+
 const ReactLiveScope = {
   ...React,
   React,
@@ -31,6 +37,7 @@ const ReactLiveScope = {
   PlaceholderView,
   View,
   Text,
+  App,
 }
 
 export default ReactLiveScope

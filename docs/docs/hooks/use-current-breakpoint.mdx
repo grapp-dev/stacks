@@ -32,10 +32,18 @@ let useCurrentBreakpoint: unit => breakpoint
 
 ```jsx live
 function() {
-  const currentBreakpoint = useCurrentBreakpoint()
+  const DebugText = () => {
+    const currentBreakpoint = useCurrentBreakpoint()
+
+    return (
+      <Text>{currentBreakpoint}</Text>
+    )
+  }
 
   return (
-    <Text>{currentBreakpoint}</Text>
+    <App>
+      <DebugText />
+    </App>
   )
 }
 ```

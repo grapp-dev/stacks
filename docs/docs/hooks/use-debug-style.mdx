@@ -30,7 +30,7 @@ let useDebugStyle: unit => option<ReactNative.Style.t>
 
 ```jsx live
 function() {
-  const Card = () => {
+  const DebugText = () => {
     const debugStyle = useDebugStyle()
 
     return (
@@ -42,7 +42,7 @@ function() {
 
   return (
     <StacksProvider debug={true}>
-      <Card />
+      <DebugText />
     </StacksProvider>
   )
 }

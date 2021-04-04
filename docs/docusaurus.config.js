@@ -3,7 +3,7 @@ const root = require('../package.json')
 
 module.exports = {
   title: 'Stacks',
-  tagline: '⚡ Build React Native views blazingly fast',
+  tagline: '⚡ Build React Native layouts quickly with ease and fun.',
   url: 'https://mobily.github.io',
   baseUrl: '/stacks/',
   favicon: 'img/favicon.ico',
