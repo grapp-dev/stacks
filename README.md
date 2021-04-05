@@ -14,7 +14,7 @@ It's obvious that handling margins across the entire project is simply difficult
 
 ## Compatibility
 
-`Stacks` is written in [ReScript](https://rescript-lang.org/). It is compiled using BuckleScript to plain JavaScript and has typings for TypeScript and Flow.
+`Stacks` is written in [ReScript](https://rescript-lang.org/). It is compiled to plain JavaScript and has typings for TypeScript and Flow.
 
 This means that out of the box `Stacks` is usable in any project that use the following:
 
