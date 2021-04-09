@@ -1,7 +1,6 @@
-import React from 'react'
-import * as Stacks from '@mobily/stacks'
-
-import { View, Text, StyleSheet } from 'react-native'
+const React = require('react')
+const { View, Text, StyleSheet } = require('react-native')
+const Stacks = require('@mobily/stacks')
 
 const { StacksProvider } = Stacks
 
