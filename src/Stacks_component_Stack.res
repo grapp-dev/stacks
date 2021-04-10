@@ -10,7 +10,7 @@ module Box = Stacks_component_Box
 let make = (
   // Stack props
   ~space=?,
-  ~align: option<responsiveProp<[axisX | stretch]>>=?,
+  ~align: option<responsiveProp<[axisX | axisY | stretch]>>=?,
   ~horizontal=?,
   // Box props
   ~padding=?,
@@ -90,12 +90,11 @@ let make = (
   let direction = horizontal->Belt.Option.mapWithDefaultU(#column, (. value) => {
     value ? #row : #column
   })
-  let marginFn =
-    horizontal
-    ->Belt.Option.mapU((. value) => {
-      value ? Stacks_utils.marginRight : Stacks_utils.marginBottom
-    })
-    ->Belt.Option.getWithDefault(Stacks_utils.marginBottom)
+  let isVertical = direction == #column
+  let marginFn = isVertical ? Stacks_utils.marginBottom : Stacks_utils.marginRight
+  let align = isVertical
+    ? resolveAlignItemsX(resolveAxisX(align))
+    : resolveJustifyContentY(resolveAxisY(align))
   let debugStyle = useDebugStyle()
   let style = Style.arrayOption([width, style])
   let children = React.Children.toArray(children)
@@ -171,7 +170,7 @@ let make = (
         key={index |> string_of_int}
         style={Style.arrayOption([
           width,
-          resolveAlignItemsX(align),
+          align,
           debugStyle,
           isLast(index) ? None : Some(marginFn(. space)),
         ])}>

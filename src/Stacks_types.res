@@ -54,7 +54,10 @@ type normalizedProp<'a> = ('a, 'a, 'a)
 
 @gentype.import("./Stacks_types")
 type resolveResponsiveProp<'a> = option<responsiveProp<'a>> => option<'a>
+
 external wrap: 'a => resolveResponsiveProp<'b> = "%identity"
+external resolveAxisX: 'a => option<axisX> = "%identity"
+external resolveAxisY: 'a => option<axisY> = "%identity"
 
 @gentype
 type collapsibleProps = {
