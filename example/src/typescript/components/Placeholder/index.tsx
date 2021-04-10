@@ -7,10 +7,11 @@ interface Props {
   width?: number | string
   height?: number | string
   style?: ViewProps['style']
+  children?: React.ReactNode
 }
 
 export const Placeholder = (props: Props) => {
-  const { width, height = 100, style } = props
+  const { width, height = 100, style, children } = props
 
-  return <View style={[styles.root, { width, height }, style]} />
+  return <View style={[styles.root, { width, height }, style]}>{children}</View>
 }

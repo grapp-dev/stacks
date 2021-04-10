@@ -14,22 +14,6 @@ let styles = {
   })
 }
 
-module Placeholder = {
-  @react.component
-  let make = (~width=?, ~height=100.) => {
-    <View
-      style={
-        open Style
-
-        arrayOption([
-          Some(viewStyle(~backgroundColor="gray", ~height=height |> dp, ())),
-          width->Belt.Option.map(width => viewStyle(~width=width |> dp, ())),
-        ])
-      }
-    />
-  }
-}
-
 @react.component
 let app = () =>
   <StacksProvider spacing=4. debug=true>

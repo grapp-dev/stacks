@@ -2,6 +2,8 @@ import React from 'react'
 import { Text } from 'react-native'
 import { Box, Columns, Column, Stack, Inline, Tiles, FillView } from '@mobily/stacks'
 
+import { Placeholder } from '../../components/Placeholder'
+
 export const Playground = () => {
   return (
     <Box padding={2}>
@@ -112,10 +114,21 @@ export const Playground = () => {
             </Box>
           </Box>
         </Box>
-        <Stack space={4} horizontal={true}>
+        <Stack space={4} horizontal={true} align="center">
           <Text>T1</Text>
           <Text>T2</Text>
           <Text>T3</Text>
+        </Stack>
+        <Stack space={4} horizontal={true} align={['center', 'bottom']}>
+          <Placeholder height={50}>
+            <Text>T1</Text>
+          </Placeholder>
+          <Placeholder height={70}>
+            <Text>T2</Text>
+          </Placeholder>
+          <Placeholder height={30}>
+            <Text>T3</Text>
+          </Placeholder>
         </Stack>
       </Stack>
     </Box>
