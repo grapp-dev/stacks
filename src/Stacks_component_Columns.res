@@ -111,7 +111,7 @@ let make = (
     ~currentBreakpoint,
   )
   let negativeSpace = -.space
-  let style = Style.arrayOption([Some(styles["fullWidth"]), style])
+  let boxStyle = Style.arrayOption([Some(styles["fullWidth"])])
   let containerStyle = {
     let arr = isCollapsed
       ? [Some(styles["fullWidth"]), Some(Stacks_utils.marginTop(. negativeSpace))]
@@ -121,7 +121,7 @@ let make = (
           Some(Stacks_utils.marginLeft(. negativeSpace)),
         ]
 
-    Style.arrayOption(Belt.Array.concat(arr, [resolveDirection(Some(direction))]))
+    Style.arrayOption(Belt.Array.concat(arr, [resolveDirection(Some(direction)), style]))
   }
   let config: Context.t = {isCollapsed: isCollapsed, space: space, debugStyle: debugStyle}
 
@@ -189,7 +189,7 @@ let make = (
       ?onMouseOver
       ?onMouseOut
       ?onMouseUp
-      style>
+      style=boxStyle>
       <View style=containerStyle> children </View>
     </Box>
   </Context.Provider>
