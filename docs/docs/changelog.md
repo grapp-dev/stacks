@@ -3,6 +3,10 @@ id: changelog
 title: Changelog
 ---
 
+### `v1.1.3`
+
+- fixed `Stack` default width value
+
 ### `v1.1.2`
 
 - fixed `Stack` inner elements alignment when `horizontal` is `true`
