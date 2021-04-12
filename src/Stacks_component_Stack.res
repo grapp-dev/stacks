@@ -94,7 +94,7 @@ let make = (
     ? resolveAlignItemsX(resolveAxisX(align))
     : resolveJustifyContentY(resolveAxisY(align))
   let debugStyle = useDebugStyle()
-  let style = Style.arrayOption([width, style])
+  let style = Style.arrayOption([width, align, style])
   let children = React.Children.toArray(children)
   let isLast = isLastElement(children)
 
