@@ -6,6 +6,7 @@ title: Changelog
 ### `v1.1.3`
 
 - fixed `Stack` default width value
+- fixed passing `Columns` style property to the proper inner component
 
 ### `v1.1.2`
 
