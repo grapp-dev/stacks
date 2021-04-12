@@ -84,13 +84,11 @@ let make = (
   let space = useSpacing(resolveResponsiveProp(space))
   let align = wrap(resolveResponsiveProp, align)
   let horizontal = wrap(resolveResponsiveProp, horizontal)
-  let width = horizontal->Belt.Option.flatMapU((. value) => {
-    value ? None : Some(styles["fullWidth"])
-  })
   let direction = horizontal->Belt.Option.mapWithDefaultU(#column, (. value) => {
     value ? #row : #column
   })
   let isVertical = direction == #column
+  let width = isVertical ? Some(styles["fullWidth"]) : None
   let marginFn = isVertical ? Stacks_utils.marginBottom : Stacks_utils.marginRight
   let align = isVertical
     ? resolveAlignItemsX(resolveAxisX(align))
