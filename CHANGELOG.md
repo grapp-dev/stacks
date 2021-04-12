@@ -1,7 +1,7 @@
 ### `v1.1.3`
 
 - fixed `Stack` default width value
-- fixed passing `Columns` style property to the proper inner component
+- fixed passing style property to the proper inner component in `Columns`
 
 ### `v1.1.2`
 
