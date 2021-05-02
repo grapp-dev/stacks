@@ -1,8 +1,6 @@
-const React = require('react')
-const { View, Text, StyleSheet } = require('react-native')
-const Stacks = require('@mobily/stacks')
-
-const { StacksProvider } = Stacks
+import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
+import * as Stacks from '@mobily/stacks'
 
 const styles = StyleSheet.create({
   root: {
@@ -27,16 +25,16 @@ const PlaceholderView = props => {
 const App = props => {
   const { children } = props
 
-  return <StacksProvider>{children}</StacksProvider>
+  return <Stacks.StacksProvider>{children}</Stacks.StacksProvider>
 }
 
 const ReactLiveScope = {
   ...React,
-  React,
   ...Stacks,
+  View,
+  React,
   Placeholder,
   PlaceholderView,
-  View,
   Text,
   App,
 }
