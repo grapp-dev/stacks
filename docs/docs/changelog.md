@@ -3,6 +3,10 @@ id: changelog
 title: Changelog
 ---
 
+### `v1.1.4`
+
+- fixed ESM support
+
 ### `v1.1.3`
 
 - fixed `Stack` default width value
