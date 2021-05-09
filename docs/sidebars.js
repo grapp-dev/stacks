@@ -22,6 +22,10 @@ module.exports = {
     },
     {
       type: 'doc',
+      id: 'react-native-web',
+    },
+    {
+      type: 'doc',
       id: 'configuration',
     },
     {
