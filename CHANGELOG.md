@@ -1,3 +1,7 @@
+### `v1.1.5`
+
+- fixed ESM support (round 2️⃣)
+
 ### `v1.1.4`
 
 - fixed ESM support
