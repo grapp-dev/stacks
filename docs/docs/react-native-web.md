@@ -7,7 +7,7 @@ Since `Stacks` components use `window` dimensions, SSR support is limited. If yo
 
 Don't forget to add `react-native-web` to your Babel config. Also, add `{ commonjs: true }` to the RNW Babel plugin config, if either RNW styles cause a bug, or SSR support is enabled.
 
-## Next.js (expo adapter)
+## Expo (Next.js adapter)
 
 Install `next-compose-plugins`, `next-transpile-modules` and `babel-plugin-react-native-web`:
 
