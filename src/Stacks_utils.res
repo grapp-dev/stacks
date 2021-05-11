@@ -6,7 +6,7 @@ open Stacks_types
 @module("react")
 external isValidElement: React.element => bool = "isValidElement"
 
-@module("./Stacks_utils")
+@module("./Stacks_utils.js")
 external normalizeResponsiveProp: responsiveProp<'a> => normalizedProp<'a> =
   "normalizeResponsiveProp"
 
