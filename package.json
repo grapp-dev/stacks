@@ -1,7 +1,7 @@
 {
   "name": "@mobily/stacks",
   "description": "⚡ Build React Native layouts quickly with ease and fun.",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "license": "MIT",
   "author": "Marcin Dziewulski <hello@mobily.pl>",
   "main": "./dist/index.js",
