@@ -3,6 +3,10 @@ id: changelog
 title: Changelog
 ---
 
+### `v1.1.6`
+
+- fixed bundling `Stacks` in ReScript projects
+
 ### `v1.1.5`
 
 - fixed ESM support (round 2️⃣)
