@@ -22,6 +22,12 @@ const PlaceholderView = props => {
   return <View style={[{ width, height }, style]}>{children}</View>
 }
 
+const FluidPlaceholder = props => {
+  const { width, style, children } = props
+
+  return <View style={[styles.root, { width, flex: 1 }, style]}>{children}</View>
+}
+
 const App = props => {
   const { children } = props
 
@@ -37,6 +43,7 @@ const ReactLiveScope = {
   PlaceholderView,
   Text,
   App,
+  FluidPlaceholder,
 }
 
 export default ReactLiveScope

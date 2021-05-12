@@ -35,6 +35,29 @@ function() {
 }
 ```
 
+Use the `height` property to adjust the column height against other columns.
+
+```jsx live
+function() {
+  return (
+    <App>
+      <Columns space={4}>
+        <Column width="content" height="fluid">
+          <Placeholder width={200} height={100} />
+          <Box flex="fluid" marginTop={4}>
+            <FluidPlaceholder width={200} />
+          </Box>
+        </Column>
+        <Column>
+          <Placeholder height={300} />
+        </Column>
+      </Columns>
+    </App>
+  )
+}
+
+```
+
 ## Props
 
 <Props
@@ -44,6 +67,12 @@ function() {
       type: 'responsiveProp<[#content | #fluid | #f12 | #f13 | #f23 | #f14 | #f34 | #f15 | #f25 | #f35 | #f45]>',
       required: false,
       defaultValue: 'fluid'
+    },
+    {
+      name: 'height',
+      type: 'responsiveProp<[#content | #fluid | #f12 | #f13 | #f23 | #f14 | #f34 | #f15 | #f25 | #f35 | #f45]>',
+      required: false,
+      defaultValue: 'content'
     },
   ]}
 />

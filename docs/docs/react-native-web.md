@@ -7,6 +7,57 @@ Since `Stacks` components use `window` dimensions, SSR support is limited. If yo
 
 Don't forget to add `react-native-web` to your Babel config. Also, add `{ commonjs: true }` to the RNW Babel plugin config, if either RNW styles cause a bug, or SSR support is enabled.
 
+## Expo
+
+Install `@expo/webpack-config` and `babel-plugin-react-native-web`:
+
+```bash
+yarn add @expo/webpack-config babel-plugin-react-native-web --dev
+```
+
+Add `webpack.config.js`:
+
+```js
+const createExpoWebpackConfigAsync = require('@expo/webpack-config')
+
+module.exports = async (env, argv) => {
+  const config = await createExpoWebpackConfigAsync(env, argv)
+
+  config.module.rules.push({
+    test: /\.m?[t|j]sx?$/,
+    exclude: {
+      and: [
+        /node_modules/,
+        {
+          not: [/@mobily\/stacks/],
+        },
+      ],
+    },
+    use: {
+      loader: 'babel-loader',
+      /* other options */
+    },
+  })
+
+  return config
+}
+```
+
+Update `babel.config.js`:
+
+```js
+module.exports = api => {
+  api.cache(true)
+
+  return {
+    presets: ['babel-preset-expo'],
+    plugins: [
+      ['react-native-web', /* { commonjs: true } */],
+    ],
+  }
+}
+```
+
 ## Expo (Next.js adapter)
 
 Install `next-compose-plugins`, `next-transpile-modules` and `babel-plugin-react-native-web`:
