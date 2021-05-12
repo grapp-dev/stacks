@@ -12,6 +12,7 @@ module Box = Stacks_component_Box
 let make = (
   // Column props
   ~width: responsiveProp<flex>=[#fluid],
+  ~height: responsiveProp<flex>=[#content],
   // Box props
   ~padding=?,
   ~paddingX=?,
@@ -74,7 +75,9 @@ let make = (
   let {isCollapsed, space, debugStyle} = useColumns()
   let resolveResponsiveProp = useResponsiveProp()
   let width = resolveResponsiveProp(Some(width))
-  let boxStyle = Style.arrayOption([Some(styles["fullWidth"]), debugStyle, style])
+  let height = resolveResponsiveProp(Some(height))
+  let heightStyle = isCollapsed ? None : resolveFlexBasis(height)
+  let boxStyle = Style.arrayOption([Some(styles["fullWidth"]), heightStyle, debugStyle, style])
   let style = Style.arrayOption(
     isCollapsed
       ? [Some(styles["fullWidth"]), Some(marginTop(. space))]
