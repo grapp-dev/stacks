@@ -8,24 +8,51 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: '#999',
   },
+  flexFluid: {
+    flex: 1,
+  },
 })
 
 const Placeholder = props => {
   const { width, height = 100, style, children } = props
+  const resolveResponsiveProp = Stacks.useResponsiveProp()
 
-  return <View style={[styles.root, { width, height }, style]} />
+  return (
+    <View
+      style={[
+        styles.root,
+        { width: resolveResponsiveProp(width), height: resolveResponsiveProp(height) },
+        style,
+      ]}
+    />
+  )
 }
 
 const PlaceholderView = props => {
   const { width, height, style, children } = props
+  const resolveResponsiveProp = Stacks.useResponsiveProp()
 
-  return <View style={[{ width, height }, style]}>{children}</View>
+  return (
+    <View
+      style={[
+        { width: resolveResponsiveProp(width), height: resolveResponsiveProp(height) },
+        style,
+      ]}
+    >
+      {children}
+    </View>
+  )
 }
 
 const FluidPlaceholder = props => {
   const { width, style, children } = props
+  const resolveResponsiveProp = Stacks.useResponsiveProp()
 
-  return <View style={[styles.root, { width, flex: 1 }, style]}>{children}</View>
+  return (
+    <View style={[styles.root, styles.flexFluid, { width: resolveResponsiveProp(width) }, style]}>
+      {children}
+    </View>
+  )
 }
 
 const App = props => {
