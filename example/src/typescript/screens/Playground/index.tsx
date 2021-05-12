@@ -142,12 +142,26 @@ export const Playground = () => {
               <Text>T3</Text>
             </Placeholder>
           </Stack>
-          <Columns style={{ height: 64, backgroundColor: 'white' }} alignX="evenly">
-            <Column style={{ backgroundColor: 'red' }}>
-              <Text>T1</Text>
+          <Columns style={{ backgroundColor: 'white' }} alignX="evenly">
+            <Column width="content" height="fluid">
+              <Box alignX="center" flex="fluid">
+                <Box style={{ width: 40, height: 40, backgroundColor: 'pink' }}></Box>
+                <Box style={{ width: 4, backgroundColor: 'red' }} flex="fluid"></Box>
+              </Box>
             </Column>
-            <Column style={{ backgroundColor: 'red' }}>
-              <Text>T2</Text>
+            <Column>
+              <Box>
+                <Text>
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                  Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                  unknown printer took a galley of type and scrambled it to make a type specimen
+                  book. It has survived not only five centuries, but also the leap into electronic
+                  typesetting, remaining essentially unchanged. It was popularised in the 1960s with
+                  the release of Letraset sheets containing Lorem Ipsum passages, and more recently
+                  with desktop publishing software like Aldus PageMaker including versions of Lorem
+                  Ipsum.
+                </Text>
+              </Box>
             </Column>
           </Columns>
         </Stack>
