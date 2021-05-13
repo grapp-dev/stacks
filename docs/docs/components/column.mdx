@@ -18,7 +18,7 @@ Use the `Column` component along with `Columns`.
 ```jsx live
 function() {
   return (
-    <App>
+    <StacksProvider>
       <Columns alignX="between">
         <Column width="content">
           <Placeholder width={100} />
@@ -30,7 +30,7 @@ function() {
           <Placeholder width={100} />
         </Column>
       </Columns>
-    </App>
+    </StacksProvider>
   )
 }
 ```
@@ -40,7 +40,7 @@ Use the `height` property to adjust the column height against other columns.
 ```jsx live
 function() {
   return (
-    <App>
+    <StacksProvider>
       <Columns space={4}>
         <Column width="content" height="fluid">
           <Placeholder width={200} height={100} />
@@ -52,7 +52,7 @@ function() {
           <Placeholder height={300} />
         </Column>
       </Columns>
-    </App>
+    </StacksProvider>
   )
 }
 

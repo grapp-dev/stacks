@@ -20,7 +20,7 @@ Set spacing between columns and lay out content horizontally.
 ```jsx live
 function() {
   return (
-    <App>
+    <StacksProvider>
       <Columns space={1}>
         <Column>
           <Placeholder />
@@ -32,7 +32,7 @@ function() {
           <Placeholder />
         </Column>
       </Columns>
-    </App>
+    </StacksProvider>
   )
 }
 ```
@@ -42,7 +42,7 @@ Multiple `Columns` components can be nested.
 ```jsx live
 function() {
   return (
-    <App>
+    <StacksProvider>
       <Columns space={10}>
         <Column>
           <Columns space={1}>
@@ -58,7 +58,7 @@ function() {
           <Placeholder />
         </Column>
       </Columns>
-    </App>
+    </StacksProvider>
 
   )
 }
@@ -69,7 +69,7 @@ Set horizontal alignment.
 ```jsx live
 function() {
   return (
-    <App>
+    <StacksProvider>
       <Columns space={1} alignX="center">
         <Column width="content">
           <Placeholder width={80} />
@@ -81,7 +81,7 @@ function() {
           <Placeholder width={80} />
         </Column>
       </Columns>
-    </App>
+    </StacksProvider>
   )
 }
 ```
@@ -91,7 +91,7 @@ Set vertical alignment.
 ```jsx live
 function() {
   return (
-    <App>
+    <StacksProvider>
       <Columns space={1} alignY="center">
         <Column>
           <Placeholder height={180} />
@@ -103,7 +103,7 @@ function() {
           <Placeholder height={120} />
         </Column>
       </Columns>
-    </App>
+    </StacksProvider>
   )
 }
 ```

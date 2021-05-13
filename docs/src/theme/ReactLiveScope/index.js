@@ -55,12 +55,6 @@ const FluidPlaceholder = props => {
   )
 }
 
-const App = props => {
-  const { children } = props
-
-  return <Stacks.StacksProvider>{children}</Stacks.StacksProvider>
-}
-
 const ReactLiveScope = {
   ...React,
   ...Stacks,
@@ -69,7 +63,6 @@ const ReactLiveScope = {
   Placeholder,
   PlaceholderView,
   Text,
-  App,
   FluidPlaceholder,
 }
 

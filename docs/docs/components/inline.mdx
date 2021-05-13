@@ -20,7 +20,7 @@ Simple usage.
 ```jsx live
 function() {
   return (
-    <App>
+    <StacksProvider>
       <Inline space={2}>
         <Placeholder width={90} />
         <Placeholder width={60} />
@@ -29,7 +29,7 @@ function() {
         <Placeholder width={100} />
         <Placeholder width={140} />
       </Inline>
-    </App>
+    </StacksProvider>
   )
 }
 ```
@@ -39,7 +39,7 @@ Multiple `Inline` components can be nested.
 ```jsx live
 function() {
   return (
-    <App>
+    <StacksProvider>
       <Inline space={10}>
         <Inline space={2}>
           <Placeholder width={60} />
@@ -50,7 +50,7 @@ function() {
           <Placeholder width={90} />
         </Inline>
       </Inline>
-    </App>
+    </StacksProvider>
   )
 }
 ```
@@ -60,7 +60,7 @@ Set horizontal alignment.
 ```jsx live
 function() {
   return (
-    <App>
+    <StacksProvider>
       <Inline space={2} align="center">
         <Placeholder width={90} />
         <Placeholder width={60} />
@@ -68,7 +68,7 @@ function() {
         <Placeholder width={100} />
         <Placeholder width={100} />
       </Inline>
-    </App>
+    </StacksProvider>
   )
 }
 ```

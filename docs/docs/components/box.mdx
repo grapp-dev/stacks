@@ -18,7 +18,7 @@ import { Props, BoxProps } from '../../core/components';
 ```jsx live
 function() {
   return (
-    <App>
+    <StacksProvider>
       <Box direction="row" padding={2}>
         <Box flex="fluid">
           <Box flex="fluid" alignX="center" alignY="center">
@@ -44,7 +44,7 @@ function() {
           </Box>
         </Box>
       </Box>
-    </App>
+    </StacksProvider>
   )
 }
 ```
