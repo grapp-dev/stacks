@@ -137,7 +137,7 @@ Full documentation is available [here](https://mobily.github.io/stacks).
 
 ## Support
 
-If `Stacks` saves your time (I have received some feedback from users, and they say they spend 5x less time on building screen layouts 🙉) and you like to use it in either personal or commercial (eg. for your company) projects, please consider buying me a coffee by using the button below ❤️
+If `Stacks` saves your time (I have received some feedback from users, and they say they spend 5x less time on building screen layouts 🙉) and you like to use it in either personal or commercial (eg. for your company) projects, please consider buying me a coffee by using the button below, thank you! ❤️
 
 <a href="https://www.buymeacoffee.com/utSC0k7"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=utSC0k7&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff"></a>
 
