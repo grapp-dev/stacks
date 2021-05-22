@@ -5,7 +5,7 @@ title: React Native Web
 
 Since `Stacks` components use `window` dimensions, SSR support is limited. If you use the `responsive prop` format, you probably may want to remove SSR support, otherwise, you can encounter unpredictable behavior.
 
-Don't forget to add `react-native-web` to your Babel config. Also, add `{ commonjs: true }` to the RNW Babel plugin config, if either RNW styles cause a bug, or SSR support is enabled.
+Don't forget to add `react-native-web` to your Babel config. Also, add `{ commonjs: true }` to the RNW Babel plugin config, if either RNW styles cause a bug, or SSR support is enabled. Last, but not least, if you use ESM you also have to add `require.resolve('./node_modules/@mobily/stacks/babel')` (right after `react-native-web`).
 
 ## Expo
 
@@ -53,6 +53,7 @@ module.exports = api => {
     presets: ['babel-preset-expo'],
     plugins: [
       ['react-native-web', /* { commonjs: true } */],
+      require.resolve('./node_modules/@mobily/stacks/babel'),
     ],
   }
 }
@@ -87,6 +88,7 @@ module.exports = {
   presets: ['@expo/next-adapter/babel'],
   plugins: [
     ['react-native-web' /*, { commonjs: true } */],
+    require.resolve('./node_modules/@mobily/stacks/babel'),
   ],
 }
 ```
@@ -134,6 +136,7 @@ module.exports = {
   presets: ['next/babel'],
   plugins: [
     ['react-native-web' /*, { commonjs: true } */],
+    require.resolve('./node_modules/@mobily/stacks/babel'),
   ],
 }
 ```
@@ -149,11 +152,14 @@ yarn add customize-cra react-app-rewired babel-plugin-react-native-web --dev
 Add `config-overrides.js` at the same level as `package.json`:
 
 ```js
-const { override, addBabelPlugin, babelInclude } = require('customize-cra')
+const { override, addBabelPlugins, babelInclude } = require('customize-cra')
 const path = require('path')
 
 module.exports = override(
-  addBabelPlugin(['react-native-web' /*, { commonjs: true } */]),
+  addBabelPlugins(
+    ['react-native-web' /*, { commonjs: true } */],
+    require.resolve('./node_modules/@mobily/stacks/babel'),
+  ),
   babelInclude([
     path.resolve(__dirname, 'src'),
     path.resolve(__dirname, 'node_modules', '@mobily', 'stacks')
@@ -192,6 +198,7 @@ module.exports = {
   presets: [/* presets */],
   plugins: [
     ['react-native-web' /*, { commonjs: true } */],
+    require.resolve('./node_modules/@mobily/stacks/babel'),
     /* other plugins */
   ],
 }
