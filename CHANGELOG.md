@@ -1,3 +1,8 @@
+### `v1.1.8`
+
+- fixed ESM support (round 3️⃣)
+- removed redundant `undefined` values in the styles array
+
 ### `v1.1.7`
 
 - added the `height` prop to `Column`
