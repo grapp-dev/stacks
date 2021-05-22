@@ -276,3 +276,5 @@ let resolveCollapsibleProps = (~collapseBelow, ~reverse, ~currentBreakpoint) => 
 
   {isCollapsed: isCollapsed, direction: direction}
 }
+
+let keepStyles = styles => Belt.Array.keepU(styles, (. style) => Belt.Option.isSome(style))

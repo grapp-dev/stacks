@@ -90,14 +90,9 @@ let make = (
   let right = Belt.Option.mapU(resolveResponsiveProp(right), Stacks_utils.right)
   let bottom = Belt.Option.mapU(resolveResponsiveProp(bottom), Stacks_utils.bottom)
   let left = Belt.Option.mapU(resolveResponsiveProp(left), Stacks_utils.left)
-  let style = Style.arrayOption([
-    Some(StyleSheet.absoluteFillObject),
-    top,
-    right,
-    bottom,
-    left,
-    style,
-  ])
+  let style = Style.arrayOption(
+    Stacks_utils.keepStyles([Some(StyleSheet.absoluteFillObject), top, right, bottom, left, style]),
+  )
 
   <Box
     ?padding
