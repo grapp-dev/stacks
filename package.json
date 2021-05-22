@@ -22,7 +22,8 @@
     "*.md",
     "index.js.flow",
     "bsconfig.json",
-    "package.json"
+    "package.json",
+    "babel"
   ],
   "scripts": {
     "build": "bash ./scripts/build.sh",
