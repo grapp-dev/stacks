@@ -1,3 +1,7 @@
+### `v1.2.0`
+
+- added two new components: `Rows` and `Row`
+
 ### `v1.1.8`
 
 - fixed ESM support (round 3️⃣)
