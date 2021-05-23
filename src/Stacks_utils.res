@@ -160,6 +160,9 @@ let resolveJustifyContentY = Belt.Option.mapU(_, (. value) =>
   | #top => styles["justifyStart"]
   | #center => styles["justifyCenter"]
   | #bottom => styles["justifyEnd"]
+  | #around => styles["justifySpaceAround"]
+  | #between => styles["justifySpaceBetween"]
+  | #evenly => styles["justifySpaceEvenly"]
   }
 )
 
