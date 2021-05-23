@@ -19,6 +19,11 @@ module.exports = {
       // },
       items: [
         {
+          href: 'https://www.buymeacoffee.com/utSC0k7',
+          label: 'Sponsor ❤️',
+          position: 'right',
+        },
+        {
           href: 'https://github.com/mobily/stacks',
           label: 'Github',
           position: 'right',
