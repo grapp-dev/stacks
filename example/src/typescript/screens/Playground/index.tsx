@@ -1,6 +1,6 @@
 import React from 'react'
 import { ScrollView, Text } from 'react-native'
-import { Box, Columns, Column, Stack, Inline, Tiles, FillView } from '@mobily/stacks'
+import { Box, Columns, Column, Stack, Inline, Tiles, FillView, Rows, Row } from '@mobily/stacks'
 
 import { Placeholder } from '../../components/Placeholder'
 
@@ -9,6 +9,20 @@ export const Playground = () => {
     <ScrollView>
       <Box padding={2}>
         <Stack space={2}>
+          <Text>Rows</Text>
+          <Box style={{ height: 400 }}>
+            <Rows space={14} alignX="center">
+              <Row>
+                <Box alignX="center" alignY="center" flex="fluid">
+                  <Placeholder width={200} />
+                </Box>
+              </Row>
+              <Row>
+                <Placeholder />
+              </Row>
+            </Rows>
+          </Box>
+
           <Text>Columns</Text>
           <Stack space={3}>
             <Columns space={1}>
@@ -16,7 +30,9 @@ export const Playground = () => {
                 <Text>C1</Text>
               </Column>
               <Column>
-                <Text>C2</Text>
+                <Box alignX="center">
+                  <Text>C2</Text>
+                </Box>
               </Column>
               <Column>
                 <Text>C3</Text>
