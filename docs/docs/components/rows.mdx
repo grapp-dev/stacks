@@ -1,0 +1,147 @@
+---
+id: rows
+title: Rows
+---
+
+import { Props, BoxProps } from '../../core/components';
+
+`Rows` (and `Row`) lays out content vertically. The main difference between `Rows` and `Stack` is that `Rows` has the full height of its container.
+
+:::note
+
+`Rows` component accepts [`View`](https://reactnative.dev/docs/view) props.
+
+:::
+
+## Examples
+
+Set spacing between rows and lay out content vertically.
+
+```jsx live
+function() {
+  return (
+    <StacksProvider>
+      <PlaceholderView height={500}>
+        <Rows space={1}>
+          <Row>
+            <FluidPlaceholder />
+          </Row>
+          <Row>
+            <FluidPlaceholder />
+          </Row>
+          <Row>
+            <FluidPlaceholder />
+          </Row>
+        </Rows>
+      </PlaceholderView>
+    </StacksProvider>
+  )
+}
+```
+
+Multiple `Rows` components can be nested.
+
+```jsx live
+function() {
+  return (
+    <StacksProvider>
+      <PlaceholderView height={500}>
+        <Rows space={10}>
+          <Row height="content">
+            <Rows space={1}>
+              <Row>
+                <Placeholder />
+              </Row>
+              <Row>
+                <Placeholder />
+              </Row>
+            </Rows>
+          </Row>
+          <Row>
+            <FluidPlaceholder />
+          </Row>
+        </Rows>
+      </PlaceholderView>
+    </StacksProvider>
+  )
+}
+```
+
+Set horizontal alignment.
+
+```jsx live
+function() {
+  return (
+    <StacksProvider>
+      <PlaceholderView height={300}>
+        <Rows space={1} alignX="center">
+          <Row width="content">
+            <FluidPlaceholder width={180} />
+          </Row>
+          <Row width="content">
+            <FluidPlaceholder width={240} />
+          </Row>
+          <Row width="content">
+            <FluidPlaceholder width={140} />
+          </Row>
+        </Rows>
+      </PlaceholderView>
+    </StacksProvider>
+  )
+}
+```
+
+Set vertical alignment.
+
+```jsx live
+function() {
+  return (
+    <StacksProvider>
+      <PlaceholderView height={500}>
+        <Rows space={1} alignY="between">
+          <Row height="content">
+            <Placeholder height={80} />
+          </Row>
+          <Row height="content">
+            <Placeholder height={200} />
+          </Row>
+          <Row height="content">
+            <Placeholder height={60} />
+          </Row>
+        </Rows>
+      </PlaceholderView>
+    </StacksProvider>
+  )
+}
+```
+
+## Props
+
+<Props
+  data={[
+    {
+      name: 'space',
+      type: 'responsiveProp<float>',
+      required: false,
+    },
+    {
+      name: 'alignY',
+      type: 'responsiveProp<[#top | #center | #bottom | #stretch  | #between | #around | #evenly]>',
+      required: false,
+    },
+    {
+      name: 'alignX',
+      type: 'responsiveProp<[#left | #center | #right]>',
+      required: false,
+    },
+    {
+      name: 'reverse',
+      type: 'bool',
+      required: false,
+    },
+  ]}
+/>
+
+## Box Props
+
+<BoxProps />
