@@ -108,6 +108,7 @@ let make = (
     Some(styles["fullWidth"]),
     Some(styles["flexFluid"]),
     Some(styles["directionRow"]),
+    style,
   ])
   let containerStyle = {
     let direction = Belt.Option.mapWithDefault(reverse, #column, reverse =>
@@ -120,7 +121,6 @@ let make = (
       resolveDirection(Some(direction)),
       Some(Stacks_utils.marginTop(. negativeSpace)),
       Some(styles["flexFluid"]),
-      style,
     ])
   }
   let config: Context.t = {space: space, debugStyle: debugStyle}

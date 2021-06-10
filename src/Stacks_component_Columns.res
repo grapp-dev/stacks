@@ -111,7 +111,7 @@ let make = (
     ~currentBreakpoint,
   )
   let negativeSpace = -.space
-  let boxStyle = Style.arrayOption([Some(styles["fullWidth"])])
+  let boxStyle = Style.arrayOption([Some(styles["fullWidth"]), style])
   let containerStyle = {
     let arr = isCollapsed
       ? [Some(styles["fullWidth"]), Some(Stacks_utils.marginTop(. negativeSpace))]
@@ -121,7 +121,7 @@ let make = (
           Some(Stacks_utils.marginLeft(. negativeSpace)),
         ]
 
-    Style.arrayOption(Belt.Array.concat(arr, [resolveDirection(Some(direction)), style]))
+    Style.arrayOption(Belt.Array.concat(arr, [resolveDirection(Some(direction))]))
   }
   let config: Context.t = {isCollapsed: isCollapsed, space: space, debugStyle: debugStyle}
 
