@@ -1,3 +1,7 @@
+### `v1.2.1`
+
+- fixed passing the `style` prop to the `Rows` and `Columns` root component
+
 ### `v1.2.0`
 
 - added two new components: `Rows` and `Row`
@@ -26,7 +30,7 @@
 ### `v1.1.3`
 
 - fixed `Stack` default width value
-- fixed passing style property to the proper inner component in `Columns`
+- fixed passing the `style` prop to the inner `Columns` component
 
 ### `v1.1.2`
 

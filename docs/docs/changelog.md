@@ -3,6 +3,10 @@ id: changelog
 title: Changelog
 ---
 
+### `v1.2.1`
+
+- fixed passing the `style` prop to the `Rows` and `Columns` root component
+
 ### `v1.2.0`
 
 - added two new components: `Rows` and `Row`
