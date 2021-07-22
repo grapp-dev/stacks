@@ -79,7 +79,7 @@ const App = () => {
       defaultValue: 'false',
     },
     {
-      name: 'debug',
+      name: 'breakpoints',
       type: 'breakpoints',
       rawTsType: 'Breakpoints',
       required: false,
