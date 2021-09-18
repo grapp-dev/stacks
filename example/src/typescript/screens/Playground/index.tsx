@@ -5,6 +5,7 @@ import { Box, Columns, Column, Stack, Inline, Tiles, FillView, Rows, Row } from 
 import styled from 'styled-components/native'
 
 import { Placeholder } from '../../components/Placeholder'
+import { Divider } from '../../components/Divider'
 
 const Item = styled(Box)`
   background-color: yellow;
@@ -39,7 +40,7 @@ export const Playground = () => {
           </Box>
 
           <Text>Columns</Text>
-          <Stack space={3}>
+          <Stack space={3} divider={<Divider />}>
             <Columns space={1}>
               <Column>
                 <Text>C1</Text>
