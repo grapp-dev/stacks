@@ -1,3 +1,8 @@
+### `v1.3.0`
+
+- added the `viewRef` prop to all components
+- added the `divider` prop to `Stack`
+
 ### `v1.2.1`
 
 - fixed passing the `style` prop to the `Rows` and `Columns` root component
