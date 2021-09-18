@@ -1,12 +1,27 @@
-import React from 'react'
-import { ScrollView, Text } from 'react-native'
+import * as React from 'react'
+import { LayoutChangeEvent, ScrollView, Text, View } from 'react-native'
 import { Box, Columns, Column, Stack, Inline, Tiles, FillView, Rows, Row } from '@mobily/stacks'
+
+import styled from 'styled-components/native'
 
 import { Placeholder } from '../../components/Placeholder'
 
+const Item = styled(Box)`
+  background-color: yellow;
+`
+
 export const Playground = () => {
+  const viewRef = React.useRef<View>(null)
+
+  const handleLayoutChange = React.useCallback((e: LayoutChangeEvent) => {
+    console.log(e.nativeEvent.layout)
+  }, [])
+
   return (
     <ScrollView>
+      <Item viewRef={viewRef} padding={2} onLayout={handleLayoutChange}>
+        <Text>Styled component</Text>
+      </Item>
       <Box padding={2}>
         <Stack space={2}>
           <Text>Rows</Text>
