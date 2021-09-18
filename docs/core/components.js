@@ -35,6 +35,7 @@ const mapType = value => {
   return value
     .replace('responsiveProp', 'ResponsiveProp')
     .replace('ReactNative.View.ref', 'React.RefObject<View>')
+    .replace('React.element', 'JSX.Element')
     .replace('float', 'number')
     .replace('int', 'number')
     .replace('bool', 'boolean')

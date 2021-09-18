@@ -85,6 +85,22 @@ function() {
 }
 ```
 
+Stack with a custom divider.
+
+```jsx live
+function() {
+  return (
+    <StacksProvider>
+      <Stack space={4} divider={<Divider />}>
+        <Placeholder height={100} />
+        <Placeholder height={140} />
+        <Placeholder height={80} />
+      </Stack>
+    </StacksProvider>
+  )
+}
+```
+
 ## Props
 
 <Props
@@ -103,7 +119,12 @@ function() {
       name: 'horizontal',
       type: 'responsiveProp<bool>',
       required: false,
-    }
+    },
+    {
+      name: 'divider',
+      type: 'React.element',
+      required: false,
+    },
   ]}
 />
 

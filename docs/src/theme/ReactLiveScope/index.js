@@ -1,6 +1,8 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import * as ReactNative from 'react-native'
 import * as Stacks from '@mobily/stacks'
+
+const { View, Text, StyleSheet } = ReactNative
 
 const styles = StyleSheet.create({
   root: {
@@ -10,6 +12,10 @@ const styles = StyleSheet.create({
   },
   flexFluid: {
     flex: 1,
+  },
+  divider: {
+    height: 1,
+    width: '100%',
   },
 })
 
@@ -55,15 +61,22 @@ const FluidPlaceholder = props => {
   )
 }
 
+const Divider = props => {
+  const { style, color = '#999' } = props
+
+  return <View style={[styles.divider, { backgroundColor: color }, style]} />
+}
+
 const ReactLiveScope = {
   ...React,
   ...Stacks,
   View,
+  Text,
   React,
   Placeholder,
   PlaceholderView,
-  Text,
   FluidPlaceholder,
+  Divider,
 }
 
 export default ReactLiveScope
