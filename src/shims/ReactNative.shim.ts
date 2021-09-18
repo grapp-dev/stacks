@@ -1,3 +1,4 @@
+import * as React from 'react'
 import {
   AccessibilityState,
   AccessibilityActionInfo,
@@ -10,6 +11,7 @@ import {
   ScaledSize,
   StyleProp,
   ViewStyle,
+  View,
 } from 'react-native'
 
 export type Event_layoutEvent = LayoutChangeEvent
@@ -30,3 +32,4 @@ export type Dimensions_handler = ({
   window: ScaledSize
   screen: ScaledSize
 }) => void
+export type View_ref = React.RefObject<View>
