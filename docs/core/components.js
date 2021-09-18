@@ -34,6 +34,7 @@ export const defaultTabsProps = {
 const mapType = value => {
   return value
     .replace('responsiveProp', 'ResponsiveProp')
+    .replace('ReactNative.View.ref', 'React.RefObject<View>')
     .replace('float', 'number')
     .replace('int', 'number')
     .replace('bool', 'boolean')
@@ -122,14 +123,23 @@ export const BoxProps = props => {
         'marginRight',
         'marginStart',
         'marginEnd',
+        'viewRef',
       ]
         .filter(name => {
           return !omit.includes(name)
         })
         .map(name => {
+          if (name === 'viewRef') {
+            return {
+              name,
+              type: 'ReactNative.View.ref',
+              required: false,
+            }
+          }
+
           return {
             name,
-            type: 'responsiveProps<float>',
+            type: 'responsiveProp<float>',
             required: false,
           }
         })}
