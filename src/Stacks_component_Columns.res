@@ -88,6 +88,7 @@ let make = (
   ~shouldRasterizeIOS=?,
   ~style=?,
   ~testID=?,
+  ~viewRef=?,
   ~children,
   // React Native Web props
   ~onMouseDown=?,
@@ -189,6 +190,7 @@ let make = (
       ?onMouseOver
       ?onMouseOut
       ?onMouseUp
+      ?viewRef
       style=boxStyle>
       <View style=containerStyle> children </View>
     </Box>

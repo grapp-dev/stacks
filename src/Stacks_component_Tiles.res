@@ -69,6 +69,7 @@ let make = (
   ~shouldRasterizeIOS=?,
   ~style=?,
   ~testID=?,
+  ~viewRef=?,
   ~children,
   // React Native Web props
   ~onMouseDown=?,
@@ -151,6 +152,7 @@ let make = (
     ?onMouseOver
     ?onMouseOut
     ?onMouseUp
+    ?viewRef
     ?style>
     {Belt.Array.mapWithIndexU(children, (. index, arr) => {
       let arr = Belt.Array.makeByU(columns, (. index) =>
@@ -165,10 +167,9 @@ let make = (
             isValidElement(child) ? debugStyle : None,
           ])
         }
-        <View key={index |> string_of_int} style> child </View>
+        <View key={string_of_int(index)} style> child </View>
       }) |> React.array
-
-      <View key={index |> string_of_int} style=rowStyle> tiles </View>
+      <View key={string_of_int(index)} style=rowStyle> tiles </View>
     }) |> React.array}
   </Stack>
 }

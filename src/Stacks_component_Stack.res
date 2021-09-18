@@ -79,6 +79,7 @@ let make = (
   ~onMouseOver=?,
   ~onMouseOut=?,
   ~onMouseUp=?,
+  ~viewRef=?,
 ) => {
   let resolveResponsiveProp = useResponsiveProp()
   let space = useSpacing(resolveResponsiveProp(space))
@@ -162,10 +163,11 @@ let make = (
     ?onMouseOver
     ?onMouseOut
     ?onMouseUp
+    ?viewRef
     style>
     {Belt.Array.mapWithIndexU(children, (. index, child) => {
       <View
-        key={index |> string_of_int}
+        key={string_of_int(index)}
         style={Style.arrayOption([
           width,
           align,

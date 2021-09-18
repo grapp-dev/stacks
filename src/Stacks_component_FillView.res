@@ -75,6 +75,7 @@ let make = (
   ~shouldRasterizeIOS=?,
   ~style=?,
   ~testID=?,
+  ~viewRef=?,
   ~children=?,
   // React Native Web props
   ~onMouseDown=?,
@@ -163,6 +164,7 @@ let make = (
     ?onMouseOver
     ?onMouseOut
     ?onMouseUp
+    ?viewRef
     style>
     {children->Belt.Option.getWithDefault(React.null)}
   </Box>

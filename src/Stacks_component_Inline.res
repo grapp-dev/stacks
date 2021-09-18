@@ -69,6 +69,7 @@ let make = (
   ~shouldRasterizeIOS=?,
   ~style=?,
   ~testID=?,
+  ~viewRef=?,
   ~children,
   // React Native Web props
   ~onMouseDown=?,
@@ -156,11 +157,12 @@ let make = (
     ?onMouseOver
     ?onMouseOut
     ?onMouseUp
+    ?viewRef
     ?style>
     <View style=containerStyle>
       {Belt.Array.mapWithIndexU(children, (. index, child) => {
         <View
-          key={index |> string_of_int}
+          key={string_of_int(index)}
           style={Style.arrayOption([
             debugStyle,
             Some(Stacks_utils.marginTop(. space)),
