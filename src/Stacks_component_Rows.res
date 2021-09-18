@@ -112,7 +112,7 @@ let make = (
     style,
   ])
   let containerStyle = {
-    let direction = Belt.Option.mapWithDefault(reverse, #column, reverse =>
+    let direction = Belt.Option.mapWithDefaultU(reverse, #column, (. reverse) =>
       reverse ? #columnReverse : #column
     )
 
