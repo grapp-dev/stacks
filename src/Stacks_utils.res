@@ -71,6 +71,38 @@ let rec splitEvery = (size, xs) => {
     : xs |> drop(size) |> splitEvery(size) |> Belt.Array.concat([xs |> take(size)])
 }
 
+let tail = xs => {
+  let l = Belt.Array.length(xs)
+
+  if l == 0 {
+    None
+  } else if l == 1 {
+    Some([])
+  } else {
+    let ys = Belt.Array.sliceToEnd(xs, 1)
+    Belt.Array.length(ys) > 0 ? Some(ys) : None
+  }
+}
+
+let tailOrEmpty = {
+  xs =>
+    switch tail(xs) {
+    | Some(ys) => ys
+    | None => []
+    }
+}
+
+let prependToAll = (delim, xs) => {
+  Belt.Array.reduceU(xs, [], (. acc, value) => Belt.Array.concat([delim, value], acc))
+}
+
+let intersperse = (delim, xs) => {
+  switch Belt.Array.get(xs, 0) {
+  | None => []
+  | Some(value) => Belt.Array.concat([value], prependToAll(delim, tailOrEmpty(xs)))
+  }
+}
+
 let styles = StyleSheet.create({
   "fullWidth": viewStyle(~width=100. |> pct, ()),
   "fullHeight": viewStyle(~height=100. |> pct, ()),

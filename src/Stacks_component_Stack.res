@@ -12,6 +12,7 @@ let make = (
   ~space=?,
   ~align: option<responsiveProp<[axisX | axisY | stretch]>>=?,
   ~horizontal=?,
+  ~divider=?,
   // Box props
   ~padding=?,
   ~paddingX=?,
@@ -96,7 +97,10 @@ let make = (
     : resolveJustifyContentY(resolveAxisY(align))
   let debugStyle = useDebugStyle()
   let style = Style.arrayOption([width, style])
-  let children = React.Children.toArray(children)
+  let children = {
+    let xs = React.Children.toArray(children)
+    Belt.Option.mapWithDefaultU(divider, xs, (. divider) => intersperse(divider, xs))
+  }
   let isLast = isLastElement(children)
 
   <Box
