@@ -1,3 +1,7 @@
+### `v1.3.1`
+
+- fixed columns width calculations in the `Grid` component
+
 ### `v1.3.0`
 
 - added the `viewRef` prop to all components
