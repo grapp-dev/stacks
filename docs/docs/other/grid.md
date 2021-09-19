@@ -14,9 +14,9 @@ import { defaultTabsProps, Props } from '../../core/components';
 
 ```tsx
 declare type Props = {
-  readonly gutter?: number
-  readonly margin: number
-  readonly columns?: number
+  readonly gutter?: ResponsiveProp<number>
+  readonly margin?: ResponsiveProp<number>
+  readonly columns?: ResponsiveProp<number>
   readonly opacity?: number
 }
 ```
@@ -27,9 +27,9 @@ declare type Props = {
 ```res
 @react.component
 let make: (
-  ~gutter: float=?,
-  ~margin: float=?,
-  ~columns: int=?,
+  ~gutter: responsiveProp<float>=?,
+  ~margin: responsiveProp<float>=?,
+  ~columns: responsiveProp<int>=?,
   ~opacity: float=?,
 ) => React.element
 
@@ -44,27 +44,27 @@ let make: (
   data={[
     {
       name: 'columns',
-      type: 'int',
+      type: 'responsiveProp<int>',
       required: false,
       defaultValue: '8',
     },
     {
       name: 'margin',
-      type: 'float',
+      type: 'responsiveProp<float>',
       required: false,
-      defaultValue: '1',
+      defaultValue: '2',
     },
     {
       name: 'gutter',
-      type: 'float',
+      type: 'responsiveProp<float>',
       required: false,
-      defaultValue: '1',
+      defaultValue: '2',
     },
     {
       name: 'opacity',
       type: 'float',
       required: false,
-      defaultValue: '0.1',
+      defaultValue: '0.2',
     },
   ]}
 />
