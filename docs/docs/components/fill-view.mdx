@@ -13,7 +13,7 @@ import { Props, BoxProps } from '../../core/components';
 
 :::
 
-## Example
+## Examples
 
 ```jsx live
 function() {
@@ -21,7 +21,7 @@ function() {
     <StacksProvider>
       <PlaceholderView height={500}>
         <FillView alignX="center" alignY="center" direction="row">
-          <Box flex="3/4">
+          <Box flex="1/2">
             <Stack space={1}>
               <Placeholder height={60} />
               <Placeholder height={60} />
@@ -29,6 +29,34 @@ function() {
               <Placeholder height={60} />
             </Stack>
           </Box>
+        </FillView>
+      </PlaceholderView>
+    </StacksProvider>
+  )
+}
+```
+
+You may want to use a helper function to "reset" one or more positioning properties.
+
+
+```jsx live
+function() {
+  // import { reset } from '@mobily/stacks'
+
+  return (
+    <StacksProvider>
+      <PlaceholderView height={300}>
+        <FillView bottom={reset} right={reset}>
+          <Placeholder width={100} />
+        </FillView>
+        <FillView bottom={reset} left={reset}>
+          <Placeholder width={100} />
+        </FillView>
+        <FillView alignX="center" alignY="center" top={reset}>
+          <Stack space={2} horizontal={true}>
+            <Placeholder width={100} />
+            <Placeholder width={100} />
+          </Stack>
         </FillView>
       </PlaceholderView>
     </StacksProvider>

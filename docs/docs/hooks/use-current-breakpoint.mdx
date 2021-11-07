@@ -13,16 +13,14 @@ It returns the current breakpoint value.
 <TabItem value="typescript">
 
 ```tsx
-declare const useCurrentBreakpoint: () => 'desktop' | 'mobile' | 'tablet'
+declare const useCurrentBreakpoint: () => string
 ```
 
 </TabItem>
 <TabItem value="rescript">
 
 ```res
-type breakpoint = [#mobile | #tablet | #desktop]
-
-let useCurrentBreakpoint: unit => breakpoint
+let useCurrentBreakpoint: unit => string
 ```
 
 </TabItem>
@@ -41,7 +39,13 @@ function() {
   }
 
   return (
-    <StacksProvider>
+    <StacksProvider breakpoints={[
+      ['mobile', 480],
+      ['tablet', 768],
+      ['desktop', 992],
+      ['large-desktop', 1200],
+      ['extra-large-desktop', 1440]
+    ]}>
       <DebugText />
     </StacksProvider>
   )

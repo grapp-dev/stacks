@@ -70,6 +70,7 @@ const Divider = props => {
 const ReactLiveScope = {
   ...React,
   ...Stacks,
+  reset: Stacks.reset,
   View,
   Text,
   React,

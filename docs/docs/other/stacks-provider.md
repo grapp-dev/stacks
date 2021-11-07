@@ -13,13 +13,10 @@ Use `StacksProvider` at the top of your `react` tree to overwrite default option
 <TabItem value="typescript">
 
 ```tsx
-declare type Breakpoints = {
-  readonly tablet: number
-  readonly desktop: number
-}
+declare type Breakpoint = [string, number]
 
 declare type Props = {
-  readonly breakpoints?: Breakpoints
+  readonly breakpoints?: readonly Breakpoint[]
   readonly children: React.ReactNode
   readonly debug?: boolean
   readonly spacing?: number
@@ -30,10 +27,8 @@ declare type Props = {
 <TabItem value="rescript">
 
 ```res
-type breakpoints = {
-  tablet: float,
-  desktop: float,
-}
+type breakpoint = (string, number)
+type breakpoints = array<breakpoint>
 
 @react.component
 let make: (
@@ -83,7 +78,7 @@ const App = () => {
       type: 'breakpoints',
       rawTsType: 'Breakpoints',
       required: false,
-      defaultValue: '{ tablet: 768, desktop: 992 }',
+      defaultValue: '[["mobile", 0], ["tablet", 768], ["desktop", 992]]',
     }
   ]}
 />

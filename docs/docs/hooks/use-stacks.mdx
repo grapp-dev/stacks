@@ -13,15 +13,12 @@ It returns the `Stacks` context object.
 <TabItem value="typescript">
 
 ```tsx
-declare type Breakpoints = {
-  readonly tablet: number
-  readonly desktop: number
-}
+declare type Breakpoint = [string, number]
 
 declare type Context = {
   readonly debug: boolean
   readonly spacing: number
-  readonly breakpoints: Breakpoints
+  readonly breakpoints: readonly Breakpoint[]
   readonly dimensions: ReactNative.ScaledSize
 };
 
@@ -32,10 +29,8 @@ declare const useStacks: () => Context
 <TabItem value="rescript">
 
 ```res
-type breakpoints = {
-  tablet: float,
-  desktop: float,
-}
+type breakpoint = (string, number)
+type breakpoints = array<breakpoint>
 
 type context = {
   debug: bool,
