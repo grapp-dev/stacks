@@ -6,7 +6,6 @@
   "reason": {
     "react-jsx": 3
   },
-  "refmt": 3,
   "gentypeconfig": {
     "language": "typescript",
     "importPath": "relative",
