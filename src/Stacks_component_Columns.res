@@ -114,7 +114,9 @@ let make = (
   let resolveResponsiveProp = useResponsiveProp()
   let alignX = Stacks_externals.resolve(resolveResponsiveProp, alignX)
   let alignY = Stacks_externals.resolve(resolveResponsiveProp, alignY)
+
   let space = useSpacing(resolveResponsiveProp(space))
+  let alignY = resolveJustifyContentY(alignY)
 
   let debugStyle = useDebugStyle()
   let {isCollapsed, direction} = resolveCollapsibleProps(
@@ -123,94 +125,89 @@ let make = (
     ~currentBreakpoint,
   )
   let negativeSpace = -.space
-  let viewStyle = Style.array([styles["fullWidth"]])
-  let style = Style.array(
-    isCollapsed
-      ? [styles["fullWidth"], Stacks_styles.marginTop(negativeSpace), unsafeStyle(style)]
-      : [
-          Stacks_styles.marginLeft(negativeSpace),
-          resolveDirection(Some(direction)),
-          resolveJustifyContentX(alignX),
-          unsafeStyle(style),
-        ],
-  )
+  let style = Style.array([styles["fullWidth"], alignY, unsafeStyle(style)])
+  let viewStyle = {
+    let xs = isCollapsed
+      ? [styles["fullWidth"], Stacks_styles.marginTop(negativeSpace)]
+      : [resolveJustifyContentX(alignX), Stacks_styles.marginLeft(negativeSpace)]
+
+    Style.array(Belt.Array.concat(xs, [resolveDirection(Some(direction))]))
+  }
 
   let config: Context.t = {
     isCollapsed: isCollapsed,
     space: space,
     debugStyle: debugStyle,
-    alignY: resolveJustifyContentY(alignY),
+    alignY: alignY,
   }
 
   <Context.Provider value={config}>
-    <View style={viewStyle}>
-      <Box
-        ?padding
-        ?paddingX
-        ?paddingY
-        ?paddingTop
-        ?paddingBottom
-        ?paddingLeft
-        ?paddingRight
-        ?paddingEnd
-        ?paddingStart
-        ?margin
-        ?marginX
-        ?marginY
-        ?marginTop
-        ?marginBottom
-        ?marginLeft
-        ?marginRight
-        ?marginEnd
-        ?marginStart
-        ?accessibilityActions
-        ?accessibilityElementsHidden
-        ?accessibilityHint
-        ?accessibilityIgnoresInvertColors
-        ?accessibilityLabel
-        ?accessibilityLiveRegion
-        ?accessibilityRole
-        ?accessibilityState
-        ?accessibilityValue
-        ?accessibilityViewIsModal
-        ?accessible
-        ?collapsable
-        ?hitSlop
-        ?importantForAccessibility
-        ?nativeID
-        ?needsOffscreenAlphaCompositing
-        ?onAccessibilityEscape
-        ?onAccessibilityTap
-        ?onLayout
-        ?onMagicTap
-        ?onMoveShouldSetResponder
-        ?onMoveShouldSetResponderCapture
-        ?onResponderEnd
-        ?onResponderGrant
-        ?onResponderMove
-        ?onResponderReject
-        ?onResponderRelease
-        ?onResponderStart
-        ?onResponderTerminate
-        ?onResponderTerminationRequest
-        ?onStartShouldSetResponder
-        ?onStartShouldSetResponderCapture
-        ?pointerEvents
-        ?removeClippedSubviews
-        ?renderToHardwareTextureAndroid
-        ?shouldRasterizeIOS
-        ?testID
-        ?onMouseDown
-        ?onMouseEnter
-        ?onMouseLeave
-        ?onMouseMove
-        ?onMouseOver
-        ?onMouseOut
-        ?onMouseUp
-        ?viewRef
-        style>
-        children
-      </Box>
-    </View>
+    <Box
+      ?padding
+      ?paddingX
+      ?paddingY
+      ?paddingTop
+      ?paddingBottom
+      ?paddingLeft
+      ?paddingRight
+      ?paddingEnd
+      ?paddingStart
+      ?margin
+      ?marginX
+      ?marginY
+      ?marginTop
+      ?marginBottom
+      ?marginLeft
+      ?marginRight
+      ?marginEnd
+      ?marginStart
+      ?accessibilityActions
+      ?accessibilityElementsHidden
+      ?accessibilityHint
+      ?accessibilityIgnoresInvertColors
+      ?accessibilityLabel
+      ?accessibilityLiveRegion
+      ?accessibilityRole
+      ?accessibilityState
+      ?accessibilityValue
+      ?accessibilityViewIsModal
+      ?accessible
+      ?collapsable
+      ?hitSlop
+      ?importantForAccessibility
+      ?nativeID
+      ?needsOffscreenAlphaCompositing
+      ?onAccessibilityEscape
+      ?onAccessibilityTap
+      ?onLayout
+      ?onMagicTap
+      ?onMoveShouldSetResponder
+      ?onMoveShouldSetResponderCapture
+      ?onResponderEnd
+      ?onResponderGrant
+      ?onResponderMove
+      ?onResponderReject
+      ?onResponderRelease
+      ?onResponderStart
+      ?onResponderTerminate
+      ?onResponderTerminationRequest
+      ?onStartShouldSetResponder
+      ?onStartShouldSetResponderCapture
+      ?pointerEvents
+      ?removeClippedSubviews
+      ?renderToHardwareTextureAndroid
+      ?shouldRasterizeIOS
+      ?testID
+      ?onMouseDown
+      ?onMouseEnter
+      ?onMouseLeave
+      ?onMouseMove
+      ?onMouseOver
+      ?onMouseOut
+      ?onMouseUp
+      ?viewRef
+      style>
+      <View style=viewStyle> children </View>
+    </Box>
   </Context.Provider>
 }
