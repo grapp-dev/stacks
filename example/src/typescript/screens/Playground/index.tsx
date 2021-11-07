@@ -1,6 +1,17 @@
 import * as React from 'react'
 import { LayoutChangeEvent, ScrollView, Text, View } from 'react-native'
-import { Box, Columns, Column, Stack, Inline, Tiles, FillView, Rows, Row } from '@mobily/stacks'
+import {
+  Box,
+  Columns,
+  Column,
+  Stack,
+  Inline,
+  Tiles,
+  FillView,
+  Rows,
+  Row,
+  reset,
+} from '@mobily/stacks'
 
 import styled from 'styled-components/native'
 
@@ -23,11 +34,16 @@ export const Playground = () => {
       <Item viewRef={viewRef} padding={2} onLayout={handleLayoutChange}>
         <Text>Styled component</Text>
       </Item>
+      <Box style={{ height: 400 }}>
+        <FillView alignX="center" alignY="center" right={reset}>
+          <Text>abc</Text>
+        </FillView>
+      </Box>
       <Box padding={2}>
         <Stack space={2}>
           <Text>Rows</Text>
           <Box style={{ height: 400 }}>
-            <Rows space={14} alignX="center">
+            <Rows space={2} alignX="center">
               <Row>
                 <Box alignX="center" alignY="center" flex="fluid">
                   <Placeholder width={200} />
@@ -194,6 +210,25 @@ export const Playground = () => {
                   Ipsum.
                 </Text>
               </Box>
+            </Column>
+          </Columns>
+          <Columns style={{ height: 200 }} alignY="center" space={4}>
+            <Column width="content">
+              <Box style={{ width: 14, height: 40, backgroundColor: 'red' }} />
+            </Column>
+            <Column>
+              <Box style={{ width: 14, height: 100, backgroundColor: 'red' }} />
+            </Column>
+            <Column width="content">
+              <Box style={{ width: 40, height: 40, backgroundColor: 'red' }} />
+            </Column>
+          </Columns>
+          <Columns alignX="center" space={4}>
+            <Column width="content">
+              <Box style={{ width: 40, height: 40, backgroundColor: 'red' }} />
+            </Column>
+            <Column width="content">
+              <Box style={{ width: 40, height: 40, backgroundColor: 'red' }} />
             </Column>
           </Columns>
         </Stack>
