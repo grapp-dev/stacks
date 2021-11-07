@@ -32,7 +32,7 @@
     ]
   },
   "devDependencies": {
-    "babel-plugin-react-native-web": "^0.17.1",
-    "react-native-web": "^0.17.1"
+    "babel-plugin-react-native-web": "^0.17.5",
+    "react-native-web": "^0.17.5"
   }
 }
