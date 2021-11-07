@@ -24,3 +24,5 @@ export {
   breakpoint as Breakpoint,
   responsiveProp as ResponsiveProp,
 } from './Stacks_types.gen'
+
+export { reset } from './Stacks_styles.gen'

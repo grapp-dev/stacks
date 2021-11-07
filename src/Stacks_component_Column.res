@@ -3,8 +3,8 @@ open ReactNative
 open Stacks_component_Columns.Context
 
 open Stacks_hooks
-open Stacks_utils
 open Stacks_types
+open Stacks_styles
 
 module Box = Stacks_component_Box
 
@@ -73,19 +73,22 @@ let make = (
   ~onMouseOut=?,
   ~onMouseUp=?,
 ) => {
-  let {isCollapsed, space, debugStyle} = useColumns()
+  let {isCollapsed, space, debugStyle, alignY} = useColumns()
   let resolveResponsiveProp = useResponsiveProp()
   let width = resolveResponsiveProp(Some(width))
   let height = resolveResponsiveProp(Some(height))
-  let heightStyle = isCollapsed ? None : resolveFlexBasis(height)
-  let boxStyle = Style.arrayOption([Some(styles["fullWidth"]), heightStyle, debugStyle, style])
-  let style = Style.arrayOption(
+  let style = Style.array([
+    debugStyle,
+    isCollapsed ? undefinedStyle : resolveFlexBasis(height),
+    unsafeStyle(style),
+  ])
+  let viewStyle = Style.array(
     isCollapsed
-      ? [Some(styles["fullWidth"]), Some(marginTop(. space))]
-      : [resolveFlexBasis(width), Some(styles["shrink"]), Some(marginLeft(. space))],
+      ? [styles["fullWidth"], marginTop(space)]
+      : [styles["shrink"], alignY, resolveFlexBasis(width), marginLeft(space)],
   )
 
-  <View style>
+  <View style={viewStyle}>
     <Box
       ?padding
       ?paddingX
@@ -141,7 +144,7 @@ let make = (
       ?onMouseOut
       ?onMouseUp
       ?viewRef
-      style=boxStyle>
+      style>
       children
     </Box>
   </View>

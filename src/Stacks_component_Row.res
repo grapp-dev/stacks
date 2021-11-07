@@ -3,8 +3,8 @@ open ReactNative
 open Stacks_component_Rows.Context
 
 open Stacks_hooks
-open Stacks_utils
 open Stacks_types
+open Stacks_styles
 
 module Box = Stacks_component_Box
 
@@ -77,12 +77,12 @@ let make = (
   let resolveResponsiveProp = useResponsiveProp()
   let width = resolveResponsiveProp(Some(width))
   let height = resolveResponsiveProp(Some(height))
-  let boxStyle = Style.arrayOption([resolveFlexBasis(width), debugStyle, style])
-  let style = Style.arrayOption([
+  let boxStyle = Style.array([resolveFlexBasis(width), debugStyle, unsafeStyle(style)])
+  let style = Style.array([
     resolveFlexBasis(height),
-    Some(styles["directionRow"]),
-    Some(styles["shrink"]),
-    Some(marginTop(. space)),
+    styles["directionRow"],
+    styles["shrink"],
+    marginTop(space),
   ])
 
   <View style>

@@ -1,5 +1,4 @@
-export type responsiveProp<T> = T | Readonly<[T, T]> | Readonly<[T, T, T]>
-export type normalizedProp<T> = Readonly<[T, T, T]>
+export type responsiveProp<T> = T | readonly T[]
 export type flex =
   | 'content'
   | 'fluid'

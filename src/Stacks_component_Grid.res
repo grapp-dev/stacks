@@ -51,11 +51,18 @@ let make = (~gutter=?, ~margin=?, ~columns=?, ~opacity=0.2) => {
   let {dimensions} = useStacks()
   let {multiply} = useSpacingHelpers()
   let resolveResponsiveProp = useResponsiveProp()
-  let resolveFloat = (prop, defaultValue) =>
-    Belt.Option.mapWithDefaultU(resolveResponsiveProp(prop), multiply(. defaultValue), multiply)
+  let resolveFloat = (prop, defaultValue) => {
+    open Belt.Option
+    resolveResponsiveProp(prop)
+    ->mapWithDefaultU(multiply(Some(defaultValue)), (. value) => multiply(value))
+    ->getWithDefault(0.)
+  }
   let gutter = resolveFloat(gutter, 2.)
   let margin = resolveFloat(margin, 2.)
-  let columns = Belt.Option.getWithDefault(wrap(resolveResponsiveProp, columns), 8)
+  let columns = Belt.Option.getWithDefault(
+    Stacks_externals.resolve(resolveResponsiveProp, columns),
+    8,
+  )
 
   let options = {
     gutter: gutter,

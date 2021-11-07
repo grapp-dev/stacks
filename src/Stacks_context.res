@@ -1,14 +1,12 @@
 open ReactNative
 
 open Stacks_types
+open Stacks_utils
 
 let context = React.createContext({
   debug: false,
   spacing: 4.,
-  breakpoints: {
-    tablet: 768.,
-    desktop: 992.,
-  },
+  breakpoints: makeBreakpoints([("mobile", 0.), ("tablet", 768.), ("desktop", 992.)]),
   dimensions: Dimensions.get(#window),
 })
 

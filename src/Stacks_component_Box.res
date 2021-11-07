@@ -3,6 +3,7 @@ open ReactNative
 open Stacks_types
 open Stacks_hooks
 open Stacks_utils
+open Stacks_styles
 
 @react.component @gentype
 let make = (
@@ -70,7 +71,7 @@ let make = (
   ~shouldRasterizeIOS=?,
   ~style=?,
   ~testID=?,
-  ~viewRef as ref=?,
+  ~viewRef=?,
   ~children=?,
   // React Native Web props
   ~onMouseDown=?,
@@ -85,29 +86,30 @@ let make = (
   let {multiply} = useSpacingHelpers()
   let debugStyle = useDebugStyle()
   let resolveResponsiveProp = values => {
-    let resolve = resolveResponsiveProp(dimensions.width, breakpoints)
+    let resolve = resolveResponsiveProp(~currentWidth=dimensions.width, ~breakpoints)
     resolve(values)
   }
-  let propToDp = value => Belt.Option.mapU(resolveResponsiveProp(value), multiply)
+  let resolve = (value, mapFn) =>
+    value |> resolveResponsiveProp |> multiply |> Belt.Option.getUnsafe |> mapFn
 
-  let padding = Belt.Option.mapU(propToDp(padding), Stacks_utils.padding)
-  let paddingX = Belt.Option.mapU(propToDp(paddingX), Stacks_utils.paddingX)
-  let paddingY = Belt.Option.mapU(propToDp(paddingY), Stacks_utils.paddingY)
-  let paddingTop = Belt.Option.mapU(propToDp(paddingTop), Stacks_utils.paddingTop)
-  let paddingBottom = Belt.Option.mapU(propToDp(paddingBottom), Stacks_utils.paddingBottom)
-  let paddingLeft = Belt.Option.mapU(propToDp(paddingLeft), Stacks_utils.paddingLeft)
-  let paddingRight = Belt.Option.mapU(propToDp(paddingRight), Stacks_utils.paddingRight)
-  let paddingEnd = Belt.Option.mapU(propToDp(paddingEnd), Stacks_utils.paddingEnd)
-  let paddingStart = Belt.Option.mapU(propToDp(paddingStart), Stacks_utils.paddingStart)
-  let margin = Belt.Option.mapU(propToDp(margin), Stacks_utils.margin)
-  let marginX = Belt.Option.mapU(propToDp(marginX), Stacks_utils.marginX)
-  let marginY = Belt.Option.mapU(propToDp(marginY), Stacks_utils.marginY)
-  let marginTop = Belt.Option.mapU(propToDp(marginTop), Stacks_utils.marginTop)
-  let marginBottom = Belt.Option.mapU(propToDp(marginBottom), Stacks_utils.marginBottom)
-  let marginLeft = Belt.Option.mapU(propToDp(marginLeft), Stacks_utils.marginLeft)
-  let marginRight = Belt.Option.mapU(propToDp(marginRight), Stacks_utils.marginRight)
-  let marginEnd = Belt.Option.mapU(propToDp(marginEnd), Stacks_utils.marginEnd)
-  let marginStart = Belt.Option.mapU(propToDp(marginStart), Stacks_utils.marginStart)
+  let padding = resolve(padding, Stacks_styles.padding)
+  let paddingX = resolve(paddingX, Stacks_styles.paddingX)
+  let paddingY = resolve(paddingY, Stacks_styles.paddingY)
+  let paddingTop = resolve(paddingTop, Stacks_styles.paddingTop)
+  let paddingBottom = resolve(paddingBottom, Stacks_styles.paddingBottom)
+  let paddingLeft = resolve(paddingLeft, Stacks_styles.paddingLeft)
+  let paddingRight = resolve(paddingRight, Stacks_styles.paddingRight)
+  let paddingEnd = resolve(paddingEnd, Stacks_styles.paddingEnd)
+  let paddingStart = resolve(paddingStart, Stacks_styles.paddingStart)
+  let margin = resolve(margin, Stacks_styles.margin)
+  let marginX = resolve(marginX, Stacks_styles.marginX)
+  let marginY = resolve(marginY, Stacks_styles.marginY)
+  let marginTop = resolve(marginTop, Stacks_styles.marginTop)
+  let marginBottom = resolve(marginBottom, Stacks_styles.marginBottom)
+  let marginLeft = resolve(marginLeft, Stacks_styles.marginLeft)
+  let marginRight = resolve(marginRight, Stacks_styles.marginRight)
+  let marginEnd = resolve(marginEnd, Stacks_styles.marginEnd)
+  let marginStart = resolve(marginStart, Stacks_styles.marginStart)
 
   let alignX = resolveResponsiveProp(alignX)
   let alignY = resolveResponsiveProp(alignY)
@@ -118,45 +120,45 @@ let make = (
 
   let style = {
     let (alignX, alignY) = {
-      let direction = direction->Belt.Option.getWithDefault(#column)
+      let direction = Belt.Option.getWithDefault(direction, #column)
 
       switch direction {
-      | #column | #columnReverse => (resolveAlignItems(alignX), resolveJustifyContent(alignY))
+      | #column
+      | #columnReverse => (resolveAlignItems(alignX), resolveJustifyContent(alignY))
       | _ => (resolveJustifyContent(alignX), resolveAlignItems(alignY))
       }
     }
 
-    Style.arrayOption(
-      keepStyles([
-        padding,
-        paddingX,
-        paddingY,
-        paddingTop,
-        paddingBottom,
-        paddingLeft,
-        paddingRight,
-        paddingEnd,
-        paddingStart,
-        margin,
-        marginX,
-        marginY,
-        marginTop,
-        marginBottom,
-        marginLeft,
-        marginRight,
-        marginEnd,
-        marginStart,
-        alignX,
-        alignY,
-        resolveDirection(direction),
-        resolveWrap(wrap),
-        resolveFlexBasis(flex),
-        resolveAlignSelf(alignSelf),
-        debugStyle,
-        style,
-      ]),
-    )
+    Style.array([
+      padding,
+      paddingX,
+      paddingY,
+      paddingTop,
+      paddingBottom,
+      paddingLeft,
+      paddingRight,
+      paddingEnd,
+      paddingStart,
+      margin,
+      marginX,
+      marginY,
+      marginTop,
+      marginBottom,
+      marginLeft,
+      marginRight,
+      marginEnd,
+      marginStart,
+      alignX,
+      alignY,
+      resolveDirection(direction),
+      resolveWrap(wrap),
+      resolveFlexBasis(flex),
+      resolveAlignSelf(alignSelf),
+      debugStyle,
+      unsafeStyle(style),
+    ])
   }
+  let ref = Belt.Option.getUnsafe(viewRef)
 
   <View
     ?accessibilityActions
@@ -203,7 +205,7 @@ let make = (
     ?onMouseOver
     ?onMouseOut
     ?onMouseUp
-    ?ref
+    ref
     style>
     {children->Belt.Option.getWithDefault(React.null)}
   </View>

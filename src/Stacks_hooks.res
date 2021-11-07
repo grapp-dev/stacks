@@ -3,6 +3,7 @@ open ReactNative
 open Stacks_types
 open Stacks_utils
 open Stacks_context
+open Stacks_styles
 
 @gentype
 let useWindowDimensions = () => {
@@ -35,8 +36,8 @@ let useSpacing = Belt.Option.mapWithDefaultU(_, 0., (. value) => {
 @gentype
 let useSpacingHelpers = () => {
   let {spacing} = useStacks()
-  let multiply = (. value) => spacing *. value
-  let divide = (. value) => value /. spacing
+  let multiply = Belt.Option.mapU(_, (. value) => spacing *. value)
+  let divide = Belt.Option.mapU(_, (. value) => value /. spacing)
 
   {multiply: multiply, divide: divide}
 }
@@ -44,25 +45,21 @@ let useSpacingHelpers = () => {
 @gentype
 let useCurrentBreakpoint = () => {
   let {breakpoints, dimensions} = useStacks()
-  let currentBreakpoint = resolveCurrentBreakpoint(dimensions.width, breakpoints)
-
-  currentBreakpoint
+  resolveCurrentBreakpoint(~currentWidth=dimensions.width, ~breakpoints)
 }
 
 @gentype
 let useDebugStyle = () => {
   let {debug} = useStacks()
-  let style = React.useRef(None)
+  let style = React.useRef(undefinedStyle)
 
-  style.current = debug ? Some(Style.viewStyle(~backgroundColor=randomColor(), ())) : None
+  style.current = debug ? Style.unsafeStyle({"backgroundColor": randomColor()}) : undefinedStyle
 
   style.current
 }
 
 @gentype
-let useResponsiveProp: unit => resolveResponsiveProp<'a> = () => {
+let useResponsiveProp = (): resolveResponsiveProp<'a> => {
   let {breakpoints, dimensions} = useStacks()
-  let resolveResponsiveProp = resolveResponsiveProp(dimensions.width, breakpoints)
-
-  resolveResponsiveProp
+  resolveResponsiveProp(~currentWidth=dimensions.width, ~breakpoints)
 }

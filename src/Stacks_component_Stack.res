@@ -3,6 +3,7 @@ open ReactNative
 open Stacks_hooks
 open Stacks_utils
 open Stacks_types
+open Stacks_styles
 
 module Box = Stacks_component_Box
 
@@ -84,19 +85,19 @@ let make = (
 ) => {
   let resolveResponsiveProp = useResponsiveProp()
   let space = useSpacing(resolveResponsiveProp(space))
-  let align = wrap(resolveResponsiveProp, align)
-  let horizontal = wrap(resolveResponsiveProp, horizontal)
+  let align = Stacks_externals.resolve(resolveResponsiveProp, align)
+  let horizontal = Stacks_externals.resolve(resolveResponsiveProp, horizontal)
   let direction = horizontal->Belt.Option.mapWithDefaultU(#column, (. value) => {
     value ? #row : #column
   })
   let isVertical = direction == #column
-  let width = isVertical ? Some(styles["fullWidth"]) : None
-  let marginFn = isVertical ? Stacks_utils.marginBottom : Stacks_utils.marginRight
+  let width = isVertical ? styles["fullWidth"] : undefinedStyle
+  let marginFn = isVertical ? Stacks_styles.marginBottom : Stacks_styles.marginRight
   let align = isVertical
-    ? resolveAlignItemsX(resolveAxisX(align))
-    : resolveJustifyContentY(resolveAxisY(align))
+    ? resolveAlignItemsX(Stacks_externals.resolveAxisX(align))
+    : resolveJustifyContentY(Stacks_externals.resolveAxisY(align))
   let debugStyle = useDebugStyle()
-  let style = Style.arrayOption([width, style])
+  let style = Style.array([width, unsafeStyle(style)])
   let children = {
     let xs = React.Children.toArray(children)
     Belt.Option.mapWithDefaultU(divider, xs, (. divider) => intersperse(divider, xs))
@@ -172,11 +173,11 @@ let make = (
     {Belt.Array.mapWithIndexU(children, (. index, child) => {
       <View
         key={string_of_int(index)}
-        style={Style.arrayOption([
+        style={Style.array([
           width,
           align,
           debugStyle,
-          isLast(index) ? None : Some(marginFn(. space)),
+          isLast(index) ? undefinedStyle : marginFn(space),
         ])}>
         child
       </View>

@@ -2,7 +2,7 @@ open ReactNative
 
 open Stacks_hooks
 open Stacks_utils
-open Stacks_types
+open Stacks_styles
 
 module Stack = Stacks_component_Stack
 
@@ -10,7 +10,7 @@ module Stack = Stacks_component_Stack
 let make = (
   // Tiles props
   ~columns,
-  ~space=[0.],
+  ~space,
   // Box props
   ~padding=?,
   ~paddingX=?,
@@ -81,15 +81,15 @@ let make = (
   ~onMouseUp=?,
 ) => {
   let resolveResponsiveProp = useResponsiveProp()
-  let columns = wrap(resolveResponsiveProp, Some(columns))
-  let tileSpace = useSpacing(resolveResponsiveProp(Some(space)))
+  let columns = Stacks_externals.resolve(resolveResponsiveProp, columns)
+  let tileSpace = useSpacing(resolveResponsiveProp(space))
   let debugStyle = useDebugStyle()
-  let rowStyle = Style.arrayOption([Some(styles["fullWidth"]), resolveDirection(Some(#row))])
+  let rowStyle = Style.array([styles["fullWidth"], resolveDirection(Some(#row))])
   let columns = Belt.Option.getWithDefault(columns, 1)
   let children = children |> React.Children.toArray |> splitEvery(columns)
 
   <Stack
-    space
+    ?space
     ?padding
     ?paddingX
     ?paddingY
@@ -161,10 +161,10 @@ let make = (
       let isLast = isLastElement(arr)
       let tiles = Belt.Array.mapWithIndexU(arr, (. index, child) => {
         let style = {
-          Style.arrayOption([
-            Some(styles["flexFluid"]),
-            isLast(index) ? None : Some(Stacks_utils.marginRight(. tileSpace)),
-            isValidElement(child) ? debugStyle : None,
+          Style.array([
+            styles["flexFluid"],
+            isLast(index) ? undefinedStyle : Stacks_styles.marginRight(tileSpace),
+            Stacks_externals.isValidElement(child) ? debugStyle : undefinedStyle,
           ])
         }
         <View key={string_of_int(index)} style> child </View>

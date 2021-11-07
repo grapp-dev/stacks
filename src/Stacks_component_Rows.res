@@ -2,14 +2,14 @@ open ReactNative
 
 open Stacks_types
 open Stacks_hooks
-open Stacks_utils
+open Stacks_styles
 
 module Box = Stacks_component_Box
 
 module Context = {
-  type t = {space: float, debugStyle: option<Style.t>}
+  type t = {space: float, debugStyle: Style.t}
 
-  let context = React.createContext({space: 0., debugStyle: None})
+  let context = React.createContext({space: 0., debugStyle: undefinedStyle})
   let useRows = () => React.useContext(context)
 
   module Provider = {
@@ -99,29 +99,29 @@ let make = (
   ~onMouseUp=?,
 ) => {
   let resolveResponsiveProp = useResponsiveProp()
-  let alignX = wrap(resolveResponsiveProp, alignX)
-  let alignY = wrap(resolveResponsiveProp, alignY)
+  let alignX = Stacks_externals.resolve(resolveResponsiveProp, alignX)
+  let alignY = Stacks_externals.resolve(resolveResponsiveProp, alignY)
   let space = useSpacing(resolveResponsiveProp(space))
 
   let debugStyle = useDebugStyle()
   let negativeSpace = -.space
-  let boxStyle = Style.arrayOption([
-    Some(styles["fullWidth"]),
-    Some(styles["flexFluid"]),
-    Some(styles["directionRow"]),
-    style,
+  let boxStyle = Style.array([
+    styles["fullWidth"],
+    styles["flexFluid"],
+    styles["directionRow"],
+    unsafeStyle(style),
   ])
   let containerStyle = {
     let direction = Belt.Option.mapWithDefaultU(reverse, #column, (. reverse) =>
       reverse ? #columnReverse : #column
     )
 
-    Style.arrayOption([
+    Style.array([
+      Stacks_styles.marginTop(negativeSpace),
       resolveAlignItemsX(alignX),
       resolveJustifyContentY(alignY),
       resolveDirection(Some(direction)),
-      Some(Stacks_utils.marginTop(. negativeSpace)),
-      Some(styles["flexFluid"]),
+      styles["flexFluid"],
     ])
   }
   let config: Context.t = {space: space, debugStyle: debugStyle}

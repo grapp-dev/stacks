@@ -1,8 +1,8 @@
 open ReactNative
 
 open Stacks_hooks
-open Stacks_utils
 open Stacks_types
+open Stacks_styles
 
 module Box = Stacks_component_Box
 
@@ -81,16 +81,16 @@ let make = (
   ~onMouseUp=?,
 ) => {
   let resolveResponsiveProp = useResponsiveProp()
-  let align = wrap(resolveResponsiveProp, align)
+  let align = Stacks_externals.resolve(resolveResponsiveProp, align)
   let space = useSpacing(resolveResponsiveProp(space))
   let negativeSpace = -.space
   let debugStyle = useDebugStyle()
-  let containerStyle = Style.arrayOption([
+  let containerStyle = Style.array([
     resolveWrap(Some(#wrap)),
     resolveDirection(Some(#row)),
     resolveJustifyContentX(align),
-    Some(Stacks_utils.marginTop(. negativeSpace)),
-    Some(Stacks_utils.marginRight(. negativeSpace)),
+    Stacks_styles.marginTop(negativeSpace),
+    Stacks_styles.marginRight(negativeSpace),
   ])
   let children = React.Children.toArray(children)
 
@@ -163,10 +163,10 @@ let make = (
       {Belt.Array.mapWithIndexU(children, (. index, child) => {
         <View
           key={string_of_int(index)}
-          style={Style.arrayOption([
+          style={Style.array([
             debugStyle,
-            Some(Stacks_utils.marginTop(. space)),
-            Some(Stacks_utils.marginRight(. space)),
+            Stacks_styles.marginTop(space),
+            Stacks_styles.marginRight(space),
           ])}>
           child
         </View>

@@ -3,13 +3,24 @@ open ReactNative
 open Stacks_types
 open Stacks_hooks
 open Stacks_utils
+open Stacks_styles
 
 module Box = Stacks_component_Box
 
 module Context = {
-  type t = {isCollapsed: bool, space: float, debugStyle: option<Style.t>}
+  type t = {
+    isCollapsed: bool,
+    space: float,
+    debugStyle: ReactNative.Style.t,
+    alignY: ReactNative.Style.t,
+  }
 
-  let context = React.createContext({isCollapsed: false, space: 0., debugStyle: None})
+  let context = React.createContext({
+    isCollapsed: false,
+    space: 0.,
+    debugStyle: undefinedStyle,
+    alignY: undefinedStyle,
+  })
   let useColumns = () => React.useContext(context)
 
   module Provider = {
@@ -101,8 +112,8 @@ let make = (
 ) => {
   let currentBreakpoint = useCurrentBreakpoint()
   let resolveResponsiveProp = useResponsiveProp()
-  let alignX = wrap(resolveResponsiveProp, alignX)
-  let alignY = wrap(resolveResponsiveProp, alignY)
+  let alignX = Stacks_externals.resolve(resolveResponsiveProp, alignX)
+  let alignY = Stacks_externals.resolve(resolveResponsiveProp, alignY)
   let space = useSpacing(resolveResponsiveProp(space))
 
   let debugStyle = useDebugStyle()
@@ -112,87 +123,94 @@ let make = (
     ~currentBreakpoint,
   )
   let negativeSpace = -.space
-  let boxStyle = Style.arrayOption([Some(styles["fullWidth"]), style])
-  let containerStyle = {
-    let arr = isCollapsed
-      ? [Some(styles["fullWidth"]), Some(Stacks_utils.marginTop(. negativeSpace))]
+  let viewStyle = Style.array([styles["fullWidth"]])
+  let style = Style.array(
+    isCollapsed
+      ? [styles["fullWidth"], Stacks_styles.marginTop(negativeSpace), unsafeStyle(style)]
       : [
+          Stacks_styles.marginLeft(negativeSpace),
+          resolveDirection(Some(direction)),
           resolveJustifyContentX(alignX),
-          resolveAlignItemsY(alignY),
-          Some(Stacks_utils.marginLeft(. negativeSpace)),
-        ]
+          unsafeStyle(style),
+        ],
+  )
 
-    Style.arrayOption(Belt.Array.concat(arr, [resolveDirection(Some(direction))]))
+  let config: Context.t = {
+    isCollapsed: isCollapsed,
+    space: space,
+    debugStyle: debugStyle,
+    alignY: resolveJustifyContentY(alignY),
   }
-  let config: Context.t = {isCollapsed: isCollapsed, space: space, debugStyle: debugStyle}
 
   <Context.Provider value={config}>
-    <Box
-      ?padding
-      ?paddingX
-      ?paddingY
-      ?paddingTop
-      ?paddingBottom
-      ?paddingLeft
-      ?paddingRight
-      ?paddingEnd
-      ?paddingStart
-      ?margin
-      ?marginX
-      ?marginY
-      ?marginTop
-      ?marginBottom
-      ?marginLeft
-      ?marginRight
-      ?marginEnd
-      ?marginStart
-      ?accessibilityActions
-      ?accessibilityElementsHidden
-      ?accessibilityHint
-      ?accessibilityIgnoresInvertColors
-      ?accessibilityLabel
-      ?accessibilityLiveRegion
-      ?accessibilityRole
-      ?accessibilityState
-      ?accessibilityValue
-      ?accessibilityViewIsModal
-      ?accessible
-      ?collapsable
-      ?hitSlop
-      ?importantForAccessibility
-      ?nativeID
-      ?needsOffscreenAlphaCompositing
-      ?onAccessibilityEscape
-      ?onAccessibilityTap
-      ?onLayout
-      ?onMagicTap
-      ?onMoveShouldSetResponder
-      ?onMoveShouldSetResponderCapture
-      ?onResponderEnd
-      ?onResponderGrant
-      ?onResponderMove
-      ?onResponderReject
-      ?onResponderRelease
-      ?onResponderStart
-      ?onResponderTerminate
-      ?onResponderTerminationRequest
-      ?onStartShouldSetResponder
-      ?onStartShouldSetResponderCapture
-      ?pointerEvents
-      ?removeClippedSubviews
-      ?renderToHardwareTextureAndroid
-      ?shouldRasterizeIOS
-      ?testID
-      ?onMouseDown
-      ?onMouseEnter
-      ?onMouseLeave
-      ?onMouseMove
-      ?onMouseOver
-      ?onMouseOut
-      ?onMouseUp
-      ?viewRef
-      style=boxStyle>
-      <View style=containerStyle> children </View>
-    </Box>
+    <View style={viewStyle}>
+      <Box
+        ?padding
+        ?paddingX
+        ?paddingY
+        ?paddingTop
+        ?paddingBottom
+        ?paddingLeft
+        ?paddingRight
+        ?paddingEnd
+        ?paddingStart
+        ?margin
+        ?marginX
+        ?marginY
+        ?marginTop
+        ?marginBottom
+        ?marginLeft
+        ?marginRight
+        ?marginEnd
+        ?marginStart
+        ?accessibilityActions
+        ?accessibilityElementsHidden
+        ?accessibilityHint
+        ?accessibilityIgnoresInvertColors
+        ?accessibilityLabel
+        ?accessibilityLiveRegion
+        ?accessibilityRole
+        ?accessibilityState
+        ?accessibilityValue
+        ?accessibilityViewIsModal
+        ?accessible
+        ?collapsable
+        ?hitSlop
+        ?importantForAccessibility
+        ?nativeID
+        ?needsOffscreenAlphaCompositing
+        ?onAccessibilityEscape
+        ?onAccessibilityTap
+        ?onLayout
+        ?onMagicTap
+        ?onMoveShouldSetResponder
+        ?onMoveShouldSetResponderCapture
+        ?onResponderEnd
+        ?onResponderGrant
+        ?onResponderMove
+        ?onResponderReject
+        ?onResponderRelease
+        ?onResponderStart
+        ?onResponderTerminate
+        ?onResponderTerminationRequest
+        ?onStartShouldSetResponder
+        ?onStartShouldSetResponderCapture
+        ?pointerEvents
+        ?removeClippedSubviews
+        ?renderToHardwareTextureAndroid
+        ?shouldRasterizeIOS
+        ?testID
+        ?onMouseDown
+        ?onMouseEnter
+        ?onMouseLeave
+        ?onMouseMove
+        ?onMouseOver
+        ?onMouseOut
+        ?onMouseUp
+        ?viewRef
+        style>
+        children
+      </Box>
+    </View>
   </Context.Provider>
 }

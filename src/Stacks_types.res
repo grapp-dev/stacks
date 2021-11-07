@@ -1,8 +1,8 @@
 @gentype
-type breakpoints = {
-  tablet: float,
-  desktop: float,
-}
+type breakpoint = (string, float)
+
+@gentype
+type breakpoints = array<breakpoint>
 
 @gentype
 type context = {
@@ -12,8 +12,6 @@ type context = {
   dimensions: ReactNative.Dimensions.displayMetrics,
 }
 
-@gentype
-type breakpoint = [#mobile | #tablet | #desktop]
 @gentype
 type stretch = [#stretch]
 @gentype
@@ -25,9 +23,9 @@ type space = [#between | #around | #evenly]
 @gentype
 type direction = [
   | #row
-  | @gentype.as("row-reverse") #rowReverse
+  | @as("row-reverse") #rowReverse
   | #column
-  | @gentype.as("column-reverse") #columnReverse
+  | @as("column-reverse") #columnReverse
 ]
 @gentype
 type wrap = [#wrap | #nowrap]
@@ -49,15 +47,9 @@ type flex = [
 
 @gentype.import("./Stacks_types")
 type responsiveProp<'a> = array<'a>
-@gentype.import("./Stacks_types")
-type normalizedProp<'a> = ('a, 'a, 'a)
 
 @gentype.import("./Stacks_types")
 type resolveResponsiveProp<'a> = option<responsiveProp<'a>> => option<'a>
-
-external wrap: 'a => resolveResponsiveProp<'b> = "%identity"
-external resolveAxisX: 'a => option<axisX> = "%identity"
-external resolveAxisY: 'a => option<axisY> = "%identity"
 
 @gentype
 type collapsibleProps = {
@@ -67,16 +59,16 @@ type collapsibleProps = {
 
 @gentype
 type spacingHelpers = {
-  multiply: (. float) => float,
-  divide: (. float) => float,
+  multiply: option<float> => option<float>,
+  divide: option<float> => option<float>,
 }
 
 @gentype
 type pointerEvents = [
   | #auto
   | #none
-  | @gentype.as("box-none") #boxNone
-  | @gentype.as("box-only") #boxOnly
+  | @as("box-none") #boxNone
+  | @as("box-only") #boxOnly
 ]
 
 @gentype
@@ -84,5 +76,5 @@ type importantForAccessibility = [
   | #auto
   | #yes
   | #no
-  | @gentype.as("no-hide-descendants") #noHideDescendants
+  | @as("no-hide-descendants") #noHideDescendants
 ]
