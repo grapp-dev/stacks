@@ -9,6 +9,9 @@ exports.rewriteProps = (j, source) => {
     .forEach(p => {
       const root = j(p.value)
       const props = []
+      const space = {
+        current: false
+      }
 
       root
         .find(j.IfStatement)
@@ -16,7 +19,11 @@ exports.rewriteProps = (j, source) => {
           return p.value.test.operator === '!==' && p.value.test.right.name === 'undefined'
         })
         .forEach(p => {
-          props.push(p.value.test.left.name)
+          space.current = space.current || p.value.test.left.name === 'space'
+
+          if (p.value.test.left.name !== 'space') {
+            props.push(p.value.test.left.name)
+          }
         })
         .remove()
 
@@ -39,7 +46,8 @@ exports.rewriteProps = (j, source) => {
           return p.get('init')
         })
         .replaceWith(p => {
-          const componentProps = props.map(propName => {
+          const xs = space.current ? ['space', ...props] : props
+          const componentProps = xs.map(propName => {
             return j.objectProperty(
               j.stringLiteral(propName),
               j.memberExpression(j.identifier('Props'), j.identifier(propName)),
