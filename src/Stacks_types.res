@@ -57,7 +57,7 @@ type collapsibleProps = {
   isCollapsed: bool,
 }
 
-@gentype
+@gentype.import("./Stacks_types")
 type spacingHelpers = {
   multiply: option<float> => option<float>,
   divide: option<float> => option<float>,

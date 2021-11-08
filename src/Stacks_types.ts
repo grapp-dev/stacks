@@ -14,3 +14,16 @@ export type flex =
 export type resolveResponsiveProp<T = unknown> = <X>(
   arg0: null | undefined | responsiveProp<X>,
 ) => X | undefined
+
+type multiply = {
+  (value: number): number
+  (value: number | undefined | null): number | undefined | null
+}
+type divide = {
+  (value: number): number
+  (value: number | undefined | null): number | undefined | null
+}
+export type spacingHelpers = {
+  readonly multiply: multiply
+  readonly divide: divide
+}
