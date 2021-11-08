@@ -1,3 +1,7 @@
+### `v1.4.1`
+
+- fixed React Native components shims/types
+
 ### `v1.4.0`
 
 - added support for defining more than 3 breakpoints
