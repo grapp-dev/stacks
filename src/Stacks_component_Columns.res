@@ -40,7 +40,7 @@ let make = (
   ~reverse=?,
   ~alignX: option<responsiveProp<[axisX | space]>>=?,
   ~alignY: option<responsiveProp<axisY>>=?,
-  ~collapseBelow: option<[#tablet | #desktop]>=?,
+  ~collapseBelow: option<string>=?,
   // Box props
   ~padding=?,
   ~paddingX=?,
@@ -110,6 +110,7 @@ let make = (
   ~onMouseOut=?,
   ~onMouseUp=?,
 ) => {
+  let {breakpoints} = useStacks()
   let currentBreakpoint = useCurrentBreakpoint()
   let resolveResponsiveProp = useResponsiveProp()
   let alignX = Stacks_externals.resolve(resolveResponsiveProp, alignX)
@@ -123,6 +124,7 @@ let make = (
     ~collapseBelow,
     ~reverse,
     ~currentBreakpoint,
+    ~breakpoints,
   )
   let negativeSpace = -.space
   let style = Style.array([styles["fullWidth"], alignY, unsafeStyle(style)])

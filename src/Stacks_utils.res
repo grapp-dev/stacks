@@ -117,28 +117,55 @@ let resolveResponsiveProp = (
   })
 }
 
-let isBreakpointBelow = (breakpoint, below) => {
-  // let isBelow =
-  //   below->Belt.Option.mapWithDefaultU(false, (. below) =>
-  //     (below == #tablet && breakpoint == #mobile) || (below == #desktop && breakpoint != #desktop)
-  //   )
+let compareBreakpoints = (
+  mapFn,
+  ~currentBreakpoint: string,
+  ~breakpoints: breakpoints,
+  ~boundBreakpoint: option<string>,
+) => {
+  open Belt.Option
 
-  // isBelow
-  false
+  boundBreakpoint
+  ->flatMapU((. boundBreakpoint) =>
+    breakpoints
+    ->Belt.Array.getIndexByU((. breakpoint) => {
+      let (name, _) = breakpoint
+      currentBreakpoint == name
+    })
+    ->mapU((. currentBreakpointIndex) => (boundBreakpoint, currentBreakpointIndex))
+  )
+  ->flatMapU((. tuple) => {
+    let (boundBreakpoint, currentBreakpointIndex) = tuple
+
+    breakpoints
+    ->Belt.Array.getIndexByU((. breakpoint) => {
+      let (name, _) = breakpoint
+      boundBreakpoint == name
+    })
+    ->mapU((. breakpointIndex) => mapFn(. currentBreakpointIndex, breakpointIndex))
+  })
+  ->getWithDefault(false)
 }
 
-let isBreakpointAbove = (breakpoint, above) => {
-  // let isAbove =
-  //   above->Belt.Option.mapWithDefaultU(false, (. above) =>
-  //     (above == #tablet && breakpoint == #desktop) || (above == #mobile && breakpoint != #mobile)
-  //   )
+let isBreakpointBelow = compareBreakpoints((. currentBreakpointIndex, breakpointIndex) =>
+  currentBreakpointIndex > breakpointIndex
+)
 
-  // isAbove
-  false
-}
+let isBreakpointAbove = compareBreakpoints((. currentBreakpointIndex, breakpointIndex) =>
+  currentBreakpointIndex < breakpointIndex
+)
 
-let resolveCollapsibleProps = (~collapseBelow, ~reverse, ~currentBreakpoint): collapsibleProps => {
-  let isCollapsed = isBreakpointBelow(currentBreakpoint, collapseBelow)
+let resolveCollapsibleProps = (
+  ~collapseBelow,
+  ~reverse,
+  ~currentBreakpoint,
+  ~breakpoints,
+): collapsibleProps => {
+  let isCollapsed = isBreakpointBelow(
+    ~currentBreakpoint,
+    ~boundBreakpoint=collapseBelow,
+    ~breakpoints,
+  )
   let reverse = reverse->Belt.Option.getWithDefault(false)
   let direction = switch (reverse, isCollapsed) {
   | (true, true) => #columnReverse
@@ -151,7 +178,8 @@ let resolveCollapsibleProps = (~collapseBelow, ~reverse, ~currentBreakpoint): co
 }
 
 let makeBreakpoints = (breakpoints: breakpoints): breakpoints => {
-  Belt.SortArray.stableSortByU(breakpoints, (. a, b) => {
+  let breakpoints = Js.Array2.copy(breakpoints)
+  Js.Array2.sortInPlaceWith(breakpoints, (a, b) => {
     let (_, fst) = a
     let (_, snd) = b
     int_of_float(snd -. fst)
