@@ -10,6 +10,7 @@ import {
   FillView,
   Rows,
   Row,
+  Hidden,
   reset,
 } from '@mobily/stacks'
 
@@ -31,6 +32,12 @@ export const Playground = () => {
 
   return (
     <ScrollView>
+      <Hidden below="tablet">
+        <Text>tablet visible</Text>
+      </Hidden>
+      <Hidden above="mobile">
+        <Text>mobile visible</Text>
+      </Hidden>
       <Item viewRef={viewRef} padding={2} onLayout={handleLayoutChange}>
         <Text>Styled component</Text>
       </Item>
