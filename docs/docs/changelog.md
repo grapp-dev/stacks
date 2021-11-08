@@ -3,6 +3,11 @@ id: changelog
 title: Changelog
 ---
 
+### `v1.4.0`
+
+- added support for defining more than 3 breakpoints
+- fixed `Columns` alignment on the `y` axis
+
 ### `v1.3.1`
 
 - fixed columns width calculations in the `Grid` component
