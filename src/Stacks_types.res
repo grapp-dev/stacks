@@ -23,9 +23,9 @@ type space = [#between | #around | #evenly]
 @gentype
 type direction = [
   | #row
-  | @as("row-reverse") #rowReverse
+  | @gentype.as("row-reverse") #rowReverse
   | #column
-  | @as("column-reverse") #columnReverse
+  | @gentype.as("column-reverse") #columnReverse
 ]
 @gentype
 type wrap = [#wrap | #nowrap]
@@ -67,8 +67,8 @@ type spacingHelpers = {
 type pointerEvents = [
   | #auto
   | #none
-  | @as("box-none") #boxNone
-  | @as("box-only") #boxOnly
+  | @gentype.as("box-none") #boxNone
+  | @gentype.as("box-only") #boxOnly
 ]
 
 @gentype
@@ -76,5 +76,5 @@ type importantForAccessibility = [
   | #auto
   | #yes
   | #no
-  | @as("no-hide-descendants") #noHideDescendants
+  | @gentype.as("no-hide-descendants") #noHideDescendants
 ]
