@@ -130,9 +130,9 @@ const Profile = () => {
 }
 ```
 
-## Api Reference
+## Documentation
 
-Full documentation is available [here](https://mobily.github.io/stacks).
+Full documentation can be found [here](https://mobily.github.io/stacks).
 
 
 ## Support
