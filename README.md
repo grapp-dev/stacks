@@ -2,6 +2,10 @@
 
 > Build React Native layouts quickly with ease and fun.
 
+## Documentation
+
+Full documentation can be found [here](https://mobily.github.io/stacks).
+
 ## Motivation
 
 [Max Stoiber](https://github.com/mxstbr) has written an interesting [article](https://mxstbr.com/thoughts/margin) about why margin is considered harmful. There are three main disadvantages of using margin:
@@ -129,17 +133,6 @@ const Profile = () => {
   )
 }
 ```
-
-## Documentation
-
-Full documentation can be found [here](https://mobily.github.io/stacks).
-
-
-## Support
-
-If you enjoy using `Stacks` in either personal or commercial (eg. for your company) project, please consider buying me a coffee by using the button below, thank you! ❤️
-
-<a href="https://www.buymeacoffee.com/utSC0k7"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=utSC0k7&button_colour=FFDD00&font_colour=000000&font_family=Lato&outline_colour=000000&coffee_colour=ffffff"></a>
 
 ## Contributors
 
