@@ -43,37 +43,7 @@ or with `npm`
 npm install @mobily/stacks --save
 ```
 
-### ReScript
-
-`Stacks` depends on the following libraries, which you also have to install:
-- `rescript-react-native`
-- `@rescript-react`
-- `wonka`
-
-```shell
-yarn add @rescript/react rescript-react-native wonka
-```
-
-or with `npm`
-
-```shell
-npm install @rescript/react rescript-react-native wonka --save
-```
-
-Once all dependencies are installed, add them to `bs-dependencies` in your `bsconfig.json`:
-
-```json
-{
-  "bs-dependencies": [
-    "@mobily/stacks",
-    "@rescript/react",
-    "rescript-react-native",
-    "wonka"
-  ]
-}
-```
-
-## Example
+### Example
 
 The following example shows how simple it is building screens without using neither _margin_ nor _padding_ properties in your style sheets objects. For debugging purposes, you may want to turn the debug mode on (pass the `debug` property to the provider) or use the customizable Grid component.
 
