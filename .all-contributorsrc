@@ -1,0 +1,52 @@
+{
+  "projectName": "stacks",
+  "projectOwner": "mobily",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "mobily",
+      "name": "Marcin Dziewulski",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1467712?v=4",
+      "profile": "https://twitter.com/__marcin_",
+      "contributions": [
+        "code",
+        "doc",
+        "design"
+      ]
+    },
+    {
+      "login": "panr",
+      "name": "Radek Kozieł",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1303365?v=4",
+      "profile": "https://github.com/panr",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "cem2ran",
+      "name": "Cem Turan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/959142?v=4",
+      "profile": "https://ce.ms/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "hosmelq",
+      "name": "Hosmel Quintana",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1166143?v=4",
+      "profile": "http://hosmelq.com/",
+      "contributions": [
+        "doc"
+      ]
+    }
+  ],
+  "commitConvention": "none"
+}

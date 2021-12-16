@@ -1,6 +1,32 @@
-# ⚡ Stacks &middot; [![Build Status](https://img.shields.io/travis/com/mobily/stacks.svg?style=flat-square&logo=travis)](https://travis-ci.com/mobily/stacks) [![Coverage](https://img.shields.io/coveralls/github/mobily/stacks.svg?style=flat-square&logo=coveralls)](https://coveralls.io/github/mobily/stacks?branch=master) [![npm](https://img.shields.io/npm/v/@mobily/stacks.svg?style=flat-square&logo=npm)](https://www.npmjs.com/package/@mobily/stacks)  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/mobily/stacks/blob/master/LICENSE)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mobily/stacks/master/assets/stacks-frame.png" width="480">
+</p>
 
-> Build React Native layouts quickly with ease and fun.
+<p align="center">
+  <a href="https://travis-ci.com/mobily/stacks">
+    <img src="https://img.shields.io/travis/com/mobily/stacks.svg?style=flat-square&logo=travis" alt="Build Status">
+  </a>
+  <a href="https://coveralls.io/github/mobily/stacks?branch=master">
+    <img src="https://img.shields.io/coveralls/github/mobily/stacks.svg?style=flat-square&amp;logo=coveralls" alt="Coverage">
+  </a>
+  <a href="https://www.npmjs.com/package/@mobily/stacks">
+    <img src="https://img.shields.io/npm/v/@mobily/stacks.svg?style=flat-square&amp;logo=npm" alt="npm">
+  </a>
+  <a href="http://makeapullrequest.com">
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome">
+  </a>
+  <a href="#contributors">
+    <img src="https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square" alt="All Contributors">
+  </a>
+  <a href="https://github.com/mobily/stacks/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="GitHub license">
+  </a>
+</p>
+
+<p align="center">
+  <strong>Build React Native layouts quickly with ease and fun.</strong>
+</p>
+
 
 ## Documentation
 
@@ -109,8 +135,19 @@ const Profile = () => {
 Kudos to [@panr](https://github.com/panr) for giving this project a name!
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore -->
-<table><tr><td align="center"><a href="https://twitter.com/__marcin_"><img src="https://avatars1.githubusercontent.com/u/1467712?v=4" width="100px;" alt="Marcin Dziewulski"/><br /><sub><b>Marcin Dziewulski</b></sub></a><br /><a href="https://github.com/mobily/stacks/commits?author=mobily" title="Code">💻</a> <a href="https://github.com/mobily/stacks/commits?author=mobily" title="Documentation">📖</a></td></tr></table>
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://twitter.com/__marcin_"><img src="https://avatars1.githubusercontent.com/u/1467712?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Marcin Dziewulski</b></sub></a><br /><a href="https://github.com/mobily/stacks/commits?author=mobily" title="Code">💻</a> <a href="https://github.com/mobily/stacks/commits?author=mobily" title="Documentation">📖</a> <a href="#design-mobily" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/panr"><img src="https://avatars.githubusercontent.com/u/1303365?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Radek Kozieł</b></sub></a><br /><a href="#ideas-panr" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://ce.ms/"><img src="https://avatars.githubusercontent.com/u/959142?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Cem Turan</b></sub></a><br /><a href="https://github.com/mobily/stacks/commits?author=cem2ran" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://hosmelq.com/"><img src="https://avatars.githubusercontent.com/u/1166143?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hosmel Quintana</b></sub></a><br /><a href="https://github.com/mobily/stacks/commits?author=hosmelq" title="Documentation">📖</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
