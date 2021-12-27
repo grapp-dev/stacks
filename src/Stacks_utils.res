@@ -33,41 +33,31 @@ let drop = (i, xs) => {
   Belt.Array.sliceToEnd(xs, start)
 }
 
-let rec splitEvery = (size, xs) => {
-  size < 1
-    ? [xs]
-    : length(xs) <= size
-    ? [xs]
-    : xs |> drop(size) |> splitEvery(size) |> Belt.Array.concat([xs |> take(size)])
-}
-
-let tail = xs => {
-  let l = length(xs)
-
-  if l == 0 {
-    None
-  } else if l == 1 {
-    Some([])
+let splitEvery = (xs, size) => {
+  if size < 1 || length(xs) <= size {
+    [xs]
   } else {
-    let ys = Belt.Array.sliceToEnd(xs, 1)
-    length(ys) > 0 ? Some(ys) : None
+    let offset = ref(0)
+    let arr = []
+
+    while offset.contents < length(xs) {
+      let len = offset.contents + size
+      Js.Array2.push(arr, Belt.Array.slice(xs, ~offset=offset.contents, ~len=size))->ignore
+      offset := len
+    }
+
+    arr
   }
 }
 
-let tailOrEmpty = xs => {
-  Belt.Option.getWithDefault(tail(xs), [])
-}
-
-let prependToAll = (delimiter, xs) => {
-  Belt.Array.reduceU(xs, [], (. acc, value) => Belt.Array.concat([delimiter, value], acc))
-}
-
-let intersperse = (delimiter, xs) => {
-  switch Belt.Array.get(xs, 0) {
-  | None => []
-  | Some(value) => Belt.Array.concat([value], prependToAll(delimiter, tailOrEmpty(xs)))
-  }
-}
+let intersperse = (xs, delimiter) =>
+  Belt.Array.reduceWithIndexU(xs, [], (. acc, value, index) => {
+    switch index {
+    | x if xs->length->pred == x => Js.Array2.push(acc, value)
+    | _ => Js.Array2.pushMany(acc, [value, delimiter])
+    }->ignore
+    acc
+  })
 
 let dimensionsSource = {
   open Wonka

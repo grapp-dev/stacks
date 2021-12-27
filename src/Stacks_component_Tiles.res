@@ -86,7 +86,7 @@ let make = (
   let debugStyle = useDebugStyle()
   let rowStyle = Style.array([styles["fullWidth"], resolveDirection(Some(#row))])
   let columns = Belt.Option.getWithDefault(columns, 1)
-  let children = children |> React.Children.toArray |> splitEvery(columns)
+  let children = children->React.Children.toArray->splitEvery(columns)
 
   <Stack
     ?space

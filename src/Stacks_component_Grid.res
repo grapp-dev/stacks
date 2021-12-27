@@ -52,10 +52,9 @@ let make = (~gutter=?, ~margin=?, ~columns=?, ~opacity=0.2) => {
   let {multiply} = useSpacingHelpers()
   let resolveResponsiveProp = useResponsiveProp()
   let resolveFloat = (prop, defaultValue) => {
-    open Belt.Option
     resolveResponsiveProp(prop)
-    ->mapWithDefaultU(multiply(Some(defaultValue)), (. value) => multiply(value))
-    ->getWithDefault(0.)
+    ->Belt.Option.mapWithDefaultU(multiply(Some(defaultValue)), (. value) => multiply(value))
+    ->Belt.Option.getWithDefault(0.)
   }
   let gutter = resolveFloat(gutter, 2.)
   let margin = resolveFloat(margin, 2.)
@@ -106,7 +105,13 @@ let make = (~gutter=?, ~margin=?, ~columns=?, ~opacity=0.2) => {
     {gridWidth != dimensions.width
       ? <View style={styles["warning"]}>
           <Text style={styles["text"]}>
-            {`Calculated grid width (${gridWidth |> Js.Float.toString}) is different than window width (${dimensions.width |> Js.Float.toString}). Adjust the grid options.` |> React.string}
+            {React.string(
+              `Calculated grid width (${Js.Float.toString(
+                  gridWidth,
+                )}) is different than window width (${Js.Float.toString(
+                  dimensions.width,
+                )}). Adjust the grid options.`,
+            )}
           </Text>
         </View>
       : React.null}

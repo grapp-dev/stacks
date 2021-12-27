@@ -100,7 +100,7 @@ let make = (
   let style = Style.array([width, unsafeStyle(style)])
   let children = {
     let xs = React.Children.toArray(children)
-    Belt.Option.mapWithDefaultU(divider, xs, (. divider) => intersperse(divider, xs))
+    Belt.Option.mapWithDefaultU(divider, xs, (. divider) => intersperse(xs, divider))
   }
   let isLast = isLastElement(children)
 
