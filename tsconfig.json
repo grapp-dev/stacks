@@ -4,22 +4,25 @@
     "emitDeclarationOnly": true,
     "rootDir": "./src",
     "baseUrl": ".",
-    "outDir": "dist/types/src",
     "lib": ["esnext"],
-    "jsx": "react",
     "declaration": true,
+    "jsx": "react",
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "esnext",
     "strict": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noUnusedParameters": false,
     "sourceMap": false,
     "pretty": true,
     "skipLibCheck": true
   },
+  "include": [
+    "./src/**/index.ts"
+  ],
   "exclude": [
-    "./example/**/*",
-    "./__tests__/**/*"
+    "./src/**/*.gen.tsx",
+    "./__tests__/**/*",
+    "./example/**/*"
   ]
 }
