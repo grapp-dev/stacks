@@ -3,32 +3,26 @@ id: use-stacks
 title: useStacks
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import { defaultTabsProps } from '../../core/components';
+`useStacks` returns the `Stacks` context object.
 
-It returns the `Stacks` context object.
+### TypeScript
 
-<Tabs {...defaultTabsProps}>
-<TabItem value="typescript">
+```typescript
+type Breakpoint = [string, number]
 
-```tsx
-declare type Breakpoint = [string, number]
-
-declare type Context = {
+type Context = {
   readonly debug: boolean
   readonly spacing: number
   readonly breakpoints: readonly Breakpoint[]
   readonly dimensions: ReactNative.ScaledSize
-};
+}
 
-declare const useStacks: () => Context
+const useStacks: () => Context
 ```
 
-</TabItem>
-<TabItem value="rescript">
+### ReScript
 
-```res
+```typescript
 type breakpoint = (string, number)
 type breakpoints = array<breakpoint>
 
@@ -42,10 +36,7 @@ type context = {
 let useStacks: unit => context
 ```
 
-</TabItem>
-</Tabs>
-
-## Example
+### Example
 
 ```jsx live
 function() {

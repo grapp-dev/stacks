@@ -53,7 +53,7 @@ export const Props = props => {
 
     return (
       <Fragment key={name}>
-        <h3>
+        <h4>
           <a
             aria-hidden="true"
             tabIndex="-1"
@@ -61,10 +61,8 @@ export const Props = props => {
             id={name.toLowerCase()}
           />
           <code>{name}</code>
-          <a className="hash-link" href={`#${name.toLowerCase()}`} title="Direct link to heading">
-            #
-          </a>
-        </h3>
+          <a className="hash-link" href={`#${name.toLowerCase()}`} title="Direct link to heading" />
+        </h4>
         <ul>
           <li>
             type:

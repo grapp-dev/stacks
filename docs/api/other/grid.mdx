@@ -1,0 +1,67 @@
+---
+id: grid
+title: Grid
+---
+
+import { Props } from '../../core/components';
+
+`Grid` renders a design system grid. Use it only once, at the top of your react tree.
+
+<!-- ## Example
+
+```jsx live
+function() {
+  const styles = StyleSheet.create({
+    icon: {
+      width: 64,
+      height: 64,
+      backgroundColor: '#6100FF',
+      borderRadius: 32,
+    }
+  })
+  const IconButton = () => {
+    return (
+      <Box style={styles.icon} padding={2} alignX="center" alignY="center">
+
+      </Box>
+    )
+  }
+
+  return (
+    <Device>
+      <Grid />
+    </Device>
+  )
+}
+``` -->
+
+## Props
+
+<Props
+  data={[
+    {
+      name: 'columns',
+      type: 'responsiveProp<int>',
+      required: false,
+      defaultValue: '8',
+    },
+    {
+      name: 'margin',
+      type: 'responsiveProp<float>',
+      required: false,
+      defaultValue: '2',
+    },
+    {
+      name: 'gutter',
+      type: 'responsiveProp<float>',
+      required: false,
+      defaultValue: '2',
+    },
+    {
+      name: 'opacity',
+      type: 'float',
+      required: false,
+      defaultValue: '0.2',
+    },
+  ]}
+/>

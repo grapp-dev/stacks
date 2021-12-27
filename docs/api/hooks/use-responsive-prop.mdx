@@ -3,21 +3,15 @@ id: use-responsive-prop
 title: useResponsiveProp
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import { defaultTabsProps } from '../../core/components';
+`useResponsiveProp` returns a function that takes the `responsive props` format as a first argument. It's useful if you want to resolve responsive props in your components.
 
-It returns a function that takes the `responsive props` format as a first argument. It's useful if you want to resolve responsive props in your components.
+### TypeScript
 
-<Tabs {...defaultTabsProps}>
-<TabItem value="typescript">
-
-```tsx
-declare const useResponsiveProp: <T>(value: ResponsiveProp<T> | null | undefined) => T | undefined;
+```typescript
+const useResponsiveProp: <T>(value: ResponsiveProp<T> | null | undefined) => T | undefined;
 ```
 
-</TabItem>
-<TabItem value="rescript">
+### ReScript
 
 ```res
 type resolveResponsiveProp<'a> = option<responsiveProp<'a>> => option<'a>
@@ -25,10 +19,7 @@ type resolveResponsiveProp<'a> = option<responsiveProp<'a>> => option<'a>
 let useResponsiveProp: unit => resolveResponsiveProp<'a>
 ```
 
-</TabItem>
-</Tabs>
-
-## Example
+### Example
 
 ```jsx live
 function() {

@@ -1,0 +1,30 @@
+---
+id: use-window-dimensions
+title: useWindowDimensions
+---
+
+`useWindowDimensions` automatically updates width and height values when screen size changes.
+
+### TypeScript
+
+```typescript
+const useWindowDimensions: () => ReactNative.ScaledSize
+```
+
+### ReScript
+
+```typescript
+let useWindowDimensions: unit => ReactNative.Dimensions.displayMetrics
+```
+
+### Example
+
+```jsx live
+function() {
+  const dimensions = useWindowDimensions()
+
+  return (
+    <Text>{JSON.stringify(dimensions)}</Text>
+  )
+}
+```

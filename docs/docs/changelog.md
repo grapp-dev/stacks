@@ -5,63 +5,63 @@ title: Changelog
 
 ### `v1.4.1`
 
-- fixed React Native components shims/types
+- 🐛 fixed React Native components shims/types
 
 ### `v1.4.0`
 
-- added support for defining more than 3 breakpoints
-- fixed `Columns` alignment on the `y` axis
+- ✨ added support for defining more than 3 breakpoints
+- 🐛 fixed `Columns` alignment on the `y` axis
 
 ### `v1.3.1`
 
-- fixed columns width calculations in the `Grid` component
+- 🐛 fixed columns width calculations in the `Grid` component
 
 ### `v1.3.0`
 
-- added the `viewRef` prop to all components
-- added the `divider` prop to `Stack`
+- ✨ added the `viewRef` prop to all components
+- ✨ added the `divider` prop to `Stack`
 
 ### `v1.2.1`
 
-- fixed passing the `style` prop to the `Rows` and `Columns` root component
+- 🐛 fixed passing the `style` prop to the `Rows` and `Columns` root component
 
 ### `v1.2.0`
 
-- added two new components: `Rows` and `Row`
+- ✨ added two new components: `Rows` and `Row`
 
 ### `v1.1.8`
 
-- fixed ESM support (round 3️⃣)
-- removed redundant `undefined` values in the styles array
+- 🐛 fixed ESM support (round 3️⃣)
+- 🔥 removed redundant `undefined` values in the styles array
 
 ### `v1.1.7`
 
-- added the `height` prop to `Column`
+- ✨ added the `height` prop to `Column`
 
 ### `v1.1.6`
 
-- fixed bundling `Stacks` in ReScript projects
+- 🐛 fixed bundling `Stacks` in ReScript projects
 
 ### `v1.1.5`
 
-- fixed ESM support (round 2️⃣)
+- 🐛 fixed ESM support (round 2️⃣)
 
 ### `v1.1.4`
 
-- fixed ESM support
+- 🐛 fixed ESM support
 
 ### `v1.1.3`
 
-- fixed `Stack` default width value
-- fixed passing the `style` prop to the inner `Columns` component
+- 🐛 fixed the `Stack` default width value
+- 🐛 fixed passing the `style` prop to the inner `Columns` component
 
 ### `v1.1.2`
 
-- fixed `Stack` inner elements alignment when `horizontal` is `true`
+- 🐛 fixed `Stack` inner elements alignment when `horizontal` is `true`
 
 ### `v1.1.1`
 
-- fixed hooks implementation (`useResponsiveProp`, `useCurrentBreakpoint`)
+- 🐛 fixed hooks implementation (`useResponsiveProp`, `useCurrentBreakpoint`)
 
 ### `v1.1.0`
 

@@ -7,13 +7,9 @@ import { Props, BoxProps } from '../../core/components';
 
 `Rows` (and `Row`) lays out content vertically. The main difference between `Rows` and `Stack` is that `Rows` has the full height of its container.
 
-:::note
+`Rows` accepts all [`View`](https://reactnative.dev/docs/view) props.
 
-`Rows` component accepts [`View`](https://reactnative.dev/docs/view) props.
-
-:::
-
-## Examples
+### Examples
 
 Set spacing between rows and lay out content vertically.
 
@@ -76,13 +72,13 @@ function() {
       <PlaceholderView height={300}>
         <Rows space={1} alignX="center">
           <Row width="content">
-            <FluidPlaceholder width={180} />
-          </Row>
-          <Row width="content">
             <FluidPlaceholder width={240} />
           </Row>
           <Row width="content">
-            <FluidPlaceholder width={140} />
+            <FluidPlaceholder width={300} />
+          </Row>
+          <Row width="content">
+            <FluidPlaceholder width={240} />
           </Row>
         </Rows>
       </PlaceholderView>
@@ -115,7 +111,7 @@ function() {
 }
 ```
 
-## Props
+### Props
 
 <Props
   data={[
@@ -142,6 +138,6 @@ function() {
   ]}
 />
 
-## Box Props
+### Box Props
 
 <BoxProps />

@@ -7,13 +7,9 @@ import { Props, BoxProps } from '../../core/components';
 
 `Stack` distributes white space evenly between components (vertically or horizontally if you set the `horizontal` prop to `true`).
 
-:::note
+`Stack` accepts all [`View`](https://reactnative.dev/docs/view) props.
 
-`Stack` component accepts [`View`](https://reactnative.dev/docs/view) props.
-
-:::
-
-## Examples
+### Examples
 
 Set spacing between elements stacked vertically.
 
@@ -60,9 +56,9 @@ function() {
   return (
     <StacksProvider>
       <Stack space={1} align="center">
-        <Placeholder width={250} />
-        <Placeholder width={180} />
-        <Placeholder width={200} />
+        <Placeholder width={240} />
+        <Placeholder width={300} />
+        <Placeholder width={240} />
       </Stack>
     </StacksProvider>
   )
@@ -76,9 +72,9 @@ function() {
   return (
     <StacksProvider>
       <Stack space={1} horizontal={true} align="center">
-        <Placeholder width={100} height={100} />
         <Placeholder width={100} height={140} />
-        <Placeholder width={100} height={80} />
+        <Placeholder width={100} height={200} />
+        <Placeholder width={100} height={140} />
       </Stack>
     </StacksProvider>
   )
@@ -101,7 +97,7 @@ function() {
 }
 ```
 
-## Props
+### Props
 
 <Props
   data={[
@@ -128,6 +124,6 @@ function() {
   ]}
 />
 
-## Box Props
+### Box Props
 
 <BoxProps />

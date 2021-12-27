@@ -7,24 +7,22 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import { defaultTabsProps } from '../../core/components';
 
-It returns two functions: `multiply` and `divide` allowing you to either multiply or divide by the `spacing` value passed to `StacksProvider`.
+`useSpacingHelpers` returns two functions: `multiply` and `divide` allowing you to accordingly multiply or divide a value by the `spacing` value passed to `StacksProvider`.
 
-<Tabs {...defaultTabsProps}>
-<TabItem value="typescript">
+### TypeScript
 
-```tsx
-declare type SpacingHelpers = {
+```typescript
+type SpacingHelpers = {
   readonly multiply: (value: number) => number
   readonly divide: (value: number) => number
 }
 
-declare const useSpacingHelpers: () => SpacingHelpers
+const useSpacingHelpers: () => SpacingHelpers
 ```
 
-</TabItem>
-<TabItem value="rescript">
+### ReScript
 
-```res
+```typescript
 type spacingHelpers = {
   multiply: (. float) => float,
   divide: (. float) => float,
@@ -33,10 +31,7 @@ type spacingHelpers = {
 let useSpacingHelpers: unit => spacingHelpers
 ```
 
-</TabItem>
-</Tabs>
-
-## Example
+### Example
 
 ```jsx live
 function() {
@@ -45,7 +40,7 @@ function() {
     const { multiply } = useSpacingHelpers()
 
     return (
-      <View style={{ marginBottom: multiply(marginBottom), backgroundColor: 'red' }}>
+      <View style={{ marginBottom: multiply(marginBottom), backgroundColor: 'rgba(97, 0, 255, .1)' }}>
         <Text>Debug</Text>
       </View>
     )

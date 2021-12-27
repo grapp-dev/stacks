@@ -3,61 +3,59 @@ const root = require('../package.json')
 
 module.exports = {
   title: 'Stacks',
-  tagline: '⚡ Build React Native layouts quickly with ease and fun.',
+  tagline: 'Build React Native layouts quickly with ease and fun.',
   url: 'https://mobily.github.io',
   baseUrl: '/stacks/',
+  onBrokenLinks: 'throw',
+  onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'mobily',
   projectName: 'stacks',
+  scripts: [
+    {
+      src: 'https://cdn.splitbee.io/sb.js',
+      async: true,
+    },
+  ],
   themeConfig: {
-    sidebarCollapsible: false,
+    image: 'img/hero-logo.png',
+    prism: {
+      theme: require('prism-react-renderer/themes/github'),
+    },
     navbar: {
-      title: `Stacks (v${root.version})`,
-      // logo: {
-      //   alt: 'My Site Logo',
-      //   src: 'img/logo.svg',
-      // },
+      title: `v${root.version}`,
+      logo: {
+        alt: 'Stacks',
+        src: 'img/stacks-logo.png',
+      },
       items: [
         {
+          to: 'docs',
+          activeBasePath: 'docs',
+          label: 'Docs',
+          position: 'left',
+        },
+        {
+          to: 'api/components/box',
+          activeBasePath: 'api',
+          label: 'API',
+          position: 'left',
+        },
+        {
           href: 'https://www.buymeacoffee.com/utSC0k7',
-          label: 'Sponsor ❤️',
+          label: 'Buy me a coffee ❤️',
           position: 'right',
         },
         {
           href: 'https://github.com/mobily/stacks',
-          label: 'Github',
           position: 'right',
-        },
-        {
-          href: 'https://twitter.com/__marcin_',
-          label: 'Twitter',
-          position: 'right',
+          className: 'header-github-link',
         },
       ],
     },
     footer: {
+      style: 'light',
       links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Getting started',
-              to: 'docs/getting-started',
-            },
-            {
-              label: 'Components',
-              to: 'docs/components/box',
-            },
-            {
-              label: 'Hooks',
-              to: 'docs/hooks/use-current-breakpoint',
-            },
-            {
-              label: 'Other',
-              to: 'docs/other/stacks-provider',
-            },
-          ],
-        },
         {
           title: 'Github',
           items: [
@@ -82,15 +80,40 @@ module.exports = {
               label: 'Github',
               href: 'https://github.com/mobily',
             },
+            {
+              label: 'Dev.to',
+              href: 'https://dev.to/mobily',
+            },
           ],
         },
       ],
-      copyright: `Built with Docusaurus ❤️`,
+      copyright: 'Built with Docusaurus ❤️',
+    },
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: true,
+      respectPrefersColorScheme: false,
     },
   },
+  themes: ['@docusaurus/theme-live-codeblock'],
   plugins: [
-    '@docusaurus/theme-live-codeblock',
-    path.resolve(__dirname, 'plugins', 'react-native-web-plugin'),
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        docsRouteBasePath: ['/docs', '/api'],
+        docsDir: ['docs', 'api'],
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'api',
+        path: 'api',
+        routeBasePath: 'api',
+        sidebarPath: require.resolve('./sidebars.api.js'),
+      },
+    ],
   ],
   presets: [
     [
@@ -98,9 +121,12 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
+          path: 'docs',
+          routeBasePath: 'docs',
+          editUrl: 'https://github.com/mobily/stacks/edit/master/docs/',
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: [require.resolve('./src/css/custom.css')],
         },
       },
     ],

@@ -1,0 +1,40 @@
+---
+id: use-debug-style
+title: useDebugStyle
+---
+
+`useDebugStyle` generates a style object with a random `backgroundColor` value.
+
+### TypeScript
+
+```typescript
+const useDebugStyle: () => ReactNative.StyleProp<ReactNative.ViewStyle> | undefined | null
+```
+
+### ReScript
+
+```typescript
+let useDebugStyle: unit => option<ReactNative.Style.t>
+```
+
+### Example
+
+```jsx live
+function() {
+  const DebugText = () => {
+    const debugStyle = useDebugStyle()
+
+    return (
+      <View style={debugStyle}>
+        <Text>Debug</Text>
+      </View>
+    )
+  }
+
+  return (
+    <StacksProvider debug={true}>
+      <DebugText />
+    </StacksProvider>
+  )
+}
+```

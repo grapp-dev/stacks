@@ -1,0 +1,43 @@
+---
+id: use-spacing
+title: useSpacing
+---
+
+`useSpacing` takes a numeric value, that is multiplied by the `spacing` value defined in `StacksProvider`.
+
+### TypeScript
+
+```typescript
+const useSpacing: (value: number | null | undefined) => number
+```
+
+### ReScript
+
+```typescript
+let useSpacing: option<float> => float
+```
+
+### Example
+
+```jsx live
+function() {
+  const DebugText = props => {
+    const { marginBottom } = props
+    const margin = useSpacing(marginBottom)
+
+    return (
+      <View style={{ marginBottom: margin, backgroundColor: 'rgba(97, 0, 255, .1)' }}>
+        <Text>Debug</Text>
+      </View>
+    )
+  }
+
+  return (
+    <StacksProvider spacing={4}>
+      <DebugText marginBottom={2} />
+      <DebugText marginBottom={8} />
+      <DebugText />
+    </StacksProvider>
+  )
+}
+```

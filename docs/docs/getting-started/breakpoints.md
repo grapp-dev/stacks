@@ -3,56 +3,28 @@ id: breakpoints
 title: Breakpoints
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import { defaultTabsProps } from '../core/components';
-
 `Stacks` supports the `responsive props` format which allows you to specify an array of values for different screen sizes. Use `responsive props` to customize the spacing, number of columns, or alignments per screen size.
 
-<Tabs {...defaultTabsProps}>
-<TabItem value="typescript">
+```typescript
+type ResponsiveProp<T> = T | readonly T[] // ⬅️ typescript
 
-```tsx
-type ResponsiveProp<T> = T | readonly T[]
+type responsiveProp<'a> = array<'a> // ⬅️ rescript
 ```
-
-</TabItem>
-<TabItem value="rescript">
-
-```res
-type responsiveProp<'a> = array<'a>
-```
-
-</TabItem>
-</Tabs>
 
 You can define a new breakpoint with a tuple, the first value is the name of the breakpoint, and the other is a minimum breakpoint width.
 
-<Tabs {...defaultTabsProps}>
-<TabItem value="typescript">
-
 ```tsx
-type Breakpoint = [string, number]
+type Breakpoint = [string, number] // ⬅️ typescript
+
+type breakpoint = (string, number) // ⬅️ rescript
 ```
 
-</TabItem>
-<TabItem value="rescript">
-
-```res
-type breakpoint = (string, number)
-```
-
-</TabItem>
-</Tabs>
-
-## Provider
+### Provider
 
 You can define as many breakpoints as you need in the provider.
 
-<Tabs {...defaultTabsProps}>
-<TabItem value="typescript">
-
 ```tsx
+// ⬇️ typescript
 import { StacksProvider } from '@mobily/stacks'
 
 const App = () => {
@@ -64,10 +36,8 @@ const App = () => {
 }
 ```
 
-</TabItem>
-<TabItem value="rescript">
-
-```res
+```tsx
+// ⬇️ rescript
 open Stacks
 
 @react.component
@@ -77,40 +47,28 @@ let make = () =>
   </StacksProvider>
 ```
 
-</TabItem>
-</Tabs>
-
-## Examples
+### Examples
 
 If you want small spacing on mobile but medium spacing from tablet upwards.
 
-<Tabs {...defaultTabsProps}>
-<TabItem value="typescript">
-
 ```tsx
+// ⬇️ typescript
 <Stack space={[1, 4]}>
   …
 </Stack>
 ```
 
-</TabItem>
-<TabItem value="rescript">
-
-```res
+```tsx
+// ⬇️ rescript
 <Stack space={[1., 4.]}>
   …
 </Stack>
 ```
 
-</TabItem>
-</Tabs>
-
 If you want top alignment on mobile and center on tablet upwards.
 
-<Tabs {...defaultTabsProps}>
-<TabItem value="typescript">
-
 ```tsx
+// ⬇️ typescript
 <Columns space={1} alignY={['top', 'center']}>
   <Column>
     …
@@ -121,10 +79,8 @@ If you want top alignment on mobile and center on tablet upwards.
 </Columns>
 ```
 
-</TabItem>
-<TabItem value="rescript">
-
-```res
+```tsx
+// ⬇️ rescript
 <Columns space=[1.] alignY=[#top, #center]>
   <Column>
     …
@@ -135,15 +91,10 @@ If you want top alignment on mobile and center on tablet upwards.
 </Columns>
 ```
 
-</TabItem>
-</Tabs>
-
 If you want to stack columns vertically on smaller screens, you can provide the `collapseBelow` prop.
 
-<Tabs {...defaultTabsProps}>
-<TabItem value="typescript">
-
 ```tsx
+// ⬇️ typescript
 <Columns space={1} collapseBelow="tablet">
   <Column>
     …
@@ -154,10 +105,8 @@ If you want to stack columns vertically on smaller screens, you can provide the 
 </Columns>
 ```
 
-</TabItem>
-<TabItem value="rescript">
-
-```res
+```tsx
+// ⬇️ rescript
 <Columns space=[1.] collapseBelow=#tablet>
   <Column>
     …
@@ -167,6 +116,3 @@ If you want to stack columns vertically on smaller screens, you can provide the 
   </Column>
 </Columns>
 ```
-
-</TabItem>
-</Tabs>

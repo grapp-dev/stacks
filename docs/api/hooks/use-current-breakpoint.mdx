@@ -3,30 +3,21 @@ id: use-current-breakpoint
 title: useCurrentBreakpoint
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import { defaultTabsProps } from '../../core/components';
+`useCurrentBreakpoint` returns the current breakpoint value.
 
-It returns the current breakpoint value.
+### TypeScript
 
-<Tabs {...defaultTabsProps}>
-<TabItem value="typescript">
-
-```tsx
+```typescript
 declare const useCurrentBreakpoint: () => string
 ```
 
-</TabItem>
-<TabItem value="rescript">
+### ReScript
 
-```res
+```typescript
 let useCurrentBreakpoint: unit => string
 ```
 
-</TabItem>
-</Tabs>
-
-## Example
+### Example
 
 ```jsx live
 function() {
