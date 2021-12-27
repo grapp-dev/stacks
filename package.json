@@ -4,14 +4,12 @@
   "version": "1.4.1",
   "license": "MIT",
   "author": "Marcin Dziewulski <hello@mobily.pl>",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/types/src/Stacks.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/types/src/Stacks.d.ts"
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
     },
     "./package.json": "./package.json"
   },
@@ -22,8 +20,7 @@
     "*.md",
     "index.js.flow",
     "bsconfig.json",
-    "package.json",
-    "babel"
+    "package.json"
   ],
   "scripts": {
     "build": "bash ./scripts/build.sh",

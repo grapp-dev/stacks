@@ -8,12 +8,14 @@ const { esmImports } = require('./plugins/esm-imports')
 
 const handleError = () => process.exit(1)
 const build = (outfile, options = {}) => {
+  const { format = 'cjs' } = options
+
   return esbuild
     .build({
-      entryPoints: ['src/Stacks.js'],
+      entryPoints: ['src/index.js'],
       bundle: true,
-      format: 'cjs',
-      outfile: `dist/${outfile}`,
+      format,
+      outdir: `dist/${format}`,
       plugins: [
         jscodeshift({
           exclude: ['node_modules/**'],
@@ -21,18 +23,20 @@ const build = (outfile, options = {}) => {
             replaceLiterals,
             uncurryFunctions,
             rewriteProps,
-            options.format === 'esm' ? esmImports : undefined,
+            // options.format === 'esm' ? esmImports : undefined,
           ].filter(Boolean),
         }),
       ],
+      treeShaking: true,
       minify: false,
-      external: ['react', 'react-native'],
+      external: [],
       logLevel: 'info',
+      legalComments: 'none',
+      external: ['react', 'react-native'],
       ...options,
     })
     .catch(handleError)
 }
 
 build('index.js')
-build('index.min.js', { minify: true })
-build('index.mjs', { format: 'esm' })
+build('index.js', { format: 'esm' })
