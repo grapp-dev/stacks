@@ -23,15 +23,14 @@
     "package.json"
   ],
   "scripts": {
-    "build": "bash ./scripts/build.sh",
-    "esbuild": "node esbuild.config.js",
+    "build": "yarn foy -c ./scripts/build.foyfile.ts",
     "clean": "rm -rf ./dist && rm -f ./tsconfig.tsbuildinfo",
-    "test": "yarn jest --coverage",
+    "test": "yarn foy -c ./scripts/test.foyfile.ts",
     "re:clean": "yarn rescript clean",
     "re:build": "yarn rescript build",
     "re:dev": "yarn rescript build -w",
-    "generate:flow": "node ./scripts/generate-flow-files.js",
-    "generate:contributors": "yarn all-contributors generate"
+    "transform": "yarn foy -c ./scripts/transform.foyfile.ts",
+    "generate": "yarn foy -c ./scripts/generate.foyfile.ts"
   },
   "engines": {
     "node": ">= 10.*"
