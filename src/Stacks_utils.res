@@ -7,7 +7,7 @@ external normalizeResponsiveProp: responsiveProp<'a> => responsiveProp<'a> =
   "normalizeResponsiveProp"
 
 let length = Belt.Array.length
-let getLastIndex = elements => pred(length(elements))
+let getLastIndex = elements => elements->length->pred
 let isLastElement = (elements, index) => getLastIndex(elements) == index
 
 let randomColor = () => {
@@ -17,20 +17,6 @@ let randomColor = () => {
   let colors = arr->map(string_of_int)->joinWith(", ")
 
   `rgba(${colors}, 0.2)`
-}
-
-let take = (i, xs) => {
-  let l = length(xs)
-  let len = i < 0 ? 0 : l < i ? l : i
-
-  Belt.Array.slice(xs, ~offset=0, ~len)
-}
-
-let drop = (i, xs) => {
-  let l = length(xs)
-  let start = i < 0 ? 0 : l < i ? l : i
-
-  Belt.Array.sliceToEnd(xs, start)
 }
 
 let splitEvery = (xs, size) => {

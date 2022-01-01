@@ -30,7 +30,7 @@ type direction = [
 @gentype
 type wrap = [#wrap | #nowrap]
 
-@gentype.import("./Stacks_types")
+@gentype
 type flex = [
   | #content
   | #fluid
@@ -62,19 +62,3 @@ type spacingHelpers = {
   multiply: option<float> => option<float>,
   divide: option<float> => option<float>,
 }
-
-@gentype
-type pointerEvents = [
-  | #auto
-  | #none
-  | @gentype.as("box-none") #boxNone
-  | @gentype.as("box-only") #boxOnly
-]
-
-@gentype
-type importantForAccessibility = [
-  | #auto
-  | #yes
-  | #no
-  | @gentype.as("no-hide-descendants") #noHideDescendants
-]

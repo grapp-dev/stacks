@@ -181,6 +181,6 @@ let make = (
         ])}>
         child
       </View>
-    }) |> React.array}
+    })->React.array}
   </Box>
 }

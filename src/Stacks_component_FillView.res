@@ -89,11 +89,7 @@ let make = (
 ) => {
   let resolveResponsiveProp = useResponsiveProp()
   let resolve = (value, mapFn) =>
-    value
-    |> resolveResponsiveProp
-    |> Belt.Option.getUnsafe
-    |> Stacks_styles.checkAbsoluteFill
-    |> mapFn
+    value->resolveResponsiveProp->Belt.Option.getUnsafe->Stacks_styles.checkAbsoluteFill->mapFn
   let top = resolve(top, Stacks_styles.top)
   let right = resolve(right, Stacks_styles.right)
   let bottom = resolve(bottom, Stacks_styles.bottom)

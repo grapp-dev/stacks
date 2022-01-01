@@ -46,7 +46,7 @@ let make = (
   ~accessible=?,
   ~collapsable=?,
   ~hitSlop=?,
-  ~importantForAccessibility: option<importantForAccessibility>=?,
+  ~importantForAccessibility=?,
   ~nativeID=?,
   ~needsOffscreenAlphaCompositing=?,
   ~onAccessibilityEscape=?,
@@ -65,7 +65,7 @@ let make = (
   ~onResponderTerminationRequest=?,
   ~onStartShouldSetResponder=?,
   ~onStartShouldSetResponderCapture=?,
-  ~pointerEvents: option<pointerEvents>=?,
+  ~pointerEvents=?,
   ~removeClippedSubviews=?,
   ~renderToHardwareTextureAndroid=?,
   ~shouldRasterizeIOS=?,
@@ -90,7 +90,7 @@ let make = (
     resolve(values)
   }
   let resolve = (value, mapFn) =>
-    value |> resolveResponsiveProp |> multiply |> Belt.Option.getUnsafe |> mapFn
+    value->resolveResponsiveProp->multiply->Belt.Option.getUnsafe->mapFn
 
   let padding = resolve(padding, Stacks_styles.padding)
   let paddingX = resolve(paddingX, Stacks_styles.paddingX)

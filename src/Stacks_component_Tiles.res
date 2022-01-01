@@ -168,8 +168,8 @@ let make = (
           ])
         }
         <View key={string_of_int(index)} style> child </View>
-      }) |> React.array
+      })->React.array
       <View key={string_of_int(index)} style=rowStyle> tiles </View>
-    }) |> React.array}
+    })->React.array}
   </Stack>
 }

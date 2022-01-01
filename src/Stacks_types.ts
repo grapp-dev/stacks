@@ -1,4 +1,5 @@
 export type responsiveProp<T> = T | readonly T[]
+
 export type flex =
   | 'content'
   | 'fluid'
@@ -11,19 +12,18 @@ export type flex =
   | '2/5'
   | '3/5'
   | '4/5'
-export type resolveResponsiveProp<T = unknown> = <X>(
-  arg0: null | undefined | responsiveProp<X>,
-) => X | undefined
 
-type multiply = {
-  (value: number): number
-  (value: number | undefined | null): number | undefined | null
-}
-type divide = {
-  (value: number): number
-  (value: number | undefined | null): number | undefined | null
-}
+export type resolveResponsiveProp<A = unknown> = <T>(
+  value: responsiveProp<T> | null | undefined,
+) => T | undefined
+
 export type spacingHelpers = {
-  readonly multiply: multiply
-  readonly divide: divide
+  readonly multiply: {
+    (value: number): number
+    (value: number | undefined | null): number | undefined | null
+  }
+  readonly divide: {
+    (value: number): number
+    (value: number | undefined | null): number | undefined | null
+  }
 }

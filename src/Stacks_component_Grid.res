@@ -34,14 +34,8 @@ let styles = {
       StyleSheet.absoluteFillObject,
       viewStyle(~flexDirection=#row, ~justifyContent=#center, ()),
     ]),
-    "column": viewStyle(~height=100. |> pct, ~backgroundColor="red", ()),
-    "warning": viewStyle(
-      ~position=#absolute,
-      ~top=44. |> dp,
-      ~left=24. |> dp,
-      ~right=24. |> dp,
-      (),
-    ),
+    "column": viewStyle(~height=pct(100.), ~backgroundColor="red", ()),
+    "warning": viewStyle(~position=#absolute, ~top=dp(44.), ~left=dp(24.), ~right=dp(24.), ()),
     "text": textStyle(~color="red", ()),
   })
 }
@@ -81,12 +75,12 @@ let make = (~gutter=?, ~margin=?, ~columns=?, ~opacity=0.2) => {
     open Style
     array([
       styles["column"],
-      viewStyle(~opacity, ~marginLeft=gutter |> dp, ~width=columnWidth |> dp, ()),
+      viewStyle(~opacity, ~marginLeft=dp(gutter), ~width=dp(columnWidth), ()),
     ])
   }
   let gridStyle = {
     open Style
-    array([styles["root"], viewStyle(~paddingHorizontal=gutter |> dp, ())])
+    array([styles["root"], viewStyle(~paddingHorizontal=dp(gutter), ())])
   }
   let grid =
     columns
@@ -95,7 +89,7 @@ let make = (~gutter=?, ~margin=?, ~columns=?, ~opacity=0.2) => {
       let key = string_of_int(index)
       <View
         key
-        style={index == 0 ? array([columnStyle, viewStyle(~marginLeft=0. |> dp, ())]) : columnStyle}
+        style={index == 0 ? array([columnStyle, viewStyle(~marginLeft=dp(0.), ())]) : columnStyle}
       />
     })
     ->React.array

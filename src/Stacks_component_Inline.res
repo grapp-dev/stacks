@@ -170,7 +170,7 @@ let make = (
           ])}>
           child
         </View>
-      }) |> React.array}
+      })->React.array}
     </View>
   </Box>
 }
