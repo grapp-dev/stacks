@@ -1,6 +1,6 @@
 {
   "name": "@mobily/stacks",
-  "version": "1.0.3",
+  "version": "1.5.0",
   "namespace": false,
   "bsc-flags": ["-bs-super-errors", "-bs-no-version-header"],
   "reason": {
@@ -9,11 +9,6 @@
   "gentypeconfig": {
     "language": "typescript",
     "importPath": "relative",
-    "shims": {
-      "React": "React",
-      "ReactNative": "ReactNative",
-      "ReactEvent": "ReactEvent"
-    },
     "debug": {
       "all": false
     },
@@ -39,9 +34,6 @@
     "@rescript/react",
     "rescript-react-native",
     "wonka"
-  ],
-  "bs-dev-dependencies": [
-    "reason-test-framework"
   ],
   "ppx-flags": []
 }
