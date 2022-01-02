@@ -3,7 +3,6 @@ open ReactNative
 open Stacks_types
 open Stacks_utils
 open Stacks_context
-open Stacks_styles
 
 @gentype
 let useWindowDimensions = () => {
@@ -51,9 +50,9 @@ let useCurrentBreakpoint = () => {
 @gentype
 let useDebugStyle = () => {
   let {debug} = useStacks()
-  let style = React.useRef(undefinedStyle)
+  let style = React.useRef(None)
 
-  style.current = debug ? Style.unsafeStyle({"backgroundColor": randomColor()}) : undefinedStyle
+  style.current = debug ? Some(Style.unsafeStyle({"backgroundColor": randomColor()})) : None
 
   style.current
 }

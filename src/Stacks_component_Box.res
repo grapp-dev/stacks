@@ -89,8 +89,7 @@ let make = (
     let resolve = resolveResponsiveProp(~currentWidth=dimensions.width, ~breakpoints)
     resolve(values)
   }
-  let resolve = (value, mapFn) =>
-    value->resolveResponsiveProp->multiply->Belt.Option.getUnsafe->mapFn
+  let resolve = (value, mapFn) => value->resolveResponsiveProp->multiply->mapFn
 
   let padding = resolve(padding, Stacks_styles.padding)
   let paddingX = resolve(paddingX, Stacks_styles.paddingX)
@@ -129,7 +128,7 @@ let make = (
       }
     }
 
-    Style.array([
+    keepStyle([
       padding,
       paddingX,
       paddingY,
@@ -155,7 +154,7 @@ let make = (
       resolveFlexBasis(flex),
       resolveAlignSelf(alignSelf),
       debugStyle,
-      unsafeStyle(style),
+      style,
     ])
   }
   let ref = Belt.Option.getUnsafe(viewRef)

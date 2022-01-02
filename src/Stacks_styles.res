@@ -1,7 +1,9 @@
 open ReactNative.Style
 
-external unsafeStyle: option<ReactNative.Style.t> => ReactNative.Style.t = "%identity"
-external unsafeUndefinedStyle: Js.undefined<'a> => ReactNative.Style.t = "%identity"
+@module("react-native") @scope("StyleSheet")
+external compose: (ReactNative.Style.t, ReactNative.Style.t) => ReactNative.Style.t = "compose"
+
+external coerceArray: array<option<ReactNative.Style.t>> => array<ReactNative.Style.t> = "%identity"
 
 let styles = ReactNative.StyleSheet.create({
   "fullWidth": viewStyle(~width=pct(100.), ()),
@@ -41,31 +43,31 @@ let styles = ReactNative.StyleSheet.create({
   "shrink": viewStyle(~flexShrink=1., ()),
 })
 
-let undefinedStyle = unsafeUndefinedStyle(Js.Undefined.empty)
+let margin = Belt.Option.mapU(_, (. value) => viewStyle(~margin=dp(value), ()))
+let marginX = Belt.Option.mapU(_, (. value) => viewStyle(~marginHorizontal=dp(value), ()))
+let marginY = Belt.Option.mapU(_, (. value) => viewStyle(~marginVertical=dp(value), ()))
+let marginTop = Belt.Option.mapU(_, (. value) => viewStyle(~marginTop=dp(value), ()))
+let marginRight = Belt.Option.mapU(_, (. value) => viewStyle(~marginRight=dp(value), ()))
+let marginLeft = Belt.Option.mapU(_, (. value) => viewStyle(~marginLeft=dp(value), ()))
+let marginBottom = Belt.Option.mapU(_, (. value) => viewStyle(~marginBottom=dp(value), ()))
+let marginStart = Belt.Option.mapU(_, (. value) => viewStyle(~marginStart=dp(value), ()))
+let marginEnd = Belt.Option.mapU(_, (. value) => viewStyle(~marginEnd=dp(value), ()))
+let padding = Belt.Option.mapU(_, (. value) => viewStyle(~padding=dp(value), ()))
+let paddingX = Belt.Option.mapU(_, (. value) => viewStyle(~paddingHorizontal=dp(value), ()))
+let paddingY = Belt.Option.mapU(_, (. value) => viewStyle(~paddingVertical=dp(value), ()))
+let paddingTop = Belt.Option.mapU(_, (. value) => viewStyle(~paddingTop=dp(value), ()))
+let paddingRight = Belt.Option.mapU(_, (. value) => viewStyle(~paddingRight=dp(value), ()))
+let paddingLeft = Belt.Option.mapU(_, (. value) => viewStyle(~paddingLeft=dp(value), ()))
+let paddingBottom = Belt.Option.mapU(_, (. value) => viewStyle(~paddingBottom=dp(value), ()))
+let paddingStart = Belt.Option.mapU(_, (. value) => viewStyle(~paddingStart=dp(value), ()))
+let paddingEnd = Belt.Option.mapU(_, (. value) => viewStyle(~paddingEnd=dp(value), ()))
 
-let margin = (value: float) => ReactNative.Style.unsafeStyle({"margin": value})
-let marginX = (value: float) => ReactNative.Style.unsafeStyle({"marginHorizontal": value})
-let marginY = (value: float) => ReactNative.Style.unsafeStyle({"marginVertical": value})
-let marginTop = (value: float) => ReactNative.Style.unsafeStyle({"marginTop": value})
-let marginRight = (value: float) => ReactNative.Style.unsafeStyle({"marginRight": value})
-let marginLeft = (value: float) => ReactNative.Style.unsafeStyle({"marginLeft": value})
-let marginBottom = (value: float) => ReactNative.Style.unsafeStyle({"marginBottom": value})
-let marginStart = (value: float) => ReactNative.Style.unsafeStyle({"marginStart": value})
-let marginEnd = (value: float) => ReactNative.Style.unsafeStyle({"marginEnd": value})
-let padding = (value: float) => ReactNative.Style.unsafeStyle({"padding": value})
-let paddingX = (value: float) => ReactNative.Style.unsafeStyle({"paddingHorizontal": value})
-let paddingY = (value: float) => ReactNative.Style.unsafeStyle({"paddingVertical": value})
-let paddingTop = (value: float) => ReactNative.Style.unsafeStyle({"paddingTop": value})
-let paddingRight = (value: float) => ReactNative.Style.unsafeStyle({"paddingRight": value})
-let paddingLeft = (value: float) => ReactNative.Style.unsafeStyle({"paddingLeft": value})
-let paddingBottom = (value: float) => ReactNative.Style.unsafeStyle({"paddingBottom": value})
-let paddingStart = (value: float) => ReactNative.Style.unsafeStyle({"paddingStart": value})
-let paddingEnd = (value: float) => ReactNative.Style.unsafeStyle({"paddingEnd": value})
+let top = value => ReactNative.Style.unsafeStyle({"top": value})
+let right = value => ReactNative.Style.unsafeStyle({"right": value})
+let bottom = value => ReactNative.Style.unsafeStyle({"bottom": value})
+let left = value => ReactNative.Style.unsafeStyle({"left": value})
 
-let top = (value: float) => ReactNative.Style.unsafeStyle({"top": value})
-let right = (value: float) => ReactNative.Style.unsafeStyle({"right": value})
-let bottom = (value: float) => ReactNative.Style.unsafeStyle({"bottom": value})
-let left = (value: float) => ReactNative.Style.unsafeStyle({"left": value})
+let keepStyle = xs => xs->coerceArray->ReactNative.StyleSheet.flatten
 
 @module("./Stacks_styles.js")
 external reset_: float = "reset"
@@ -74,9 +76,9 @@ external reset_: float = "reset"
 let reset = reset_
 
 @module("./Stacks_styles.js")
-external checkAbsoluteFill: float => float = "checkAbsoluteFill"
+external mapFillViewEdge: option<float> => option<float> = "mapFillViewEdge"
 
-let resolveAlignItemsX = Belt.Option.mapWithDefaultU(_, styles["alignStretch"], (. value) =>
+let resolveAlignItemsX = Belt.Option.mapU(_, (. value) =>
   switch value {
   | #center => styles["alignCenter"]
   | #right => styles["alignEnd"]
@@ -85,7 +87,7 @@ let resolveAlignItemsX = Belt.Option.mapWithDefaultU(_, styles["alignStretch"], 
   }
 )
 
-let resolveAlignItemsY = Belt.Option.mapWithDefaultU(_, styles["alignStretch"], (. value) =>
+let resolveAlignItemsY = Belt.Option.mapU(_, (. value) =>
   switch value {
   | #center => styles["alignCenter"]
   | #bottom => styles["alignEnd"]
@@ -94,7 +96,7 @@ let resolveAlignItemsY = Belt.Option.mapWithDefaultU(_, styles["alignStretch"], 
   }
 )
 
-let resolveAlignItems = Belt.Option.mapWithDefaultU(_, styles["alignStretch"], (. value) => {
+let resolveAlignItems = Belt.Option.mapU(_, (. value) => {
   switch value {
   | #top
   | #left =>
@@ -107,7 +109,7 @@ let resolveAlignItems = Belt.Option.mapWithDefaultU(_, styles["alignStretch"], (
   }
 })
 
-let resolveAlignSelf = Belt.Option.mapWithDefaultU(_, styles["alignSelfAuto"], (. value) =>
+let resolveAlignSelf = Belt.Option.mapU(_, (. value) =>
   switch value {
   | #center => styles["alignSelfCenter"]
   | #bottom
@@ -121,7 +123,7 @@ let resolveAlignSelf = Belt.Option.mapWithDefaultU(_, styles["alignSelfAuto"], (
   }
 )
 
-let resolveJustifyContentX = Belt.Option.mapWithDefaultU(_, styles["justifyStart"], (. value) =>
+let resolveJustifyContentX = Belt.Option.mapU(_, (. value) =>
   switch value {
   | #left => styles["justifyStart"]
   | #center => styles["justifyCenter"]
@@ -132,7 +134,7 @@ let resolveJustifyContentX = Belt.Option.mapWithDefaultU(_, styles["justifyStart
   }
 )
 
-let resolveJustifyContentY = Belt.Option.mapWithDefaultU(_, styles["justifyStart"], (. value) =>
+let resolveJustifyContentY = Belt.Option.mapU(_, (. value) =>
   switch value {
   | #top => styles["justifyStart"]
   | #center => styles["justifyCenter"]
@@ -143,7 +145,7 @@ let resolveJustifyContentY = Belt.Option.mapWithDefaultU(_, styles["justifyStart
   }
 )
 
-let resolveJustifyContent = Belt.Option.mapWithDefaultU(_, styles["justifyStart"], (. value) => {
+let resolveJustifyContent = Belt.Option.mapU(_, (. value) => {
   switch value {
   | #bottom
   | #right =>
@@ -156,7 +158,7 @@ let resolveJustifyContent = Belt.Option.mapWithDefaultU(_, styles["justifyStart"
   }
 })
 
-let resolveFlexBasis = Belt.Option.mapWithDefaultU(_, styles["flexContent"], (. value) =>
+let resolveFlexBasis = Belt.Option.mapU(_, (. value) =>
   switch value {
   | #content => styles["flexContent"]
   | #fluid => styles["flexFluid"]
@@ -172,7 +174,7 @@ let resolveFlexBasis = Belt.Option.mapWithDefaultU(_, styles["flexContent"], (. 
   }
 )
 
-let resolveDirection = Belt.Option.mapWithDefaultU(_, styles["directionColumn"], (. value) =>
+let resolveDirection = Belt.Option.mapU(_, (. value) =>
   switch value {
   | #row => styles["directionRow"]
   | #column => styles["directionColumn"]
@@ -181,7 +183,7 @@ let resolveDirection = Belt.Option.mapWithDefaultU(_, styles["directionColumn"],
   }
 )
 
-let resolveWrap = Belt.Option.mapWithDefaultU(_, styles["nowrap"], (. value) =>
+let resolveWrap = Belt.Option.mapU(_, (. value) =>
   switch value {
   | #wrap => styles["wrap"]
   | #nowrap => styles["nowrap"]

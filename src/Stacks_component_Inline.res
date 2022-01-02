@@ -83,9 +83,9 @@ let make = (
   let resolveResponsiveProp = useResponsiveProp()
   let align = Stacks_externals.resolve(resolveResponsiveProp, align)
   let space = useSpacing(resolveResponsiveProp(space))
-  let negativeSpace = -.space
+  let negativeSpace = Some(-.space)
   let debugStyle = useDebugStyle()
-  let containerStyle = Style.array([
+  let containerStyle = keepStyle([
     resolveWrap(Some(#wrap)),
     resolveDirection(Some(#row)),
     resolveJustifyContentX(align),
@@ -163,10 +163,10 @@ let make = (
       {Belt.Array.mapWithIndexU(children, (. index, child) => {
         <View
           key={string_of_int(index)}
-          style={Style.array([
+          style={keepStyle([
             debugStyle,
-            Stacks_styles.marginTop(space),
-            Stacks_styles.marginRight(space),
+            Stacks_styles.marginTop(Some(space)),
+            Stacks_styles.marginRight(Some(space)),
           ])}>
           child
         </View>

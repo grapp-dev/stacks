@@ -1,7 +1,6 @@
 open ReactNative
 
 open Stacks_hooks
-open Stacks_styles
 
 module Box = Stacks_component_Box
 
@@ -88,20 +87,13 @@ let make = (
   ~onMouseUp=?,
 ) => {
   let resolveResponsiveProp = useResponsiveProp()
-  let resolve = (value, mapFn) =>
-    value->resolveResponsiveProp->Belt.Option.getUnsafe->Stacks_styles.checkAbsoluteFill->mapFn
+  let resolve = (value, mapFn) => value->resolveResponsiveProp->Stacks_styles.mapFillViewEdge->mapFn
   let top = resolve(top, Stacks_styles.top)
   let right = resolve(right, Stacks_styles.right)
   let bottom = resolve(bottom, Stacks_styles.bottom)
   let left = resolve(left, Stacks_styles.left)
-  let style = Style.array([
-    StyleSheet.absoluteFillObject,
-    top,
-    right,
-    bottom,
-    left,
-    unsafeStyle(style),
-  ])
+  let fillStyle = StyleSheet.flatten([StyleSheet.absoluteFillObject, top, right, bottom, left])
+  let style = Style.arrayOption([Some(fillStyle), style])
 
   <Box
     ?padding

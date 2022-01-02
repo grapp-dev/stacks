@@ -91,13 +91,13 @@ let make = (
     value ? #row : #column
   })
   let isVertical = direction == #column
-  let width = isVertical ? styles["fullWidth"] : undefinedStyle
+  let width = isVertical ? Some(styles["fullWidth"]) : None
   let marginFn = isVertical ? Stacks_styles.marginBottom : Stacks_styles.marginRight
   let align = isVertical
     ? resolveAlignItemsX(Stacks_externals.resolveAxisX(align))
     : resolveJustifyContentY(Stacks_externals.resolveAxisY(align))
   let debugStyle = useDebugStyle()
-  let style = Style.array([width, unsafeStyle(style)])
+  let style = Style.arrayOption([width, style])
   let children = {
     let xs = React.Children.toArray(children)
     Belt.Option.mapWithDefaultU(divider, xs, (. divider) => intersperse(xs, divider))
@@ -173,12 +173,7 @@ let make = (
     {Belt.Array.mapWithIndexU(children, (. index, child) => {
       <View
         key={string_of_int(index)}
-        style={Style.array([
-          width,
-          align,
-          debugStyle,
-          isLast(index) ? undefinedStyle : marginFn(space),
-        ])}>
+        style={keepStyle([width, align, debugStyle, isLast(index) ? None : marginFn(Some(space))])}>
         child
       </View>
     })->React.array}

@@ -7,9 +7,9 @@ open Stacks_styles
 module Box = Stacks_component_Box
 
 module Context = {
-  type t = {space: float, debugStyle: Style.t}
+  type t = {space: float, debugStyle: option<Style.t>}
 
-  let context = React.createContext({space: 0., debugStyle: undefinedStyle})
+  let context = React.createContext({space: 0., debugStyle: None})
   let useRows = () => React.useContext(context)
 
   module Provider = {
@@ -104,24 +104,24 @@ let make = (
   let space = useSpacing(resolveResponsiveProp(space))
 
   let debugStyle = useDebugStyle()
-  let negativeSpace = -.space
-  let boxStyle = Style.array([
-    styles["fullWidth"],
-    styles["flexFluid"],
-    styles["directionRow"],
-    unsafeStyle(style),
+  let negativeSpace = Some(-.space)
+  let style = Style.arrayOption([
+    Some(styles["fullWidth"]),
+    Some(styles["flexFluid"]),
+    Some(styles["directionRow"]),
+    style,
   ])
-  let containerStyle = {
+  let viewStyle = {
     let direction = Belt.Option.mapWithDefaultU(reverse, #column, (. reverse) =>
       reverse ? #columnReverse : #column
     )
 
-    Style.array([
+    keepStyle([
       Stacks_styles.marginTop(negativeSpace),
       resolveAlignItemsX(alignX),
       resolveJustifyContentY(alignY),
       resolveDirection(Some(direction)),
-      styles["flexFluid"],
+      Some(styles["flexFluid"]),
     ])
   }
   let config: Context.t = {space: space, debugStyle: debugStyle}
@@ -191,8 +191,8 @@ let make = (
       ?onMouseOut
       ?onMouseUp
       ?viewRef
-      style=boxStyle>
-      <View style=containerStyle> children </View>
+      style>
+      <View style=viewStyle> children </View>
     </Box>
   </Context.Provider>
 }

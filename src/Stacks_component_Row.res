@@ -77,15 +77,15 @@ let make = (
   let resolveResponsiveProp = useResponsiveProp()
   let width = resolveResponsiveProp(Some(width))
   let height = resolveResponsiveProp(Some(height))
-  let boxStyle = Style.array([resolveFlexBasis(width), debugStyle, unsafeStyle(style)])
-  let style = Style.array([
+  let viewStyle = keepStyle([
     resolveFlexBasis(height),
-    styles["directionRow"],
-    styles["shrink"],
-    marginTop(space),
+    Some(styles["directionRow"]),
+    Some(styles["shrink"]),
+    marginTop(Some(space)),
   ])
+  let style = Style.arrayOption([resolveFlexBasis(width), debugStyle, style])
 
-  <View style>
+  <View style=viewStyle>
     <Box
       ?padding
       ?paddingX
@@ -141,7 +141,7 @@ let make = (
       ?onMouseOut
       ?onMouseUp
       ?viewRef
-      style=boxStyle>
+      style>
       children
     </Box>
   </View>

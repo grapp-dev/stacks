@@ -84,7 +84,7 @@ let make = (
   let columns = Stacks_externals.resolve(resolveResponsiveProp, columns)
   let tileSpace = useSpacing(resolveResponsiveProp(space))
   let debugStyle = useDebugStyle()
-  let rowStyle = Style.array([styles["fullWidth"], resolveDirection(Some(#row))])
+  let rowStyle = keepStyle([Some(styles["fullWidth"]), resolveDirection(Some(#row))])
   let columns = Belt.Option.getWithDefault(columns, 1)
   let children = children->React.Children.toArray->splitEvery(columns)
 
@@ -161,10 +161,10 @@ let make = (
       let isLast = isLastElement(arr)
       let tiles = Belt.Array.mapWithIndexU(arr, (. index, child) => {
         let style = {
-          Style.array([
-            styles["flexFluid"],
-            isLast(index) ? undefinedStyle : Stacks_styles.marginRight(tileSpace),
-            Stacks_externals.isValidElement(child) ? debugStyle : undefinedStyle,
+          keepStyle([
+            Some(styles["flexFluid"]),
+            isLast(index) ? None : Stacks_styles.marginRight(Some(tileSpace)),
+            Stacks_externals.isValidElement(child) ? debugStyle : None,
           ])
         }
         <View key={string_of_int(index)} style> child </View>

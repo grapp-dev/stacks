@@ -30,10 +30,7 @@ let styles = {
   open Style
 
   StyleSheet.create({
-    "root": StyleSheet.flatten([
-      StyleSheet.absoluteFillObject,
-      viewStyle(~flexDirection=#row, ~justifyContent=#center, ()),
-    ]),
+    "root": viewStyle(~flexDirection=#row, ~justifyContent=#center, ()),
     "column": viewStyle(~height=pct(100.), ~backgroundColor="red", ()),
     "warning": viewStyle(~position=#absolute, ~top=dp(44.), ~left=dp(24.), ~right=dp(24.), ()),
     "text": textStyle(~color="red", ()),
@@ -80,7 +77,11 @@ let make = (~gutter=?, ~margin=?, ~columns=?, ~opacity=0.2) => {
   }
   let gridStyle = {
     open Style
-    array([styles["root"], viewStyle(~paddingHorizontal=dp(gutter), ())])
+    array([
+      styles["root"],
+      StyleSheet.absoluteFillObject,
+      viewStyle(~paddingHorizontal=dp(gutter), ()),
+    ])
   }
   let grid =
     columns

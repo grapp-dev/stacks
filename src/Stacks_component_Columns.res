@@ -10,16 +10,16 @@ module Box = Stacks_component_Box
 module Context = {
   type t = {
     isCollapsed: bool,
-    space: float,
-    debugStyle: ReactNative.Style.t,
-    alignY: ReactNative.Style.t,
+    space: option<float>,
+    debugStyle: option<ReactNative.Style.t>,
+    alignY: option<ReactNative.Style.t>,
   }
 
   let context = React.createContext({
     isCollapsed: false,
-    space: 0.,
-    debugStyle: undefinedStyle,
-    alignY: undefinedStyle,
+    space: None,
+    debugStyle: None,
+    alignY: None,
   })
   let useColumns = () => React.useContext(context)
 
@@ -126,19 +126,19 @@ let make = (
     ~currentBreakpoint,
     ~breakpoints,
   )
-  let negativeSpace = -.space
-  let style = Style.array([styles["fullWidth"], alignY, unsafeStyle(style)])
+  let negativeSpace = Some(-.space)
+  let style = Style.arrayOption([Some(styles["fullWidth"]), alignY, style])
   let viewStyle = {
     let xs = isCollapsed
-      ? [styles["fullWidth"], Stacks_styles.marginTop(negativeSpace)]
+      ? [Some(styles["fullWidth"]), Stacks_styles.marginTop(negativeSpace)]
       : [resolveJustifyContentX(alignX), Stacks_styles.marginLeft(negativeSpace)]
 
-    Style.array(Belt.Array.concat(xs, [resolveDirection(Some(direction))]))
+    compose(Style.arrayOption(xs), Style.arrayOption([resolveDirection(Some(direction))]))
   }
 
   let config: Context.t = {
     isCollapsed: isCollapsed,
-    space: space,
+    space: Some(space),
     debugStyle: debugStyle,
     alignY: alignY,
   }

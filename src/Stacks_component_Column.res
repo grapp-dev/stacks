@@ -77,15 +77,11 @@ let make = (
   let resolveResponsiveProp = useResponsiveProp()
   let width = resolveResponsiveProp(Some(width))
   let height = resolveResponsiveProp(Some(height))
-  let style = Style.array([
-    debugStyle,
-    isCollapsed ? undefinedStyle : resolveFlexBasis(height),
-    unsafeStyle(style),
-  ])
-  let viewStyle = Style.array(
+  let style = Style.arrayOption([debugStyle, isCollapsed ? None : resolveFlexBasis(height), style])
+  let viewStyle = keepStyle(
     isCollapsed
-      ? [styles["fullWidth"], marginTop(space)]
-      : [styles["shrink"], alignY, resolveFlexBasis(width), marginLeft(space)],
+      ? [Some(styles["fullWidth"]), marginTop(space)]
+      : [Some(styles["shrink"]), alignY, resolveFlexBasis(width), marginLeft(space)],
   )
 
   <View style={viewStyle}>

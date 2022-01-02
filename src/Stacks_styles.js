@@ -1,6 +1,6 @@
 export const reset = true
 
-export const checkAbsoluteFill = value => {
+export const mapFillViewEdge = value => {
   if (value === true) {
     return undefined
   }
