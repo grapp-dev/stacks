@@ -1,21 +1,16 @@
 module.exports = {
   verbose: true,
   preset: 'react-native',
-  moduleFileExtensions: ['js', 'ts'],
   rootDir: __dirname,
-  testMatch: ['<rootDir>/__tests__/components/*_test.bs.js'],
-  testPathIgnorePatterns: [
-    'node_modules',
-    '<rootDir>/dist',
-    '<rootDir>/example/rescript',
-    '<rootDir>/example/typescript',
-  ],
+  testRegex: './__tests__/.+\\.test\\.tsx$',
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  testPathIgnorePatterns: ['node_modules', '<rootDir>/example'],
   coveragePathIgnorePatterns: ['node_modules', '<rootDir>/__tests__'],
   restoreMocks: true,
   transformIgnorePatterns: [
-    'node_modules/(?!(jest-)?react-native|reason-react-native|reason-test-framework|bs-platform|wonka)',
+    'node_modules/(?!(jest-)?react-native|@react-native|reason-react-native|rescript|wonka)',
   ],
   transform: {
-    '^.+\\.bs.js$': 'babel-jest',
+    '^.+\\.[t|j]sx?$': ['babel-jest'],
   },
 }
