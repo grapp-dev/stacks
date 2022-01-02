@@ -26,7 +26,7 @@ task<Options>('dist', async ctx => {
   const files = await globby('dist/**/index.js')
   const js = files.join(' ')
 
-  await ctx.exec(['yarn generate tsc --esm --cjs', 'yarn generate flow'])
+  await ctx.exec(['yarn generate tsc', 'yarn generate flow'])
 
   if (ctx.options.runTests) {
     await ctx.exec('yarn test run -c')
@@ -44,7 +44,7 @@ task<DevOptions>('dev', async ctx => {
 
   await ctx.exec([`yarn transform all -r -f ${ctx.options.file}`, 'node esbuild.config.js'])
 
-  await ctx.exec('yarn generate tsc --cjs')
+  await ctx.exec('yarn generate tsc')
 
   if (ctx.options.runTests) {
     await ctx.exec(`yarn test run -n ${ctx.options.file}`)

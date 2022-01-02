@@ -16,7 +16,7 @@ task<Options>('run', async ctx => {
   const cmd = ['yarn', 'jest', coverage]
 
   if (ctx.options.file) {
-    const file = ctx.options.file ? `${ctx.options.file}.test.ts` : '*.test.ts'
+    const file = ctx.options.file ? `${ctx.options.file}.test.tsx` : '*.test.tsx'
 
     const files = await globby(`__tests__/${file}`)
 
