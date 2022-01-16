@@ -17,18 +17,18 @@ declare const useCurrentBreakpoint: () => string
 let useCurrentBreakpoint: unit => string
 ```
 
-### Example
+### Basic usage
 
-```jsx live
-function() {
-  const DebugText = () => {
-    const currentBreakpoint = useCurrentBreakpoint()
+```jsx live showCode
+const DebugText = () => {
+  const currentBreakpoint = useCurrentBreakpoint()
 
-    return (
-      <Text>{currentBreakpoint}</Text>
-    )
-  }
+  return (
+    <Typography variant="body">{currentBreakpoint} → resize a window to see changes</Typography>
+  )
+}
 
+const App = () => {
   return (
     <StacksProvider breakpoints={[
       ['mobile', 480],
@@ -41,4 +41,6 @@ function() {
     </StacksProvider>
   )
 }
+
+render(<App />)
 ```

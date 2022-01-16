@@ -3,7 +3,7 @@ id: use-responsive-prop
 title: useResponsiveProp
 ---
 
-`useResponsiveProp` returns a function that takes the `responsive props` format as a first argument. It's useful if you want to resolve responsive props in your components.
+`useResponsiveProp` returns a function that takes the `responsive props` format as an argument. Useful if you want to resolve responsive props in your components.
 
 ### TypeScript
 
@@ -19,23 +19,25 @@ type resolveResponsiveProp<'a> = option<responsiveProp<'a>> => option<'a>
 let useResponsiveProp: unit => resolveResponsiveProp<'a>
 ```
 
-### Example
+### Basic usage
 
-```jsx live
-function() {
-  const ResponsivePlaceholder = props => {
-    const resolveResponsiveProp = useResponsiveProp()
-    const size = resolveResponsiveProp(props.size)
+```jsx live showCode
+const ResponsivePlaceholder = props => {
+  const resolveResponsiveProp = useResponsiveProp()
+  const size = resolveResponsiveProp(props.size)
 
-    return (
-      <Placeholder width={size} height={size} />
-    )
-  }
+  return (
+    <Placeholder width={size} height={size} />
+  )
+}
 
+const App = () => {
   return (
     <StacksProvider>
       <ResponsivePlaceholder size={[100, 200, 300]} />
     </StacksProvider>
   )
 }
+
+render(<App />)
 ```

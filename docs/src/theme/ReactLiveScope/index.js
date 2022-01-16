@@ -1,8 +1,15 @@
 import React from 'react'
 import * as ReactNative from 'react-native'
+
 import * as Stacks from '../../../..'
 
+import RocketSVG from '@site/static/svg/rocket.svg'
+import BookSVG from '@site/static/svg/book.svg'
+
 const { View, Text, StyleSheet } = ReactNative
+
+const RNImage = ReactNative.Image
+const RNText = ReactNative.Text
 
 const styles = StyleSheet.create({
   root: {
@@ -10,21 +17,43 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: 'rgba(97, 0, 255, 0.3)',
   },
-  flexFluid: {
-    flex: 1,
+  // Typograhpy
+  typographyRoot: {
+    fontFamily: 'IBM Plex Sans',
   },
-  divider: {
-    height: StyleSheet.hairlineWidth,
-    width: '100%',
+  h1: {
+    fontSize: 30,
+    lineHeight: 34,
+    fontWeight: '600',
+  },
+  h2: {
+    fontSize: 26,
+    lineHeight: 30,
+    fontWeight: '600',
+  },
+  h3: {
+    fontSize: 22,
+    lineHeight: 28,
+    fontWeight: '600',
+  },
+  body: {
+    fontSize: 16,
+    lineHeight: 18,
+    color: '#6a6a6a',
   },
 })
 
+const image = {
+  rocket: RocketSVG,
+  book: BookSVG,
+}
+
 const Device = props => {
-  const { children } = props
+  const { children, backgroundColor = '#f3f5f9' } = props
 
   return (
     <div className="center-device">
-      <div className="iphone-x">
+      <div className="iphone-x" style={{ backgroundColor }}>
         <div className="camera" />
         <div className="speaker" />
         <div className="screen">{children}</div>
@@ -33,52 +62,34 @@ const Device = props => {
   )
 }
 
+const Image = props => {
+  const { name, width = 64, height } = props
+  const Component = image[name]
+
+  if (!Component) {
+    throw new Error('Image not found')
+  }
+
+  return <Component width={width} height={height} />
+}
+
+const Typography = props => {
+  const { variant, children } = props
+
+  return <RNText style={[styles.typographyRoot, styles[variant]]}>{children}</RNText>
+}
+
 const Placeholder = props => {
-  const { width, height = 100, style, children } = props
-  const resolveResponsiveProp = Stacks.useResponsiveProp()
+  const { width, height = 60, style, children } = props
 
   return (
-    <View
-      style={[
-        styles.root,
-        { width: resolveResponsiveProp(width), height: resolveResponsiveProp(height) },
-        style,
-      ]}
-    />
+    <Stacks.Box alignX="center" alignY="center" style={[styles.root, { width, height }, style]} />
   )
 }
 
-const PlaceholderView = props => {
-  const { width, height, style, children } = props
-  const resolveResponsiveProp = Stacks.useResponsiveProp()
-
-  return (
-    <View
-      style={[
-        { width: resolveResponsiveProp(width), height: resolveResponsiveProp(height) },
-        style,
-      ]}
-    >
-      {children}
-    </View>
-  )
-}
-
-const FluidPlaceholder = props => {
-  const { width, style, children } = props
-  const resolveResponsiveProp = Stacks.useResponsiveProp()
-
-  return (
-    <View style={[styles.root, styles.flexFluid, { width: resolveResponsiveProp(width) }, style]}>
-      {children}
-    </View>
-  )
-}
-
-const Divider = props => {
-  const { style, color = 'rgba(97, 0, 255, 0.3)' } = props
-
-  return <View style={[styles.divider, { backgroundColor: color }, style]} />
+const Container = props => {
+  const { height, children } = props
+  return <Stacks.Box style={{ height }}>{children}</Stacks.Box>
 }
 
 const ReactLiveScope = {
@@ -86,14 +97,14 @@ const ReactLiveScope = {
   ...Stacks,
   reset: Stacks.reset,
   Device,
+  Image,
+  Typography,
   View,
   Text,
   StyleSheet,
   React,
   Placeholder,
-  PlaceholderView,
-  FluidPlaceholder,
-  Divider,
+  Container,
 }
 
 export default ReactLiveScope

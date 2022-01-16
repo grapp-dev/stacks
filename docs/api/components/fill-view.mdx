@@ -7,60 +7,69 @@ import { Props, BoxProps } from '../../core/components';
 
 `FillView` covers a common pattern for creating overlays with position absolute and zero positioning.
 
-`FillView` accepts all [`View`](https://reactnative.dev/docs/view) props.
 
-### Examples
+### Basic usage
 
-```jsx live
-function() {
+```jsx live showCode
+// import { reset } from '@mobily/stacks'
+
+const styles = StyleSheet.create({
+  root: {
+    backgroundColor: '#c2abfa',
+  }
+})
+
+const App = () => {
   return (
-    <StacksProvider>
-      <PlaceholderView height={500}>
-        <FillView alignX="center" alignY="center" direction="row">
-          <Box flex="1/2">
-            <Stack space={1}>
-              <Placeholder height={60} />
-              <Placeholder height={60} />
-              <Placeholder height={60} />
-              <Placeholder height={60} />
-            </Stack>
-          </Box>
-        </FillView>
-      </PlaceholderView>
-    </StacksProvider>
+    <Device>
+      <FillView alignX="center" alignY="center" style={styles.root}>
+        <Image name="book" width={128} />
+      </FillView>
+    </Device>
   )
 }
+
+render(<App />)
 ```
 
-You may want to use a helper function to "reset" one or more positioning properties.
+### Reset
 
 
 ```jsx live
-function() {
-  // import { reset } from '@mobily/stacks'
+// import { reset } from '@mobily/stacks'
 
+const App = () => {
   return (
-    <StacksProvider>
-      <PlaceholderView height={300}>
-        <FillView bottom={reset} right={reset}>
-          <Placeholder width={100} />
-        </FillView>
-        <FillView bottom={reset} left={reset}>
-          <Placeholder width={100} />
-        </FillView>
-        <FillView alignX="center" alignY="center" top={reset}>
-          <Stack space={2} horizontal={true}>
-            <Placeholder width={100} />
-            <Placeholder width={100} />
-          </Stack>
-        </FillView>
-      </PlaceholderView>
-    </StacksProvider>
+    <Device>
+      <FillView top={40} left={16} bottom={reset} right={reset}>
+        <Placeholder width={80} />
+      </FillView>
+
+      <FillView top={40} right={16} bottom={reset} left={reset}>
+        <Placeholder width={80} />
+      </FillView>
+
+      <FillView bottom={30} left={16} right={16} top={reset}>
+        <Columns space={4}>
+          <Placeholder />
+          <Placeholder />
+          <Placeholder />
+        </Columns>
+      </FillView>
+    </Device>
   )
 }
+
+render(<App />)
 ```
 
 ### Props
+
+:::info
+
+`FillView` accepts all [`View`](https://reactnative.dev/docs/view) props.
+
+:::
 
 <Props
   data={[
@@ -90,8 +99,6 @@ function() {
     },
   ]} />
 
-### Box Props
-
 <Props
   data={[
      {
@@ -120,11 +127,6 @@ function() {
       type: 'responsiveProp<[#wrap | #nowrap]>',
       required: false,
     },
-    {
-      name: 'flex',
-      type: 'responsiveProp<[#content | #fluid | #f12 | #f13 | #f23 | #f14 | #f34 | #f15 | #f25 | #f35 | #f45]>',
-      required: false,
-    }
   ]} />
 
 <BoxProps />

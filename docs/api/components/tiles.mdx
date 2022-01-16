@@ -7,63 +7,76 @@ import { Props, BoxProps } from '../../core/components';
 
 `Tiles` renders a grid of components with equal spacing between them.
 
-`Tiles` accepts all [`View`](https://reactnative.dev/docs/view) props.
-
-### Examples
-
-Simple usage.
+### Columns & Space
 
 ```jsx live
-function() {
+const App = () => {
   return (
-    <StacksProvider>
-      <Tiles space={2} columns={3}>
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-      </Tiles>
-    </StacksProvider>
+    <Tiles space={4} columns={3}>
+      <Placeholder />
+      <Placeholder />
+      <Placeholder />
+      <Placeholder />
+      <Placeholder />
+    </Tiles>
   )
 }
+
+render(<App />)
 ```
 
-Other `Stacks` components used in `Tiles`.
+### Nested
 
 ```jsx live
-function() {
+const styles = StyleSheet.create({
+  fluidPlaceholder: {
+    backgroundColor: 'rgba(255, 0, 255, 0.05)',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: 'rgba(255, 0, 255, 0.3)',
+  },
+})
+
+const FluidPlaceholder = props => {
+  const { style, width } = props
+
   return (
-    <StacksProvider>
-      <Tiles space={2} columns={2}>
-        <Columns space={2}>
-          <Column>
-            <Placeholder />
-          </Column>
-          <Column>
-            <Placeholder />
-          </Column>
-        </Columns>
-        <Placeholder />
-        <Placeholder />
-        <Stack space={2}>
-          <Placeholder height={46} />
-          <Placeholder height={46} />
-        </Stack>
-      </Tiles>
-    </StacksProvider>
+    <Box flex="fluid" style={[styles.fluidPlaceholder, { width }, style]} />
   )
 }
+
+const App = () => {
+  return (
+    <Tiles space={4} columns={2}>
+      <FluidPlaceholder />
+      <Tiles space={4} columns={2}>
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+      </Tiles>
+      <Placeholder />
+      <Placeholder />
+    </Tiles>
+  )
+}
+
+render(<App />)
 ```
 
 ## Props
+
+:::info
+
+`Tiles` accepts all [`View`](https://reactnative.dev/docs/view) props.
+
+:::
 
 <Props
   data={[
     {
       name: 'columns',
       type: 'responsiveProp<int>',
-      required: true,
+      required: false,
     },
     {
       name: 'space',
@@ -71,7 +84,5 @@ function() {
       required: false,
     },
   ]} />
-
-## Box Props
 
 <BoxProps />

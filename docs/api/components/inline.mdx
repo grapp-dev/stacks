@@ -5,72 +5,74 @@ title: Inline
 
 import { Props, BoxProps } from '../../core/components';
 
-`Inline` renders a set of components in a row with equal spacing around them, wrapping onto multiple lines when necessary. It also supports the horizontal alignment of its children.
+`Inline` renders a set of components in a row with equal spacing around them, wrapping onto multiple lines when necessary.
 
-`Inline` accepts all [`View`](https://reactnative.dev/docs/view) props.
-
-### Examples
-
-Simple usage.
+### Space
 
 ```jsx live
-function() {
+const App = () => {
   return (
-    <StacksProvider>
+    <Inline space={2}>
+      <Placeholder width={40} />
+      <Placeholder width={60} />
+      <Placeholder width={50} />
+      <Placeholder width={80} />
+      <Placeholder width={100} />
+      <Placeholder width={60} />
+    </Inline>
+  )
+}
+
+render(<App />)
+```
+
+### Nested
+
+```jsx live
+const App = () => {
+  return (
+    <Inline space={10}>
       <Inline space={2}>
-        <Placeholder width={90} />
         <Placeholder width={60} />
-        <Placeholder width={120} />
-        <Placeholder width={200} />
-        <Placeholder width={100} />
-        <Placeholder width={140} />
+        <Placeholder width={90} />
       </Inline>
-    </StacksProvider>
+      <Inline space={2}>
+        <Placeholder width={60} />
+        <Placeholder width={90} />
+      </Inline>
+    </Inline>
   )
 }
+
+render(<App />)
 ```
 
-Multiple `Inline` components can be nested.
+### Align
 
 ```jsx live
-function() {
+const App = () => {
   return (
-    <StacksProvider>
-      <Inline space={10}>
-        <Inline space={2}>
-          <Placeholder width={60} />
-          <Placeholder width={90} />
-        </Inline>
-        <Inline space={2}>
-          <Placeholder width={60} />
-          <Placeholder width={90} />
-        </Inline>
-      </Inline>
-    </StacksProvider>
+    <Inline space={2} align="center">
+      <Placeholder width={90} />
+      <Placeholder width={60} />
+      <Placeholder width={120} />
+      <Placeholder width={100} />
+      <Placeholder width={100} />
+    </Inline>
   )
 }
-```
 
-Set horizontal alignment.
-
-```jsx live
-function() {
-  return (
-    <StacksProvider>
-      <Inline space={2} align="center">
-        <Placeholder width={90} />
-        <Placeholder width={60} />
-        <Placeholder width={120} />
-        <Placeholder width={100} />
-        <Placeholder width={100} />
-      </Inline>
-    </StacksProvider>
-  )
-}
+render(<App />)
 ```
 
 
 ### Props
+
+:::info
+
+`Inline` accepts all [`View`](https://reactnative.dev/docs/view) props.
+
+:::
 
 <Props
   data={[
@@ -86,8 +88,5 @@ function() {
     },
   ]}
 />
-
-
-### Box Props
 
 <BoxProps />

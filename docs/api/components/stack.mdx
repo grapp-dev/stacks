@@ -5,99 +5,115 @@ title: Stack
 
 import { Props, BoxProps } from '../../core/components';
 
-`Stack` distributes white space evenly between components (vertically or horizontally if you set the `horizontal` prop to `true`).
+`Stack` distributes children vertically with equal spacing between them, plus an optional separator element.
 
-`Stack` accepts all [`View`](https://reactnative.dev/docs/view) props.
-
-### Examples
-
-Set spacing between elements stacked vertically.
+### Space
 
 ```jsx live
-function() {
+const App = () => {
   return (
-    <StacksProvider>
-      <Stack space={1}>
+    <Stack space={4}>
+      <Placeholder />
+      <Placeholder />
+      <Placeholder />
+    </Stack>
+  )
+}
+
+render(<App />)
+```
+
+### Nested
+
+`Stack` components can be nested within each other for layouts with differing amounts of space between groups of content.
+
+```jsx live
+const App = () => {
+  return (
+    <Stack space={12}>
+      <Stack space={2}>
+        <Placeholder />
+        <Placeholder />
+      </Stack>
+      <Stack space={2}>
         <Placeholder />
         <Placeholder />
         <Placeholder />
       </Stack>
-    </StacksProvider>
+    </Stack>
   )
 }
+
+render(<App />)
 ```
 
-Multiple `Stack` components can be nested.
+### Align
 
 ```jsx live
-function() {
+const App = () => {
   return (
-    <StacksProvider>
-      <Stack space={10}>
-        <Stack space={2}>
-          <Placeholder />
-          <Placeholder />
-        </Stack>
-        <Stack space={2}>
-          <Placeholder />
-          <Placeholder />
-          <Placeholder />
-        </Stack>
-      </Stack>
-    </StacksProvider>
+    <Stack space={4} align="center">
+      <Placeholder width={160} />
+      <Placeholder width={220} />
+      <Placeholder width={160} />
+    </Stack>
   )
 }
+
+render(<App />)
 ```
 
-Set horizontal alignment.
+### Horizontal
 
 ```jsx live
-function() {
+const App = () => {
   return (
-    <StacksProvider>
-      <Stack space={1} align="center">
-        <Placeholder width={240} />
-        <Placeholder width={300} />
-        <Placeholder width={240} />
-      </Stack>
-    </StacksProvider>
+    <Stack space={4} horizontal={true} align="center">
+      <Placeholder width={60} height={100} />
+      <Placeholder width={60} height={160} />
+      <Placeholder width={60} height={120} />
+    </Stack>
   )
 }
+
+render(<App />)
 ```
 
-Stack elements horizontally.
+### Divider
 
 ```jsx live
-function() {
+const styles = StyleSheet.create({
+  divider: {
+    height: StyleSheet.hairlineWidth,
+    width: '100%',
+    backgroundColor: 'rgba(97, 0, 255, 0.3)',
+  },
+})
+
+const Divider = () => {
+  return <View style={styles.divider} />
+}
+
+const App = () => {
   return (
-    <StacksProvider>
-      <Stack space={1} horizontal={true} align="center">
-        <Placeholder width={100} height={140} />
-        <Placeholder width={100} height={200} />
-        <Placeholder width={100} height={140} />
-      </Stack>
-    </StacksProvider>
+    <Stack space={4} divider={<Divider />}>
+      <Placeholder />
+      <Placeholder height={100} />
+      <Placeholder />
+    </Stack>
   )
 }
-```
 
-Stack with a custom divider.
-
-```jsx live
-function() {
-  return (
-    <StacksProvider>
-      <Stack space={4} divider={<Divider />}>
-        <Placeholder height={100} />
-        <Placeholder height={140} />
-        <Placeholder height={80} />
-      </Stack>
-    </StacksProvider>
-  )
-}
+render(<App />)
 ```
 
 ### Props
+
+:::info
+
+`Stack` accepts all [`View`](https://reactnative.dev/docs/view) props.
+
+:::
 
 <Props
   data={[
@@ -123,7 +139,5 @@ function() {
     },
   ]}
 />
-
-### Box Props
 
 <BoxProps />

@@ -19,12 +19,14 @@ let useWindowDimensions: unit => ReactNative.Dimensions.displayMetrics
 
 ### Example
 
-```jsx live
-function() {
+```jsx live showCode
+const App = () => {
   const dimensions = useWindowDimensions()
 
   return (
-    <Text>{JSON.stringify(dimensions)}</Text>
+    <Typography variant="body">{JSON.stringify(dimensions)}</Typography>
   )
 }
+
+render(<App />)
 ```

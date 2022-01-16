@@ -266,9 +266,11 @@ div[class^="codeBlockContainer"], div[class^="playgroundContainer"] {
 }
 
 .iphone-x .screen {
-  padding-top: 30px;
-  padding-bottom: 24px;
+  padding: 30px 1px 24px;
   position: relative;
   display: flex;
+  flex-direction: column;
   flex: 1;
+  border-radius: 38px;
+  overflow: hidden;
 }

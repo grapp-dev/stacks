@@ -17,6 +17,7 @@ module.exports = {
       async: true,
     },
   ],
+  staticDirectories: ['public', 'images'],
   themeConfig: {
     image: 'img/hero-logo.png',
     prism: {
@@ -95,7 +96,7 @@ module.exports = {
       respectPrefersColorScheme: false,
     },
   },
-  themes: ['@docusaurus/theme-live-codeblock'],
+  themes: [['@docusaurus/theme-live-codeblock', { noInline: true }]],
   plugins: [
     [
       require.resolve('@easyops-cn/docusaurus-search-local'),

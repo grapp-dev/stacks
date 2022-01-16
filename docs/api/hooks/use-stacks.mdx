@@ -36,22 +36,24 @@ type context = {
 let useStacks: unit => context
 ```
 
-### Example
+### Basic usage
 
 ```jsx live
-function() {
-  const DebugText = () => {
-    const context = useStacks()
+const DebugText = () => {
+  const context = useStacks()
 
-    return (
-      <Text>{JSON.stringify(context)}</Text>
-    )
-  }
+  return (
+    <Typography variant="body">{JSON.stringify(context)}</Typography>
+  )
+}
 
+const App = () => {
   return (
     <StacksProvider spacing={4}>
       <DebugText />
     </StacksProvider>
   )
 }
+
+render(<App />)
 ```

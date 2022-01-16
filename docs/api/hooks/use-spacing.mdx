@@ -17,27 +17,40 @@ const useSpacing: (value: number | null | undefined) => number
 let useSpacing: option<float> => float
 ```
 
-### Example
+### Basic usage
 
-```jsx live
-function() {
-  const DebugText = props => {
-    const { marginBottom } = props
-    const margin = useSpacing(marginBottom)
+```jsx live showCode
+const styles = StyleSheet.create({
+  root: {
+    backgroundColor: 'rgba(255, 0, 255, 0.05)',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: 'rgba(255, 0, 255, 0.3)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 24,
+  },
+})
 
-    return (
-      <View style={{ marginBottom: margin, backgroundColor: 'rgba(97, 0, 255, .1)' }}>
-        <Text>Debug</Text>
-      </View>
-    )
-  }
+const DebugBox = props => {
+  const { marginBottom, children } = props
+  const margin = useSpacing(marginBottom)
 
   return (
+    <View style={[styles.root, { marginBottom: margin }]}>
+      <Typography variant="body">{children}</Typography>
+    </View>
+  )
+}
+
+const App = () => {
+  return (
     <StacksProvider spacing={4}>
-      <DebugText marginBottom={2} />
-      <DebugText marginBottom={8} />
-      <DebugText />
+      <DebugBox marginBottom={4}>Hello</DebugBox>
+      <DebugBox marginBottom={8}>World</DebugBox>
+      <DebugBox />
     </StacksProvider>
   )
 }
+
+render(<App />)
 ```

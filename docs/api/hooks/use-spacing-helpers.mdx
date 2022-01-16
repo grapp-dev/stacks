@@ -12,12 +12,10 @@ import { defaultTabsProps } from '../../core/components';
 ### TypeScript
 
 ```typescript
-type SpacingHelpers = {
+const useSpacingHelpers: () => {
   readonly multiply: (value: number) => number
   readonly divide: (value: number) => number
 }
-
-const useSpacingHelpers: () => SpacingHelpers
 ```
 
 ### ReScript
@@ -31,27 +29,37 @@ type spacingHelpers = {
 let useSpacingHelpers: unit => spacingHelpers
 ```
 
-### Example
+### Basic usage
 
-```jsx live
-function() {
-  const DebugText = props => {
-    const { marginBottom } = props
-    const { multiply } = useSpacingHelpers()
+```jsx live showCode
+const styles = StyleSheet.create({
+  root: {
+    backgroundColor: 'rgba(255, 0, 255, 0.05)',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: 'rgba(255, 0, 255, 0.3)',
+    alignItems: 'center',
+  },
+})
 
-    return (
-      <View style={{ marginBottom: multiply(marginBottom), backgroundColor: 'rgba(97, 0, 255, .1)' }}>
-        <Text>Debug</Text>
-      </View>
-    )
-  }
+const DebugBox = props => {
+  const { marginBottom, padding, children } = props
+  const { multiply } = useSpacingHelpers()
 
   return (
+    <View style={[styles.root, { marginBottom: multiply(marginBottom), padding: multiply(padding) }]}>
+      <Typography variant="body">{children}</Typography>
+    </View>
+  )
+}
+
+const App = () => {
+  return (
     <StacksProvider spacing={4}>
-      <DebugText marginBottom={2} />
-      <DebugText marginBottom={8} />
-      <DebugText />
+      <DebugBox marginBottom={4} padding={4}>Hello</DebugBox>
+      <DebugBox padding={8}>World</DebugBox>
     </StacksProvider>
   )
 }
+
+render(<App />)
 ```

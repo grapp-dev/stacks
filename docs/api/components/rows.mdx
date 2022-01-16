@@ -1,117 +1,453 @@
 ---
 id: rows
-title: Rows
+title: Rows & Row
 ---
 
 import { Props, BoxProps } from '../../core/components';
 
-`Rows` (and `Row`) lays out content vertically. The main difference between `Rows` and `Stack` is that `Rows` has the full height of its container.
+`Rows` renders children vertically in equal-height rows by default, with consistent spacing between them.
+
+### Space
+
+```jsx live
+const styles = StyleSheet.create({
+  fluidPlaceholder: {
+    backgroundColor: 'rgba(255, 0, 255, 0.05)',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: 'rgba(255, 0, 255, 0.3)',
+  },
+})
+
+const FluidPlaceholder = props => {
+  const { style, width } = props
+
+  return (
+    <Box flex="fluid" style={[styles.fluidPlaceholder, { width }, style]} />
+  )
+}
+
+const App = () => {
+  return (
+    <Container height={440}>
+      <Rows space={4}>
+        <FluidPlaceholder />
+        <FluidPlaceholder />
+        <FluidPlaceholder />
+      </Rows>
+    </Container>
+  )
+}
+
+render(<App />)
+```
+
+### Nested
+
+```jsx live
+const styles = StyleSheet.create({
+  fluidPlaceholder: {
+    backgroundColor: 'rgba(255, 0, 255, 0.05)',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: 'rgba(255, 0, 255, 0.3)',
+  },
+})
+
+const FluidPlaceholder = props => {
+  const { style, width } = props
+
+  return (
+    <Box flex="fluid" style={[styles.fluidPlaceholder, { width }, style]} />
+  )
+}
+
+const App = () => {
+  return (
+    <Container height={440}>
+      <Rows space={12}>
+        <Row height="content">
+          <Rows space={4}>
+            <Placeholder />
+            <Placeholder />
+            <Placeholder />
+          </Rows>
+        </Row>
+        <Row>
+          <FluidPlaceholder />
+        </Row>
+      </Rows>
+    </Container>
+  )
+}
+
+render(<App />)
+```
+
+### AlignX
+
+```jsx live
+const styles = StyleSheet.create({
+  root: {
+    height: 340,
+  },
+  fluidPlaceholder: {
+    backgroundColor: 'rgba(255, 0, 255, 0.05)',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: 'rgba(255, 0, 255, 0.3)',
+  },
+})
+
+const FluidPlaceholder = props => {
+  const { style, width } = props
+
+  return (
+    <Box flex="fluid" style={[styles.fluidPlaceholder, { width }, style]} />
+  )
+}
+
+const App = () => {
+  return (
+    <Columns alignX="between" space={4} style={styles.root}>
+      <Rows space={4} alignX="left">
+        <Row width="content">
+          <FluidPlaceholder width={120} />
+        </Row>
+        <Row width="content">
+          <FluidPlaceholder width={140} />
+        </Row>
+        <Row width="content">
+          <FluidPlaceholder width={100} />
+        </Row>
+      </Rows>
+
+      <Rows space={4} alignX="center">
+        <Row width="content">
+          <FluidPlaceholder width={100} />
+        </Row>
+        <Row width="content">
+          <FluidPlaceholder width={140} />
+        </Row>
+        <Row width="content">
+          <FluidPlaceholder width={120} />
+        </Row>
+      </Rows>
+
+      <Rows space={4} alignX="right">
+        <Row width="content">
+          <FluidPlaceholder width={100} />
+        </Row>
+        <Row width="content">
+          <FluidPlaceholder width={140} />
+        </Row>
+        <Row width="content">
+          <FluidPlaceholder width={120} />
+        </Row>
+      </Rows>
+    </Columns>
+  )
+}
+
+render(<App />)
+```
+
+### AlignY
+
+```jsx live
+const styles = StyleSheet.create({
+  root: {
+    height: 440,
+  },
+  fluidPlaceholder: {
+    backgroundColor: 'rgba(255, 0, 255, 0.05)',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: 'rgba(255, 0, 255, 0.3)',
+  },
+})
+
+const FluidPlaceholder = props => {
+  const { style, width } = props
+
+  return (
+    <Box flex="fluid" style={[styles.fluidPlaceholder, { width }, style]} />
+  )
+}
+
+const App = () => {
+  return (
+    <Columns alignX="between" space={4} style={styles.root}>
+      <Rows space={4} alignY="top">
+        <Row height="content">
+          <Placeholder />
+        </Row>
+        <Row height="content">
+          <Placeholder />
+        </Row>
+        <Row height="content">
+          <Placeholder />
+        </Row>
+      </Rows>
+
+      <Rows space={4} alignY="center">
+        <Row height="content">
+          <Placeholder />
+        </Row>
+        <Row height="content">
+          <Placeholder />
+        </Row>
+        <Row height="content">
+          <Placeholder />
+        </Row>
+      </Rows>
+
+      <Rows space={4} alignY="bottom">
+        <Row height="content">
+          <Placeholder />
+        </Row>
+        <Row height="content">
+          <Placeholder />
+        </Row>
+        <Row height="content">
+          <Placeholder />
+        </Row>
+      </Rows>
+
+      <Rows space={4} alignY="between">
+        <Row height="content">
+          <Placeholder />
+        </Row>
+        <Row height="content">
+          <Placeholder />
+        </Row>
+        <Row height="content">
+          <Placeholder />
+        </Row>
+      </Rows>
+
+      <Rows space={4} alignY="around">
+        <Row height="content">
+          <Placeholder />
+        </Row>
+        <Row height="content">
+          <Placeholder />
+        </Row>
+        <Row height="content">
+          <Placeholder />
+        </Row>
+      </Rows>
+
+      <Rows space={4} alignY="evenly">
+        <Row height="content">
+          <Placeholder />
+        </Row>
+        <Row height="content">
+          <Placeholder />
+        </Row>
+        <Row height="content">
+          <Placeholder />
+        </Row>
+      </Rows>
+    </Columns>
+  )
+}
+
+render(<App />)
+```
+
+### Width
+
+```jsx live
+const styles = StyleSheet.create({
+  fluidPlaceholder: {
+    backgroundColor: 'rgba(255, 0, 255, 0.05)',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: 'rgba(255, 0, 255, 0.3)',
+  },
+})
+
+const FluidPlaceholder = props => {
+  const { style, width } = props
+
+  return (
+    <Box flex="fluid" style={[styles.fluidPlaceholder, { width }, style]} />
+  )
+}
+
+const App = () => {
+  return (
+    <Rows space={4}>
+      <Row width="fluid">
+        <Placeholder />
+      </Row>
+      <Row width="4/5">
+        <Placeholder />
+      </Row>
+      <Row width="3/4">
+        <Placeholder />
+      </Row>
+      <Row width="2/3">
+        <Placeholder />
+      </Row>
+      <Row width="3/5">
+        <Placeholder />
+      </Row>
+      <Row width="1/2">
+        <Placeholder />
+      </Row>
+      <Row width="1/3">
+        <Placeholder />
+      </Row>
+      <Row width="1/4">
+        <Placeholder />
+      </Row>
+      <Row width="1/5">
+        <Placeholder />
+      </Row>
+      <Row width="content">
+        <Placeholder width={320} />
+      </Row>
+    </Rows>
+  )
+}
+
+render(<App />)
+```
+
+### Height
+
+```jsx live
+const styles = StyleSheet.create({
+  root: {
+    height: 440,
+  },
+  fluidPlaceholder: {
+    backgroundColor: 'rgba(255, 0, 255, 0.05)',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: 'rgba(255, 0, 255, 0.3)',
+  },
+})
+
+const FluidPlaceholder = props => {
+  const { style, width } = props
+
+  return (
+    <Box flex="fluid" style={[styles.fluidPlaceholder, { width }, style]} />
+  )
+}
+
+const App = () => {
+  return (
+    <Columns space={4} alignX="between" style={styles.root}>
+      <Rows space={4}>
+        <Row height="1/2">
+          <FluidPlaceholder />
+        </Row>
+        <Row height="1/2">
+          <FluidPlaceholder />
+        </Row>
+      </Rows>
+
+      <Rows space={4}>
+        <Row height="1/3">
+          <FluidPlaceholder />
+        </Row>
+        <Row height="1/3">
+          <FluidPlaceholder />
+        </Row>
+        <Row height="1/3">
+          <FluidPlaceholder />
+        </Row>
+      </Rows>
+
+      <Rows space={4}>
+        <Row height="2/3">
+          <FluidPlaceholder />
+        </Row>
+        <Row height="1/3">
+          <FluidPlaceholder />
+        </Row>
+      </Rows>
+
+      <Rows space={4}>
+        <Row height="1/4">
+          <FluidPlaceholder />
+        </Row>
+        <Row height="1/4">
+          <FluidPlaceholder />
+        </Row>
+        <Row height="1/4">
+          <FluidPlaceholder />
+        </Row>
+        <Row height="1/4">
+          <FluidPlaceholder />
+        </Row>
+      </Rows>
+
+      <Rows space={4}>
+        <Row height="1/4">
+          <FluidPlaceholder />
+        </Row>
+        <Row height="1/2">
+          <FluidPlaceholder />
+        </Row>
+        <Row height="1/4">
+          <FluidPlaceholder />
+        </Row>
+      </Rows>
+
+      <Rows space={4}>
+        <Row height="1/4">
+          <FluidPlaceholder />
+        </Row>
+        <Row height="3/4">
+          <FluidPlaceholder />
+        </Row>
+      </Rows>
+
+      <Rows space={4}>
+        <Row height="1/5">
+          <FluidPlaceholder />
+        </Row>
+        <Row height="2/5">
+          <FluidPlaceholder />
+        </Row>
+        <Row height="2/5">
+          <FluidPlaceholder />
+        </Row>
+      </Rows>
+
+      <Rows space={4}>
+        <Row height="1/5">
+          <FluidPlaceholder />
+        </Row>
+        <Row height="3/5">
+          <FluidPlaceholder />
+        </Row>
+        <Row height="1/5">
+          <FluidPlaceholder />
+        </Row>
+      </Rows>
+
+      <Rows space={4}>
+        <Row height="1/5">
+          <FluidPlaceholder />
+        </Row>
+        <Row height="4/5">
+          <FluidPlaceholder />
+        </Row>
+      </Rows>
+    </Columns>
+  )
+}
+
+render(<App />)
+```
+
+### Rows Props
+
+:::info
 
 `Rows` accepts all [`View`](https://reactnative.dev/docs/view) props.
 
-### Examples
-
-Set spacing between rows and lay out content vertically.
-
-```jsx live
-function() {
-  return (
-    <StacksProvider>
-      <PlaceholderView height={500}>
-        <Rows space={1}>
-          <Row>
-            <FluidPlaceholder />
-          </Row>
-          <Row>
-            <FluidPlaceholder />
-          </Row>
-          <Row>
-            <FluidPlaceholder />
-          </Row>
-        </Rows>
-      </PlaceholderView>
-    </StacksProvider>
-  )
-}
-```
-
-Multiple `Rows` components can be nested.
-
-```jsx live
-function() {
-  return (
-    <StacksProvider>
-      <PlaceholderView height={500}>
-        <Rows space={10}>
-          <Row height="content">
-            <Rows space={1}>
-              <Row>
-                <Placeholder />
-              </Row>
-              <Row>
-                <Placeholder />
-              </Row>
-            </Rows>
-          </Row>
-          <Row>
-            <FluidPlaceholder />
-          </Row>
-        </Rows>
-      </PlaceholderView>
-    </StacksProvider>
-  )
-}
-```
-
-Set horizontal alignment.
-
-```jsx live
-function() {
-  return (
-    <StacksProvider>
-      <PlaceholderView height={300}>
-        <Rows space={1} alignX="center">
-          <Row width="content">
-            <FluidPlaceholder width={240} />
-          </Row>
-          <Row width="content">
-            <FluidPlaceholder width={300} />
-          </Row>
-          <Row width="content">
-            <FluidPlaceholder width={240} />
-          </Row>
-        </Rows>
-      </PlaceholderView>
-    </StacksProvider>
-  )
-}
-```
-
-Set vertical alignment.
-
-```jsx live
-function() {
-  return (
-    <StacksProvider>
-      <PlaceholderView height={500}>
-        <Rows space={1} alignY="between">
-          <Row height="content">
-            <Placeholder height={80} />
-          </Row>
-          <Row height="content">
-            <Placeholder height={200} />
-          </Row>
-          <Row height="content">
-            <Placeholder height={60} />
-          </Row>
-        </Rows>
-      </PlaceholderView>
-    </StacksProvider>
-  )
-}
-```
-
-### Props
+:::
 
 <Props
   data={[
@@ -138,6 +474,35 @@ function() {
   ]}
 />
 
-### Box Props
-
 <BoxProps />
+
+### Row Props
+
+<Props
+  data={[
+    {
+      name: 'width',
+      type: 'responsiveProp<[#content | #fluid | #f12 | #f13 | #f23 | #f14 | #f34 | #f15 | #f25 | #f35 | #f45]>',
+      required: false,
+      defaultValue: 'fluid'
+    },
+    {
+      name: 'height',
+      type: 'responsiveProp<[#content | #fluid | #f12 | #f13 | #f23 | #f14 | #f34 | #f15 | #f25 | #f35 | #f45]>',
+      required: false,
+      defaultValue: 'fluid'
+    },
+  ]}
+/>
+
+<BoxProps omit={[
+  'margin',
+  'marginX',
+  'marginY',
+  'marginTop',
+  'marginBottom',
+  'marginLeft',
+  'marginRight',
+  'marginStart',
+  'marginEnd',
+]} />

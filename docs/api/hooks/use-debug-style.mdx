@@ -17,24 +17,26 @@ const useDebugStyle: () => ReactNative.StyleProp<ReactNative.ViewStyle> | undefi
 let useDebugStyle: unit => option<ReactNative.Style.t>
 ```
 
-### Example
+### Basic usage
 
-```jsx live
-function() {
-  const DebugText = () => {
-    const debugStyle = useDebugStyle()
+```jsx live showCode
+const DebugText = () => {
+  const debugStyle = useDebugStyle()
 
-    return (
-      <View style={debugStyle}>
-        <Text>Debug</Text>
-      </View>
-    )
-  }
+  return (
+    <Box padding={4} style={debugStyle}>
+      <Typography variant="body">Debug</Typography>
+    </Box>
+  )
+}
 
+const App = () => {
   return (
     <StacksProvider debug={true}>
       <DebugText />
     </StacksProvider>
   )
 }
+
+render(<App />)
 ```
