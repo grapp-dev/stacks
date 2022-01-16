@@ -6,6 +6,24 @@ open Stacks_types
 external normalizeResponsiveProp: responsiveProp<'a> => responsiveProp<'a> =
   "normalizeResponsiveProp"
 
+@module("./Stacks_utils.js")
+external negateSpace: option<responsiveProp<'a>> => option<responsiveProp<'a>> = "negateSpace"
+
+@module("./Stacks_utils.js")
+external reset: float = "reset"
+
+@gentype
+let reset = reset
+
+@module("./Stacks_utils.js")
+external resetFillViewValue: option<float> => option<float> = "resetFillViewValue"
+
+@module("./Stacks_utils.js")
+external isColumnComponent: React.element => bool = "isColumnComponent"
+
+@module("./Stacks_utils.js")
+external isRowComponent: React.element => bool = "isRowComponent"
+
 let length = Belt.Array.length
 let getLastIndex = elements => elements->length->pred
 let isLastElement = (elements, index) => getLastIndex(elements) == index

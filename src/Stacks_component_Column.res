@@ -1,10 +1,10 @@
 open ReactNative
 
-open Stacks_component_Columns.Context
+open Stacks_context.ColumnsContext
 
-open Stacks_hooks
 open Stacks_types
 open Stacks_styles
+open Stacks_externals
 
 module Box = Stacks_component_Box
 
@@ -12,7 +12,6 @@ module Box = Stacks_component_Box
 let make = (
   // Column props
   ~width: responsiveProp<flex>=[#fluid],
-  ~height: responsiveProp<flex>=[#content],
   // Box props
   ~padding=?,
   ~paddingX=?,
@@ -74,18 +73,19 @@ let make = (
   ~onMouseUp=?,
 ) => {
   let {isCollapsed, space, debugStyle, alignY} = useColumns()
-  let resolveResponsiveProp = useResponsiveProp()
-  let width = resolveResponsiveProp(Some(width))
-  let height = resolveResponsiveProp(Some(height))
-  let style = Style.arrayOption([debugStyle, isCollapsed ? None : resolveFlexBasis(height), style])
-  let viewStyle = keepStyle(
-    isCollapsed
-      ? [Some(styles["fullWidth"]), marginTop(space)]
-      : [Some(styles["shrink"]), alignY, resolveFlexBasis(width), marginLeft(space)],
-  )
+  let alignY = coerce(alignY)
+  let style = Style.arrayOption([debugStyle, style])
+  let boxPaddingLeft = isCollapsed ? None : space
+  let marginTop = isCollapsed ? space : None
 
-  <View style={viewStyle}>
+  <Box
+    flex=width
+    paddingLeft=?boxPaddingLeft
+    ?marginTop
+    style={Style.arrayOption([isCollapsed ? Some(styles["fullWidth"]) : None])}>
     <Box
+      flex=[#fluid]
+      ?alignY
       ?padding
       ?paddingX
       ?paddingY
@@ -143,5 +143,7 @@ let make = (
       style>
       children
     </Box>
-  </View>
+  </Box>
 }
+
+%%raw("Stacks_component_Column.__isColumn__ = true")

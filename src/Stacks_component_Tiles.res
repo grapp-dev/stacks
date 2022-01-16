@@ -2,15 +2,16 @@ open ReactNative
 
 open Stacks_hooks
 open Stacks_utils
-open Stacks_styles
+open Stacks_externals
 
 module Stack = Stacks_component_Stack
+module Box = Stacks_component_Box
 
 @react.component @gentype
 let make = (
   // Tiles props
-  ~columns,
-  ~space,
+  ~columns=?,
+  ~space=?,
   // Box props
   ~padding=?,
   ~paddingX=?,
@@ -81,12 +82,13 @@ let make = (
   ~onMouseUp=?,
 ) => {
   let resolveResponsiveProp = useResponsiveProp()
-  let columns = Stacks_externals.resolve(resolveResponsiveProp, columns)
-  let tileSpace = useSpacing(resolveResponsiveProp(space))
+  let columns =
+    columns
+    ->resolveResponsiveProp
+    ->Belt.Option.mapWithDefaultU(1, (. value) => value < 1 ? 1 : value)
   let debugStyle = useDebugStyle()
-  let rowStyle = keepStyle([Some(styles["fullWidth"]), resolveDirection(Some(#row))])
-  let columns = Belt.Option.getWithDefault(columns, 1)
   let children = children->React.Children.toArray->splitEvery(columns)
+  let negativeSpace = negateSpace(space)
 
   <Stack
     ?space
@@ -158,18 +160,12 @@ let make = (
       let arr = Belt.Array.makeByU(columns, (. index) =>
         arr->Belt.Array.get(index)->Belt.Option.getWithDefault(React.null)
       )
-      let isLast = isLastElement(arr)
       let tiles = Belt.Array.mapWithIndexU(arr, (. index, child) => {
-        let style = {
-          keepStyle([
-            Some(styles["flexFluid"]),
-            isLast(index) ? None : Stacks_styles.marginRight(Some(tileSpace)),
-            Stacks_externals.isValidElement(child) ? debugStyle : None,
-          ])
-        }
-        <View key={string_of_int(index)} style> child </View>
+        let style = Style.arrayOption([isValidElement(child) ? debugStyle : None])
+        <Box key={string_of_int(index)} flex=[#fluid] marginLeft=?space style> child </Box>
       })->React.array
-      <View key={string_of_int(index)} style=rowStyle> tiles </View>
+
+      <Box key={string_of_int(index)} marginLeft=?negativeSpace direction=[#row]> tiles </Box>
     })->React.array}
   </Stack>
 }

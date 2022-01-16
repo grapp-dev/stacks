@@ -11,9 +11,9 @@ let styles = ReactNative.StyleSheet.create({
   "flexContent": viewStyle(~flex=0., ~flexBasis=auto, ()),
   "flexFluid": viewStyle(~flex=1., ()),
   "flexBasis12": viewStyle(~flexBasis=pct(50.), ()),
-  "flexBasis13": viewStyle(~flexBasis=pct(33.), ()),
+  "flexBasis13": viewStyle(~flexBasis=pct(33.3333), ()),
   "flexBasis14": viewStyle(~flexBasis=pct(25.), ()),
-  "flexBasis23": viewStyle(~flexBasis=pct(66.), ()),
+  "flexBasis23": viewStyle(~flexBasis=pct(66.6667), ()),
   "flexBasis34": viewStyle(~flexBasis=pct(75.), ()),
   "flexBasis15": viewStyle(~flexBasis=pct(20.), ()),
   "flexBasis25": viewStyle(~flexBasis=pct(40.), ()),
@@ -40,6 +40,7 @@ let styles = ReactNative.StyleSheet.create({
   "directionColumnReverse": viewStyle(~flexDirection=#columnReverse, ()),
   "wrap": viewStyle(~flexWrap=#wrap, ()),
   "nowrap": viewStyle(~flexWrap=#nowrap, ()),
+  "grow": viewStyle(~flexGrow=1., ()),
   "shrink": viewStyle(~flexShrink=1., ()),
 })
 
@@ -68,15 +69,6 @@ let bottom = value => ReactNative.Style.unsafeStyle({"bottom": value})
 let left = value => ReactNative.Style.unsafeStyle({"left": value})
 
 let keepStyle = xs => xs->coerceArray->ReactNative.StyleSheet.flatten
-
-@module("./Stacks_styles.js")
-external reset_: float = "reset"
-
-@gentype
-let reset = reset_
-
-@module("./Stacks_styles.js")
-external mapFillViewEdge: option<float> => option<float> = "mapFillViewEdge"
 
 let resolveAlignItemsX = Belt.Option.mapU(_, (. value) =>
   switch value {

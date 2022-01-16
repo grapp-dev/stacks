@@ -4,8 +4,11 @@ open Stacks_hooks
 open Stacks_utils
 open Stacks_types
 open Stacks_styles
+open Stacks_externals
 
 module Box = Stacks_component_Box
+
+let unpack = value => value->Belt.Option.mapWithDefaultU([], (. value) => value)
 
 @react.component @gentype
 let make = (
@@ -84,25 +87,23 @@ let make = (
   ~viewRef=?,
 ) => {
   let resolveResponsiveProp = useResponsiveProp()
-  let space = useSpacing(resolveResponsiveProp(space))
-  let align = Stacks_externals.resolve(resolveResponsiveProp, align)
-  let horizontal = Stacks_externals.resolve(resolveResponsiveProp, horizontal)
+  let debugStyle = useDebugStyle()
+  let horizontal = resolveResponsiveProp(horizontal)
   let direction = horizontal->Belt.Option.mapWithDefaultU(#column, (. value) => {
     value ? #row : #column
   })
   let isVertical = direction == #column
+
+  let align = coerce(align)
   let width = isVertical ? Some(styles["fullWidth"]) : None
-  let marginFn = isVertical ? Stacks_styles.marginBottom : Stacks_styles.marginRight
-  let align = isVertical
-    ? resolveAlignItemsX(Stacks_externals.resolveAxisX(align))
-    : resolveJustifyContentY(Stacks_externals.resolveAxisY(align))
-  let debugStyle = useDebugStyle()
+  let alignY = isVertical ? None : align
+  let alignX = isVertical ? align : None
+
   let style = Style.arrayOption([width, style])
   let children = {
     let xs = React.Children.toArray(children)
     Belt.Option.mapWithDefaultU(divider, xs, (. divider) => intersperse(xs, divider))
   }
-  let isLast = isLastElement(children)
 
   <Box
     direction=[direction]
@@ -171,11 +172,19 @@ let make = (
     ?viewRef
     style>
     {Belt.Array.mapWithIndexU(children, (. index, child) => {
-      <View
+      let marginTop = isVertical ? index == 0 ? None : space : None
+      let marginLeft = isVertical ? None : index == 0 ? None : space
+
+      <Box
+        ?alignY
+        ?alignX
+        ?marginTop
+        ?marginLeft
+        flex=[isVertical ? #fluid : #content]
         key={string_of_int(index)}
-        style={keepStyle([width, align, debugStyle, isLast(index) ? None : marginFn(Some(space))])}>
+        style={Style.arrayOption([debugStyle])}>
         child
-      </View>
+      </Box>
     })->React.array}
   </Box>
 }

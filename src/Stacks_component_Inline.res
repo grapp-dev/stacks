@@ -2,7 +2,8 @@ open ReactNative
 
 open Stacks_hooks
 open Stacks_types
-open Stacks_styles
+open Stacks_externals
+open Stacks_utils
 
 module Box = Stacks_component_Box
 
@@ -80,19 +81,9 @@ let make = (
   ~onMouseOut=?,
   ~onMouseUp=?,
 ) => {
-  let resolveResponsiveProp = useResponsiveProp()
-  let align = Stacks_externals.resolve(resolveResponsiveProp, align)
-  let space = useSpacing(resolveResponsiveProp(space))
-  let negativeSpace = Some(-.space)
   let debugStyle = useDebugStyle()
-  let containerStyle = keepStyle([
-    resolveWrap(Some(#wrap)),
-    resolveDirection(Some(#row)),
-    resolveJustifyContentX(align),
-    Stacks_styles.marginTop(negativeSpace),
-    Stacks_styles.marginRight(negativeSpace),
-  ])
-  let children = React.Children.toArray(children)
+  let negativeSpace = negateSpace(space)
+  let alignX = coerce(align)
 
   <Box
     ?padding
@@ -159,18 +150,20 @@ let make = (
     ?onMouseUp
     ?viewRef
     ?style>
-    <View style=containerStyle>
-      {Belt.Array.mapWithIndexU(children, (. index, child) => {
-        <View
+    <Box marginTop=?negativeSpace marginRight=?negativeSpace wrap=[#wrap] direction=[#row] ?alignX>
+      {children
+      ->React.Children.toArray
+      ->Belt.Array.mapWithIndexU((. index, child) => {
+        <Box
+          flex=[#content]
+          marginTop=?space
+          marginRight=?space
           key={string_of_int(index)}
-          style={keepStyle([
-            debugStyle,
-            Stacks_styles.marginTop(Some(space)),
-            Stacks_styles.marginRight(Some(space)),
-          ])}>
+          style={Style.arrayOption([debugStyle])}>
           child
-        </View>
-      })->React.array}
-    </View>
+        </Box>
+      })
+      ->React.array}
+    </Box>
   </Box>
 }

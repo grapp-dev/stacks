@@ -12,6 +12,41 @@ export const normalizeResponsiveProp = value => {
   return []
 }
 
+export const negateSpace = value => {
+  if (typeof value === 'number') {
+    return [value * -1]
+  }
+
+  if (value && value.length) {
+    const l = value.length
+    const xs = new Array(l)
+
+    for (var i = 0; i < l; ++i) {
+      xs[i] = value[i] * -1
+    }
+
+    return xs
+  }
+
+  return []
+}
+
+export const reset = Object.freeze(true)
+
+export const resetFillViewValue = value => {
+  if (value === reset) {
+    return undefined
+  }
+
+  return value === undefined ? 0 : value
+}
+
+export const isColumnComponent = node =>
+  typeof node === 'object' && 'type' in node && node.type.__isColumn__
+
+export const isRowComponent = node =>
+  typeof node === 'object' && 'type' in node && node.type.__isRow__
+
 export const makeViewProps = props => {
   return {
     accessibilityActions: props.accessibilityActions,

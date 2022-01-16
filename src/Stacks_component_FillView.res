@@ -1,6 +1,7 @@
 open ReactNative
 
 open Stacks_hooks
+open Stacks_utils
 
 module Box = Stacks_component_Box
 
@@ -35,7 +36,6 @@ let make = (
   ~alignSelf=?,
   ~direction=?,
   ~wrap=?,
-  ~flex=?,
   // View props
   ~accessibilityActions=?,
   ~accessibilityElementsHidden=?,
@@ -87,13 +87,17 @@ let make = (
   ~onMouseUp=?,
 ) => {
   let resolveResponsiveProp = useResponsiveProp()
-  let resolve = (value, mapFn) => value->resolveResponsiveProp->Stacks_styles.mapFillViewEdge->mapFn
-  let top = resolve(top, Stacks_styles.top)
-  let right = resolve(right, Stacks_styles.right)
-  let bottom = resolve(bottom, Stacks_styles.bottom)
-  let left = resolve(left, Stacks_styles.left)
-  let fillStyle = StyleSheet.flatten([StyleSheet.absoluteFillObject, top, right, bottom, left])
-  let style = Style.arrayOption([Some(fillStyle), style])
+
+  let style = React.useMemo1(() => {
+    let resolve = (value, mapFn) => value->resolveResponsiveProp->resetFillViewValue->mapFn
+    let top = resolve(top, Stacks_styles.top)
+    let right = resolve(right, Stacks_styles.right)
+    let bottom = resolve(bottom, Stacks_styles.bottom)
+    let left = resolve(left, Stacks_styles.left)
+    let fillStyle = StyleSheet.flatten([StyleSheet.absoluteFillObject, top, right, bottom, left])
+
+    Style.arrayOption([Some(fillStyle), style])
+  }, [top, right, bottom, left])
 
   <Box
     ?padding
@@ -119,7 +123,6 @@ let make = (
     ?alignSelf
     ?direction
     ?wrap
-    ?flex
     ?accessibilityActions
     ?accessibilityElementsHidden
     ?accessibilityHint

@@ -25,4 +25,4 @@ export {
   responsiveProp as ResponsiveProp,
 } from './Stacks_types.gen'
 
-export { reset } from './Stacks_styles.gen'
+export { reset } from './Stacks_utils.gen'

@@ -1,26 +1,11 @@
-open ReactNative
-
 open Stacks_types
 open Stacks_hooks
-open Stacks_styles
+open Stacks_context
+open Stacks_utils
+open Stacks_externals
 
 module Box = Stacks_component_Box
-
-module Context = {
-  type t = {space: float, debugStyle: option<Style.t>}
-
-  let context = React.createContext({space: 0., debugStyle: None})
-  let useRows = () => React.useContext(context)
-
-  module Provider = {
-    let make = React.Context.provider(context)
-    let makeProps = (~value, ~children, ()) =>
-      {
-        "value": value,
-        "children": children,
-      }
-  }
-}
+module Row = Stacks_component_Row
 
 @react.component @gentype
 let make = (
@@ -98,36 +83,25 @@ let make = (
   ~onMouseOut=?,
   ~onMouseUp=?,
 ) => {
-  let resolveResponsiveProp = useResponsiveProp()
-  let alignX = Stacks_externals.resolve(resolveResponsiveProp, alignX)
-  let alignY = Stacks_externals.resolve(resolveResponsiveProp, alignY)
-  let space = useSpacing(resolveResponsiveProp(space))
-
   let debugStyle = useDebugStyle()
-  let negativeSpace = Some(-.space)
-  let style = Style.arrayOption([
-    Some(styles["fullWidth"]),
-    Some(styles["flexFluid"]),
-    Some(styles["directionRow"]),
-    style,
-  ])
-  let viewStyle = {
-    let direction = Belt.Option.mapWithDefaultU(reverse, #column, (. reverse) =>
-      reverse ? #columnReverse : #column
-    )
+  let alignX = coerce(alignX)
+  let alignY = coerce(alignY)
+  let direction =
+    reverse->Belt.Option.mapWithDefaultU(#column, (. reverse) => reverse ? #columnReverse : #column)
+  let negativeSpace = negateSpace(space)
 
-    keepStyle([
-      Stacks_styles.marginTop(negativeSpace),
-      resolveAlignItemsX(alignX),
-      resolveJustifyContentY(alignY),
-      resolveDirection(Some(direction)),
-      Some(styles["flexFluid"]),
-    ])
-  }
-  let config: Context.t = {space: space, debugStyle: debugStyle}
+  let config = React.useMemo1(() => {
+    let value: RowsContext.t = {
+      space: space,
+      debugStyle: debugStyle,
+    }
+    value
+  }, [space])
 
-  <Context.Provider value={config}>
+  <RowsContext.Provider value={config}>
     <Box
+      flex=[#fluid]
+      direction=[#row]
       ?padding
       ?paddingX
       ?paddingY
@@ -191,8 +165,13 @@ let make = (
       ?onMouseOut
       ?onMouseUp
       ?viewRef
-      style>
-      <View style=viewStyle> children </View>
+      ?style>
+      <Box direction=[direction] flex=[#fluid] marginTop=?negativeSpace ?alignX ?alignY>
+        {children->React.Children.map(child => {
+          let isRow = isRowComponent(child)
+          isRow ? child : <Row> child </Row>
+        })}
+      </Box>
     </Box>
-  </Context.Provider>
+  </RowsContext.Provider>
 }

@@ -10,6 +10,6 @@ export { make as FillView } from './Stacks_component_FillView.bs'
 export { make as Hidden } from './Stacks_component_Hidden.bs'
 export { make as Grid } from './Stacks_component_Grid.bs'
 export { make as StacksProvider } from './Stacks_component_Provider.bs'
-export { reset } from './Stacks_styles.bs'
+export { reset } from './Stacks_utils.bs'
 
 export * from './Stacks_hooks.bs'

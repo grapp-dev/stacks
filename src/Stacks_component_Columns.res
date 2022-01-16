@@ -1,37 +1,14 @@
 open ReactNative
 
 open Stacks_types
+open Stacks_context
 open Stacks_hooks
 open Stacks_utils
 open Stacks_styles
+open Stacks_externals
 
 module Box = Stacks_component_Box
-
-module Context = {
-  type t = {
-    isCollapsed: bool,
-    space: option<float>,
-    debugStyle: option<ReactNative.Style.t>,
-    alignY: option<ReactNative.Style.t>,
-  }
-
-  let context = React.createContext({
-    isCollapsed: false,
-    space: None,
-    debugStyle: None,
-    alignY: None,
-  })
-  let useColumns = () => React.useContext(context)
-
-  module Provider = {
-    let make = React.Context.provider(context)
-    let makeProps = (~value, ~children, ()) =>
-      {
-        "value": value,
-        "children": children,
-      }
-  }
-}
+module Column = Stacks_component_Column
 
 @react.component @gentype
 let make = (
@@ -111,40 +88,34 @@ let make = (
   ~onMouseUp=?,
 ) => {
   let {breakpoints} = useStacks()
-  let currentBreakpoint = useCurrentBreakpoint()
-  let resolveResponsiveProp = useResponsiveProp()
-  let alignX = Stacks_externals.resolve(resolveResponsiveProp, alignX)
-  let alignY = Stacks_externals.resolve(resolveResponsiveProp, alignY)
-
-  let space = useSpacing(resolveResponsiveProp(space))
-  let alignY = resolveJustifyContentY(alignY)
-
   let debugStyle = useDebugStyle()
+  let currentBreakpoint = useCurrentBreakpoint()
   let {isCollapsed, direction} = resolveCollapsibleProps(
     ~collapseBelow,
     ~reverse,
     ~currentBreakpoint,
     ~breakpoints,
   )
-  let negativeSpace = Some(-.space)
-  let style = Style.arrayOption([Some(styles["fullWidth"]), alignY, style])
-  let viewStyle = {
-    let xs = isCollapsed
-      ? [Some(styles["fullWidth"]), Stacks_styles.marginTop(negativeSpace)]
-      : [resolveJustifyContentX(alignX), Stacks_styles.marginLeft(negativeSpace)]
+  let alignY = coerce(alignY)
+  let alignX = isCollapsed ? None : coerce(alignX)
+  let boxMarginTop = isCollapsed ? negateSpace(space) : None
+  let boxMarginLeft = isCollapsed ? None : negateSpace(space)
+  let fullWidth = Some(styles["fullWidth"])
+  let style = Style.arrayOption([fullWidth, debugStyle, style])
 
-    compose(Style.arrayOption(xs), Style.arrayOption([resolveDirection(Some(direction))]))
-  }
+  let config = React.useMemo3(() => {
+    let value: ColumnsContext.t = {
+      isCollapsed: isCollapsed,
+      space: space,
+      debugStyle: debugStyle,
+      alignY: alignY,
+    }
+    value
+  }, (isCollapsed, space, alignY))
 
-  let config: Context.t = {
-    isCollapsed: isCollapsed,
-    space: Some(space),
-    debugStyle: debugStyle,
-    alignY: alignY,
-  }
-
-  <Context.Provider value={config}>
+  <ColumnsContext.Provider value={config}>
     <Box
+      ?alignY
       ?padding
       ?paddingX
       ?paddingY
@@ -209,7 +180,17 @@ let make = (
       ?onMouseUp
       ?viewRef
       style>
-      <View style=viewStyle> children </View>
+      <Box
+        direction=[direction]
+        flex=[#fluid]
+        ?alignX
+        marginTop=?boxMarginTop
+        marginLeft=?boxMarginLeft>
+        {children->React.Children.map(child => {
+          let isColumn = isColumnComponent(child)
+          isColumn ? child : <Column> child </Column>
+        })}
+      </Box>
     </Box>
-  </Context.Provider>
+  </ColumnsContext.Provider>
 }

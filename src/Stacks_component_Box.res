@@ -4,6 +4,7 @@ open Stacks_types
 open Stacks_hooks
 open Stacks_utils
 open Stacks_styles
+open Stacks_externals
 
 @react.component @gentype
 let make = (
@@ -85,39 +86,40 @@ let make = (
   let {breakpoints, dimensions} = useStacks()
   let {multiply} = useSpacingHelpers()
   let debugStyle = useDebugStyle()
-  let resolveResponsiveProp = values => {
-    let resolve = resolveResponsiveProp(~currentWidth=dimensions.width, ~breakpoints)
-    resolve(values)
-  }
-  let resolve = (value, mapFn) => value->resolveResponsiveProp->multiply->mapFn
 
-  let padding = resolve(padding, Stacks_styles.padding)
-  let paddingX = resolve(paddingX, Stacks_styles.paddingX)
-  let paddingY = resolve(paddingY, Stacks_styles.paddingY)
-  let paddingTop = resolve(paddingTop, Stacks_styles.paddingTop)
-  let paddingBottom = resolve(paddingBottom, Stacks_styles.paddingBottom)
-  let paddingLeft = resolve(paddingLeft, Stacks_styles.paddingLeft)
-  let paddingRight = resolve(paddingRight, Stacks_styles.paddingRight)
-  let paddingEnd = resolve(paddingEnd, Stacks_styles.paddingEnd)
-  let paddingStart = resolve(paddingStart, Stacks_styles.paddingStart)
-  let margin = resolve(margin, Stacks_styles.margin)
-  let marginX = resolve(marginX, Stacks_styles.marginX)
-  let marginY = resolve(marginY, Stacks_styles.marginY)
-  let marginTop = resolve(marginTop, Stacks_styles.marginTop)
-  let marginBottom = resolve(marginBottom, Stacks_styles.marginBottom)
-  let marginLeft = resolve(marginLeft, Stacks_styles.marginLeft)
-  let marginRight = resolve(marginRight, Stacks_styles.marginRight)
-  let marginEnd = resolve(marginEnd, Stacks_styles.marginEnd)
-  let marginStart = resolve(marginStart, Stacks_styles.marginStart)
+  let style = React.useMemo1(() => {
+    let resolveResponsiveProp = values => {
+      let resolve = resolveResponsiveProp(~currentWidth=dimensions.width, ~breakpoints)
+      resolve(values)
+    }
+    let resolve = (value, mapFn) => value->resolveResponsiveProp->multiply->mapFn
 
-  let alignX = resolveResponsiveProp(alignX)
-  let alignY = resolveResponsiveProp(alignY)
-  let alignSelf = resolveResponsiveProp(alignSelf)
-  let direction = resolveResponsiveProp(direction)
-  let wrap = resolveResponsiveProp(wrap)
-  let flex = resolveResponsiveProp(flex)
+    let padding = resolve(padding, Stacks_styles.padding)
+    let paddingX = resolve(paddingX, Stacks_styles.paddingX)
+    let paddingY = resolve(paddingY, Stacks_styles.paddingY)
+    let paddingTop = resolve(paddingTop, Stacks_styles.paddingTop)
+    let paddingBottom = resolve(paddingBottom, Stacks_styles.paddingBottom)
+    let paddingLeft = resolve(paddingLeft, Stacks_styles.paddingLeft)
+    let paddingRight = resolve(paddingRight, Stacks_styles.paddingRight)
+    let paddingEnd = resolve(paddingEnd, Stacks_styles.paddingEnd)
+    let paddingStart = resolve(paddingStart, Stacks_styles.paddingStart)
+    let margin = resolve(margin, Stacks_styles.margin)
+    let marginX = resolve(marginX, Stacks_styles.marginX)
+    let marginY = resolve(marginY, Stacks_styles.marginY)
+    let marginTop = resolve(marginTop, Stacks_styles.marginTop)
+    let marginBottom = resolve(marginBottom, Stacks_styles.marginBottom)
+    let marginLeft = resolve(marginLeft, Stacks_styles.marginLeft)
+    let marginRight = resolve(marginRight, Stacks_styles.marginRight)
+    let marginEnd = resolve(marginEnd, Stacks_styles.marginEnd)
+    let marginStart = resolve(marginStart, Stacks_styles.marginStart)
 
-  let style = {
+    let alignX = resolveResponsiveProp(alignX)
+    let alignY = resolveResponsiveProp(alignY)
+    let alignSelf = resolveResponsiveProp(alignSelf)
+    let direction = resolveResponsiveProp(direction)
+    let wrap = resolveResponsiveProp(wrap)
+    let flex = resolveResponsiveProp(flex)
+
     let (alignX, alignY) = {
       let direction = Belt.Option.getWithDefault(direction, #column)
 
@@ -156,7 +158,33 @@ let make = (
       debugStyle,
       style,
     ])
-  }
+  }, [
+    padding,
+    paddingX,
+    paddingY,
+    paddingTop,
+    paddingBottom,
+    paddingLeft,
+    paddingRight,
+    paddingEnd,
+    paddingStart,
+    margin,
+    marginX,
+    marginY,
+    marginTop,
+    marginBottom,
+    marginLeft,
+    marginRight,
+    marginEnd,
+    marginStart,
+    coerce(alignX),
+    coerce(alignY),
+    coerce(alignSelf),
+    coerce(direction),
+    coerce(wrap),
+    coerce(flex),
+  ])
+
   let ref = Belt.Option.getUnsafe(viewRef)
 
   <View

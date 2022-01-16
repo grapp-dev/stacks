@@ -1,10 +1,7 @@
 open ReactNative
 
-open Stacks_component_Rows.Context
-
-open Stacks_hooks
 open Stacks_types
-open Stacks_styles
+open Stacks_context.RowsContext
 
 module Box = Stacks_component_Box
 
@@ -74,19 +71,11 @@ let make = (
   ~onMouseUp=?,
 ) => {
   let {space, debugStyle} = useRows()
-  let resolveResponsiveProp = useResponsiveProp()
-  let width = resolveResponsiveProp(Some(width))
-  let height = resolveResponsiveProp(Some(height))
-  let viewStyle = keepStyle([
-    resolveFlexBasis(height),
-    Some(styles["directionRow"]),
-    Some(styles["shrink"]),
-    marginTop(Some(space)),
-  ])
-  let style = Style.arrayOption([resolveFlexBasis(width), debugStyle, style])
+  let style = Style.arrayOption([debugStyle, style])
 
-  <View style=viewStyle>
+  <Box direction=[#row] flex=height paddingTop=?space>
     <Box
+      flex=width
       ?padding
       ?paddingX
       ?paddingY
@@ -144,5 +133,7 @@ let make = (
       style>
       children
     </Box>
-  </View>
+  </Box>
 }
+
+%%raw("Stacks_component_Row.__isRow__ = true")
