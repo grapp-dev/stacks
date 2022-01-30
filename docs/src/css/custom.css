@@ -200,6 +200,7 @@ div[class^="codeBlockContainer"], div[class^="playgroundContainer"] {
 .iphone-x:before, .iphone-x:after {
   content: "";
   position: absolute;
+  z-index: 2;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -224,6 +225,7 @@ div[class^="codeBlockContainer"], div[class^="playgroundContainer"] {
 .iphone-x .camera,
 .iphone-x .action-button {
   position: absolute;
+  z-index: 2;
   display: block;
   color: transparent;
 }
