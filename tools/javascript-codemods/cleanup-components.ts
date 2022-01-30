@@ -1,54 +1,12 @@
-import { API, ObjectExpression, ObjectProperty } from 'jscodeshift'
+import { API, ASTPath } from 'jscodeshift'
 
-const viewProps = [
-  'accessibilityActions',
-  'accessibilityElementsHidden',
-  'accessibilityHint',
-  'accessibilityIgnoresInvertColors',
-  'accessibilityLabel',
-  'accessibilityLiveRegion',
-  'accessibilityRole',
-  'accessibilityState',
-  'accessibilityValue',
-  'accessibilityViewIsModal',
-  'accessible',
-  'collapsable',
-  'hitSlop',
-  'importantForAccessibility',
-  'nativeID',
-  'needsOffscreenAlphaCompositing',
-  'onAccessibilityEscape',
-  'onAccessibilityTap',
-  'onLayout',
-  'onMagicTap',
-  'onMoveShouldSetResponder',
-  'onMoveShouldSetResponderCapture',
-  'onResponderEnd',
-  'onResponderGrant',
-  'onResponderMove',
-  'onResponderReject',
-  'onResponderRelease',
-  'onResponderStart',
-  'onResponderTerminate',
-  'onResponderTerminationRequest',
-  'onStartShouldSetResponder',
-  'onStartShouldSetResponderCapture',
-  'pointerEvents',
-  'removeClippedSubviews',
-  'renderToHardwareTextureAndroid',
-  'shouldRasterizeIOS',
-  'style',
-  'testID',
-  'viewRef',
-  'children',
-  'onMouseDown',
-  'onMouseEnter',
-  'onMouseLeave',
-  'onMouseMove',
-  'onMouseOver',
-  'onMouseOut',
-  'onMouseUp',
-]
+const findParentFunction = (p: ASTPath<any>) => {
+  if (p.value.type === 'FunctionDeclaration' || p.value.type === 'FunctionExpression') {
+    return p
+  }
+
+  return findParentFunction(p.parent)
+}
 
 const transform = (source: string, j: API['jscodeshift']): string => {
   const root = j(source)
@@ -56,23 +14,38 @@ const transform = (source: string, j: API['jscodeshift']): string => {
     return /stacks_component/i.test(p.value.id.name)
   })
 
-  root.find(j.Program).forEach(p => {
-    const isComponent = component.length
-
-    if (isComponent) {
-      p.value.body = [
-        j.importDeclaration(
-          [j.importNamespaceSpecifier(j.identifier('Stacks_utils_2'))],
-          j.stringLiteral('./Stacks_utils.js'),
-        ),
-        ...p.value.body,
-      ]
-    }
-  })
-
   component.forEach(p => {
     const root = j(p.value)
-    const props = []
+    const propsMap = {}
+
+    root
+      .find(j.MemberExpression, {
+        object: {
+          name: 'Props',
+        },
+      })
+      .forEach(p => {
+        const propName = p.parent.value.id && p.parent.value.id.name
+
+        root
+          .find(j.Identifier, {
+            name: propName,
+          })
+          .filter(id => {
+            return (
+              id.parent.value.type !== 'MemberExpression' &&
+              id.parent.value.type !== 'BinaryExpression'
+            )
+          })
+          .forEach(id => {
+            if (id.value.name in propsMap) {
+              propsMap[id.value.name] = propsMap[id.value.name] + 1
+              return
+            }
+
+            propsMap[id.value.name] = 0
+          })
+      })
 
     root
       .find(j.IfStatement)
@@ -85,71 +58,97 @@ const transform = (source: string, j: API['jscodeshift']): string => {
         )
       })
       .forEach(p => {
-        if (
-          p.value.test.type === 'BinaryExpression' &&
-          p.value.test.left.type === 'Identifier' &&
-          !viewProps.includes(p.value.test.left.name)
-        ) {
-          props.push(p.value.test.left.name)
+        if (p.value.consequent.type === 'BlockStatement' && p.value.consequent.body.length === 1) {
+          const [exp] = p.value.consequent.body
+
+          if (
+            exp.type === 'ExpressionStatement' &&
+            exp.expression.type === 'AssignmentExpression' &&
+            exp.expression.left.type === 'MemberExpression' &&
+            exp.expression.left.object.type === 'Identifier' &&
+            exp.expression.left.property.type === 'Identifier'
+          ) {
+            const objName = exp.expression.left.object.name
+            const propName = exp.expression.left.property.name
+            let valueName = undefined
+
+            if (
+              exp.expression.right.type === 'CallExpression' &&
+              exp.expression.right.arguments.length === 1 &&
+              exp.expression.right.arguments[0].type === 'Identifier'
+            ) {
+              valueName = exp.expression.right.arguments[0].name
+            } else if (
+              exp.expression.right.type === 'CallExpression' &&
+              exp.expression.right.callee.type === 'FunctionExpression'
+            ) {
+              valueName = propName
+            } else if (exp.expression.right.type === 'Identifier') {
+              valueName = exp.expression.right.name
+            }
+
+            if (!valueName) {
+              return
+            }
+
+            const parent = findParentFunction(p.parent)
+
+            j(parent.value)
+              .find(j.VariableDeclarator, {
+                id: {
+                  name: objName,
+                },
+              })
+              .at(0)
+              .forEach(v => {
+                if (v.value.init && v.value.init.type === 'ObjectExpression') {
+                  const isPropName = j(parent.value)
+                    .find(j.VariableDeclarator, {
+                      id: {
+                        name: valueName,
+                      },
+                    })
+                    .filter(v => v.value.init.type === 'MemberExpression')
+                    .at(0)
+                    .size()
+
+                  const value =
+                    valueName in propsMap && isPropName
+                      ? j.memberExpression(j.identifier('Props'), j.identifier(valueName))
+                      : j.identifier(valueName)
+
+                  v.value.init.properties = v.value.init.properties.concat([
+                    j.objectProperty(j.identifier(propName), value),
+                  ])
+
+                  if (valueName in propsMap && isPropName && propsMap[valueName] === 1) {
+                    delete propsMap[valueName]
+                  }
+                }
+              })
+
+            p.prune()
+          }
         }
       })
-      .remove()
 
     root
-      .find(j.VariableDeclarator, {
-        id: { type: 'Identifier' },
-        init: { type: 'MemberExpression', object: { type: 'Identifier', name: 'Props' } },
-      })
+      .find(j.VariableDeclarator)
       .filter(p => {
-        if (
+        return (
           p.value.init.type === 'MemberExpression' &&
-          p.value.init.property.type === 'Identifier'
-        ) {
-          const propName = p.value.init.property.name
-          const length = root.find(j.Identifier, { name: propName }).length
-
-          return length === 2
-        }
-
-        return false
-      })
-      .remove()
-
-    root
-      .find(j.VariableDeclarator, {
-        id: { name: 'tmp' },
-        init: { type: 'ObjectExpression' },
-      })
-      .map(p => {
-        return p.get('init')
-      })
-      .replaceWith(p => {
-        if (p.value.type === 'ObjectExpression') {
-          const value = p.value as unknown as ObjectExpression
-
-          return j.callExpression(
-            j.memberExpression(j.identifier('Object'), j.identifier('assign')),
-            [
-              j.callExpression(
-                j.memberExpression(j.identifier('Stacks_utils_2'), j.identifier('makeViewProps')),
-                [j.identifier('Props')],
-              ),
-              j.objectExpression(
-                props
-                  .map(propName => {
-                    return j.objectProperty(
-                      j.stringLiteral(propName),
-                      j.memberExpression(j.identifier('Props'), j.identifier(propName)),
-                    )
-                  })
-                  .concat(value.properties as ObjectProperty[]),
-              ),
-            ],
+          p.value.init.object.type === 'Identifier' &&
+          p.value.init.object.name === 'Props' &&
+          !Object.keys(propsMap).some(
+            key =>
+              p.value.init.type === 'MemberExpression' &&
+              p.value.init.property.type === 'Identifier' &&
+              new RegExp(p.value.init.property.name).test(key),
           )
-        }
-
-        return p.value
+        )
       })
+      .map(p => p.parent)
+      .remove()
   })
 
   return root.toSource()
