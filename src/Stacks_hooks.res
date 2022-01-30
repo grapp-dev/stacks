@@ -3,7 +3,6 @@ open ReactNative
 open Stacks_types
 open Stacks_utils
 open Stacks_context
-open Stacks_externals
 
 @gentype
 let useWindowDimensions = () => {
@@ -67,7 +66,7 @@ let useResponsiveProp = (): resolveResponsiveProp<'a> => {
 let useDeepMemoize = deps => {
   let ref = React.useRef([])
 
-  if !isEqual(deps, ref.current) {
+  if deps != ref.current {
     ref.current = deps
   }
 

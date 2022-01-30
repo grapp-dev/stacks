@@ -89,7 +89,6 @@
     "typescript": "^4.5.4"
   },
   "dependencies": {
-    "react-fast-compare": "^3.2.0",
     "wonka": "~4.0.15"
   },
   "cacheDirectories": [
