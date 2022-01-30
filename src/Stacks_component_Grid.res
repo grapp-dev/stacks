@@ -2,6 +2,7 @@ open ReactNative
 
 open Stacks_hooks
 open Stacks_types
+open Stacks_externals
 
 type options = {
   width: float,
@@ -38,21 +39,19 @@ let styles = {
 }
 
 @react.component @gentype
-let make = (~gutter=?, ~margin=?, ~columns=?, ~opacity=0.2) => {
+let make = (~gutter=[2.], ~margin=[2.], ~columns=[8], ~opacity=0.2) => {
   let {dimensions} = useStacks()
   let {multiply} = useSpacingHelpers()
   let resolveResponsiveProp = useResponsiveProp()
-  let resolveFloat = (prop, defaultValue) => {
-    resolveResponsiveProp(prop)
-    ->Belt.Option.mapWithDefaultU(multiply(Some(defaultValue)), (. value) => multiply(value))
-    ->Belt.Option.getWithDefault(0.)
-  }
-  let gutter = resolveFloat(gutter, 2.)
-  let margin = resolveFloat(margin, 2.)
-  let columns = Belt.Option.getWithDefault(
-    Stacks_externals.resolve(resolveResponsiveProp, columns),
-    8,
-  )
+  let resolveFloat = prop =>
+    Some(prop)->resolveResponsiveProp->multiply->Belt.Option.getWithDefault(2.)
+  let gutter = resolveFloat(gutter)
+  let margin = resolveFloat(margin)
+  let columns =
+    Some(columns)
+    ->coerce
+    ->resolveResponsiveProp
+    ->Belt.Option.mapWithDefaultU(8, (. value) => int_of_float(value))
 
   let options = {
     gutter: gutter,

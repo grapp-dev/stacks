@@ -10,6 +10,9 @@ external normalizeResponsiveProp: responsiveProp<'a> => responsiveProp<'a> =
 external negateSpace: option<responsiveProp<'a>> => option<responsiveProp<'a>> = "negateSpace"
 
 @module("./Stacks_utils.js")
+external flattenChildren: React.element => React.element = "flattenChildren"
+
+@module("./Stacks_utils.js")
 external reset: float = "reset"
 
 @gentype
@@ -171,7 +174,7 @@ let resolveCollapsibleProps = (
   {isCollapsed: isCollapsed, direction: direction}
 }
 
-let makeBreakpoints = (breakpoints: breakpoints): breakpoints => {
+let makeBreakpoints = breakpoints => {
   let breakpoints = Js.Array2.copy(breakpoints)
   Js.Array2.sortInPlaceWith(breakpoints, (a, b) => {
     let (_, fst) = a

@@ -11,7 +11,8 @@ module Box = Stacks_component_Box
 let make = (
   // Inline props
   ~space=?,
-  ~align: option<responsiveProp<[axisX | space]>>=?,
+  ~alignX: option<responsiveProp<[axisX | space]>>=?,
+  ~alignY: option<responsiveProp<axisY>>=?,
   // Box props
   ~padding=?,
   ~paddingX=?,
@@ -83,7 +84,8 @@ let make = (
 ) => {
   let debugStyle = useDebugStyle()
   let negativeSpace = negateSpace(space)
-  let alignX = coerce(align)
+  let alignX = coerce(alignX)
+  let alignY = coerce(alignY)
 
   <Box
     ?padding
@@ -150,20 +152,24 @@ let make = (
     ?onMouseUp
     ?viewRef
     ?style>
-    <Box marginTop=?negativeSpace marginRight=?negativeSpace wrap=[#wrap] direction=[#row] ?alignX>
+    <Box
+      marginTop=?negativeSpace
+      marginRight=?negativeSpace
+      wrap=[#wrap]
+      direction=[#row]
+      ?alignX
+      ?alignY>
       {children
-      ->React.Children.toArray
-      ->Belt.Array.mapWithIndexU((. index, child) => {
+      ->flattenChildren
+      ->React.Children.map(child => {
         <Box
           flex=[#content]
           marginTop=?space
           marginRight=?space
-          key={string_of_int(index)}
           style={Style.arrayOption([debugStyle])}>
           child
         </Box>
-      })
-      ->React.array}
+      })}
     </Box>
   </Box>
 }

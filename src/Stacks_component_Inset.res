@@ -1,32 +1,20 @@
 open ReactNative
 
 open Stacks_hooks
-open Stacks_utils
-open Stacks_types
-open Stacks_styles
-open Stacks_externals
 
 module Box = Stacks_component_Box
 
-let unpack = value => value->Belt.Option.mapWithDefaultU([], (. value) => value)
-
 @react.component @gentype
 let make = (
-  // Stack props
+  // Inset props
   ~space=?,
-  ~align: option<responsiveProp<[axisX | axisY | stretch]>>=?,
   ~horizontal=?,
-  ~divider=?,
+  ~vertical=?,
+  ~top=?,
+  ~right=?,
+  ~bottom=?,
+  ~left=?,
   // Box props
-  ~padding=?,
-  ~paddingX=?,
-  ~paddingY=?,
-  ~paddingTop=?,
-  ~paddingBottom=?,
-  ~paddingLeft=?,
-  ~paddingRight=?,
-  ~paddingEnd=?,
-  ~paddingStart=?,
   ~margin=?,
   ~marginX=?,
   ~marginY=?,
@@ -75,6 +63,7 @@ let make = (
   ~shouldRasterizeIOS=?,
   ~style=?,
   ~testID=?,
+  ~viewRef=?,
   ~children,
   // React Native Web props
   ~onMouseDown=?,
@@ -84,38 +73,17 @@ let make = (
   ~onMouseOver=?,
   ~onMouseOut=?,
   ~onMouseUp=?,
-  ~viewRef=?,
 ) => {
-  let resolveResponsiveProp = useResponsiveProp()
   let debugStyle = useDebugStyle()
-  let horizontal = resolveResponsiveProp(horizontal)
-  let direction = horizontal->Belt.Option.mapWithDefaultU(#column, (. value) => {
-    value ? #row : #column
-  })
-  let isVertical = direction == #column
-
-  let align = coerce(align)
-  let width = isVertical ? Some(styles["fullWidth"]) : None
-  let alignY = isVertical ? None : align
-  let alignX = isVertical ? align : None
-
-  let style = Style.arrayOption([width, style])
-  let children = {
-    let xs = children->flattenChildren->React.Children.toArray
-    divider->Belt.Option.mapWithDefaultU(xs, (. divider) => intersperse(xs, divider))->coerce
-  }
 
   <Box
-    direction=[direction]
-    ?padding
-    ?paddingX
-    ?paddingY
-    ?paddingTop
-    ?paddingBottom
-    ?paddingLeft
-    ?paddingRight
-    ?paddingEnd
-    ?paddingStart
+    padding=?space
+    paddingX=?horizontal
+    paddingY=?vertical
+    paddingTop=?top
+    paddingBottom=?bottom
+    paddingLeft=?left
+    paddingRight=?right
     ?margin
     ?marginX
     ?marginY
@@ -170,22 +138,7 @@ let make = (
     ?onMouseOut
     ?onMouseUp
     ?viewRef
-    style>
-    {children
-    ->flattenChildren
-    ->React.Children.mapWithIndex((child, index) => {
-      let marginTop = isVertical ? index == 0 ? None : space : None
-      let marginLeft = isVertical ? None : index == 0 ? None : space
-
-      <Box
-        ?alignY
-        ?alignX
-        ?marginTop
-        ?marginLeft
-        flex=[isVertical ? #fluid : #content]
-        style={Style.arrayOption([debugStyle])}>
-        child
-      </Box>
-    })}
+    style={Style.arrayOption([debugStyle, style])}>
+    children
   </Box>
 }

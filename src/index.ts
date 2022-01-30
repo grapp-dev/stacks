@@ -8,6 +8,8 @@ export { make as Inline, Props as InlineProps } from './Stacks_component_Inline.
 export { make as Tiles, Props as TilesProps } from './Stacks_component_Tiles.gen'
 export { make as FillView } from './Stacks_component_FillView.gen'
 export { make as Hidden, Props as HiddenProps } from './Stacks_component_Hidden.gen'
+export { make as Bleed, Props as BleedProps } from './Stacks_component_Bleed.gen'
+export { make as Inset, Props as InsetProps } from './Stacks_component_Inset.gen'
 export { make as Grid } from './Stacks_component_Grid.gen'
 export { make as StacksProvider } from './Stacks_component_Provider.gen'
 

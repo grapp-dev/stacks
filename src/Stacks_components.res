@@ -8,5 +8,7 @@ module Rows = Stacks_component_Rows
 module Row = Stacks_component_Row
 module Box = Stacks_component_Box
 module Hidden = Stacks_component_Hidden
+module Bleed = Stacks_component_Bleed
+module Inset = Stacks_component_Inset
 module Grid = Stacks_component_Grid
 module StacksProvider = Stacks_component_Provider

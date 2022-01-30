@@ -77,9 +77,10 @@ let make = (
   let style = Style.arrayOption([debugStyle, style])
   let boxPaddingLeft = isCollapsed ? None : space
   let marginTop = isCollapsed ? space : None
+  let flex = isCollapsed ? None : Some(width)
 
   <Box
-    flex=width
+    ?flex
     paddingLeft=?boxPaddingLeft
     ?marginTop
     style={Style.arrayOption([isCollapsed ? Some(styles["fullWidth"]) : None])}>

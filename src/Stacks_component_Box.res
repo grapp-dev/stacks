@@ -84,8 +84,37 @@ let make = (
   ~onMouseUp=?,
 ) => {
   let {breakpoints, dimensions} = useStacks()
+  let currentBreakpoint = useCurrentBreakpoint()
   let {multiply} = useSpacingHelpers()
   let debugStyle = useDebugStyle()
+  let deps = useDeepMemoize([
+    padding,
+    paddingX,
+    paddingY,
+    paddingTop,
+    paddingBottom,
+    paddingLeft,
+    paddingRight,
+    paddingEnd,
+    paddingStart,
+    margin,
+    marginX,
+    marginY,
+    marginTop,
+    marginBottom,
+    marginLeft,
+    marginRight,
+    marginEnd,
+    marginStart,
+    coerce(alignX),
+    coerce(alignY),
+    coerce(alignSelf),
+    coerce(direction),
+    coerce(wrap),
+    coerce(flex),
+    coerce(breakpoints),
+    coerce(currentBreakpoint),
+  ])
 
   let style = React.useMemo1(() => {
     let resolveResponsiveProp = values => {
@@ -158,32 +187,7 @@ let make = (
       debugStyle,
       style,
     ])
-  }, [
-    padding,
-    paddingX,
-    paddingY,
-    paddingTop,
-    paddingBottom,
-    paddingLeft,
-    paddingRight,
-    paddingEnd,
-    paddingStart,
-    margin,
-    marginX,
-    marginY,
-    marginTop,
-    marginBottom,
-    marginLeft,
-    marginRight,
-    marginEnd,
-    marginStart,
-    coerce(alignX),
-    coerce(alignY),
-    coerce(alignSelf),
-    coerce(direction),
-    coerce(wrap),
-    coerce(flex),
-  ])
+  }, deps)
 
   let ref = Belt.Option.getUnsafe(viewRef)
 

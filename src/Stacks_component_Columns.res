@@ -186,7 +186,9 @@ let make = (
         ?alignX
         marginTop=?boxMarginTop
         marginLeft=?boxMarginLeft>
-        {children->React.Children.map(child => {
+        {children
+        ->flattenChildren
+        ->React.Children.map(child => {
           let isColumn = isColumnComponent(child)
           isColumn ? child : <Column> child </Column>
         })}

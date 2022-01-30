@@ -14,7 +14,7 @@ const build = (outfile, options = {}) => {
       minify: false,
       logLevel: 'info',
       legalComments: 'none',
-      external: ['react', 'react-native', 'wonka'],
+      external: ['react', 'react-native', 'wonka', 'react-fast-compare'],
       ...options,
     })
     .catch(handleError)

@@ -87,7 +87,7 @@ let make = (
     ->resolveResponsiveProp
     ->Belt.Option.mapWithDefaultU(1, (. value) => value < 1 ? 1 : value)
   let debugStyle = useDebugStyle()
-  let children = children->React.Children.toArray->splitEvery(columns)
+  let children = children->flattenChildren->React.Children.toArray->splitEvery(columns)
   let negativeSpace = negateSpace(space)
 
   <Stack
@@ -160,12 +160,12 @@ let make = (
       let arr = Belt.Array.makeByU(columns, (. index) =>
         arr->Belt.Array.get(index)->Belt.Option.getWithDefault(React.null)
       )
-      let tiles = Belt.Array.mapWithIndexU(arr, (. index, child) => {
-        let style = Style.arrayOption([isValidElement(child) ? debugStyle : None])
-        <Box key={string_of_int(index)} flex=[#fluid] marginLeft=?space style> child </Box>
-      })->React.array
-
-      <Box key={string_of_int(index)} marginLeft=?negativeSpace direction=[#row]> tiles </Box>
+      <Box key={string_of_int(index)} marginLeft=?negativeSpace direction=[#row]>
+        {Belt.Array.mapWithIndexU(arr, (. index, child) => {
+          let style = Style.arrayOption([isValidElement(child) ? debugStyle : None])
+          <Box key={string_of_int(index)} flex=[#fluid] marginLeft=?space style> child </Box>
+        })->React.array}
+      </Box>
     })->React.array}
   </Stack>
 }

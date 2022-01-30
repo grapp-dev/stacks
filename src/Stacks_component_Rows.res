@@ -167,7 +167,9 @@ let make = (
       ?viewRef
       ?style>
       <Box direction=[direction] flex=[#fluid] marginTop=?negativeSpace ?alignX ?alignY>
-        {children->React.Children.map(child => {
+        {children
+        ->flattenChildren
+        ->React.Children.map(child => {
           let isRow = isRowComponent(child)
           isRow ? child : <Row> child </Row>
         })}
