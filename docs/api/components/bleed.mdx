@@ -1,0 +1,188 @@
+---
+id: bleed
+title: Bleed
+---
+
+import { Props, BoxProps } from '../../core/components';
+
+`Bleed` renders a container with negative margins allowing content to ["bleed"](https://en.wikipedia.org/wiki/Bleed_(printing)) into the surrounding layout.
+
+### Space
+
+```jsx live
+const App = () => {
+  return (
+    <Stack space={4}>
+      <Placeholder />
+      <Bleed space={3}>
+        <Placeholder />
+      </Bleed>
+      <Placeholder />
+    </Stack>
+  )
+}
+
+render(<App />)
+```
+
+### Vertical
+
+```jsx live
+const App = () => {
+  return (
+    <Stack space={4}>
+      <Placeholder />
+      <Bleed vertical={3}>
+        <Placeholder />
+      </Bleed>
+      <Placeholder />
+    </Stack>
+  )
+}
+
+render(<App />)
+```
+
+### Horizontal
+
+```jsx live
+const App = () => {
+  return (
+    <Stack space={4}>
+      <Placeholder />
+      <Bleed horizontal={4}>
+        <Placeholder />
+      </Bleed>
+      <Placeholder />
+    </Stack>
+  )
+}
+
+render(<App />)
+```
+
+### Top
+
+```jsx live
+const App = () => {
+  return (
+    <Stack space={4}>
+      <Placeholder />
+      <Bleed top={3}>
+        <Placeholder />
+      </Bleed>
+      <Placeholder />
+    </Stack>
+  )
+}
+
+render(<App />)
+```
+
+### Bottom
+
+```jsx live
+const App = () => {
+  return (
+    <Stack space={4}>
+      <Placeholder />
+      <Bleed bottom={3}>
+        <Placeholder />
+      </Bleed>
+      <Placeholder />
+    </Stack>
+  )
+}
+
+render(<App />)
+```
+
+### Left
+
+```jsx live
+const App = () => {
+  return (
+    <Stack space={4}>
+      <Placeholder />
+      <Bleed left={4}>
+        <Placeholder />
+      </Bleed>
+      <Placeholder />
+    </Stack>
+  )
+}
+
+render(<App />)
+```
+
+### Right
+
+```jsx live
+const App = () => {
+  return (
+    <Stack space={4}>
+      <Placeholder />
+      <Bleed right={4}>
+        <Placeholder />
+      </Bleed>
+      <Placeholder />
+    </Stack>
+  )
+}
+
+render(<App />)
+```
+
+### Props
+
+:::info
+
+`Bleed` accepts all [`View`](https://reactnative.dev/docs/view) props.
+
+:::
+
+<Props
+  data={[
+    {
+      name: 'space',
+      type: 'responsiveProp<float>',
+      required: false,
+      defaultValue: 0
+    },
+    {
+      name: 'horizontal',
+      type: 'responsiveProp<float>',
+      required: false,
+      defaultValue: 0
+    },
+    {
+      name: 'vertical',
+      type: 'responsiveProp<float>',
+      required: false,
+      defaultValue: 0
+    },
+    {
+      name: 'top',
+      type: 'responsiveProp<float>',
+      required: false,
+      defaultValue: 0
+    },
+    {
+      name: 'right',
+      type: 'responsiveProp<float>',
+      required: false,
+      defaultValue: 0
+    },
+    {
+      name: 'bottom',
+      type: 'responsiveProp<float>',
+      required: false,
+      defaultValue: 0
+    },
+    {
+      name: 'left',
+      type: 'responsiveProp<float>',
+      required: false,
+      defaultValue: 0
+    },
+  ]} />

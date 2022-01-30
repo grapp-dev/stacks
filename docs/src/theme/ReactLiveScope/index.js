@@ -83,7 +83,9 @@ const Placeholder = props => {
   const { width, height = 60, style, children } = props
 
   return (
-    <Stacks.Box alignX="center" alignY="center" style={[styles.root, { width, height }, style]} />
+    <Stacks.Box alignX="center" alignY="center" style={[styles.root, { width, height }, style]}>
+      {children}
+    </Stacks.Box>
   )
 }
 

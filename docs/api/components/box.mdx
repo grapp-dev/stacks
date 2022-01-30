@@ -4,7 +4,6 @@ title: Box
 ---
 
 import { Props, BoxProps } from '../../core/components';
-import Playground from '@theme/Playground';
 
 `Box` is the low-level layout component, it renders an individual `View` element with quick access to the standard padding and margin scales, as well as other common layout properties.
 
@@ -26,17 +25,15 @@ const styles = StyleSheet.create({
 const App = () => {
   return (
     <Device>
-      <StacksProvider>
-        <Box flex="fluid" alignY="center" alignX="center" padding={4}>
-          <Box marginBottom={8} alignX="center">
-            <Typography variant="h2">Hello!</Typography>
-          </Box>
-          <Box style={styles.root} padding={8} alignX="center" alignY="center" marginBottom={8}>
-            <Image name="rocket" width={96} />
-          </Box>
-          <Typography variant="body">Welcome to the Stacks documentation 🔥</Typography>
+      <Box flex="fluid" alignY="center" alignX="center" padding={4}>
+        <Box marginBottom={8} alignX="center">
+          <Typography variant="h2">Hello!</Typography>
         </Box>
-      </StacksProvider>
+        <Box style={styles.root} padding={8} alignX="center" alignY="center" marginBottom={8}>
+          <Image name="rocket" width={96} />
+        </Box>
+        <Typography variant="body">Welcome to the Stacks documentation 🔥</Typography>
+      </Box>
     </Device>
   )
 }
@@ -49,31 +46,29 @@ render(<App />)
 ```jsx live
 const App = () => {
   return (
-    <StacksProvider>
-      <Stack space={4}>
-        <Box padding={4}>
-          <Placeholder />
-        </Box>
-        <Box paddingX={4}>
-         <Placeholder />
-        </Box>
-        <Box paddingY={4}>
-          <Placeholder />
-        </Box>
-        <Box paddingLeft={4}>
-          <Placeholder />
-        </Box>
-        <Box paddingRight={4}>
-          <Placeholder />
-        </Box>
-        <Box paddingTop={4}>
-          <Placeholder />
-        </Box>
-        <Box paddingBottom={4}>
-          <Placeholder />
-        </Box>
-      </Stack>
-    </StacksProvider>
+    <Stack space={4}>
+      <Box padding={4}>
+        <Placeholder />
+      </Box>
+      <Box paddingX={4}>
+        <Placeholder />
+      </Box>
+      <Box paddingY={4}>
+        <Placeholder />
+      </Box>
+      <Box paddingLeft={4}>
+        <Placeholder />
+      </Box>
+      <Box paddingRight={4}>
+        <Placeholder />
+      </Box>
+      <Box paddingTop={4}>
+        <Placeholder />
+      </Box>
+      <Box paddingBottom={4}>
+        <Placeholder />
+      </Box>
+    </Stack>
   )
 }
 
@@ -85,31 +80,29 @@ render(<App />)
 ```jsx live
 const App = () => {
   return (
-    <StacksProvider>
-      <Stack space={4}>
-        <Box margin={4}>
-          <Placeholder />
-        </Box>
-        <Box marginX={4}>
-          <Placeholder />
-        </Box>
-        <Box marginY={-3}>
-          <Placeholder />
-        </Box>
-        <Box marginLeft={4}>
-          <Placeholder />
-        </Box>
-        <Box marginRight={4}>
-          <Placeholder />
-        </Box>
-        <Box marginTop={4}>
-          <Placeholder />
-        </Box>
-        <Box marginBottom={4}>
-          <Placeholder />
-        </Box>
-      </Stack>
-    </StacksProvider>
+    <Stack space={4}>
+      <Box margin={4}>
+        <Placeholder />
+      </Box>
+      <Box marginX={-3}>
+        <Placeholder />
+      </Box>
+      <Box marginY={-3}>
+        <Placeholder />
+      </Box>
+      <Box marginLeft={4}>
+        <Placeholder />
+      </Box>
+      <Box marginRight={4}>
+        <Placeholder />
+      </Box>
+      <Box marginTop={4}>
+        <Placeholder />
+      </Box>
+      <Box marginBottom={4}>
+        <Placeholder />
+      </Box>
+    </Stack>
   )
 }
 
@@ -121,58 +114,56 @@ render(<App />)
 ```jsx live
 const App = () => {
   return (
-    <StacksProvider>
-      <Stack space={4}>
-        <Box flex="fluid">
+    <Stack space={4}>
+      <Box flex="fluid">
+        <Placeholder />
+      </Box>
+      <Box direction="row">
+        <Box flex="4/5">
           <Placeholder />
         </Box>
-        <Box direction="row">
-          <Box flex="4/5">
-            <Placeholder />
-          </Box>
+      </Box>
+      <Box direction="row">
+        <Box flex="3/4">
+          <Placeholder />
         </Box>
-        <Box direction="row">
-          <Box flex="3/4">
-            <Placeholder />
-          </Box>
+      </Box>
+      <Box direction="row">
+        <Box flex="2/3">
+          <Placeholder />
         </Box>
-        <Box direction="row">
-          <Box flex="2/3">
-            <Placeholder />
-          </Box>
+      </Box>
+      <Box direction="row">
+        <Box flex="3/5">
+          <Placeholder />
         </Box>
-        <Box direction="row">
-          <Box flex="3/5">
-            <Placeholder />
-          </Box>
+      </Box>
+      <Box direction="row">
+        <Box flex="1/2">
+          <Placeholder />
         </Box>
-        <Box direction="row">
-          <Box flex="1/2">
-            <Placeholder />
-          </Box>
+      </Box>
+      <Box direction="row">
+        <Box flex="1/3">
+          <Placeholder />
         </Box>
-        <Box direction="row">
-          <Box flex="1/3">
-            <Placeholder />
-          </Box>
+      </Box>
+      <Box direction="row">
+        <Box flex="1/4">
+          <Placeholder />
         </Box>
-        <Box direction="row">
-          <Box flex="1/4">
-            <Placeholder />
-          </Box>
+      </Box>
+      <Box direction="row">
+        <Box flex="1/5">
+          <Placeholder />
         </Box>
-        <Box direction="row">
-          <Box flex="1/5">
-            <Placeholder />
-          </Box>
+      </Box>
+      <Box direction="row">
+        <Box flex="content">
+          <Placeholder width={320} />
         </Box>
-        <Box direction="row">
-          <Box flex="content">
-            <Placeholder width={320} />
-          </Box>
-        </Box>
-      </Stack>
-    </StacksProvider>
+      </Box>
+    </Stack>
   )
 }
 
@@ -184,34 +175,32 @@ render(<App />)
 ```jsx live
 const App = () => {
   return (
-    <StacksProvider>
-      <Stack space={4}>
-        <Box alignX="left">
-          <Placeholder width={60} />
-        </Box>
-        <Box alignX="center">
-          <Placeholder width={60} />
-        </Box>
-        <Box alignX="right">
-          <Placeholder width={60} />
-        </Box>
-        <Box alignX="between" direction="row">
-          <Placeholder width={60} />
-          <Placeholder width={60} />
-          <Placeholder width={60} />
-        </Box>
-        <Box alignX="around" direction="row">
-          <Placeholder width={60} />
-          <Placeholder width={60} />
-          <Placeholder width={60} />
-        </Box>
-        <Box alignX="evenly" direction="row">
-          <Placeholder width={60} />
-          <Placeholder width={60} />
-          <Placeholder width={60} />
-        </Box>
-      </Stack>
-    </StacksProvider>
+    <Stack space={4}>
+      <Box alignX="left">
+        <Placeholder width={60} />
+      </Box>
+      <Box alignX="center">
+        <Placeholder width={60} />
+      </Box>
+      <Box alignX="right">
+        <Placeholder width={60} />
+      </Box>
+      <Box alignX="between" direction="row">
+        <Placeholder width={60} />
+        <Placeholder width={60} />
+        <Placeholder width={60} />
+      </Box>
+      <Box alignX="around" direction="row">
+        <Placeholder width={60} />
+        <Placeholder width={60} />
+        <Placeholder width={60} />
+      </Box>
+      <Box alignX="evenly" direction="row">
+        <Placeholder width={60} />
+        <Placeholder width={60} />
+        <Placeholder width={60} />
+      </Box>
+    </Stack>
   )
 }
 
@@ -229,34 +218,32 @@ const styles = StyleSheet.create({
 
 const App = () => {
   return (
-    <StacksProvider>
-      <Box style={styles.root} direction="row" alignX="between">
-        <Box alignY="top">
-          <Placeholder height={60} width={60} />
-        </Box>
-        <Box alignY="center">
-          <Placeholder height={60} width={60} />
-        </Box>
-        <Box alignY="bottom">
-          <Placeholder height={60} width={60} />
-        </Box>
-        <Box alignY="between">
-          <Placeholder height={60} width={60} />
-          <Placeholder height={60} width={60} />
-          <Placeholder height={60} width={60} />
-        </Box>
-        <Box alignY="around">
-          <Placeholder height={60} width={60} />
-          <Placeholder height={60} width={60} />
-          <Placeholder height={60} width={60} />
-        </Box>
-        <Box alignY="evenly">
-          <Placeholder height={60} width={60} />
-          <Placeholder height={60} width={60} />
-          <Placeholder height={60} width={60} />
-        </Box>
+    <Box style={styles.root} direction="row" alignX="between">
+      <Box alignY="top">
+        <Placeholder height={60} width={60} />
       </Box>
-    </StacksProvider>
+      <Box alignY="center">
+        <Placeholder height={60} width={60} />
+      </Box>
+      <Box alignY="bottom">
+        <Placeholder height={60} width={60} />
+      </Box>
+      <Box alignY="between">
+        <Placeholder height={60} width={60} />
+        <Placeholder height={60} width={60} />
+        <Placeholder height={60} width={60} />
+      </Box>
+      <Box alignY="around">
+        <Placeholder height={60} width={60} />
+        <Placeholder height={60} width={60} />
+        <Placeholder height={60} width={60} />
+      </Box>
+      <Box alignY="evenly">
+        <Placeholder height={60} width={60} />
+        <Placeholder height={60} width={60} />
+        <Placeholder height={60} width={60} />
+      </Box>
+    </Box>
   )
 }
 

@@ -17,7 +17,6 @@ module.exports = {
       async: true,
     },
   ],
-  staticDirectories: ['public', 'images'],
   themeConfig: {
     image: 'img/hero-logo.png',
     prism: {

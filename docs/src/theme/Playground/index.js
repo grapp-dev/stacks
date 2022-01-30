@@ -89,7 +89,6 @@ export default function Playground({ children, transformCode, ...props }) {
   const [isCodeVisible, setCodeVisibility] = React.useState(props.showCode)
 
   const handleCodeVisibility = React.useCallback(() => {
-    console.log('aaa')
     setCodeVisibility(v => !v)
   }, [])
 

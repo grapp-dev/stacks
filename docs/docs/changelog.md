@@ -3,6 +3,15 @@ id: changelog
 title: Changelog
 ---
 
+### `v1.5.0`
+
+- ✨ added the `Bleed` component
+- ✨ added the `Inset` component
+- 🔥 `Column`: removed the `height` property (all columns are full height)
+- 🔥 `FillView`: removed the `flex` property
+- ♻️ `Inline`: `align` is now `alignX`
+- 🌟 `Inline`: added the `alignY` property
+
 ### `v1.4.1`
 
 - 🐛 fixed React Native components shims/types

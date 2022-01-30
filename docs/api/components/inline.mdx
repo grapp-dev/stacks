@@ -5,7 +5,7 @@ title: Inline
 
 import { Props, BoxProps } from '../../core/components';
 
-`Inline` renders a set of components in a row with equal spacing around them, wrapping onto multiple lines when necessary.
+`Inline` renders children horizontally, wrapping to multiple lines if needed, with equal spacing between items.
 
 ### Space
 
@@ -47,18 +47,72 @@ const App = () => {
 render(<App />)
 ```
 
-### Align
+### AlignX
 
 ```jsx live
 const App = () => {
   return (
-    <Inline space={2} align="center">
-      <Placeholder width={90} />
-      <Placeholder width={60} />
-      <Placeholder width={120} />
-      <Placeholder width={100} />
-      <Placeholder width={100} />
-    </Inline>
+    <Stack space={4}>
+      <Inline space={2} alignX="left">
+        <Placeholder width={90} />
+        <Placeholder width={60} />
+        <Placeholder width={120} />
+        <Placeholder width={100} />
+        <Placeholder width={100} />
+      </Inline>
+
+      <Inline space={2} alignX="center">
+        <Placeholder width={90} />
+        <Placeholder width={60} />
+        <Placeholder width={120} />
+        <Placeholder width={100} />
+        <Placeholder width={100} />
+      </Inline>
+
+      <Inline space={2} alignX="right">
+        <Placeholder width={90} />
+        <Placeholder width={60} />
+        <Placeholder width={120} />
+        <Placeholder width={100} />
+        <Placeholder width={100} />
+      </Inline>
+    </Stack>
+  )
+}
+
+render(<App />)
+```
+
+### AlignY
+
+```jsx live
+const App = () => {
+  return (
+    <Stack space={4}>
+      <Inline space={2} alignY="top">
+        <Placeholder width={100} height={40} />
+        <Placeholder width={100} />
+        <Placeholder width={120} height={80} />
+        <Placeholder width={100}/>
+        <Placeholder width={100} height={40} />
+      </Inline>
+
+      <Inline space={2} alignY="center">
+        <Placeholder width={100} height={40} />
+        <Placeholder width={100} />
+        <Placeholder width={120} height={80} />
+        <Placeholder width={100}/>
+        <Placeholder width={100} height={40} />
+      </Inline>
+
+      <Inline space={2} alignY="bottom">
+        <Placeholder width={100} height={40} />
+        <Placeholder width={100} />
+        <Placeholder width={120} height={80} />
+        <Placeholder width={100}/>
+        <Placeholder width={100} height={40} />
+      </Inline>
+    </Stack>
   )
 }
 
@@ -82,7 +136,12 @@ render(<App />)
       required: false,
     },
     {
-      name: 'align',
+      name: 'alignX',
+      type: 'responsiveProp<[#left | #center | #right | #between | #around | #evenly]>',
+      required: false,
+    },
+    {
+      name: 'alignY',
       type: 'responsiveProp<[#left | #center | #right | #between | #around | #evenly]>',
       required: false,
     },
