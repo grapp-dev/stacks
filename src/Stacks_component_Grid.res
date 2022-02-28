@@ -39,16 +39,20 @@ let styles = {
 }
 
 @react.component @gentype
-let make = (~gutter=[2.], ~margin=[2.], ~columns=[8], ~opacity=0.2) => {
+let make = (
+  ~gutter: option<responsiveProp<float>>=?,
+  ~margin: option<responsiveProp<float>>=?,
+  ~columns: option<responsiveProp<int>>=?,
+  ~opacity=0.2,
+) => {
   let {dimensions} = useStacks()
   let {multiply} = useSpacingHelpers()
   let resolveResponsiveProp = useResponsiveProp()
-  let resolveFloat = prop =>
-    Some(prop)->resolveResponsiveProp->multiply->Belt.Option.getWithDefault(2.)
+  let resolveFloat = prop => prop->resolveResponsiveProp->multiply->Belt.Option.getWithDefault(2.)
   let gutter = resolveFloat(gutter)
   let margin = resolveFloat(margin)
   let columns =
-    Some(columns)
+    columns
     ->coerce
     ->resolveResponsiveProp
     ->Belt.Option.mapWithDefaultU(8, (. value) => int_of_float(value))
