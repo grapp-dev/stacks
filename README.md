@@ -34,7 +34,7 @@ Full documentation can be found [here](https://mobily.github.io/stacks).
 
 ## Motivation
 
-[Max Stoiber](https://github.com/mxstbr) has written an interesting [article](https://mxstbr.com/thoughts/margin) about why margin is considered harmful. There are three main disadvantages of using margin:
+[Max Stoiber](https://github.com/mxstbr) wrote an interesting [article](https://mxstbr.com/thoughts/margin) some time ago about why margin is considered harmful. There are three main disadvantages of using margin:
 
 - margin breaks component encapsulation
 - margin makes reusability harder
@@ -44,7 +44,7 @@ It's obvious that handling margins across the entire project is simply difficult
 
 ## Compatibility
 
-`Stacks` is written in [ReScript](https://rescript-lang.org/). It is compiled to plain JavaScript and has typings for TypeScript and Flow.
+`Stacks` is written in [ReScript](https://rescript-lang.org/). It's compiled using BuckleScript to plain JavaScript and has typings for TypeScript and Flow.
 
 This means that out of the box `Stacks` is usable in any project that use the following:
 
@@ -53,7 +53,7 @@ This means that out of the box `Stacks` is usable in any project that use the fo
 - Flow
 - ReScript
 
-`Stacks` is supported in React Native and React Native Web projects.
+`Stacks` can be used in React Native and React Native Web projects.
 
 ## Getting started
 
@@ -71,7 +71,7 @@ npm install @mobily/stacks --save
 
 ### Example
 
-The following example shows how simple it is building screens without using neither _margin_ nor _padding_ properties in your style sheets objects. For debugging purposes, you may want to turn the debug mode on (pass the `debug` property to the provider) or use the customizable Grid component.
+The following example shows how simple it is building screens using `Stacks`. For debugging purposes, you may want to turn the debug mode on (pass the `debug` property to the provider) or use the customizable `Grid` component.
 
 |                               | Debug mode                          | Grid component                     |
 | ----------------------------- | ----------------------------------- | ---------------------------------- |
