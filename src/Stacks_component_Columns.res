@@ -14,6 +14,7 @@ module Column = Stacks_component_Column
 let make = (
   // Columns props
   ~space=?,
+  ~height: responsiveProp<flex>=[#content],
   ~reverse=?,
   ~alignX: option<responsiveProp<[axisX | space]>>=?,
   ~alignY: option<responsiveProp<axisY>>=?,
@@ -88,7 +89,6 @@ let make = (
   ~onMouseUp=?,
 ) => {
   let {breakpoints} = useStacks()
-  let debugStyle = useDebugStyle()
   let currentBreakpoint = useCurrentBreakpoint()
   let {isCollapsed, direction} = resolveCollapsibleProps(
     ~collapseBelow,
@@ -100,21 +100,21 @@ let make = (
   let alignX = isCollapsed ? None : coerce(alignX)
   let boxMarginTop = isCollapsed ? negateSpace(space) : None
   let boxMarginLeft = isCollapsed ? None : negateSpace(space)
-  let fullWidth = Some(styles["fullWidth"])
-  let style = Style.arrayOption([fullWidth, debugStyle, style])
+  let style = Style.arrayOption([Some(styles["fullWidth"]), style])
 
-  let config = React.useMemo3(() => {
+  let config = React.useMemo4(() => {
     let value: ColumnsContext.t = {
       isCollapsed: isCollapsed,
       space: space,
-      debugStyle: debugStyle,
       alignY: alignY,
+      height: Some(height),
     }
     value
-  }, (isCollapsed, space, alignY))
+  }, (isCollapsed, space, alignY, height))
 
   <ColumnsContext.Provider value={config}>
     <Box
+      flex=height
       ?alignY
       ?padding
       ?paddingX
@@ -182,15 +182,15 @@ let make = (
       style>
       <Box
         direction=[direction]
-        flex=[#fluid]
+        flex=height
         ?alignX
+        ?alignY
         marginTop=?boxMarginTop
         marginLeft=?boxMarginLeft>
-        {children
-        ->flattenChildren
-        ->React.Children.map(child => {
-          let isColumn = isColumnComponent(child)
-          isColumn ? child : <Column> child </Column>
+        {children->React.Children.map(child => {
+          isValidElement(child)
+            ? isColumnComponent(child) ? child : <Column> child </Column>
+            : React.null
         })}
       </Box>
     </Box>

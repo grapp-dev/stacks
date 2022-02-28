@@ -87,7 +87,6 @@ let make = (
   ~viewRef=?,
 ) => {
   let resolveResponsiveProp = useResponsiveProp()
-  let debugStyle = useDebugStyle()
   let horizontal = resolveResponsiveProp(horizontal)
   let direction = horizontal->Belt.Option.mapWithDefaultU(#column, (. value) => {
     value ? #row : #column
@@ -101,7 +100,7 @@ let make = (
 
   let style = Style.arrayOption([width, style])
   let children = {
-    let xs = children->flattenChildren->React.Children.toArray
+    let xs = React.Children.toArray(children)
     divider->Belt.Option.mapWithDefaultU(xs, (. divider) => intersperse(xs, divider))->coerce
   }
 
@@ -171,21 +170,11 @@ let make = (
     ?onMouseUp
     ?viewRef
     style>
-    {children
-    ->flattenChildren
-    ->React.Children.mapWithIndex((child, index) => {
+    {children->React.Children.mapWithIndex((child, index) => {
       let marginTop = isVertical ? index == 0 ? None : space : None
       let marginLeft = isVertical ? None : index == 0 ? None : space
 
-      <Box
-        ?alignY
-        ?alignX
-        ?marginTop
-        ?marginLeft
-        flex=[isVertical ? #fluid : #content]
-        style={Style.arrayOption([debugStyle])}>
-        child
-      </Box>
+      <Box ?alignY ?alignX ?marginTop ?marginLeft flex=[#content]> child </Box>
     })}
   </Box>
 }

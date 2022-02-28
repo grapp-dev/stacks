@@ -23,15 +23,15 @@ module ColumnsContext = {
   type t = {
     isCollapsed: bool,
     space: option<responsiveProp<float>>,
-    debugStyle: option<ReactNative.Style.t>,
     alignY: option<responsiveProp<axisY>>,
+    height: option<responsiveProp<flex>>,
   }
 
   let context = React.createContext({
     isCollapsed: false,
     space: None,
-    debugStyle: None,
     alignY: None,
+    height: None,
   })
   let useColumns = () => React.useContext(context)
 
@@ -46,9 +46,9 @@ module ColumnsContext = {
 }
 
 module RowsContext = {
-  type t = {space: option<responsiveProp<float>>, debugStyle: option<Style.t>}
+  type t = {space: option<responsiveProp<float>>}
 
-  let context = React.createContext({space: None, debugStyle: None})
+  let context = React.createContext({space: None})
   let useRows = () => React.useContext(context)
 
   module Provider = {

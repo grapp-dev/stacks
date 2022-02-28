@@ -12,6 +12,6 @@ export { make as Bleed } from './Stacks_component_Bleed.bs'
 export { make as Inset } from './Stacks_component_Inset.bs'
 export { make as Grid } from './Stacks_component_Grid.bs'
 export { make as StacksProvider } from './Stacks_component_Provider.bs'
-export { reset } from './Stacks_utils.bs'
+export { unset, markAsColumn, markAsRow } from './Stacks_utils.bs'
 
 export * from './Stacks_hooks.bs'

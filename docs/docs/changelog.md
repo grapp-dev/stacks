@@ -3,14 +3,49 @@ id: changelog
 title: Changelog
 ---
 
-### `v1.5.0`
+### `v2.0.0`
 
 - ✨ added the `Bleed` component
 - ✨ added the `Inset` component
-- 🔥 `Column`: removed the `height` property (all columns are full height)
-- 🔥 `FillView`: removed the `flex` property
+- ♻️ `Column`: removed the `height` prop (as it has been added to the `Columns` component)
+- 🔥 `FillView`: removed the `flex` prop
+- ♻️ `FillView`: renamed `reset` to `unset`
 - ♻️ `Inline`: `align` is now `alignX`
-- 🌟 `Inline`: added the `alignY` property
+- ✨ `Inline`: added the `alignY` prop
+- ✨ `Tiles`: added the `empty` prop
+- 🐛 minor tweaks and fixes
+
+You can also use `Columns/Rows` with no `Column/Row` in the markup tree, for instance, the following:
+
+```tsx
+<Columns>
+  <Placeholder />
+  <Rows>
+    <Placeholder />
+    <Placeholder />
+  </Rows>
+</Columns>
+```
+
+equals to:
+
+```tsx
+<Columns>
+  <Column>
+    <Placeholder />
+  </Column>
+  <Column>
+    <Rows>
+      <Row>
+        <Placeholder />
+      </Row>
+      <Row>
+        <Placeholder />
+      </Row>
+    </Rows>
+  </Column>
+</Columns>
+```
 
 ### `v1.4.1`
 

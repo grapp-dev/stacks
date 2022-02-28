@@ -114,6 +114,8 @@ let make = (
     coerce(flex),
     coerce(breakpoints),
     coerce(currentBreakpoint),
+    coerce(debugStyle),
+    coerce(style),
   ])
 
   let style = React.useMemo1(() => {
@@ -159,7 +161,7 @@ let make = (
       }
     }
 
-    keepStyle([
+    flatten([
       padding,
       paddingX,
       paddingY,

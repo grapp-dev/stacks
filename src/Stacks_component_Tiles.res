@@ -1,5 +1,3 @@
-open ReactNative
-
 open Stacks_hooks
 open Stacks_utils
 open Stacks_externals
@@ -12,6 +10,7 @@ let make = (
   // Tiles props
   ~columns=?,
   ~space=?,
+  ~empty=[true],
   // Box props
   ~padding=?,
   ~paddingX=?,
@@ -86,9 +85,9 @@ let make = (
     columns
     ->resolveResponsiveProp
     ->Belt.Option.mapWithDefaultU(1, (. value) => value < 1 ? 1 : value)
-  let debugStyle = useDebugStyle()
-  let children = children->flattenChildren->React.Children.toArray->splitEvery(columns)
+  let children = children->React.Children.toArray->splitEvery(columns)
   let negativeSpace = negateSpace(space)
+  let isEmpty = resolveResponsiveProp(coerce(empty))
 
   <Stack
     ?space
@@ -156,16 +155,23 @@ let make = (
     ?onMouseUp
     ?viewRef
     ?style>
-    {Belt.Array.mapWithIndexU(children, (. index, arr) => {
+    {children
+    ->Belt.Array.mapWithIndexU((. index, arr) => {
       let arr = Belt.Array.makeByU(columns, (. index) =>
         arr->Belt.Array.get(index)->Belt.Option.getWithDefault(React.null)
       )
       <Box key={string_of_int(index)} marginLeft=?negativeSpace direction=[#row]>
-        {Belt.Array.mapWithIndexU(arr, (. index, child) => {
-          let style = Style.arrayOption([isValidElement(child) ? debugStyle : None])
-          <Box key={string_of_int(index)} flex=[#fluid] marginLeft=?space style> child </Box>
-        })->React.array}
+        {arr
+        ->Belt.Array.mapWithIndexU((. index, child) => {
+          let isValidOrEmpty = isValidElement(child) || coerce(isEmpty)
+
+          isValidOrEmpty
+            ? <Box key={string_of_int(index)} flex=[#fluid] marginLeft=?space> child </Box>
+            : React.null
+        })
+        ->React.array}
       </Box>
-    })->React.array}
+    })
+    ->React.array}
   </Stack>
 }

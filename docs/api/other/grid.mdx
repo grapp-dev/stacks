@@ -9,10 +9,16 @@ import { Props } from '../../core/components';
 
 ### Basic usage
 
-```tsx
-import { Grid } from '@mobily/stacks'
+```jsx live showCode
+const App = () => {
+  return (
+    <StacksProvider>
+      <Grid columns={12} margin={4} gutter={4} opacity={0.1} />
+    </StacksProvider>
+  )
+}
 
-<Grid columns={8} margin={2} gutter={2} opacity={0.2} />
+render(<App />)
 ```
 
 ### Props

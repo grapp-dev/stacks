@@ -1,7 +1,3 @@
-open ReactNative
-
-open Stacks_hooks
-
 module Box = Stacks_component_Box
 
 @react.component @gentype
@@ -74,8 +70,6 @@ let make = (
   ~onMouseOut=?,
   ~onMouseUp=?,
 ) => {
-  let debugStyle = useDebugStyle()
-
   <Box
     padding=?space
     paddingX=?horizontal
@@ -138,7 +132,7 @@ let make = (
     ?onMouseOut
     ?onMouseUp
     ?viewRef
-    style={Style.arrayOption([debugStyle, style])}>
+    ?style>
     children
   </Box>
 }

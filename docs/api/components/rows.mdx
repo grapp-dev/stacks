@@ -18,11 +18,9 @@ const styles = StyleSheet.create({
   },
 })
 
-const FluidPlaceholder = props => {
-  const { style, width } = props
-
+const FluidPlaceholder = () => {
   return (
-    <Box flex="fluid" style={[styles.fluidPlaceholder, { width }, style]} />
+    <Box flex="fluid" style={styles.fluidPlaceholder} />
   )
 }
 
@@ -52,11 +50,9 @@ const styles = StyleSheet.create({
   },
 })
 
-const FluidPlaceholder = props => {
-  const { style, width } = props
-
+const FluidPlaceholder = () => {
   return (
-    <Box flex="fluid" style={[styles.fluidPlaceholder, { width }, style]} />
+    <Box flex="fluid" style={styles.fluidPlaceholder} />
   )
 }
 
@@ -86,9 +82,6 @@ render(<App />)
 
 ```jsx live
 const styles = StyleSheet.create({
-  root: {
-    height: 240,
-  },
   fluidPlaceholder: {
     backgroundColor: 'rgba(255, 0, 255, 0.05)',
     borderWidth: StyleSheet.hairlineWidth,
@@ -106,43 +99,45 @@ const FluidPlaceholder = props => {
 
 const App = () => {
   return (
-    <Columns alignX="between" space={4} style={styles.root}>
-      <Rows space={4} alignX="left">
-        <Row width="content">
-          <FluidPlaceholder width={120} />
-        </Row>
-        <Row width="content">
-          <FluidPlaceholder width={140} />
-        </Row>
-        <Row width="content">
-          <FluidPlaceholder width={100} />
-        </Row>
-      </Rows>
+    <Container height={240}>
+      <Columns alignX="between" space={4} height="fluid">
+        <Rows space={4} alignX="left">
+          <Row width="content">
+            <FluidPlaceholder width={120} />
+          </Row>
+          <Row width="content">
+            <FluidPlaceholder width={140} />
+          </Row>
+          <Row width="content">
+            <FluidPlaceholder width={100} />
+          </Row>
+        </Rows>
 
-      <Rows space={4} alignX="center">
-        <Row width="content">
-          <FluidPlaceholder width={100} />
-        </Row>
-        <Row width="content">
-          <FluidPlaceholder width={140} />
-        </Row>
-        <Row width="content">
-          <FluidPlaceholder width={120} />
-        </Row>
-      </Rows>
+        <Rows space={4} alignX="center">
+          <Row width="content">
+            <FluidPlaceholder width={100} />
+          </Row>
+          <Row width="content">
+            <FluidPlaceholder width={140} />
+          </Row>
+          <Row width="content">
+            <FluidPlaceholder width={120} />
+          </Row>
+        </Rows>
 
-      <Rows space={4} alignX="right">
-        <Row width="content">
-          <FluidPlaceholder width={100} />
-        </Row>
-        <Row width="content">
-          <FluidPlaceholder width={140} />
-        </Row>
-        <Row width="content">
-          <FluidPlaceholder width={120} />
-        </Row>
-      </Rows>
-    </Columns>
+        <Rows space={4} alignX="right">
+          <Row width="content">
+            <FluidPlaceholder width={100} />
+          </Row>
+          <Row width="content">
+            <FluidPlaceholder width={140} />
+          </Row>
+          <Row width="content">
+            <FluidPlaceholder width={120} />
+          </Row>
+        </Rows>
+      </Columns>
+    </Container>
   )
 }
 
@@ -152,100 +147,83 @@ render(<App />)
 ### AlignY
 
 ```jsx live
-const styles = StyleSheet.create({
-  root: {
-    height: 440,
-  },
-  fluidPlaceholder: {
-    backgroundColor: 'rgba(255, 0, 255, 0.05)',
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: 'rgba(255, 0, 255, 0.3)',
-  },
-})
-
-const FluidPlaceholder = props => {
-  const { style, width } = props
-
-  return (
-    <Box flex="fluid" style={[styles.fluidPlaceholder, { width }, style]} />
-  )
-}
-
 const App = () => {
   return (
-    <Columns alignX="between" space={4} style={styles.root}>
-      <Rows space={4} alignY="top">
-        <Row height="content">
-          <Placeholder />
-        </Row>
-        <Row height="content">
-          <Placeholder />
-        </Row>
-        <Row height="content">
-          <Placeholder />
-        </Row>
-      </Rows>
+    <Container height={440}>
+      <Columns alignX="between" space={4} height="fluid">
+        <Rows space={4} alignY="top">
+          <Row height="content">
+            <Placeholder />
+          </Row>
+          <Row height="content">
+            <Placeholder />
+          </Row>
+          <Row height="content">
+            <Placeholder />
+          </Row>
+        </Rows>
 
-      <Rows space={4} alignY="center">
-        <Row height="content">
-          <Placeholder />
-        </Row>
-        <Row height="content">
-          <Placeholder />
-        </Row>
-        <Row height="content">
-          <Placeholder />
-        </Row>
-      </Rows>
+        <Rows space={4} alignY="center">
+          <Row height="content">
+            <Placeholder />
+          </Row>
+          <Row height="content">
+            <Placeholder />
+          </Row>
+          <Row height="content">
+            <Placeholder />
+          </Row>
+        </Rows>
 
-      <Rows space={4} alignY="bottom">
-        <Row height="content">
-          <Placeholder />
-        </Row>
-        <Row height="content">
-          <Placeholder />
-        </Row>
-        <Row height="content">
-          <Placeholder />
-        </Row>
-      </Rows>
+        <Rows space={4} alignY="bottom">
+          <Row height="content">
+            <Placeholder />
+          </Row>
+          <Row height="content">
+            <Placeholder />
+          </Row>
+          <Row height="content">
+            <Placeholder />
+          </Row>
+        </Rows>
 
-      <Rows space={4} alignY="between">
-        <Row height="content">
-          <Placeholder />
-        </Row>
-        <Row height="content">
-          <Placeholder />
-        </Row>
-        <Row height="content">
-          <Placeholder />
-        </Row>
-      </Rows>
+        <Rows space={4} alignY="between">
+          <Row height="content">
+            <Placeholder />
+          </Row>
+          <Row height="content">
+            <Placeholder />
+          </Row>
+          <Row height="content">
+            <Placeholder />
+          </Row>
+        </Rows>
 
-      <Rows space={4} alignY="around">
-        <Row height="content">
-          <Placeholder />
-        </Row>
-        <Row height="content">
-          <Placeholder />
-        </Row>
-        <Row height="content">
-          <Placeholder />
-        </Row>
-      </Rows>
+        <Rows space={4} alignY="around">
+          <Row height="content">
+            <Placeholder />
+          </Row>
+          <Row height="content">
+            <Placeholder />
+          </Row>
+          <Row height="content">
+            <Placeholder />
+          </Row>
+        </Rows>
 
-      <Rows space={4} alignY="evenly">
-        <Row height="content">
-          <Placeholder />
-        </Row>
-        <Row height="content">
-          <Placeholder />
-        </Row>
-        <Row height="content">
-          <Placeholder />
-        </Row>
-      </Rows>
-    </Columns>
+        <Rows space={4} alignY="evenly">
+          <Row height="content">
+            <Placeholder />
+          </Row>
+          <Row height="content">
+            <Placeholder />
+          </Row>
+          <Row height="content">
+            <Placeholder />
+          </Row>
+        </Rows>
+      </Columns>
+    </Container>
   )
 }
 
@@ -255,22 +233,6 @@ render(<App />)
 ### Width
 
 ```jsx live
-const styles = StyleSheet.create({
-  fluidPlaceholder: {
-    backgroundColor: 'rgba(255, 0, 255, 0.05)',
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: 'rgba(255, 0, 255, 0.3)',
-  },
-})
-
-const FluidPlaceholder = props => {
-  const { style, width } = props
-
-  return (
-    <Box flex="fluid" style={[styles.fluidPlaceholder, { width }, style]} />
-  )
-}
-
 const App = () => {
   return (
     <Rows space={4}>
@@ -315,9 +277,6 @@ render(<App />)
 
 ```jsx live
 const styles = StyleSheet.create({
-  root: {
-    height: 440,
-  },
   fluidPlaceholder: {
     backgroundColor: 'rgba(255, 0, 255, 0.05)',
     borderWidth: StyleSheet.hairlineWidth,
@@ -325,116 +284,171 @@ const styles = StyleSheet.create({
   },
 })
 
-const FluidPlaceholder = props => {
-  const { style, width } = props
-
+const FluidPlaceholder = () => {
   return (
-    <Box flex="fluid" style={[styles.fluidPlaceholder, { width }, style]} />
+    <Box flex="fluid" style={styles.fluidPlaceholder} />
   )
 }
 
 const App = () => {
   return (
-    <Columns space={4} alignX="between" style={styles.root}>
-      <Rows space={4}>
-        <Row height="1/2">
-          <FluidPlaceholder />
-        </Row>
-        <Row height="1/2">
-          <FluidPlaceholder />
-        </Row>
-      </Rows>
+    <Container height={440}>
+      <Columns space={4} alignX="between" height="fluid">
+        <Rows space={4}>
+          <Row height="1/2">
+            <FluidPlaceholder />
+          </Row>
+          <Row height="1/2">
+            <FluidPlaceholder />
+          </Row>
+        </Rows>
 
-      <Rows space={4}>
-        <Row height="1/3">
-          <FluidPlaceholder />
-        </Row>
-        <Row height="1/3">
-          <FluidPlaceholder />
-        </Row>
-        <Row height="1/3">
-          <FluidPlaceholder />
-        </Row>
-      </Rows>
+        <Rows space={4}>
+          <Row height="1/3">
+            <FluidPlaceholder />
+          </Row>
+          <Row height="1/3">
+            <FluidPlaceholder />
+          </Row>
+          <Row height="1/3">
+            <FluidPlaceholder />
+          </Row>
+        </Rows>
 
-      <Rows space={4}>
-        <Row height="2/3">
-          <FluidPlaceholder />
-        </Row>
-        <Row height="1/3">
-          <FluidPlaceholder />
-        </Row>
-      </Rows>
+        <Rows space={4}>
+          <Row height="2/3">
+            <FluidPlaceholder />
+          </Row>
+          <Row height="1/3">
+            <FluidPlaceholder />
+          </Row>
+        </Rows>
 
-      <Rows space={4}>
-        <Row height="1/4">
-          <FluidPlaceholder />
-        </Row>
-        <Row height="1/4">
-          <FluidPlaceholder />
-        </Row>
-        <Row height="1/4">
-          <FluidPlaceholder />
-        </Row>
-        <Row height="1/4">
-          <FluidPlaceholder />
-        </Row>
-      </Rows>
+        <Rows space={4}>
+          <Row height="1/4">
+            <FluidPlaceholder />
+          </Row>
+          <Row height="1/4">
+            <FluidPlaceholder />
+          </Row>
+          <Row height="1/4">
+            <FluidPlaceholder />
+          </Row>
+          <Row height="1/4">
+            <FluidPlaceholder />
+          </Row>
+        </Rows>
 
-      <Rows space={4}>
-        <Row height="1/4">
-          <FluidPlaceholder />
-        </Row>
-        <Row height="1/2">
-          <FluidPlaceholder />
-        </Row>
-        <Row height="1/4">
-          <FluidPlaceholder />
-        </Row>
-      </Rows>
+        <Rows space={4}>
+          <Row height="1/4">
+            <FluidPlaceholder />
+          </Row>
+          <Row height="1/2">
+            <FluidPlaceholder />
+          </Row>
+          <Row height="1/4">
+            <FluidPlaceholder />
+          </Row>
+        </Rows>
 
-      <Rows space={4}>
-        <Row height="1/4">
-          <FluidPlaceholder />
-        </Row>
-        <Row height="3/4">
-          <FluidPlaceholder />
-        </Row>
-      </Rows>
+        <Rows space={4}>
+          <Row height="1/4">
+            <FluidPlaceholder />
+          </Row>
+          <Row height="3/4">
+            <FluidPlaceholder />
+          </Row>
+        </Rows>
 
-      <Rows space={4}>
-        <Row height="1/5">
-          <FluidPlaceholder />
-        </Row>
-        <Row height="2/5">
-          <FluidPlaceholder />
-        </Row>
-        <Row height="2/5">
-          <FluidPlaceholder />
-        </Row>
-      </Rows>
+        <Rows space={4}>
+          <Row height="1/5">
+            <FluidPlaceholder />
+          </Row>
+          <Row height="2/5">
+            <FluidPlaceholder />
+          </Row>
+          <Row height="2/5">
+            <FluidPlaceholder />
+          </Row>
+        </Rows>
 
-      <Rows space={4}>
-        <Row height="1/5">
-          <FluidPlaceholder />
-        </Row>
-        <Row height="3/5">
-          <FluidPlaceholder />
-        </Row>
-        <Row height="1/5">
-          <FluidPlaceholder />
-        </Row>
-      </Rows>
+        <Rows space={4}>
+          <Row height="1/5">
+            <FluidPlaceholder />
+          </Row>
+          <Row height="3/5">
+            <FluidPlaceholder />
+          </Row>
+          <Row height="1/5">
+            <FluidPlaceholder />
+          </Row>
+        </Rows>
 
+        <Rows space={4}>
+          <Row height="1/5">
+            <FluidPlaceholder />
+          </Row>
+          <Row height="4/5">
+            <FluidPlaceholder />
+          </Row>
+        </Rows>
+      </Columns>
+    </Container>
+  )
+}
+
+render(<App />)
+```
+
+### markAsRow
+
+Use this function to wrap your custom `Row` component.
+
+```jsx
+import { markAsRow } from '@mobily/stacks'
+```
+
+```jsx live
+const styles = StyleSheet.create({
+  fluidPlaceholder: {
+    backgroundColor: 'rgba(255, 0, 255, 0.05)',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: 'rgba(255, 0, 255, 0.3)',
+  },
+})
+
+const FluidPlaceholder = () => {
+  return (
+    <Box flex="fluid" style={styles.fluidPlaceholder} />
+  )
+}
+
+const CustomRow = props => {
+  const { children } = props
+  return (
+    <Row>
+      {children}
+    </Row>
+  )
+}
+
+markAsRow(CustomRow)
+
+const App = () => {
+  return (
+    <Container height={440}>
       <Rows space={4}>
-        <Row height="1/5">
+        <CustomRow>
           <FluidPlaceholder />
-        </Row>
-        <Row height="4/5">
+        </CustomRow>
+        <CustomRow>
           <FluidPlaceholder />
-        </Row>
+        </CustomRow>
+        <CustomRow>
+          <FluidPlaceholder />
+        </CustomRow>
       </Rows>
-    </Columns>
+    </Container>
   )
 }
 

@@ -8,7 +8,7 @@ open Stacks_externals
 
 module Box = Stacks_component_Box
 
-@react.component @gentype
+@gentype @react.component
 let make = (
   // Column props
   ~width: responsiveProp<flex>=[#fluid],
@@ -72,12 +72,12 @@ let make = (
   ~onMouseOut=?,
   ~onMouseUp=?,
 ) => {
-  let {isCollapsed, space, debugStyle, alignY} = useColumns()
+  let {isCollapsed, space, alignY, height} = useColumns()
   let alignY = coerce(alignY)
-  let style = Style.arrayOption([debugStyle, style])
   let boxPaddingLeft = isCollapsed ? None : space
   let marginTop = isCollapsed ? space : None
   let flex = isCollapsed ? None : Some(width)
+  let height = isCollapsed ? Some([#content]) : height
 
   <Box
     ?flex
@@ -85,7 +85,7 @@ let make = (
     ?marginTop
     style={Style.arrayOption([isCollapsed ? Some(styles["fullWidth"]) : None])}>
     <Box
-      flex=[#fluid]
+      flex=?height
       ?alignY
       ?padding
       ?paddingX
@@ -141,10 +141,10 @@ let make = (
       ?onMouseOut
       ?onMouseUp
       ?viewRef
-      style>
+      ?style>
       children
     </Box>
   </Box>
 }
 
-%%raw("Stacks_component_Column.__isColumn__ = true")
+Stacks_utils.markAsColumn(make)

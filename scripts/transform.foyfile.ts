@@ -1,5 +1,11 @@
-import { task, desc, option, strict } from 'foy'
+import { task, desc, option, setGlobalOptions } from 'foy'
 import * as globby from 'globby'
+
+setGlobalOptions({
+  strict: true,
+  logCommand: false,
+  loading: false,
+})
 
 type Options = {
   readonly rebuild: boolean
@@ -9,7 +15,6 @@ type Options = {
 desc('Transform *.gen.tsx files')
 option('-r, --rebuild', 'rebuild rescript files')
 option('-f, --file <name>', 'select a single file')
-strict()
 task<Options>('typescript', async ctx => {
   const files = await globby(
     ctx.options.file ? `src/**/Stacks*_${ctx.options.file}.gen.tsx` : 'src/**/*.gen.tsx',
@@ -33,7 +38,6 @@ task<Options>('typescript', async ctx => {
 desc('Transform *.bs.js files')
 option('-r, --rebuild', 'rebuild rescript files')
 option('-f, --file <name>', 'select a single file')
-strict()
 task<Options>('javascript', async ctx => {
   const files = await globby(
     ctx.options.file ? `src/**/Stacks*_${ctx.options.file}.bs.js` : 'src/**/*.bs.js',
@@ -53,7 +57,6 @@ task<Options>('javascript', async ctx => {
 desc('Transform TS/JS files')
 option('-r, --rebuild', 'rebuild rescript files')
 option('-f, --file <name>', 'select a single file')
-strict()
 task<Options>('all', async ctx => {
   if (ctx.options.rebuild) {
     await ctx.exec('yarn re:clean')

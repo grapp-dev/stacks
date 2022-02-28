@@ -1,15 +1,15 @@
 open ReactNative.Style
 
+open Stacks_externals
+
 @module("react-native") @scope("StyleSheet")
 external compose: (ReactNative.Style.t, ReactNative.Style.t) => ReactNative.Style.t = "compose"
-
-external coerceArray: array<option<ReactNative.Style.t>> => array<ReactNative.Style.t> = "%identity"
 
 let styles = ReactNative.StyleSheet.create({
   "fullWidth": viewStyle(~width=pct(100.), ()),
   "fullHeight": viewStyle(~height=pct(100.), ()),
   "flexContent": viewStyle(~flex=0., ~flexBasis=auto, ()),
-  "flexFluid": viewStyle(~flex=1., ()),
+  "flexFluid": viewStyle(~flexGrow=1., ~flexShrink=0., ~flexBasis=pct(0.), ()),
   "flexBasis12": viewStyle(~flexBasis=pct(50.), ()),
   "flexBasis13": viewStyle(~flexBasis=pct(33.3333), ()),
   "flexBasis14": viewStyle(~flexBasis=pct(25.), ()),
@@ -68,7 +68,7 @@ let right = value => ReactNative.Style.unsafeStyle({"right": value})
 let bottom = value => ReactNative.Style.unsafeStyle({"bottom": value})
 let left = value => ReactNative.Style.unsafeStyle({"left": value})
 
-let keepStyle = xs => xs->coerceArray->ReactNative.StyleSheet.flatten
+let flatten = xs => xs->coerce->ReactNative.StyleSheet.flatten
 
 let resolveAlignItemsX = Belt.Option.mapU(_, (. value) =>
   switch value {

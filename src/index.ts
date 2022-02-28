@@ -27,4 +27,4 @@ export {
   responsiveProp as ResponsiveProp,
 } from './Stacks_types.gen'
 
-export { reset } from './Stacks_utils.gen'
+export { unset, markAsColumn, markAsRow } from './Stacks_utils.gen'

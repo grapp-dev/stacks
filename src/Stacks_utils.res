@@ -10,22 +10,31 @@ external normalizeResponsiveProp: responsiveProp<'a> => responsiveProp<'a> =
 external negateSpace: option<responsiveProp<'a>> => option<responsiveProp<'a>> = "negateSpace"
 
 @module("./Stacks_utils.js")
-external flattenChildren: React.element => React.element = "flattenChildren"
-
-@module("./Stacks_utils.js")
-external reset: float = "reset"
+external unset: float = "unset"
 
 @gentype
-let reset = reset
+let unset = unset
 
 @module("./Stacks_utils.js")
-external resetFillViewValue: option<float> => option<float> = "resetFillViewValue"
+external unsetFillViewValue: option<float> => option<float> = "unsetFillViewValue"
 
 @module("./Stacks_utils.js")
 external isColumnComponent: React.element => bool = "isColumnComponent"
 
 @module("./Stacks_utils.js")
 external isRowComponent: React.element => bool = "isRowComponent"
+
+@module("./Stacks_utils.js")
+external markAsColumn: 'a => unit = "markAsColumn"
+
+@module("./Stacks_utils.js")
+external markAsRow: 'a => unit = "markAsRow"
+
+@gentype
+let markAsColumn = markAsColumn
+
+@gentype
+let markAsRow = markAsRow
 
 let length = Belt.Array.length
 let getLastIndex = elements => elements->length->pred

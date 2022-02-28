@@ -1,6 +1,3 @@
-open ReactNative
-
-open Stacks_hooks
 open Stacks_types
 open Stacks_externals
 open Stacks_utils
@@ -82,7 +79,6 @@ let make = (
   ~onMouseOut=?,
   ~onMouseUp=?,
 ) => {
-  let debugStyle = useDebugStyle()
   let negativeSpace = negateSpace(space)
   let alignX = coerce(alignX)
   let alignY = coerce(alignY)
@@ -159,16 +155,8 @@ let make = (
       direction=[#row]
       ?alignX
       ?alignY>
-      {children
-      ->flattenChildren
-      ->React.Children.map(child => {
-        <Box
-          flex=[#content]
-          marginTop=?space
-          marginRight=?space
-          style={Style.arrayOption([debugStyle])}>
-          child
-        </Box>
+      {children->React.Children.map(child => {
+        <Box flex=[#content] marginTop=?space marginRight=?space> child </Box>
       })}
     </Box>
   </Box>

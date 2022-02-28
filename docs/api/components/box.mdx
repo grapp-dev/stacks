@@ -7,40 +7,6 @@ import { Props, BoxProps } from '../../core/components';
 
 `Box` is the low-level layout component, it renders an individual `View` element with quick access to the standard padding and margin scales, as well as other common layout properties.
 
-```jsx live showCode
-const styles = StyleSheet.create({
-  root: {
-    backgroundColor: '#fff',
-    borderRadius: 128,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 6,
-    },
-    shadowOpacity: 0.05,
-    shadowRadius: 8,
-  }
-})
-
-const App = () => {
-  return (
-    <Device>
-      <Box flex="fluid" alignY="center" alignX="center" padding={4}>
-        <Box marginBottom={8} alignX="center">
-          <Typography variant="h2">Hello!</Typography>
-        </Box>
-        <Box style={styles.root} padding={8} alignX="center" alignY="center" marginBottom={8}>
-          <Image name="rocket" width={96} />
-        </Box>
-        <Typography variant="body">Welcome to the Stacks documentation 🔥</Typography>
-      </Box>
-    </Device>
-  )
-}
-
-render(<App />)
-```
-
 ### Padding
 
 ```jsx live
@@ -210,40 +176,36 @@ render(<App />)
 ### AlignY
 
 ```jsx live
-const styles = StyleSheet.create({
-  root: {
-    height: 440,
-  }
-})
-
 const App = () => {
   return (
-    <Box style={styles.root} direction="row" alignX="between">
-      <Box alignY="top">
-        <Placeholder height={60} width={60} />
+    <Container height={440}>
+      <Box flex="fluid" direction="row" alignX="between">
+        <Box alignY="top">
+          <Placeholder height={60} width={60} />
+        </Box>
+        <Box alignY="center">
+          <Placeholder height={60} width={60} />
+        </Box>
+        <Box alignY="bottom">
+          <Placeholder height={60} width={60} />
+        </Box>
+        <Box alignY="between">
+          <Placeholder height={60} width={60} />
+          <Placeholder height={60} width={60} />
+          <Placeholder height={60} width={60} />
+        </Box>
+        <Box alignY="around">
+          <Placeholder height={60} width={60} />
+          <Placeholder height={60} width={60} />
+          <Placeholder height={60} width={60} />
+        </Box>
+        <Box alignY="evenly">
+          <Placeholder height={60} width={60} />
+          <Placeholder height={60} width={60} />
+          <Placeholder height={60} width={60} />
+        </Box>
       </Box>
-      <Box alignY="center">
-        <Placeholder height={60} width={60} />
-      </Box>
-      <Box alignY="bottom">
-        <Placeholder height={60} width={60} />
-      </Box>
-      <Box alignY="between">
-        <Placeholder height={60} width={60} />
-        <Placeholder height={60} width={60} />
-        <Placeholder height={60} width={60} />
-      </Box>
-      <Box alignY="around">
-        <Placeholder height={60} width={60} />
-        <Placeholder height={60} width={60} />
-        <Placeholder height={60} width={60} />
-      </Box>
-      <Box alignY="evenly">
-        <Placeholder height={60} width={60} />
-        <Placeholder height={60} width={60} />
-        <Placeholder height={60} width={60} />
-      </Box>
-    </Box>
+    </Container>
   )
 }
 

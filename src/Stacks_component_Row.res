@@ -1,11 +1,9 @@
-open ReactNative
-
 open Stacks_types
 open Stacks_context.RowsContext
 
 module Box = Stacks_component_Box
 
-@react.component @gentype
+@gentype @react.component
 let make = (
   // Column props
   ~width: responsiveProp<flex>=[#fluid],
@@ -70,8 +68,7 @@ let make = (
   ~onMouseOut=?,
   ~onMouseUp=?,
 ) => {
-  let {space, debugStyle} = useRows()
-  let style = Style.arrayOption([debugStyle, style])
+  let {space} = useRows()
 
   <Box direction=[#row] flex=height paddingTop=?space>
     <Box
@@ -130,10 +127,10 @@ let make = (
       ?onMouseOut
       ?onMouseUp
       ?viewRef
-      style>
+      ?style>
       children
     </Box>
   </Box>
 }
 
-%%raw("Stacks_component_Row.__isRow__ = true")
+Stacks_utils.markAsRow(make)

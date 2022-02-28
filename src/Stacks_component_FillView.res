@@ -89,7 +89,7 @@ let make = (
   let resolveResponsiveProp = useResponsiveProp()
 
   let style = React.useMemo1(() => {
-    let resolve = (value, mapFn) => value->resolveResponsiveProp->resetFillViewValue->mapFn
+    let resolve = (value, mapFn) => value->resolveResponsiveProp->unsetFillViewValue->mapFn
     let top = resolve(top, Stacks_styles.top)
     let right = resolve(right, Stacks_styles.right)
     let bottom = resolve(bottom, Stacks_styles.bottom)

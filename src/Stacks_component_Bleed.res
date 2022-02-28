@@ -1,6 +1,3 @@
-open ReactNative
-
-open Stacks_hooks
 open Stacks_utils
 
 module Box = Stacks_component_Box
@@ -65,7 +62,6 @@ let make = (
   ~onMouseOut=?,
   ~onMouseUp=?,
 ) => {
-  let debugStyle = useDebugStyle()
   let margin = negateSpace(space)
   let marginX = negateSpace(horizontal)
   let marginY = negateSpace(vertical)
@@ -127,7 +123,7 @@ let make = (
     ?onMouseOut
     ?onMouseUp
     ?viewRef
-    style={Style.arrayOption([debugStyle, style])}>
+    ?style>
     children
   </Box>
 }

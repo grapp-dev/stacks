@@ -25,6 +25,24 @@ const App = () => {
 render(<App />)
 ```
 
+### Empty
+
+```jsx live
+const App = () => {
+  return (
+    <Tiles space={4} columns={3} empty={false}>
+      <Placeholder />
+      <Placeholder />
+      <Placeholder />
+      <Placeholder />
+      <Placeholder />
+    </Tiles>
+  )
+}
+
+render(<App />)
+```
+
 ### Nested
 
 ```jsx live
@@ -36,11 +54,9 @@ const styles = StyleSheet.create({
   },
 })
 
-const FluidPlaceholder = props => {
-  const { style, width } = props
-
+const FluidPlaceholder = () => {
   return (
-    <Box flex="fluid" style={[styles.fluidPlaceholder, { width }, style]} />
+    <Box flex="fluid" style={styles.fluidPlaceholder} />
   )
 }
 
@@ -82,6 +98,12 @@ render(<App />)
       name: 'space',
       type: 'responsiveProp<float>',
       required: false,
+    },
+    {
+      name: 'empty',
+      type: 'responsiveProp<bool>',
+      required: false,
+      defaultValue: 'true',
     },
   ]} />
 

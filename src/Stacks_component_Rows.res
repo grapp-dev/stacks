@@ -1,5 +1,4 @@
 open Stacks_types
-open Stacks_hooks
 open Stacks_context
 open Stacks_utils
 open Stacks_externals
@@ -83,7 +82,6 @@ let make = (
   ~onMouseOut=?,
   ~onMouseUp=?,
 ) => {
-  let debugStyle = useDebugStyle()
   let alignX = coerce(alignX)
   let alignY = coerce(alignY)
   let direction =
@@ -93,7 +91,6 @@ let make = (
   let config = React.useMemo1(() => {
     let value: RowsContext.t = {
       space: space,
-      debugStyle: debugStyle,
     }
     value
   }, [space])
@@ -167,11 +164,8 @@ let make = (
       ?viewRef
       ?style>
       <Box direction=[direction] flex=[#fluid] marginTop=?negativeSpace ?alignX ?alignY>
-        {children
-        ->flattenChildren
-        ->React.Children.map(child => {
-          let isRow = isRowComponent(child)
-          isRow ? child : <Row> child </Row>
+        {children->React.Children.map(child => {
+          isValidElement(child) ? isRowComponent(child) ? child : <Row> child </Row> : React.null
         })}
       </Box>
     </Box>

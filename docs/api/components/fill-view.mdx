@@ -10,53 +10,48 @@ import { Props, BoxProps } from '../../core/components';
 
 ### Basic usage
 
-```jsx live showCode
-// import { reset } from '@mobily/stacks'
-
-const styles = StyleSheet.create({
-  root: {
-    backgroundColor: '#c2abfa',
-  }
-})
-
+```jsx live
 const App = () => {
   return (
-    <Device>
-      <FillView alignX="center" alignY="center" style={styles.root}>
-        <Image name="book" width={128} />
+    <Container height={440}>
+      <FillView alignX="center" alignY="center">
+        <Placeholder width={128} height={128} />
       </FillView>
-    </Device>
+    </Container>
   )
 }
 
 render(<App />)
 ```
 
-### Reset
+### Unset
 
+Use `unset` to reset a property value.
+
+```jsx
+import { unset } from '@mobily/stacks'
+```
 
 ```jsx live
-// import { reset } from '@mobily/stacks'
-
 const App = () => {
   return (
-    <Device>
-      <FillView top={40} left={16} bottom={reset} right={reset}>
+    <Container height={440}>
+      <FillView bottom={unset} right={unset}>
         <Placeholder width={80} />
       </FillView>
 
-      <FillView top={40} right={16} bottom={reset} left={reset}>
+      <FillView bottom={unset} left={unset}>
         <Placeholder width={80} />
       </FillView>
 
-      <FillView bottom={30} left={16} right={16} top={reset}>
+      <FillView top={unset}>
         <Columns space={4}>
           <Placeholder />
           <Placeholder />
           <Placeholder />
         </Columns>
       </FillView>
-    </Device>
+    </Container>
   )
 }
 

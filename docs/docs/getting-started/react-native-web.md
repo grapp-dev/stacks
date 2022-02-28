@@ -3,40 +3,17 @@ id: react-native-web
 title: React Native Web
 ---
 
-Since `Stacks` components use `window` dimensions, SSR support is limited. If you use the `responsive prop` format, you probably may want to remove SSR support, otherwise, you can encounter unpredictable behavior.
+Since `Stacks` components use `window` dimensions, SSR support is limited. If you use the `responsive prop` format, you probably want to remove SSR support, otherwise, you may encounter unpredictable behavior.
 
-Don't forget to add `react-native-web` to your Babel config. Also, add `{ commonjs: true }` to the RNW Babel plugin config, if either RNW styles cause a bug or SSR support is enabled.
+Don't forget to add `react-native-web` to your Babel config. Also, add `{ commonjs: true }` to the RNW Babel plugin config, if either RNW styles cause a bug or the SSR support is enabled.
 
-### Expo
+### Expo/Webpack
 
-Install `@expo/webpack-config` and `babel-plugin-react-native-web`:
+As mentioned above, most of the time you need to install `babel-plugin-react-native-web` and update `babel.config.js`.
 
 ```bash
-yarn add @expo/webpack-config babel-plugin-react-native-web --dev
+yarn add babel-plugin-react-native-web --dev
 ```
-
-Add `webpack.config.js`:
-
-```js
-const createExpoWebpackConfigAsync = require('@expo/webpack-config')
-
-module.exports = async (env, argv) => {
-  const config = await createExpoWebpackConfigAsync(env, argv)
-
-  config.module.rules.push({
-    test: /\.m?[t|j]sx?$/,
-    exclude: /node_modules/,
-    use: {
-      loader: 'babel-loader',
-      /* other options */
-    },
-  })
-
-  return config
-}
-```
-
-Update `babel.config.js`:
 
 ```js
 module.exports = api => {
@@ -51,38 +28,7 @@ module.exports = api => {
 }
 ```
 
-### Expo (Next.js adapter)
-
-Install `next-compose-plugins`, `next-transpile-modules` and `babel-plugin-react-native-web`:
-
-```bash
-yarn add next-transpile-modules next-compose-plugins babel-plugin-react-native-web --dev
-```
-
-Update `next.config.js`:
-
-```js
-const { withExpo } = require('@expo/next-adapter')
-const withPlugins = require('next-compose-plugins')
-const withTM = require('next-transpile-modules')([])
-
-module.exports = withPlugins([withTM, [withExpo, { projectRoot: __dirname }]], {
-  /* next.config.js code */
-})
-```
-
-Update `babel.config.js`:
-
-```js
-module.exports = {
-  presets: ['@expo/next-adapter/babel'],
-  plugins: [
-    ['react-native-web' /*, { commonjs: true } */],
-  ],
-}
-```
-
-### Next.js
+### Next
 
 Install `next-transpile-modules` and `babel-plugin-react-native-web`:
 
@@ -117,16 +63,7 @@ module.exports = withTM({
 })
 ```
 
-Update `babel.config.js`:
-
-```js
-module.exports = {
-  presets: ['next/babel'],
-  plugins: [
-    ['react-native-web' /*, { commonjs: true } */],
-  ],
-}
-```
+Don't forget to update your `babel.config.js` as well.
 
 ### Create React App
 
@@ -153,30 +90,3 @@ module.exports = override(
 ```
 
 Use `react-app-rewired` instead of `react-scripts` in your `package.json` commands.
-
-### Webpack
-
-Add the following to the `babel-loader` configuration:
-
-```js
-{
-  test: /\.m?[t|j]sx?$/,
-  exclude: /node_modules/,
-  use: {
-    loader: 'babel-loader',
-    /* other options */
-  },
-}
-```
-
-Update `babel.config.js`:
-
-```js
-module.exports = {
-  presets: [/* presets */],
-  plugins: [
-    ['react-native-web' /*, { commonjs: true } */],
-    /* other plugins */
-  ],
-}
-```

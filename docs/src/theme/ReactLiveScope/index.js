@@ -1,7 +1,7 @@
 import React from 'react'
 import * as ReactNative from 'react-native'
 
-import * as Stacks from '../../../..'
+import * as Stacks from '../../../../src'
 
 import RocketSVG from '@site/static/svg/rocket.svg'
 import BookSVG from '@site/static/svg/book.svg'

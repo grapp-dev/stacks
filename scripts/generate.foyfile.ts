@@ -1,12 +1,15 @@
-import { task, desc, option, strict } from 'foy'
+import { task, desc, setGlobalOptions } from 'foy'
 import { compiler, beautify } from 'flowgen'
 
 import * as globby from 'globby'
 import * as path from 'path'
 
-type Options = {
-  readonly rebuild: boolean
-}
+setGlobalOptions({
+  strict: true,
+  logCommand: false,
+  loading: false,
+})
+
 type TSCOptions = {
   readonly esm: boolean
   readonly cjs: boolean
@@ -45,7 +48,6 @@ task('contributors', async ctx => {
 })
 
 desc('Generate tsc')
-strict()
 task<TSCOptions>('tsc', async ctx => {
   await ctx.exec('yarn tsc --outDir ./dist/types')
 })

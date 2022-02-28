@@ -7,7 +7,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import { defaultTabsProps } from '../../core/components';
 
-`useSpacingHelpers` returns two functions: `multiply` and `divide` allowing you to accordingly multiply or divide a value by the `spacing` value passed to `StacksProvider`.
+`useSpacingHelpers` returns two functions: `multiply` and `divide` allowing to either multiply or divide a value by the `spacing` value passed to `StacksProvider`.
 
 ### TypeScript
 
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const DebugBox = props => {
+const CustomBox = props => {
   const { marginBottom, padding, children } = props
   const { multiply } = useSpacingHelpers()
 
@@ -55,8 +55,8 @@ const DebugBox = props => {
 const App = () => {
   return (
     <StacksProvider spacing={4}>
-      <DebugBox marginBottom={4} padding={4}>Hello</DebugBox>
-      <DebugBox padding={8}>World</DebugBox>
+      <CustomBox marginBottom={4} padding={4}>Hello</CustomBox>
+      <CustomBox padding={8}>World</CustomBox>
     </StacksProvider>
   )
 }

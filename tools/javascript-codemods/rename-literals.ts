@@ -38,6 +38,15 @@ const transform = (source: string, j: API['jscodeshift']): string => {
       return p.value
     })
 
+  root
+    .find(j.Literal)
+    .filter(p => {
+      return typeof p.value.value === 'string' && p.value.value.includes('wonka/src')
+    })
+    .replaceWith(_p => {
+      return j.stringLiteral('wonka')
+    })
+
   return root.toSource()
 }
 

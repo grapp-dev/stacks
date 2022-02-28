@@ -33,33 +33,28 @@ export const negateSpace = value => {
   return undefined
 }
 
-export const reset = Object.freeze(true)
+export const unset = Object.freeze(true)
 
-export const resetFillViewValue = value => {
-  if (value === reset) {
+export const unsetFillViewValue = value => {
+  if (value === unset) {
     return undefined
   }
 
   return value === undefined ? 0 : value
 }
 
-export const isColumnComponent = node =>
-  typeof node === 'object' && 'type' in node && node.type.__isColumn__
+export const isColumnComponent = node => {
+  return typeof node === 'object' && 'type' in node && node.type.__isColumn__
+}
 
-export const isRowComponent = node =>
-  typeof node === 'object' && 'type' in node && node.type.__isRow__
+export const isRowComponent = node => {
+  return typeof node === 'object' && 'type' in node && node.type.__isRow__
+}
 
-export const flattenChildren = children => {
-  const childrenArray = React.Children.toArray(children)
-  return childrenArray.reduce((flatChildren, child) => {
-    if (child.type === React.Fragment) {
-      return flatChildren.concat(flattenChildren(child.props.children))
-    }
+export const markAsColumn = node => {
+  node.__isColumn__ = true
+}
 
-    if (child !== null) {
-      flatChildren.push(child)
-    }
-
-    return flatChildren
-  }, [])
+export const markAsRow = node => {
+  node.__isRow__ = true
 }
