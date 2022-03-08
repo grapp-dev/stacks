@@ -34,7 +34,7 @@ const rnStyles = StyleSheet.create({
 })
 
 const Placeholder = props => {
-  const { width, height = 16, borderRadius = 0 } = props
+  const { width, height = 18, borderRadius = 0 } = props
 
   return <Box style={[rnStyles.root, { width, height, borderRadius }]} />
 }
@@ -44,7 +44,7 @@ const FluidPlaceholder = () => {
 }
 
 const PlaceholderContainer = props => {
-  const { children, height = 100 } = props
+  const { children, height = 120 } = props
 
   return (
     <Box padding={3} style={[rnStyles.placeholderContainer, { height }]}>
@@ -232,7 +232,7 @@ const Home = () => {
                       <Card title="Bleed" to="api/components/bleed">
                         <Stack space={1}>
                           <Placeholder />
-                          <Bleed horizontal={5}>
+                          <Bleed horizontal={3}>
                             <Placeholder />
                           </Bleed>
                           <Placeholder />
