@@ -120,8 +120,9 @@ const Home = () => {
             <span>·</span> 👀 use a{' '}
             <Link to={useBaseUrl('api/other/stacks-provider#debug')}>debug mode</Link> and a{' '}
             <Link to={useBaseUrl('api/other/grid')}>design grid</Link> to quickly investigate visual
-            issues <span>·</span> 🚀 use in TypeScript, Flow or ReScript (compatible with React
-            Native and React Native Web)
+            issues <span>·</span> 🚀 compatible with React Native and{' '}
+            <Link to={useBaseUrl('docs/getting-started/react-native-web')}>React Native Web</Link>{' '}
+            (TypeScript, Flow and ReScript)
           </div>
           <div className={styles.cardsContainer}>
             <h2 className={styles.cardsTitle}>Components</h2>
@@ -228,7 +229,7 @@ const Home = () => {
                       <Card title="Bleed" to="api/components/bleed">
                         <Stack space={1}>
                           <Placeholder />
-                          <Bleed horizontal={6}>
+                          <Bleed horizontal={5}>
                             <Placeholder />
                           </Bleed>
                           <Placeholder />
