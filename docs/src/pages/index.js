@@ -34,7 +34,7 @@ const rnStyles = StyleSheet.create({
 })
 
 const Placeholder = props => {
-  const { width, height = 12, borderRadius = 0 } = props
+  const { width, height = 16, borderRadius = 0 } = props
 
   return <Box style={[rnStyles.root, { width, height, borderRadius }]} />
 }
