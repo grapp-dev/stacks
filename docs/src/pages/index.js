@@ -151,10 +151,13 @@ const Home = () => {
                           </Columns>
                           <Columns space={1} alignX="between">
                             <Column width="content">
-                              <Placeholder width={30} />
+                              <Placeholder width={40} />
                             </Column>
                             <Column width="content">
-                              <Placeholder width={30} />
+                              <Placeholder width={80} />
+                            </Column>
+                            <Column width="content">
+                              <Placeholder width={40} />
                             </Column>
                           </Columns>
                         </Stack>
