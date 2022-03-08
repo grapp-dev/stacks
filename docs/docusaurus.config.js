@@ -3,7 +3,8 @@ const root = require('../package.json')
 
 module.exports = {
   title: 'Stacks',
-  tagline: 'Build React Native layouts quickly with ease and fun.',
+  tagline:
+    'A set of useful components to help you build and maintain React Native (Web too) layouts with ease',
   url: 'https://mobily.github.io',
   baseUrl: '/stacks/',
   onBrokenLinks: 'throw',
@@ -18,7 +19,7 @@ module.exports = {
     },
   ],
   themeConfig: {
-    image: 'img/hero-logo.png',
+    image: 'img/stacks-frame.png',
     prism: {
       theme: require('prism-react-renderer/themes/github'),
     },

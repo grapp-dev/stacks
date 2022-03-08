@@ -7,74 +7,6 @@ import { Props, BoxProps } from '../../core/components';
 
 `Box` is the low-level layout component, it renders an individual `View` element with quick access to the standard padding and margin scales, as well as other common layout properties.
 
-### Padding
-
-```jsx live
-const App = () => {
-  return (
-    <Stack space={4}>
-      <Box padding={4}>
-        <Placeholder />
-      </Box>
-      <Box paddingX={4}>
-        <Placeholder />
-      </Box>
-      <Box paddingY={4}>
-        <Placeholder />
-      </Box>
-      <Box paddingLeft={4}>
-        <Placeholder />
-      </Box>
-      <Box paddingRight={4}>
-        <Placeholder />
-      </Box>
-      <Box paddingTop={4}>
-        <Placeholder />
-      </Box>
-      <Box paddingBottom={4}>
-        <Placeholder />
-      </Box>
-    </Stack>
-  )
-}
-
-render(<App />)
-```
-
-### Margin
-
-```jsx live
-const App = () => {
-  return (
-    <Stack space={4}>
-      <Box margin={4}>
-        <Placeholder />
-      </Box>
-      <Box marginX={-3}>
-        <Placeholder />
-      </Box>
-      <Box marginY={-3}>
-        <Placeholder />
-      </Box>
-      <Box marginLeft={4}>
-        <Placeholder />
-      </Box>
-      <Box marginRight={4}>
-        <Placeholder />
-      </Box>
-      <Box marginTop={4}>
-        <Placeholder />
-      </Box>
-      <Box marginBottom={4}>
-        <Placeholder />
-      </Box>
-    </Stack>
-  )
-}
-
-render(<App />)
-```
-
 ### Flex
 
 ```jsx live
@@ -206,6 +138,74 @@ const App = () => {
         </Box>
       </Box>
     </Container>
+  )
+}
+
+render(<App />)
+```
+
+### Padding
+
+```jsx live
+const App = () => {
+  return (
+    <Stack space={4}>
+      <Box padding={4}>
+        <Placeholder />
+      </Box>
+      <Box paddingX={4}>
+        <Placeholder />
+      </Box>
+      <Box paddingY={4}>
+        <Placeholder />
+      </Box>
+      <Box paddingLeft={4}>
+        <Placeholder />
+      </Box>
+      <Box paddingRight={4}>
+        <Placeholder />
+      </Box>
+      <Box paddingTop={4}>
+        <Placeholder />
+      </Box>
+      <Box paddingBottom={4}>
+        <Placeholder />
+      </Box>
+    </Stack>
+  )
+}
+
+render(<App />)
+```
+
+### Margin
+
+```jsx live
+const App = () => {
+  return (
+    <Stack space={4}>
+      <Box margin={4}>
+        <Placeholder />
+      </Box>
+      <Box marginX={-3}>
+        <Placeholder />
+      </Box>
+      <Box marginY={-3}>
+        <Placeholder />
+      </Box>
+      <Box marginLeft={4}>
+        <Placeholder />
+      </Box>
+      <Box marginRight={4}>
+        <Placeholder />
+      </Box>
+      <Box marginTop={4}>
+        <Placeholder />
+      </Box>
+      <Box marginBottom={4}>
+        <Placeholder />
+      </Box>
+    </Stack>
   )
 }
 
