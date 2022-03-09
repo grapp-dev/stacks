@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <strong>Build React Native layouts quickly with ease and fun.</strong>
+  <strong>A set of useful components to help you build and maintain React Native (Web too) layouts with ease.</strong>
 </p>
 
 
