@@ -1,274 +1,251 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import BrowserOnly from '@docusaurus/BrowserOnly'
-import clsx from 'clsx'
-import Layout from '@theme/Layout'
 import Link from '@docusaurus/Link'
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import useBaseUrl from '@docusaurus/useBaseUrl'
-import styles from './styles.module.css'
-import {
-  Stack,
-  Box,
-  Columns,
-  Column,
-  Rows,
-  Row,
-  Tiles,
-  Inline,
-  Inset,
-  Bleed,
-  FillView,
-  StacksProvider,
-} from '../../..'
 
-const rnStyles = StyleSheet.create({
+import Card from './components/Card'
+import Hero from './components/Hero'
+import Row from './components/Row'
+import Columns from './components/Columns'
+import Column from './components/Column'
+import Features from './components/Features'
+import Feature from './components/Feature'
+import Title from './components/Title'
+import Page from './components/Page'
+import Button from './components/Button'
+
+import * as RN from '../../..'
+
+const styles = StyleSheet.create({
   root: {
     backgroundColor: 'rgba(97, 0, 255, 0.06)',
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: 'rgba(97, 0, 255, 0.1)',
-  },
-  placeholderContainer: {
-    backgroundColor: 'rgba(97, 0, 255, 0.03)',
   },
 })
 
 const Placeholder = props => {
   const { width, height = 18, borderRadius = 0 } = props
 
-  return <Box style={[rnStyles.root, { width, height, borderRadius }]} />
+  return <RN.Box style={[styles.root, { width, height, borderRadius }]} />
 }
 
 const FluidPlaceholder = () => {
-  return <Box flex="fluid" style={rnStyles.root} />
+  return <RN.Box flex="fluid" style={styles.root} />
 }
 
-const PlaceholderContainer = props => {
-  const { children, height = 120 } = props
-
+const Hook = props => {
+  const { name, to } = props
   return (
-    <Box padding={3} style={[rnStyles.placeholderContainer, { height }]}>
-      {children}
-    </Box>
-  )
-}
-
-const Card = props => {
-  const { children, title, to, bodyHeight } = props
-  const link = useBaseUrl(to)
-
-  return (
-    <Link to={link} className={styles.card}>
-      <div className={styles.cardTitle}>{title}</div>
-      <div className={styles.cardBody}>
-        <PlaceholderContainer height={bodyHeight}>{children}</PlaceholderContainer>
-      </div>
-    </Link>
-  )
-}
-
-const LinkToHook = props => {
-  const { name, to, isDotVisible = true } = props
-  return (
-    <span className={styles.hookName}>
+    <Feature>
       <Link to={useBaseUrl(`api/hooks/${to}`)}>{name}</Link>
-      {isDotVisible ? <span>·</span> : null}
-    </span>
+    </Feature>
   )
 }
 
 const Home = () => {
-  const context = useDocusaurusContext()
-  const { siteConfig = {} } = context
-
   React.useLayoutEffect(() => {
     localStorage.setItem('theme', 'light')
     document.querySelector('.navbar__brand').style = 'display: none;'
   }, [])
 
   return (
-    <StacksProvider>
-      <Layout>
-        <div className={styles.wrapper}>
-          <header className={clsx('hero', styles.hero)}>
-            <div className={styles.titleContainer}>
-              <img
-                className={styles.titleImage}
-                src="img/hero-logo.png"
-                alt={`Stacks - ${siteConfig.tagline}`}
-              />
-              <h1 className={styles.title}>{siteConfig.title}</h1>
-            </div>
-            <p className={styles.summary}>{siteConfig.tagline}</p>
-            <div className={styles.buttons}>
-              <Link
-                className={clsx('button', styles.button, styles.buttonOutline)}
-                to={useBaseUrl('docs')}
-              >
-                Getting started
-              </Link>
-              <Link
-                className={clsx('button', styles.button, styles.buttonFull)}
-                to={useBaseUrl('api/components/box')}
-              >
-                Go to API
-              </Link>
-            </div>
-          </header>
-          <div className={styles.featuresContainer}>
-            👨‍🎨 think like a designer, get rid of margins* and distribute your content evenly{' '}
-            <span>·</span> 👀 use a{' '}
-            <Link to={useBaseUrl('api/other/stacks-provider#debug')}>debug mode</Link> and a{' '}
-            <Link to={useBaseUrl('api/other/grid')}>design grid</Link> to quickly investigate visual
-            issues <span>·</span> 🚀 compatible with React Native and{' '}
-            <Link to={useBaseUrl('docs/getting-started/react-native-web')}>React Native Web</Link>{' '}
-            (TypeScript, Flow and ReScript)
-          </div>
-          <div className={styles.cardsContainer}>
-            <h2 className={styles.cardsTitle}>Components</h2>
-            <BrowserOnly>
-              {() => {
-                return (
-                  <Stack space={4}>
-                    <Columns collapseBelow="tablet" space={4}>
-                      <Card title="Stack" to="api/components/stack">
-                        <Stack space={1}>
-                          <Placeholder />
-                          <Placeholder />
-                          <Placeholder />
-                        </Stack>
-                      </Card>
-                      <Card title="Columns" to="api/components/columns">
-                        <Stack space={1}>
-                          <Columns space={1}>
-                            <Placeholder />
-                            <Placeholder />
-                            <Placeholder />
-                          </Columns>
-                          <Columns space={1}>
-                            <Placeholder />
-                            <Placeholder />
-                          </Columns>
-                          <Columns space={1} alignX="between">
-                            <Column width="content">
-                              <Placeholder width={40} />
-                            </Column>
-                            <Column width="content">
-                              <Placeholder width={80} />
-                            </Column>
-                            <Column width="content">
-                              <Placeholder width={40} />
-                            </Column>
-                          </Columns>
-                        </Stack>
-                      </Card>
-                      <Card title="Rows" to="api/components/rows">
-                        <Rows space={1}>
-                          <Row height="content">
-                            <Placeholder />
-                          </Row>
-                          <FluidPlaceholder />
-                          <Row height="content">
-                            <Placeholder />
-                          </Row>
-                        </Rows>
-                      </Card>
-                    </Columns>
-                    <Columns collapseBelow="tablet" space={4}>
-                      <Card title="Tiles" to="api/components/tiles">
-                        <Tiles space={1} columns={3}>
-                          <Placeholder />
-                          <Placeholder />
-                          <Placeholder />
-                          <Placeholder />
-                          <Placeholder />
-                          <Placeholder />
-                          <Placeholder />
-                          <Placeholder />
-                        </Tiles>
-                      </Card>
-                      <Card title="Inline" to="api/components/inline">
-                        <Inline space={1}>
-                          <Placeholder width={30} />
-                          <Placeholder width={90} />
-                          <Placeholder width={30} />
-                          <Placeholder width={60} />
-                          <Placeholder width={90} />
-                          <Placeholder width={60} />
-                          <Placeholder width={30} />
-                          <Placeholder width={60} />
-                          <Placeholder width={60} />
-                          <Placeholder width={30} />
-                        </Inline>
-                      </Card>
-                      <Card title="Box" to="api/components/box">
-                        <Stack space={1}>
-                          <Box flex="fluid">
-                            <Placeholder />
-                          </Box>
-                          <Box direction="row">
-                            <Box flex="1/2">
-                              <Placeholder />
-                            </Box>
-                          </Box>
-                          <Box direction="row">
-                            <Box flex="1/4">
-                              <Placeholder />
-                            </Box>
-                          </Box>
-                        </Stack>
-                      </Card>
-                    </Columns>
-                    <Columns collapseBelow="tablet" space={4}>
-                      <Card title="Inset" to="api/components/inset">
-                        <Stack space={1}>
-                          <Placeholder />
-                          <Inset horizontal={6}>
-                            <Placeholder />
-                          </Inset>
-                          <Placeholder />
-                        </Stack>
-                      </Card>
-                      <Card title="Bleed" to="api/components/bleed">
-                        <Stack space={1}>
-                          <Placeholder />
-                          <Bleed horizontal={3}>
-                            <Placeholder />
-                          </Bleed>
-                          <Placeholder />
-                        </Stack>
-                      </Card>
-                      <Card title="FillView" to="api/components/fill-view">
-                        <FillView alignX="center" alignY="center">
-                          <Placeholder height={32} width={32} borderRadius={16} />
-                        </FillView>
-                      </Card>
-                    </Columns>
-                  </Stack>
-                )
-              }}
-            </BrowserOnly>
-          </div>
-          <div className={styles.hooksContainer}>
-            <h2 className={styles.cardsTitle}>Hooks</h2>
-            <div className={styles.hooks}>
-              <LinkToHook name="useCurrentBreakpoint" to="use-current-breakpoint" />
-              <LinkToHook name="useDebugStyle" to="use-debug-style" />
-              <LinkToHook name="useResponsiveProp" to="use-responsive-prop" />
-              <LinkToHook name="useWindowDimensions" to="use-window-dimensions" />
-              <LinkToHook name="useSpacing" to="use-spacing" />
-              <LinkToHook name="useSpacingHelpers" to="use-spacing-helpers" isDotVisible={false} />
-            </div>
-          </div>
-          <div className={styles.disclaimerContainer}>
-            <span className={styles.disclaimerDot}>*</span>Read an excellent{' '}
+    <RN.StacksProvider>
+      <Page>
+        <Row alignX="center" marginBottom={3}>
+          <Hero logo="img/hero-logo.png" api="api/array" />
+        </Row>
+        <Row alignX="center" marginBottom={3}>
+          <Features>
+            <Feature>
+              👨‍🎨 think like a designer, get rid of margins* and distribute your content evenly
+            </Feature>
+            <Feature>✨ supports TypeScript and Flow</Feature>
+            <Feature>
+              👀 use a <Link to={useBaseUrl('api/other/stacks-provider#debug')}>debug mode</Link>{' '}
+              and a <Link to={useBaseUrl('api/other/grid')}>design grid</Link> to quickly
+              investigate visual issues
+            </Feature>
+            <Feature>
+              🚀 compatible with React Native and{' '}
+              <Link to={useBaseUrl('docs/getting-started/react-native-web')}>React Native Web</Link>{' '}
+              (TypeScript, Flow and ReScript)
+            </Feature>
+          </Features>
+        </Row>
+        <Row marginBottom={3}>
+          <Row marginBottom={2} alignX="center">
+            <Title>Components</Title>
+          </Row>
+          <Row paddingX={1}>
+            <Columns space={1} marginBottom={1}>
+              <Column>
+                <Card title="Stack" to="api/components/stack">
+                  <RN.Stack space={1}>
+                    <Placeholder />
+                    <Placeholder />
+                    <Placeholder />
+                  </RN.Stack>
+                </Card>
+              </Column>
+              <Column>
+                <Card title="Columns" to="api/components/columns">
+                  <RN.Stack space={1}>
+                    <RN.Columns space={1}>
+                      <Placeholder />
+                      <Placeholder />
+                      <Placeholder />
+                    </RN.Columns>
+                    <RN.Columns space={1}>
+                      <Placeholder />
+                      <Placeholder />
+                    </RN.Columns>
+                    <RN.Columns space={1} alignX="between">
+                      <RN.Column width="content">
+                        <Placeholder width={40} />
+                      </RN.Column>
+                      <RN.Column width="content">
+                        <Placeholder width={80} />
+                      </RN.Column>
+                      <RN.Column width="content">
+                        <Placeholder width={40} />
+                      </RN.Column>
+                    </RN.Columns>
+                  </RN.Stack>
+                </Card>
+              </Column>
+              <Column>
+                <Card title="Rows" to="api/components/rows">
+                  <RN.Rows space={1}>
+                    <RN.Row height="content">
+                      <Placeholder />
+                    </RN.Row>
+                    <FluidPlaceholder />
+                    <RN.Row height="content">
+                      <Placeholder />
+                    </RN.Row>
+                  </RN.Rows>
+                </Card>
+              </Column>
+            </Columns>
+          </Row>
+          <Row paddingX={1}>
+            <Columns space={1} marginBottom={1}>
+              <Column>
+                <Card title="Tiles" to="api/components/tiles">
+                  <RN.Tiles space={1} columns={3}>
+                    <Placeholder />
+                    <Placeholder />
+                    <Placeholder />
+                    <Placeholder />
+                    <Placeholder />
+                    <Placeholder />
+                    <Placeholder />
+                    <Placeholder />
+                  </RN.Tiles>
+                </Card>
+              </Column>
+              <Column>
+                <Card title="Inline" to="api/components/inline">
+                  <RN.Inline space={1}>
+                    <Placeholder width={30} />
+                    <Placeholder width={90} />
+                    <Placeholder width={30} />
+                    <Placeholder width={60} />
+                    <Placeholder width={90} />
+                    <Placeholder width={60} />
+                    <Placeholder width={30} />
+                    <Placeholder width={60} />
+                    <Placeholder width={60} />
+                    <Placeholder width={30} />
+                  </RN.Inline>
+                </Card>
+              </Column>
+              <Column>
+                <Card title="Box" to="api/components/box">
+                  <RN.Stack space={1}>
+                    <RN.Box flex="fluid">
+                      <Placeholder />
+                    </RN.Box>
+                    <RN.Box direction="row">
+                      <RN.Box flex="1/2">
+                        <Placeholder />
+                      </RN.Box>
+                    </RN.Box>
+                    <RN.Box direction="row">
+                      <RN.Box flex="1/4">
+                        <Placeholder />
+                      </RN.Box>
+                    </RN.Box>
+                  </RN.Stack>
+                </Card>
+              </Column>
+            </Columns>
+          </Row>
+          <Row paddingX={1}>
+            <Columns space={1} marginBottom={1}>
+              <Column>
+                <Card title="Inset" to="api/components/inset">
+                  <RN.Stack space={1}>
+                    <Placeholder />
+                    <RN.Inset horizontal={6}>
+                      <Placeholder />
+                    </RN.Inset>
+                    <Placeholder />
+                  </RN.Stack>
+                </Card>
+              </Column>
+              <Column>
+                <Card title="Bleed" to="api/components/bleed">
+                  <RN.Stack space={1}>
+                    <Placeholder />
+                    <RN.Bleed horizontal={3}>
+                      <Placeholder />
+                    </RN.Bleed>
+                    <Placeholder />
+                  </RN.Stack>
+                </Card>
+              </Column>
+              <Column>
+                <Card title="FillView" to="api/components/fill-view">
+                  <RN.FillView alignX="center" alignY="center">
+                    <Placeholder height={32} width={32} borderRadius={16} />
+                  </RN.FillView>
+                </Card>
+              </Column>
+            </Columns>
+          </Row>
+        </Row>
+        <Row alignX="center" paddingX={1} marginBottom={3}>
+          <Row marginBottom={2} alignX="center">
+            <Title>Hooks</Title>
+          </Row>
+          <Columns space={4} alignX="center" paddingX={2}>
+            <Column>
+              <Hook name="useCurrentBreakpoint" to="use-current-breakpoint" />
+              <Hook name="useDebugStyle" to="use-debug-style" />
+            </Column>
+            <Column>
+              <Hook name="useResponsiveProp" to="use-responsive-prop" />
+              <Hook name="useWindowDimensions" to="use-window-dimensions" />
+            </Column>
+            <Column>
+              <Hook name="useSpacing" to="use-spacing" />
+              <Hook name="useSpacingHelpers" to="use-spacing-helpers" />
+            </Column>
+          </Columns>
+        </Row>
+        <Row alignX="center" paddingX={1}>
+          <Feature>
+            <strong>*</strong>Read an excellent{' '}
             <Link to="https://mxstbr.com/thoughts/margin">article</Link> by{' '}
             <Link to="https://github.com/mxstbr">Max Stoiber</Link> about why margins are considered
             harmful.
-          </div>
-        </div>
-      </Layout>
-    </StacksProvider>
+          </Feature>
+        </Row>
+      </Page>
+    </RN.StacksProvider>
   )
 }
 
