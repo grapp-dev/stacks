@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkstacks_docs=self.webpackChunkstacks_docs||[]).push([[4004],{6090:(e,s,c)=>{c.r(s),c.d(s,{default:()=>r});var t=c(7294),a=c(4161);const n="wrapper_85Jk";const r=function(e){var s=e.children;return t.createElement(a.Z,null,t.createElement("div",{className:n},s))}}}]);
