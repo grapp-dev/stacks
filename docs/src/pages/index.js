@@ -237,7 +237,7 @@ const Home = () => {
           </Columns>
         </Row>
         <Row alignX="center" paddingX={1}>
-          <Feature>
+          <Feature fontSize={1.15}>
             <strong>*</strong>Read an excellent{' '}
             <Link to="https://mxstbr.com/thoughts/margin">article</Link> by{' '}
             <Link to="https://github.com/mxstbr">Max Stoiber</Link> about why margins are considered
