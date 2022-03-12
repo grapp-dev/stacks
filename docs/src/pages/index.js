@@ -54,7 +54,7 @@ const Home = () => {
     <RN.StacksProvider>
       <Page>
         <Row alignX="center" marginBottom={3}>
-          <Hero logo="img/hero-logo.png" api="api/array" />
+          <Hero logo="img/hero-logo.png" api="api/components/box" />
         </Row>
         <Row alignX="center" marginBottom={3}>
           <Features>
