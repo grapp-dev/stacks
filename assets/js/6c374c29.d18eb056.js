@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkstacks_docs=self.webpackChunkstacks_docs||[]).push([[4426],{667:(e,s,c)=>{c.r(s),c.d(s,{default:()=>n});var a=c(7294);const t="feature_vfje";const n=function(e){var s=e.children;return a.createElement("span",{className:t},s)}}}]);

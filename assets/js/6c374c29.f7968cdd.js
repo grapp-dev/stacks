@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkstacks_docs=self.webpackChunkstacks_docs||[]).push([[4426],{667:(e,s,t)=>{t.r(s),t.d(s,{default:()=>n});var c=t(7294);const a="feature_vfje";const n=function(e){var s=e.children,t=e.fontSize;return c.createElement("span",{className:a,style:{fontSize:t?t+"rem":void 0}},s)}}}]);
