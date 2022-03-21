@@ -25,6 +25,7 @@ module ColumnsContext = {
     space: option<responsiveProp<float>>,
     alignY: option<responsiveProp<axisY>>,
     height: option<responsiveProp<flex>>,
+    width: option<responsiveProp<flex>>,
   }
 
   let context = React.createContext({
@@ -32,6 +33,7 @@ module ColumnsContext = {
     space: None,
     alignY: None,
     height: None,
+    width: None,
   })
   let useColumns = () => React.useContext(context)
 
@@ -46,9 +48,15 @@ module ColumnsContext = {
 }
 
 module RowsContext = {
-  type t = {space: option<responsiveProp<float>>}
+  type t = {
+    space: option<responsiveProp<float>>,
+    defaultHeight: option<responsiveProp<flex>>,
+  }
 
-  let context = React.createContext({space: None})
+  let context = React.createContext({
+    space: None,
+    defaultHeight: None,
+  })
   let useRows = () => React.useContext(context)
 
   module Provider = {

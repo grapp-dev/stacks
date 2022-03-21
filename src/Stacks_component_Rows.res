@@ -13,6 +13,7 @@ let make = (
   ~reverse=?,
   ~alignX: option<responsiveProp<[axisX]>>=?,
   ~alignY: option<responsiveProp<[axisY | space]>>=?,
+  ~defaultHeight: responsiveProp<flex>=[#fluid],
   // Box props
   ~padding=?,
   ~paddingX=?,
@@ -91,6 +92,7 @@ let make = (
   let config = React.useMemo1(() => {
     let value: RowsContext.t = {
       space: space,
+      defaultHeight: Some(defaultHeight),
     }
     value
   }, [space])
