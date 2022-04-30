@@ -11,7 +11,7 @@ module Box = Stacks_component_Box
 @gentype @react.component
 let make = (
   // Column props
-  ~width: responsiveProp<flex>=[#fluid],
+  ~width: option<responsiveProp<flex>>=?,
   // Box props
   ~padding=?,
   ~paddingX=?,
@@ -72,11 +72,11 @@ let make = (
   ~onMouseOut=?,
   ~onMouseUp=?,
 ) => {
-  let {isCollapsed, space, alignY, height} = useColumns()
+  let {isCollapsed, space, alignY, height, width: defaultWidth} = useColumns()
   let alignY = coerce(alignY)
   let boxPaddingLeft = isCollapsed ? None : space
   let marginTop = isCollapsed ? space : None
-  let flex = isCollapsed ? None : Some(width)
+  let flex = isCollapsed ? None : Belt.Option.isSome(width) ? width : defaultWidth
   let height = isCollapsed ? Some([#content]) : height
 
   <Box

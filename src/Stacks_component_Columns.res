@@ -19,6 +19,7 @@ let make = (
   ~alignX: option<responsiveProp<[axisX | space]>>=?,
   ~alignY: option<responsiveProp<axisY>>=?,
   ~collapseBelow: option<string>=?,
+  ~defaultWidth: responsiveProp<flex>=[#fluid],
   // Box props
   ~padding=?,
   ~paddingX=?,
@@ -108,6 +109,7 @@ let make = (
       space: space,
       alignY: alignY,
       height: Some(height),
+      width: Some(defaultWidth),
     }
     value
   }, (isCollapsed, space, alignY, height))

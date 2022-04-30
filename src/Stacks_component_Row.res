@@ -7,7 +7,7 @@ module Box = Stacks_component_Box
 let make = (
   // Column props
   ~width: responsiveProp<flex>=[#fluid],
-  ~height: responsiveProp<flex>=[#fluid],
+  ~height: option<responsiveProp<flex>>=?,
   // Box props
   ~padding=?,
   ~paddingX=?,
@@ -68,9 +68,11 @@ let make = (
   ~onMouseOut=?,
   ~onMouseUp=?,
 ) => {
-  let {space} = useRows()
+  let {space, defaultHeight} = useRows()
 
-  <Box direction=[#row] flex=height paddingTop=?space>
+  let height = Belt.Option.isSome(height) ? height : defaultHeight
+
+  <Box direction=[#row] flex=?height paddingTop=?space>
     <Box
       flex=width
       ?padding

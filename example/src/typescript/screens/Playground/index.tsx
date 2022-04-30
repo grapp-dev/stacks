@@ -11,7 +11,7 @@ import {
   Rows,
   Row,
   Hidden,
-  reset,
+  unset,
 } from '@mobily/stacks'
 
 import styled from 'styled-components/native'
@@ -42,7 +42,7 @@ export const Playground = () => {
         <Text>Styled component</Text>
       </Item>
       <Box style={{ height: 400 }}>
-        <FillView alignX="center" alignY="center" right={reset}>
+        <FillView alignX="center" alignY="center" right={unset}>
           <Text>abc</Text>
         </FillView>
       </Box>
@@ -198,7 +198,7 @@ export const Playground = () => {
             </Placeholder>
           </Stack>
           <Columns style={{ backgroundColor: 'white' }} alignX="evenly">
-            <Column width="content" height="fluid">
+            <Column width="content">
               <Box alignX="center" flex="fluid">
                 <Box style={{ width: 40, height: 40, backgroundColor: 'pink' }}></Box>
                 <Box style={{ width: 4, backgroundColor: 'red' }} flex="fluid"></Box>

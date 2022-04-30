@@ -41,6 +41,7 @@ const App = () => {
 render(<App />)
 ```
 
+
 ### Width
 
 ```jsx live
@@ -152,6 +153,35 @@ const App = () => {
 render(<App />)
 ```
 
+### Default Width
+
+```jsx live
+const App = () => {
+  return (
+    <Stack space={4}>
+      <Columns defaultWidth="1/2" space={4}>
+        <Placeholder />
+        <Placeholder />
+      </Columns>
+
+      <Columns defaultWidth="1/3" space={4}>
+        <Placeholder />
+        <Placeholder />
+      </Columns>
+
+      <Columns defaultWidth="1/4" space={4}>
+        <Placeholder />
+        <Placeholder />
+        <Column width="1/2">
+          <Placeholder />
+        </Column>
+      </Columns>
+    </Stack>
+  )
+}
+
+render(<App />)
+```
 
 ### Fluid Height
 
