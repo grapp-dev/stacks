@@ -36,6 +36,17 @@ let markAsColumn = markAsColumn
 @gentype
 let markAsRow = markAsRow
 
+let makeBreakpoints = breakpoints => {
+  let breakpoints = Js.Array2.copy(breakpoints)
+  Js.Array2.sortInPlaceWith(breakpoints, (a, b) => {
+    let (_, fst) = a
+    let (_, snd) = b
+    int_of_float(snd -. fst)
+  })
+}
+
+let defaultBreakpoints = makeBreakpoints([("mobile", 480.), ("tablet", 768.), ("desktop", 992.)])
+
 let length = Belt.Array.length
 let getLastIndex = elements => elements->length->pred
 let isLastElement = (elements, index) => getLastIndex(elements) == index
@@ -87,13 +98,14 @@ let dimensionsSource = {
 }
 
 let resolveCurrentBreakpoint = (~currentWidth: float, ~breakpoints: breakpoints) => {
+  let defaultBreakpoint = Belt.Array.getUnsafe(defaultBreakpoints, 0)
   let (name, _) =
     breakpoints
     ->Belt.Array.getByU((. breakpoint) => {
       let (_, value) = breakpoint
       currentWidth > value
     })
-    ->Belt.Option.getExn
+    ->Belt.Option.getWithDefault(defaultBreakpoint)
 
   name
 }
@@ -181,13 +193,4 @@ let resolveCollapsibleProps = (
   }
 
   {isCollapsed: isCollapsed, direction: direction}
-}
-
-let makeBreakpoints = breakpoints => {
-  let breakpoints = Js.Array2.copy(breakpoints)
-  Js.Array2.sortInPlaceWith(breakpoints, (a, b) => {
-    let (_, fst) = a
-    let (_, snd) = b
-    int_of_float(snd -. fst)
-  })
 }

@@ -4,12 +4,7 @@ open Stacks_hooks
 open Stacks_utils
 
 @react.component @gentype
-let make = (
-  ~spacing=4.,
-  ~debug=false,
-  ~breakpoints=[("mobile", 0.), ("tablet", 768.), ("desktop", 992.)],
-  ~children,
-) => {
+let make = (~spacing=4., ~debug=false, ~breakpoints=defaultBreakpoints, ~children) => {
   let dimensions = useWindowDimensions()
 
   <Provider

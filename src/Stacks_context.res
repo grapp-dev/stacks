@@ -6,7 +6,7 @@ open Stacks_utils
 let context = React.createContext({
   debug: false,
   spacing: 4.,
-  breakpoints: makeBreakpoints([("mobile", 0.), ("tablet", 768.), ("desktop", 992.)]),
+  breakpoints: defaultBreakpoints,
   dimensions: Dimensions.get(#window),
 })
 
