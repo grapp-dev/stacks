@@ -103,7 +103,7 @@ let make = (
   let boxMarginLeft = isCollapsed ? None : negateSpace(space)
   let style = Style.arrayOption([Some(styles["fullWidth"]), style])
 
-  let config = React.useMemo4(() => {
+  let config = React.useMemo5(() => {
     let value: ColumnsContext.t = {
       isCollapsed: isCollapsed,
       space: space,
@@ -112,7 +112,7 @@ let make = (
       width: Some(defaultWidth),
     }
     value
-  }, (isCollapsed, space, alignY, height))
+  }, (isCollapsed, space, alignY, height, defaultWidth))
 
   <ColumnsContext.Provider value={config}>
     <Box

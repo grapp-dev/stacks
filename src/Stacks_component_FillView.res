@@ -88,7 +88,7 @@ let make = (
 ) => {
   let resolveResponsiveProp = useResponsiveProp()
 
-  let style = React.useMemo1(() => {
+  let style = React.useMemo5(() => {
     let resolve = (value, mapFn) => value->resolveResponsiveProp->unsetFillViewValue->mapFn
     let top = resolve(top, Stacks_styles.top)
     let right = resolve(right, Stacks_styles.right)
@@ -97,7 +97,7 @@ let make = (
     let fillStyle = StyleSheet.flatten([StyleSheet.absoluteFillObject, top, right, bottom, left])
 
     Style.arrayOption([Some(fillStyle), style])
-  }, [top, right, bottom, left])
+  }, (top, right, bottom, left, style))
 
   <Box
     ?padding

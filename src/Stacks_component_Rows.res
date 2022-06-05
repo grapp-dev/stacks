@@ -89,13 +89,13 @@ let make = (
     reverse->Belt.Option.mapWithDefaultU(#column, (. reverse) => reverse ? #columnReverse : #column)
   let negativeSpace = negateSpace(space)
 
-  let config = React.useMemo1(() => {
+  let config = React.useMemo2(() => {
     let value: RowsContext.t = {
       space: space,
       defaultHeight: Some(defaultHeight),
     }
     value
-  }, [space])
+  }, (space, defaultHeight))
 
   <RowsContext.Provider value={config}>
     <Box
