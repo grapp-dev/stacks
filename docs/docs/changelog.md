@@ -5,8 +5,8 @@ title: Changelog
 
 ### `v2.1.0`
 
-- ✨ added the `defaultWidth` prop to `Columns`, which allows to set a default column width behavior ([@domeknn](https://github.com/domeknn))
-- ✨ added the `defaultHeight` prop to `Rows`, which allows to set a default row height behavior ([@domeknn](https://github.com/domeknn))
+- ✨ added the [`defaultWidth`](/api/components/columns#default-width) prop to `Columns`, which allows to set a default column width behavior ([@domeknn](https://github.com/domeknn))
+- ✨ added the [`defaultHeight`](/api/components/rows#default-height) prop to `Rows`, which allows to set a default row height behavior ([@domeknn](https://github.com/domeknn))
 - 🐛 fixed an issue occured in `react-testing-library` and `react-native-web`, [#35](https://github.com/mobily/stacks/issues/35)
 - 🐛 minor bug fixes
 
