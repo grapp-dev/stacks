@@ -49,7 +49,14 @@ export const Props = props => {
   const { data } = props
 
   return data.map(values => {
-    const { name, type, required, defaultValue, rawTsType } = values
+    const {
+      name,
+      type,
+      required,
+      defaultValue,
+      rawTsType,
+      select = ['rescript', 'typescript'],
+    } = values
 
     return (
       <Fragment key={name}>
@@ -67,22 +74,26 @@ export const Props = props => {
           <li>
             type:
             <ul>
-              <li>
-                <TsLogo
-                  width={17}
-                  height={17}
-                  style={{ marginRight: 8, position: 'relative', top: 3 }}
-                />
-                <code>{rawTsType ? rawTsType : mapType(type)}</code>
-              </li>
-              <li>
-                <ResLogo
-                  width={17}
-                  height={17}
-                  style={{ marginRight: 8, position: 'relative', top: 3 }}
-                />
-                <code>{type}</code>
-              </li>
+              {select.includes('typescript') ? (
+                <li>
+                  <TsLogo
+                    width={17}
+                    height={17}
+                    style={{ marginRight: 8, position: 'relative', top: 3 }}
+                  />
+                  <code>{rawTsType ? rawTsType : mapType(type)}</code>
+                </li>
+              ) : null}
+              {select.includes('rescript') ? (
+                <li>
+                  <ResLogo
+                    width={17}
+                    height={17}
+                    style={{ marginRight: 8, position: 'relative', top: 3 }}
+                  />
+                  <code>{type}</code>
+                </li>
+              ) : null}
             </ul>
           </li>
           <li>

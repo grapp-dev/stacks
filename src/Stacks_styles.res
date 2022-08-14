@@ -1,7 +1,5 @@
 open ReactNative.Style
 
-open Stacks_externals
-
 @module("react-native") @scope("StyleSheet")
 external compose: (ReactNative.Style.t, ReactNative.Style.t) => ReactNative.Style.t = "compose"
 
@@ -67,8 +65,6 @@ let top = value => ReactNative.Style.unsafeStyle({"top": value})
 let right = value => ReactNative.Style.unsafeStyle({"right": value})
 let bottom = value => ReactNative.Style.unsafeStyle({"bottom": value})
 let left = value => ReactNative.Style.unsafeStyle({"left": value})
-
-let flatten = xs => xs->coerce->ReactNative.StyleSheet.flatten
 
 let resolveAlignItemsX = Belt.Option.mapU(_, (. value) =>
   switch value {

@@ -212,6 +212,10 @@ const App = () => {
 render(<App />)
 ```
 
+### As
+
+You can use the `as` prop to render another element (for instance `Animated.View`) instead of `View` (available only in TypeScript).
+
 ### Props
 
 :::info
@@ -222,6 +226,12 @@ render(<App />)
 
 <Props
   data={[
+    {
+      name: 'as',
+      type: 'React.ComponentType',
+      required: false,
+      select: ['typescript']
+    },
     {
       name: 'alignX',
       type: 'responsiveProp<[#left | #center | #right | #top | #bottom | #between | #around | #evenly | #stretch]>',

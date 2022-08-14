@@ -3,6 +3,10 @@ id: changelog
 title: Changelog
 ---
 
+### `v2.2.0`
+
+- ✨ added the [`as`](/api/components/box#as) prop to `Box`, which allows rendering another element (for instance `Animated.View`) instead of `View`
+
 ### `v2.1.0`
 
 - ✨ added the [`defaultWidth`](/api/components/columns#default-width) prop to `Columns`, which allows to set a default column width behavior ([@domeknn](https://github.com/domeknn))

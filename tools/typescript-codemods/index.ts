@@ -4,6 +4,7 @@ import transformReactNative from './transform-react-native'
 import prettifyStacksTypes from './prettify-stacks-types'
 import shrinkComponentType from './shrink-component-type'
 import renameLiterals from './rename-literals'
+import addAsProp from './add-as-prop'
 
 const transform = (file: FileInfo, api: API) => {
   const j = api.jscodeshift
@@ -12,6 +13,7 @@ const transform = (file: FileInfo, api: API) => {
     prettifyStacksTypes,
     shrinkComponentType,
     renameLiterals,
+    addAsProp,
   ].reduce((acc, fn) => {
     return fn(acc, j)
   }, file.source)

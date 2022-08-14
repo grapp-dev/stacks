@@ -161,7 +161,7 @@ let make = (
       }
     }
 
-    flatten([
+    coerce([
       padding,
       paddingX,
       paddingY,
