@@ -3,6 +3,10 @@ id: changelog
 title: Changelog
 ---
 
+### `v2.2.1`
+
+- 🐛 fixed the `empty` prop type (`Tiles`)
+
 ### `v2.2.0`
 
 - ✨ added the [`as`](/api/components/box#as) prop to `Box`, which allows rendering another element (for instance `Animated.View`) instead of `View`
