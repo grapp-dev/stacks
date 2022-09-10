@@ -1,7 +1,7 @@
 {
   "name": "@mobily/stacks",
   "description": "⚡ A set of useful components to help you build and maintain React Native (Web too) layouts with ease.",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "license": "MIT",
   "author": "Marcin Dziewulski <hello@mobily.pl>",
   "main": "./dist/cjs/index.js",
