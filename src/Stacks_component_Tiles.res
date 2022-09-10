@@ -1,6 +1,7 @@
 open Stacks_hooks
 open Stacks_utils
 open Stacks_externals
+open Stacks_types
 
 module Stack = Stacks_component_Stack
 module Box = Stacks_component_Box
@@ -10,7 +11,7 @@ let make = (
   // Tiles props
   ~columns=?,
   ~space=?,
-  ~empty=[true],
+  ~empty: option<responsiveProp<bool>>=?,
   // Box props
   ~padding=?,
   ~paddingX=?,
@@ -87,7 +88,7 @@ let make = (
     ->Belt.Option.mapWithDefaultU(1, (. value) => value < 1 ? 1 : value)
   let children = children->React.Children.toArray->splitEvery(columns)
   let negativeSpace = negateSpace(space)
-  let isEmpty = resolveResponsiveProp(coerce(empty))
+  let isEmpty = empty->coerce->resolveResponsiveProp->coerce->Belt.Option.getWithDefault(true)
 
   <Stack
     ?space
