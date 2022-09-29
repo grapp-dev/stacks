@@ -20,20 +20,20 @@ desc('Build dist')
 option('-t, --run-tests', 'run tests')
 task<Options>('dist', async ctx => {
   await ctx.exec([
-    'yarn clean',
-    'yarn re:clean',
-    'yarn re:build',
-    'yarn transform all',
+    'pnpm clean',
+    'pnpm re:clean',
+    'pnpm re:build',
+    'pnpm transform all',
     'node esbuild.config.js',
   ])
 
   const files = await globby('dist/**/index.js')
   const js = files.join(' ')
 
-  await ctx.exec(['yarn generate tsc', 'yarn generate flow'])
+  await ctx.exec(['pnpm generate tsc', 'pnpm generate flow'])
 
   if (ctx.options.runTests) {
-    await ctx.exec('yarn test run -c')
+    await ctx.exec('pnpm test run -c')
   }
 })
 
@@ -45,11 +45,11 @@ task<DevOptions>('dev', async ctx => {
     throw new Error('-f is required')
   }
 
-  await ctx.exec([`yarn transform all -r -f ${ctx.options.file}`, 'node esbuild.config.js'])
+  await ctx.exec([`pnpm transform all -r -f ${ctx.options.file}`, 'node esbuild.config.js'])
 
-  await ctx.exec('yarn generate tsc')
+  await ctx.exec('pnpm generate tsc')
 
   if (ctx.options.runTests) {
-    await ctx.exec(`yarn test run -n ${ctx.options.file}`)
+    await ctx.exec(`pnpm test run -n ${ctx.options.file}`)
   }
 })

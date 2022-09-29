@@ -22,17 +22,17 @@ task<Options>('typescript', async ctx => {
   const ts = files.join(' ')
 
   if (ctx.options.rebuild) {
-    await ctx.exec('yarn re:clean')
-    await ctx.exec('yarn re:build')
+    await ctx.exec('pnpm re:clean')
+    await ctx.exec('pnpm re:build')
   }
 
   await ctx.exec(
-    `node node_modules/.bin/jscodeshift --run-in-band --extensions=ts --parser=ts -t tools/typescript-codemods/index.ts ${ts}`,
+    `pnpm jscodeshift --run-in-band --extensions=ts --parser=ts -t tools/typescript-codemods/index.ts ${ts}`,
   )
 
   const prettier = ctx.options.file ? `src/Stacks*_${ctx.options.file}.gen.tsx` : 'src/**/*.gen.tsx'
 
-  await ctx.exec(`yarn prettier --write ${prettier}`)
+  await ctx.exec(`pnpm prettier --write ${prettier}`)
 })
 
 desc('Transform *.bs.js files')
@@ -45,13 +45,11 @@ task<Options>('javascript', async ctx => {
   const bs = files.join(' ')
 
   if (ctx.options.rebuild) {
-    await ctx.exec('yarn re:clean')
-    await ctx.exec('yarn re:build')
+    await ctx.exec('pnpm re:clean')
+    await ctx.exec('pnpm re:build')
   }
 
-  await ctx.exec(
-    `node node_modules/.bin/jscodeshift --run-in-band -t tools/javascript-codemods/index.ts ${bs}`,
-  )
+  await ctx.exec(`pnpm jscodeshift --run-in-band -t tools/javascript-codemods/pre/index.ts ${bs}`)
 })
 
 desc('Transform TS/JS files')
@@ -59,8 +57,8 @@ option('-r, --rebuild', 'rebuild rescript files')
 option('-f, --file <name>', 'select a single file')
 task<Options>('all', async ctx => {
   if (ctx.options.rebuild) {
-    await ctx.exec('yarn re:clean')
-    await ctx.exec('yarn re:build')
+    await ctx.exec('pnpm re:clean')
+    await ctx.exec('pnpm re:build')
   }
 
   const commands = ['typescript', 'javascript'].map(command => {

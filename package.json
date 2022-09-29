@@ -25,14 +25,14 @@
     "package.json"
   ],
   "scripts": {
-    "build": "yarn foy -c ./scripts/build.foyfile.ts",
+    "build": "pnpm foy -c ./scripts/build.foyfile.ts",
     "clean": "rm -rf ./dist && rm -f ./tsconfig.tsbuildinfo",
-    "test": "yarn foy -c ./scripts/test.foyfile.ts",
-    "re:clean": "yarn rescript clean",
-    "re:build": "yarn rescript build",
-    "re:dev": "yarn rescript build -w",
-    "transform": "yarn foy -c ./scripts/transform.foyfile.ts",
-    "generate": "yarn foy -c ./scripts/generate.foyfile.ts"
+    "test": "pnpm foy -c ./scripts/test.foyfile.ts",
+    "re:clean": "pnpm rescript clean",
+    "re:build": "pnpm rescript build",
+    "re:dev": "pnpm rescript build -w",
+    "transform": "pnpm foy -c ./scripts/transform.foyfile.ts",
+    "generate": "pnpm foy -c ./scripts/generate.foyfile.ts"
   },
   "engines": {
     "node": ">= 10.*"

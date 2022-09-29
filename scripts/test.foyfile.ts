@@ -18,7 +18,7 @@ option('-c, --coverage', 'coverage')
 task<Options>('run', async ctx => {
   const coverage = ctx.options.coverage ? '--coverage' : ''
 
-  const cmd = ['yarn', 'jest', coverage]
+  const cmd = ['pnpm', 'jest', coverage]
 
   if (ctx.options.file) {
     const file = ctx.options.file ? `${ctx.options.file}.test.tsx` : '*.test.tsx'

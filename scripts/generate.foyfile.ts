@@ -15,15 +15,13 @@ type TSCOptions = {
   readonly cjs: boolean
 }
 
-const defaultEncoding = { encoding: 'utf8' } as const
-
 desc('Generate Flow types')
 task('flow', async ctx => {
-  const entryFile = await ctx.fs.readFile('index.js.flow', defaultEncoding)
+  const entryFile = await ctx.fs.readFile('index.js.flow', { encoding: 'utf-8' })
   const content = entryFile.replace(/.\/dist\//g, './')
   const files = await globby('dist/types/**/*.d.ts')
 
-  await ctx.fs.writeFile('dist/types/index.js.flow', content, defaultEncoding)
+  await ctx.fs.writeFile('dist/types/index.js.flow', content, { encoding: 'utf-8' })
 
   const defs = files.map(filename => {
     const fullpath = path.resolve(__dirname, '..', filename)
@@ -35,7 +33,7 @@ task('flow', async ctx => {
     return ctx.fs.writeFile(
       path.join(filepath, `${basename}.js.flow`),
       ['// @flow', definition].join('\n\n'),
-      defaultEncoding,
+      { encoding: 'utf-8' },
     )
   })
 
@@ -44,10 +42,10 @@ task('flow', async ctx => {
 
 desc('Generate contributors in README.md')
 task('contributors', async ctx => {
-  await ctx.exec('yarn all-contributors generate')
+  await ctx.exec('pnpm all-contributors generate')
 })
 
 desc('Generate tsc')
 task<TSCOptions>('tsc', async ctx => {
-  await ctx.exec('yarn tsc --outDir ./dist/types')
+  await ctx.exec('pnpm tsc --outDir ./dist/types')
 })
