@@ -30,6 +30,8 @@ task<Options>('dist', async ctx => {
   const files = await globby('dist/**/index.js')
   const js = files.join(' ')
 
+  await ctx.exec(`pnpm jscodeshift --run-in-band -t tools/javascript-codemods/post/index.ts ${js}`)
+
   await ctx.exec(['pnpm generate tsc', 'pnpm generate flow'])
 
   if (ctx.options.runTests) {

@@ -1,24 +1,28 @@
 const esbuild = require('esbuild')
 
 const handleError = () => process.exit(1)
-const build = (outfile, options = {}) => {
-  const { format = 'cjs' } = options
+const build = async options => {
+  const { format, outfile, ...rest } = options
 
-  return esbuild
-    .build({
+  try {
+    await esbuild.build({
       entryPoints: ['src/index.js'],
       bundle: true,
       format,
-      outdir: `dist/${format}`,
+      outfile: `dist/${format}/${outfile}`,
       treeShaking: true,
       minify: false,
       logLevel: 'info',
       legalComments: 'none',
+      mainFields: ['react-native', 'browser', 'module', 'main'],
       external: ['react', 'react-native', 'wonka'],
-      ...options,
+      ...rest,
     })
-    .catch(handleError)
+  } catch (err) {
+    console.error(err)
+    handleError()
+  }
 }
 
-build('index.js')
-build('index.js', { format: 'esm' })
+build({ format: 'cjs', outfile: 'index.js' })
+build({ format: 'esm', outfile: 'index.mjs' })
