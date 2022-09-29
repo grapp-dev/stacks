@@ -115,6 +115,7 @@ module.exports = {
         sidebarPath: require.resolve('./sidebars.api.js'),
       },
     ],
+    require.resolve('./plugins/react-native-web-plugin.js'),
   ],
   presets: [
     [
