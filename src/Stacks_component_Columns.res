@@ -105,9 +105,9 @@ let make = (
 
   let config = React.useMemo5(() => {
     let value: ColumnsContext.t = {
-      isCollapsed: isCollapsed,
-      space: space,
-      alignY: alignY,
+      isCollapsed,
+      space,
+      alignY,
       height: Some(height),
       width: Some(defaultWidth),
     }

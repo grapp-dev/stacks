@@ -91,7 +91,7 @@ let make = (
 
   let config = React.useMemo2(() => {
     let value: RowsContext.t = {
-      space: space,
+      space,
       defaultHeight: Some(defaultHeight),
     }
     value

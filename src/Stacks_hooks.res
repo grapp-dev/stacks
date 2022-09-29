@@ -38,7 +38,7 @@ let useSpacingHelpers = () => {
   let multiply = Belt.Option.mapU(_, (. value) => spacing *. value)
   let divide = Belt.Option.mapU(_, (. value) => value /. spacing)
 
-  {multiply: multiply, divide: divide}
+  {multiply, divide}
 }
 
 @gentype

@@ -9,10 +9,10 @@ let make = (~spacing=4., ~debug=false, ~breakpoints=defaultBreakpoints, ~childre
 
   <Provider
     value={
-      spacing: spacing,
-      debug: debug,
+      spacing,
+      debug,
       breakpoints: makeBreakpoints(breakpoints),
-      dimensions: dimensions,
+      dimensions,
     }>
     children
   </Provider>

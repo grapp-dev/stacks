@@ -58,9 +58,9 @@ let make = (
     ->Belt.Option.mapWithDefaultU(8, (. value) => int_of_float(value))
 
   let options = {
-    gutter: gutter,
-    margin: margin,
-    columns: columns,
+    gutter,
+    margin,
+    columns,
     width: 0.,
   }
   let columnWidth = calculateColumnWidth({

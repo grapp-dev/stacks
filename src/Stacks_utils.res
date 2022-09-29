@@ -192,5 +192,5 @@ let resolveCollapsibleProps = (
   | _ => #row
   }
 
-  {isCollapsed: isCollapsed, direction: direction}
+  {isCollapsed, direction}
 }
