@@ -3,6 +3,11 @@ id: changelog
 title: Changelog
 ---
 
+### `v2.2.2`
+
+- 🔧 improved support for RNW
+- 🐛 improved TS types of `useSpacingHelpers` functions
+
 ### `v2.2.1`
 
 - 🐛 fixed the `empty` prop type (`Tiles`)
