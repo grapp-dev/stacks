@@ -77,6 +77,20 @@ let splitEvery = (xs, size) => {
   }
 }
 
+let memo = fn => {
+  let lastResult = ref(None)
+
+  () => {
+    switch lastResult.contents {
+    | Some(result) => result
+    | None =>
+      let result = fn()
+      lastResult := Some(result)
+      result
+    }
+  }
+}
+
 let intersperse = (xs, delimiter) =>
   Belt.Array.reduceWithIndexU(xs, [], (. acc, value, index) => {
     switch index {
@@ -86,7 +100,7 @@ let intersperse = (xs, delimiter) =>
     acc
   })
 
-let dimensionsSource = {
+let makeDimensionsSource = memo(() => {
   open Wonka
 
   let source = make((. observer) => {
@@ -95,7 +109,7 @@ let dimensionsSource = {
   })
 
   share(source)
-}
+})
 
 let resolveCurrentBreakpoint = (~currentWidth: float, ~breakpoints: breakpoints) => {
   let defaultBreakpoint = Belt.Array.getUnsafe(defaultBreakpoints, 0)

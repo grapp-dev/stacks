@@ -1,6 +1,6 @@
 {
   "name": "@mobily/stacks",
-  "version": "1.5.0",
+  "version": "2.2.2",
   "namespace": false,
   "bsc-flags": ["-bs-super-errors", "-bs-no-version-header"],
   "reason": {
@@ -32,8 +32,7 @@
   ],
   "bs-dependencies": [
     "@rescript/react",
-    "rescript-react-native",
-    "wonka"
+    "rescript-react-native"
   ],
   "ppx-flags": []
 }

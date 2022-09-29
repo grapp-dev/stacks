@@ -11,10 +11,9 @@ let useWindowDimensions = () => {
   React.useEffect0(() => {
     let subscription = {
       open Wonka
-      dimensionsSource
+      makeDimensionsSource()
       |> debounce((. _) => Platform.os == Platform.web ? 60 : 0)
-      |> onPush((. layout: Dimensions.handler) => setDimensions(_ => layout.window))
-      |> publish
+      |> subscribe((. layout: Dimensions.handler) => setDimensions(_ => layout.window))
     }
 
     Some(subscription.unsubscribe)
