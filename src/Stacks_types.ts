@@ -20,10 +20,10 @@ export type resolveResponsiveProp<A = unknown> = <T>(
 export type spacingHelpers = {
   readonly multiply: {
     (value: number): number
-    (value: number | undefined | null): number | undefined | null
+    (value: number | undefined | null): number | undefined
   }
   readonly divide: {
     (value: number): number
-    (value: number | undefined | null): number | undefined | null
+    (value: number | undefined | null): number | undefined
   }
 }
