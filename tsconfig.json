@@ -1,28 +1,40 @@
 {
   "compilerOptions": {
-    "forceConsistentCasingInFileNames": true,
-    "emitDeclarationOnly": true,
-    "rootDir": "./src",
-    "baseUrl": ".",
-    "lib": ["esnext"],
+    "lib": ["es2018"],
+    "forceConsistentCasingInFileNames": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": false,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "target": "esnext",
+    "allowJs": false,
     "declaration": true,
-    "jsx": "react",
+    "removeComments": true,
+    "noEmit": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "strict": true,
+    "strictNullChecks": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitAny": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "esnext",
-    "strict": true,
-    "noImplicitAny": true,
-    "noUnusedParameters": false,
-    "sourceMap": false,
-    "pretty": true,
-    "skipLibCheck": true
+    "jsx": "react-native"
   },
   "include": [
-    "./src/**/index.ts"
+    "./src/**/*"
   ],
   "exclude": [
-    "./src/**/*.gen.tsx",
     "./__tests__/**/*",
-    "./example/**/*"
+    "./app/**/*"
   ]
 }
