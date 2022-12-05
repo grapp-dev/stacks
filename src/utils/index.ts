@@ -80,12 +80,21 @@ export const resolveCurrentBreakpoint = (currentWidth: number, breakpoints: Brea
   return breakpoint[0]
 }
 
-export const resolveResponsiveProp = <T>(
+type ResolveResponsiveProp = {
+  <T>(responsiveProp: ResponsiveProp<T>, currentWidth: number, breakpoints: Breakpoints): T
+  <T>(
+    responsiveProp: ResponsiveProp<T> | undefined,
+    currentWidth: number,
+    breakpoints: Breakpoints,
+  ): T | undefined
+}
+
+export const resolveResponsiveProp: ResolveResponsiveProp = <T>(
   responsiveProp: ResponsiveProp<T> | undefined,
   currentWidth: number,
   breakpoints: Breakpoints,
 ) => {
-  if (responsiveProp) {
+  if (responsiveProp !== undefined) {
     const normalizedResponsiveProp = normalizeResponsiveProp(responsiveProp)
 
     const defaultValue = normalizedResponsiveProp[0]

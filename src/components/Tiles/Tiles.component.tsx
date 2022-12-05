@@ -33,11 +33,13 @@ type Props = ViewProps &
   BoxProps & {
     readonly columns?: ResponsiveProp<number>
     readonly space?: ResponsiveProp<number>
+    readonly spaceX?: ResponsiveProp<number>
+    readonly spaceY?: ResponsiveProp<number>
     readonly empty?: ResponsiveProp<boolean>
   }
 
 export const Tiles = (props: Props) => {
-  const { columns, space, empty, children, ...rest } = props
+  const { columns, space, spaceX, spaceY, empty, children, ...rest } = props
 
   const resolveResponsiveProp = useResponsiveProp()
   const numberOfColumns = Math.max(resolveResponsiveProp(columns) ?? 1, 1)
@@ -45,14 +47,14 @@ export const Tiles = (props: Props) => {
   const xs = A.splitEvery(React.Children.toArray(children), numberOfColumns)
 
   return (
-    <Box {...rest} direction="column" gap={space}>
+    <Box {...rest} direction="column" gap={space} rowGap={spaceY}>
       {A.mapWithIndex(xs, (index, xs) => {
         const elements = A.makeWithIndex(numberOfColumns, index => {
           return xs[index] ?? null
         })
 
         return (
-          <Box key={index} direction="row" gap={space}>
+          <Box key={index} direction="row" gap={space} columnGap={spaceX}>
             {A.mapWithIndex(elements, (index, element) => {
               return React.isValidElement(element) || isEmpty ? (
                 <Box key={index} flex="fluid">

@@ -29,22 +29,22 @@ type BoxProps = Pick<
 type Props = ViewProps &
   BoxProps & {
     readonly space?: ResponsiveProp<number>
-    readonly rowGap?: ResponsiveProp<number>
-    readonly columnGap?: ResponsiveProp<number>
+    readonly spaceX?: ResponsiveProp<number>
+    readonly spaceY?: ResponsiveProp<number>
     readonly reverse?: ResponsiveProp<boolean>
     readonly alignX?: ResponsiveProp<AxisX | Space>
     readonly alignY?: ResponsiveProp<AxisY>
   }
 
 export const Inline = (props: Props) => {
-  const { space, reverse, children, rowGap, columnGap, ...rest } = props
+  const { space, reverse, children, spaceX, spaceY, ...rest } = props
 
   return (
     <Box
       {...rest}
       gap={space}
-      rowGap={rowGap}
-      columnGap={columnGap}
+      rowGap={spaceY}
+      columnGap={spaceX}
       reverse={reverse}
       direction="row"
       wrap="wrap"
