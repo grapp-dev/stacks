@@ -3,7 +3,7 @@ import { ViewProps } from 'react-native'
 
 import { AxisX, AxisY, Flex, ResponsiveProp, Space } from '../../types'
 import { Box } from '../Box'
-import { Column } from '../Column/Column.component'
+import { Column } from '../Column'
 import { flatten } from '../../utils'
 
 type BoxProps = Pick<
@@ -34,6 +34,7 @@ type Props = ViewProps &
   BoxProps & {
     readonly space?: ResponsiveProp<number>
     readonly defaultWidth?: ResponsiveProp<Flex>
+    readonly reverse?: ResponsiveProp<boolean>
     readonly alignX?: ResponsiveProp<AxisX | Space>
     readonly alignY?: ResponsiveProp<AxisY>
   }
@@ -50,10 +51,10 @@ const getColumnProps = (node: React.ReactNode): ColumnProps | null => {
 }
 
 export const Columns = (props: Props) => {
-  const { children, space, defaultWidth = 'fluid', alignX, alignY, ...rest } = props
+  const { children, space, defaultWidth = 'fluid', alignX, alignY, reverse, ...rest } = props
 
   return (
-    <Box {...rest} direction="row" gap={space} alignX={alignX}>
+    <Box {...rest} direction="row" gap={space} alignX={alignX} reverse={reverse}>
       {React.Children.map(flatten(children), child => {
         const props = getColumnProps(child)
 

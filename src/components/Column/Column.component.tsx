@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { ViewProps } from 'react-native'
 
-import { AxisX, AxisY, Direction, Flex, ResponsiveProp, Space } from '../../types'
 import { Box } from '../Box'
+import { Flex, ResponsiveProp } from '../../types'
 
 type BoxProps = Pick<
   React.ComponentProps<typeof Box>,
@@ -15,14 +15,14 @@ type BoxProps = Pick<
   | 'paddingRight'
   | 'paddingStart'
   | 'paddingEnd'
+  | 'alignY'
+  | 'alignX'
+  | 'direction'
 >
 
 type Props = ViewProps &
   BoxProps & {
     readonly width?: ResponsiveProp<Flex>
-    readonly alignY?: ResponsiveProp<AxisY>
-    readonly alignX?: ResponsiveProp<AxisX | Space>
-    readonly direction?: ResponsiveProp<Direction>
   }
 
 export const Column = (_props: Props): JSX.Element => {
