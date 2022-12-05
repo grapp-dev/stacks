@@ -7,6 +7,8 @@ import {
   Box,
   Column,
   Columns,
+  FillView,
+  Grid,
   Inline,
   Inset,
   Stack,
@@ -44,6 +46,7 @@ const App = (): JSX.Element => {
     <SafeAreaView style={backgroundStyle}>
       <StacksProvider
         debug={true}
+        spacing={4}
         breakpoints={[
           ['mobile', 0],
           ['tablet', 568],
@@ -65,6 +68,11 @@ const App = (): JSX.Element => {
               {/* <Test>test4</Test> */}
               {/* <Test visible={false}>test5</Test> */}
             </Box>
+            <Box style={{ height: 100 }}>
+              <FillView alignX="center" alignY="center">
+                <Test>FillView</Test>
+              </FillView>
+            </Box>
             <Columns space={4} alignY="center" defaultWidth="content">
               <Column
                 style={{ height: 120 }}
@@ -85,7 +93,7 @@ const App = (): JSX.Element => {
               </ColumnTest>
               <Test>test4</Test>
             </Columns>
-            <Inline space={2}>
+            <Inline space={2} spaceY={8}>
               <Test>hello world1</Test>
               <Test>hello world2</Test>
               <Test>hello world3</Test>
@@ -132,6 +140,7 @@ const App = (): JSX.Element => {
             </View>
           </Stack>
         </ScrollView>
+        {/* <Grid opacity={0.3} columns={8} margin={6} gutter={4} /> */}
       </StacksProvider>
     </SafeAreaView>
   )
