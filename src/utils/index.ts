@@ -1,3 +1,5 @@
+import * as React from 'react'
+
 import { A, O, pipe } from '@mobily/ts-belt'
 
 import { Breakpoint, Breakpoints, Direction, ResponsiveProp } from '../types'
@@ -108,4 +110,17 @@ export const resolveResponsiveProp = <T>(
   return undefined
 }
 
-export const unset = Object.freeze(true)
+export const flatten = (children: React.ReactNode): ReturnType<typeof React.Children.toArray> => {
+  return A.reduce(
+    React.Children.toArray(children),
+    <ReturnType<typeof React.Children.toArray>>[],
+    (acc, child) => {
+      if (React.isValidElement(child) && child.type === React.Fragment) {
+        return acc.concat(flatten(child.props.children))
+      }
+      // eslint-disable-next-line functional/immutable-data
+      acc.push(child)
+      return acc
+    },
+  )
+}

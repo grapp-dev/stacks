@@ -4,6 +4,7 @@ import { ViewProps } from 'react-native'
 import { AxisX, AxisY, Flex, ResponsiveProp, Space } from '../../types'
 import { Box } from '../Box'
 import { Column } from '../Column/Column.component'
+import { flatten } from '../../utils'
 
 type BoxProps = Pick<
   React.ComponentProps<typeof Box>,
@@ -53,7 +54,7 @@ export const Columns = (props: Props) => {
 
   return (
     <Box {...rest} direction="row" gap={space} alignX={alignX}>
-      {React.Children.map(children, child => {
+      {React.Children.map(flatten(children), child => {
         const props = getColumnProps(child)
 
         if (props) {
