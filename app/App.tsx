@@ -11,6 +11,8 @@ import {
   Grid,
   Inline,
   Inset,
+  Row,
+  Rows,
   Stack,
   StacksProvider,
   Tiles,
@@ -72,6 +74,23 @@ const App = (): JSX.Element => {
               <FillView alignX="center" alignY="center">
                 <Test>FillView</Test>
               </FillView>
+            </Box>
+            <Box style={{ height: 300 }}>
+              <Rows space={2}>
+                <Row alignY="around">
+                  <Test>test1</Test>
+                  <Test>test1</Test>
+                  <Test>test1</Test>
+                </Row>
+                <Row alignY="center" alignX="between" direction="row">
+                  <Test>test2</Test>
+                  <Test>test2</Test>
+                </Row>
+                <Test>test3</Test>
+                <Row height="content">
+                  <Test>test4</Test>
+                </Row>
+              </Rows>
             </Box>
             <Columns space={4} alignY="center" defaultWidth="content">
               <Column
