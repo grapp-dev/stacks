@@ -30,9 +30,17 @@ const Test = props => {
   ) : null
 }
 
-const ColumnTest = props => {
-  const { children } = props
-  return children
+type ColumnProps = React.ComponentProps<typeof Column> & {
+  readonly backgroundColor?: string
+}
+
+const ColumnTest = (props: ColumnProps) => {
+  const { children, style, backgroundColor, ...rest } = props
+  return (
+    <Column {...rest} style={[{ backgroundColor }, style]}>
+      {children}
+    </Column>
+  )
 }
 
 markAsColumn(ColumnTest)
@@ -48,7 +56,7 @@ const App = (): JSX.Element => {
     <SafeAreaView style={backgroundStyle}>
       <StacksProvider
         debug={true}
-        spacing={4}
+        spacing={[4, 8]}
         breakpoints={[
           ['mobile', 0],
           ['tablet', 568],
@@ -107,7 +115,7 @@ const App = (): JSX.Element => {
               <Column>
                 <Test>test2</Test>
               </Column>
-              <ColumnTest width="fluid">
+              <ColumnTest width="fluid" alignX="center" backgroundColor="yellow">
                 <Box flex="fluid" style={{ width: 4, backgroundColor: 'red' }} />
               </ColumnTest>
               <Test>test4</Test>
