@@ -4,6 +4,7 @@ export type Dimensions = Pick<ScaledSize, 'width' | 'height'>
 
 export type Breakpoint = readonly [string, number]
 export type Breakpoints = readonly Breakpoint[]
+export type Spacing = number | readonly number[]
 
 export type AxisX = 'left' | 'center' | 'right'
 export type AxisY = 'top' | 'center' | 'bottom'

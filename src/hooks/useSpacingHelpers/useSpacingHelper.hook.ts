@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import { useResponsiveProp } from '../useResponsiveProp'
 import { useStacks } from '../useStacks'
 
 type SpacingHelper = {
@@ -8,7 +9,10 @@ type SpacingHelper = {
 }
 
 export const useSpacingHelpers = () => {
-  const { spacing } = useStacks()
+  const { spacing: defaultSpacing } = useStacks()
+
+  const resolveResponsiveProp = useResponsiveProp()
+  const spacing = resolveResponsiveProp(defaultSpacing)
 
   const multiply = <SpacingHelper>React.useCallback(
     value => {

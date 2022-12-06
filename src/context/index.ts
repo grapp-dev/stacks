@@ -1,11 +1,11 @@
 import * as React from 'react'
 
-import { Breakpoints } from '../types'
+import { Breakpoints, Spacing } from '../types'
 import { defaultBreakpoints } from '../utils'
 
 type Props = {
   readonly debug: boolean
-  readonly spacing: number
+  readonly spacing: Spacing
   readonly breakpoints: Breakpoints
 }
 
