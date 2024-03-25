@@ -53,8 +53,6 @@ export const Rows = (props: RowsProps) => {
           );
         }
 
-        console.log(child);
-
         return (
           <Box flex={defaultFlex} alignY={alignY} alignX={alignX}>
             {child}
