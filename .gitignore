@@ -1,19 +1,23 @@
-.DS_Store
-
-.idea/
-.settings
-.vscode/
-node_modules/
-coverage/
-
+# Miscellaneous
+*.class
 *.log
-*.tsbuildinfo
+*.pyc
+*.swp
+.DS_Store
+.buildlog/
+.history
+.svn/
 
+# Editors
+*.iml
+*.ipr
+*.iws
+.atom/
+.idea/
+.vscode/
+
+# Bun
 dist/
-lib/
+node_modules/
+.changeset/
 
-.merlin
-.bsb.lock
-
-*.bs.js
-*.gen.tsx

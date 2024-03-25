@@ -1,7 +1,0 @@
-{
-  ".js, .jsx, .ts, .tsx": {
-    "parser": "typescript",
-    "style": "mobily",
-    "options": {}
-  }
-}
