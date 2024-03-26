@@ -178,51 +178,12 @@ const compareBreakpoints = (
 
 export const isBreakpointBelow = compareBreakpoints(
   (currentBreakpointIndex, boundBreakpointIndex) => {
-    return currentBreakpointIndex > boundBreakpointIndex;
+    return currentBreakpointIndex <= boundBreakpointIndex;
   },
 );
 
 export const isBreakpointAbove = compareBreakpoints(
   (currentBreakpointIndex, boundBreakpointIndex) => {
-    return currentBreakpointIndex < boundBreakpointIndex;
+    return currentBreakpointIndex >= boundBreakpointIndex;
   },
 );
-
-//
-// let compareBreakpoints = (
-//   mapFn,
-//   ~currentBreakpoint: string,
-//   ~breakpoints: breakpoints,
-//   ~boundBreakpoint: option<string>,
-// ) => {
-//   open Belt.Option
-//
-//   boundBreakpoint
-//   ->flatMapU((. boundBreakpoint) =>
-//     breakpoints
-//     ->Belt.Array.getIndexByU((. breakpoint) => {
-//       let (name, _) = breakpoint
-//       currentBreakpoint == name
-//     })
-//     ->mapU((. currentBreakpointIndex) => (boundBreakpoint, currentBreakpointIndex))
-//   )
-//   ->flatMapU((. tuple) => {
-//     let (boundBreakpoint, currentBreakpointIndex) = tuple
-//
-//     breakpoints
-//     ->Belt.Array.getIndexByU((. breakpoint) => {
-//       let (name, _) = breakpoint
-//       boundBreakpoint == name
-//     })
-//     ->mapU((. breakpointIndex) => mapFn(. currentBreakpointIndex, breakpointIndex))
-//   })
-//   ->getWithDefault(false)
-// }
-//
-// let isBreakpointBelow = compareBreakpoints((. currentBreakpointIndex, breakpointIndex) =>
-//   currentBreakpointIndex > breakpointIndex
-// )
-//
-// let isBreakpointAbove = compareBreakpoints((. currentBreakpointIndex, breakpointIndex) =>
-//   currentBreakpointIndex < breakpointIndex
-// )
