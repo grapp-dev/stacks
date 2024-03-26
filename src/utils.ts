@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { UnistylesBreakpoints, UnistylesRuntime } from 'react-native-unistyles';
+import { UnistylesRuntime } from 'react-native-unistyles';
 
-import { Direction, ResponsiveProp } from './types';
+import { Breakpoint, Direction, ResponsiveProp } from './types';
 
 type ResolveResponsiveProp = {
   <T>(responsiveProp: ResponsiveProp<T>): T;
@@ -148,13 +148,13 @@ export const makeWithIndex = <T>(r: number, mapFn: (index: number) => T): readon
 export const getBreakpoints = () => {
   return Object.entries(UnistylesRuntime.breakpoints).sort((a, b) => {
     return (b[1] - a[1]) | 0;
-  }) as unknown as readonly (readonly [keyof UnistylesBreakpoints, number])[];
+  }) as unknown as readonly (readonly [Breakpoint, number])[];
 };
 
 const compareBreakpoints = (
   mapFn: (currentBreakpointIndex: number, breakpointIndex: number) => boolean,
 ) => {
-  return (breakpoint: keyof UnistylesBreakpoints | undefined) => {
+  return (breakpoint: Breakpoint | undefined) => {
     if (breakpoint) {
       const breakpoints = getBreakpoints();
       const currentBreakpointIndex = breakpoints.findIndex(value => {

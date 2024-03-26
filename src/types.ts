@@ -1,5 +1,6 @@
-export type Breakpoint = readonly [string, number];
-export type Breakpoints = readonly Breakpoint[];
+import { UnistylesBreakpoints } from 'react-native-unistyles';
+
+export type Breakpoint = keyof UnistylesBreakpoints;
 export type Spacing = number | readonly number[];
 
 export type AxisX = 'left' | 'center' | 'right';
