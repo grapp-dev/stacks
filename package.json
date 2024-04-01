@@ -11,17 +11,17 @@
   "files": [
     "src",
     "lib",
+    "plugin",
     "*.md",
     "package.json"
   ],
-  "scripts": {
-  },
   "publishConfig": {
     "access": "public"
   },
   "keywords": [
     "react",
     "react-native",
+    "react-native-web",
     "typescript",
     "stacks",
     "layout",
