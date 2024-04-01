@@ -36,6 +36,10 @@ export type BoxProps = ViewProps & {
   readonly reverse?: ResponsiveProp<boolean>;
   readonly backgroundColor?: ResponsiveProp<string>;
   readonly borderRadius?: ResponsiveProp<number>;
+  readonly borderTopLeftRadius?: ResponsiveProp<number>;
+  readonly borderTopRightRadius?: ResponsiveProp<number>;
+  readonly borderBottomLeftRadius?: ResponsiveProp<number>;
+  readonly borderBottomRightRadius?: ResponsiveProp<number>;
   readonly width?: ResponsiveProp<DimensionValue>;
   readonly height?: ResponsiveProp<DimensionValue>;
 };
@@ -74,6 +78,10 @@ export const Box = (props: BoxProps) => {
     width,
     height,
     borderRadius,
+    borderTopLeftRadius,
+    borderTopRightRadius,
+    borderBottomLeftRadius,
+    borderBottomRightRadius,
     style,
     ...rest
   } = props;
@@ -87,8 +95,19 @@ export const Box = (props: BoxProps) => {
   const isDirectionColumn = flexDirection === 'column' || flexDirection === 'column-reverse';
   const alignItems = resolveResponsiveProp(isDirectionColumn ? alignX : alignY);
   const justifyContent = resolveResponsiveProp(isDirectionColumn ? alignY : alignX);
+  const defaultWidth = resolveResponsiveProp(width);
+  const defaultHeight = resolveResponsiveProp(height);
+
   const flexWrap = resolveResponsiveProp(wrap);
-  const flexBasis = resolveResponsiveProp(flex);
+  const flexBasis = resolveResponsiveProp(
+    isDirectionColumn
+      ? typeof defaultHeight === 'undefined'
+        ? flex
+        : 'content'
+      : typeof defaultWidth === 'undefined'
+        ? flex
+        : 'content',
+  );
 
   const { styles } = useStyles(stylesheet, {
     justifyContent,
@@ -126,9 +145,13 @@ export const Box = (props: BoxProps) => {
           marginEnd: multiply(resolveResponsiveProp(marginEnd)),
           marginStart: multiply(resolveResponsiveProp(marginStart)),
           backgroundColor: resolveResponsiveProp(backgroundColor),
-          width: resolveResponsiveProp(width),
-          height: resolveResponsiveProp(height),
+          width: defaultWidth,
+          height: defaultHeight,
           borderRadius: resolveResponsiveProp(borderRadius),
+          borderTopLeftRadius: resolveResponsiveProp(borderTopLeftRadius),
+          borderTopRightRadius: resolveResponsiveProp(borderTopRightRadius),
+          borderBottomLeftRadius: resolveResponsiveProp(borderBottomLeftRadius),
+          borderBottomRightRadius: resolveResponsiveProp(borderBottomRightRadius),
         },
         debugStyle,
         style,
@@ -225,7 +248,7 @@ const stylesheet = createStyleSheet({
         fluid: {
           flexGrow: 1,
           flexShrink: 0,
-          flexBasis: 0,
+          flexBasis: '0%',
         },
         ['1/2']: {
           flexBasis: '50%',
