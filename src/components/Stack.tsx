@@ -16,25 +16,16 @@ type Props = BoxProps & {
 };
 
 export const Stack = (props: Props) => {
-  const { children, space, horizontal, align, ...rest } = props;
+  const { children, flex = 'content', space, horizontal, align, ...rest } = props;
 
   const isHorizontal = resolveResponsiveProp(horizontal);
 
   const direction = isHorizontal ? 'row' : 'column';
   const alignY = isHorizontal ? align : undefined;
   const alignX = isHorizontal ? undefined : align;
-  const rowGap = isHorizontal ? undefined : space;
-  const columnGap = isHorizontal ? space : undefined;
 
   return (
-    <Box
-      {...rest}
-      direction={direction}
-      rowGap={rowGap}
-      columnGap={columnGap}
-      alignX={alignX}
-      alignY={alignY}
-    >
+    <Box {...rest} flex={flex} direction={direction} gap={space} alignX={alignX} alignY={alignY}>
       {children}
     </Box>
   );
