@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { DimensionValue, StyleSheet } from 'react-native';
 
 import { ResponsiveProp } from '../types';
 import { resolveResponsiveProp } from '../utils';
@@ -8,11 +8,11 @@ import { Box } from './Box';
 type BoxProps = React.ComponentProps<typeof Box>;
 
 type Props = Omit<BoxProps, 'flex'> & {
-  readonly top?: ResponsiveProp<number>;
-  readonly right?: ResponsiveProp<number>;
-  readonly bottom?: ResponsiveProp<number>;
-  readonly left?: ResponsiveProp<number>;
-  readonly offset?: ResponsiveProp<number>;
+  readonly top?: ResponsiveProp<DimensionValue>;
+  readonly right?: ResponsiveProp<DimensionValue>;
+  readonly bottom?: ResponsiveProp<DimensionValue>;
+  readonly left?: ResponsiveProp<DimensionValue>;
+  readonly offset?: ResponsiveProp<DimensionValue>;
 };
 
 export const FloatBox = (props: Props) => {
