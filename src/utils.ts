@@ -178,12 +178,12 @@ const compareBreakpoints = (
 
 export const isBreakpointBelow = compareBreakpoints(
   (currentBreakpointIndex, boundBreakpointIndex) => {
-    return currentBreakpointIndex <= boundBreakpointIndex;
+    return currentBreakpointIndex > boundBreakpointIndex;
   },
 );
 
 export const isBreakpointAbove = compareBreakpoints(
   (currentBreakpointIndex, boundBreakpointIndex) => {
-    return currentBreakpointIndex >= boundBreakpointIndex;
+    return currentBreakpointIndex < boundBreakpointIndex;
   },
 );
