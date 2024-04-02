@@ -19,5 +19,4 @@
 # Bun
 dist/
 node_modules/
-.changeset/
-
+.mind/
