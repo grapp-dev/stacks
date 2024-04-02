@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { useBreakpointComparator } from '../hooks';
-import { AxisX, AxisY, Breakpoint, ResponsiveProp, Space } from '../types';
+import type { AxisX, AxisY, Breakpoint, ResponsiveProp, Space } from '../types';
 import { Box } from './Box';
 
 type BoxProps = Omit<

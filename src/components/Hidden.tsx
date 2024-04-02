@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Breakpoint } from '../types';
+import type { Breakpoint } from '../types';
 
 type Props = React.PropsWithChildren<{
   readonly above?: Breakpoint;

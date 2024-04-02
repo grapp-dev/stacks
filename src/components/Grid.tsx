@@ -3,7 +3,7 @@ import { Platform, Text } from 'react-native';
 import { createStyleSheet, UnistylesRuntime, useStyles } from 'react-native-unistyles';
 
 import { useResponsiveProp, useSpacingHelpers } from '../hooks';
-import { ResponsiveProp } from '../types';
+import type { ResponsiveProp } from '../types';
 import { makeWithIndex } from '../utils';
 import { Box } from './Box';
 import { FloatBox } from './FloatBox';

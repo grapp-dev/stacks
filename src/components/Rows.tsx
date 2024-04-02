@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { AxisX, AxisY, Flex, ResponsiveProp, Space } from '../types';
+import type { AxisX, AxisY, Flex, ResponsiveProp, Space } from '../types';
 import { flattenChildren } from '../utils';
 import { Box } from './Box';
 import { Row } from './Row';

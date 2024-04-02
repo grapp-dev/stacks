@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ResponsiveProp } from '../types';
+import type { ResponsiveProp } from '../types';
 import { Box } from './Box';
 
 type BoxProps = Omit<

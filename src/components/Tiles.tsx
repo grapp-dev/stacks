@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { useResponsiveProp } from '../hooks';
-import { AxisY, ResponsiveProp, Space } from '../types';
+import type { AxisY, ResponsiveProp, Space } from '../types';
 import { makeWithIndex, splitEvery } from '../utils';
 import { Box } from './Box';
 

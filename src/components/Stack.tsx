@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { useResponsiveProp } from '../hooks';
-import { AxisX, AxisY, ResponsiveProp } from '../types';
+import type { AxisX, AxisY, ResponsiveProp } from '../types';
 import { Box } from './Box';
 
 type BoxProps = Omit<

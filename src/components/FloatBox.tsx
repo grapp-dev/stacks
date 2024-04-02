@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DimensionValue, StyleSheet } from 'react-native';
 
 import { useResponsiveProp } from '../hooks';
-import { ResponsiveProp } from '../types';
+import type { ResponsiveProp } from '../types';
 import { Box } from './Box';
 
 type BoxProps = React.ComponentProps<typeof Box>;
