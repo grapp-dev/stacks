@@ -3,6 +3,7 @@ import { DimensionValue, View, ViewProps } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 import { useDebugStyle, useResponsiveProp, useSpacingHelpers } from '../hooks';
+import type * as Polymorphic from '../polymorphic';
 import type { AxisX, AxisY, Direction, Flex, ResponsiveProp, Space, Stretch, Wrap } from '../types';
 import { resolveDirectionAndReverse } from '../utils';
 
@@ -40,13 +41,18 @@ export type BoxProps = ViewProps & {
   readonly borderTopRightRadius?: ResponsiveProp<number>;
   readonly borderBottomLeftRadius?: ResponsiveProp<number>;
   readonly borderBottomRightRadius?: ResponsiveProp<number>;
+  readonly borderWidth?: ResponsiveProp<number>;
+  readonly borderColor?: ResponsiveProp<string>;
   readonly width?: ResponsiveProp<DimensionValue>;
   readonly height?: ResponsiveProp<DimensionValue>;
 };
 
-export const Box = (props: BoxProps) => {
+type PolymorphicBox = Polymorphic.ForwardRefComponent<typeof View, BoxProps>;
+
+export const Box = React.forwardRef((props, ref) => {
   const {
     children,
+    as: Component = View,
     alignX,
     alignY,
     gap,
@@ -82,6 +88,8 @@ export const Box = (props: BoxProps) => {
     borderTopRightRadius,
     borderBottomLeftRadius,
     borderBottomRightRadius,
+    borderColor,
+    borderWidth,
     style,
     ...rest
   } = props;
@@ -119,8 +127,9 @@ export const Box = (props: BoxProps) => {
   });
 
   return (
-    <View
+    <Component
       {...rest}
+      ref={ref}
       style={[
         styles.root,
         {
@@ -153,15 +162,17 @@ export const Box = (props: BoxProps) => {
           borderTopRightRadius: resolveResponsiveProp(borderTopRightRadius),
           borderBottomLeftRadius: resolveResponsiveProp(borderBottomLeftRadius),
           borderBottomRightRadius: resolveResponsiveProp(borderBottomRightRadius),
+          borderWidth: resolveResponsiveProp(borderWidth),
+          borderColor: resolveResponsiveProp(borderColor),
         },
         debugStyle,
         style,
       ]}
     >
       {children}
-    </View>
+    </Component>
   );
-};
+}) as PolymorphicBox;
 
 const stylesheet = createStyleSheet({
   root: {
