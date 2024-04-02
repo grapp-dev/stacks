@@ -9,7 +9,14 @@ module.exports = babel => {
 
   const makeBreakpointCallExpression = (key, value) => {
     const expression = value.type === 'JSXExpressionContainer' ? value.expression : value;
-    return t.CallExpression(t.Identifier(key), [expression]);
+
+    return t.callExpression(
+      t.memberExpression(
+        t.callExpression(t.identifier('useBreakpointComparator'), []),
+        t.identifier(key),
+      ),
+      [expression],
+    );
   };
 
   const transformAttributeFactory = attributes => {
@@ -46,8 +53,8 @@ module.exports = babel => {
         }
 
         const transformAttribute = transformAttributeFactory(path.node.openingElement.attributes);
-        const belowAttribute = transformAttribute('below', 'isBreakpointBelow');
-        const aboveAttribute = transformAttribute('above', 'isBreakpointAbove');
+        const belowAttribute = transformAttribute('below', 'isBelow');
+        const aboveAttribute = transformAttribute('above', 'isAbove');
 
         let logicalExpression = t.booleanLiteral(false);
 
@@ -60,34 +67,46 @@ module.exports = babel => {
         }
 
         if (logicalExpression) {
-          const child = path.node.children.find(child => {
-            return child.type === 'JSXElement' || child.type === 'JSXFragment';
+          let child = path.node.children.find(child => {
+            return (
+              child.type === 'JSXElement' ||
+              child.type === 'JSXFragment' ||
+              child.type === 'JSXExpressionContainer'
+            );
           });
 
           if (!child) {
             return;
           }
 
+          if (child.type === 'JSXExpressionContainer') {
+            child = child.expression;
+          }
+
           const conditionalExpression = t.conditionalExpression(
             logicalExpression,
-            child,
             t.nullLiteral(),
+            child,
           );
-          path.replaceWith(t.jsxExpressionContainer(conditionalExpression));
 
-          const importBreakpointBelow = makeImportSpecifier('isBreakpointBelow');
-          const importBreakpointAbove = makeImportSpecifier('isBreakpointAbove');
+          if (path.parent && path.parent.type === 'ReturnStatement') {
+            path.replaceWith(conditionalExpression);
+          } else {
+            path.replaceWith(t.jsxExpressionContainer(conditionalExpression));
+          }
+
+          const importHook = makeImportSpecifier('useBreakpointComparator');
 
           if (importDeclaration) {
-            belowAttribute &&
-              importDeclaration.unshiftContainer('specifiers', importBreakpointBelow);
-            aboveAttribute &&
-              importDeclaration.unshiftContainer('specifiers', importBreakpointAbove);
+            const isImported = importDeclaration.node.specifiers.some(specifier => {
+              return specifier.imported.name === 'useBreakpointComparator';
+            });
+
+            if ((belowAttribute || aboveAttribute) && !isImported) {
+              importDeclaration.unshiftContainer('specifiers', importHook);
+            }
           } else {
-            const specifiers = [
-              belowAttribute && importBreakpointBelow,
-              aboveAttribute && importBreakpointAbove,
-            ].filter(Boolean);
+            const specifiers = belowAttribute || aboveAttribute ? [importHook] : [];
 
             program.unshiftContainer(
               'body',

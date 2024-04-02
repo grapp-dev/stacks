@@ -1,7 +1,8 @@
 import * as React from 'react';
 
+import { useBreakpointComparator } from '../hooks';
 import { AxisX, AxisY, Breakpoint, Flex, ResponsiveProp, Space } from '../types';
-import { flattenChildren, isBreakpointBelow } from '../utils';
+import { flattenChildren } from '../utils';
 import { Box } from './Box';
 import { Column } from './Column';
 
@@ -46,7 +47,9 @@ const isColumnForwarded = (node: React.ReactNode): node is React.ReactElement =>
 export const Columns = (props: ColumnsProps) => {
   const { children, space, defaultFlex = 'fluid', alignX, collapseBelow, ...rest } = props;
 
-  const isCollapsed = isBreakpointBelow(collapseBelow);
+  const breakpoint = useBreakpointComparator();
+
+  const isCollapsed = breakpoint.isBelow(collapseBelow);
   const direction = isCollapsed ? 'column' : 'row';
 
   return (

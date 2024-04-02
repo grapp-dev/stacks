@@ -8,5 +8,7 @@ type Props = React.PropsWithChildren<{
 }>;
 
 export const Hidden = (_props: Props): JSX.Element => {
-  throw new Error('[Stacks] Babel plugin has not been configured.');
+  throw new Error(
+    '[Stacks] Logical expression for the `Hidden` component could not be handled. Open a new issue and provide reproduction code.',
+  );
 };

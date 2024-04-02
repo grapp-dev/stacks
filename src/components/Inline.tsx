@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import { AxisX, AxisY, ResponsiveProp, Space } from '../types';
+import { useBreakpointComparator } from '../hooks';
+import { AxisX, AxisY, Breakpoint, ResponsiveProp, Space } from '../types';
 import { Box } from './Box';
 
 type BoxProps = Omit<
@@ -14,14 +15,29 @@ type Props = BoxProps & {
   readonly spaceY?: ResponsiveProp<number>;
   readonly alignX?: ResponsiveProp<AxisX | Space>;
   readonly alignY?: ResponsiveProp<AxisY>;
+  readonly collapseBelow?: Breakpoint;
 };
 
 export const Inline = (props: Props) => {
-  const { space, children, spaceX, spaceY, ...rest } = props;
+  const { space, children, spaceX, spaceY, alignX, collapseBelow, ...rest } = props;
+  const breakpoint = useBreakpointComparator();
+
+  const isCollapsed = breakpoint.isBelow(collapseBelow);
+  const direction = isCollapsed ? 'column' : 'row';
+  const wrap = isCollapsed ? 'no-wrap' : 'wrap';
 
   return (
-    <Box {...rest} gap={space} rowGap={spaceY} columnGap={spaceX} direction="row" wrap="wrap">
-      {children}
+    <Box {...rest}>
+      <Box
+        direction={direction}
+        wrap={wrap}
+        gap={space}
+        rowGap={spaceY}
+        columnGap={spaceX}
+        alignX={alignX}
+      >
+        {children}
+      </Box>
     </Box>
   );
 };
