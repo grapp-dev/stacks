@@ -17,7 +17,7 @@ bun add @mobily/stacks
 ```
 
 ```shell
-yarn install @mobily/stacks --save
+yarn add @mobily/stacks
 ```
 
 ```shell
