@@ -3,7 +3,7 @@ import * as React from 'react';
 import { BoxProps } from './Box';
 
 export const Row = (_props: BoxProps): JSX.Element => {
-  throw new Error('[Stacks]: Row must be a direct child of Rows.');
+  throw new Error('[Stacks] Row must be a direct child of Rows.');
 };
 
 const markAsRow = (node: React.FC) => {

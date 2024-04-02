@@ -3,7 +3,7 @@ import * as React from 'react';
 import { BoxProps } from './Box';
 
 export const Column = (_props: BoxProps): JSX.Element => {
-  throw new Error('[Stacks]: Column must be a direct child of Columns.');
+  throw new Error('[Stacks] Column must be a direct child of Columns.');
 };
 
 const markAsColumn = (node: React.FC) => {
