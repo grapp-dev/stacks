@@ -1,7 +1,7 @@
 import * as React from 'react';
 
+import { useResponsiveProp } from '../hooks';
 import { AxisX, AxisY, ResponsiveProp } from '../types';
-import { resolveResponsiveProp } from '../utils';
 import { Box } from './Box';
 
 type BoxProps = Omit<
@@ -18,6 +18,7 @@ type Props = BoxProps & {
 export const Stack = (props: Props) => {
   const { children, flex = 'content', space, horizontal, align, ...rest } = props;
 
+  const resolveResponsiveProp = useResponsiveProp();
   const isHorizontal = resolveResponsiveProp(horizontal);
 
   const direction = isHorizontal ? 'row' : 'column';

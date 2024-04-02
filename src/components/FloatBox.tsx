@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { DimensionValue, StyleSheet } from 'react-native';
 
+import { useResponsiveProp } from '../hooks';
 import { ResponsiveProp } from '../types';
-import { resolveResponsiveProp } from '../utils';
 import { Box } from './Box';
 
 type BoxProps = React.ComponentProps<typeof Box>;
@@ -17,6 +17,8 @@ type Props = Omit<BoxProps, 'flex'> & {
 
 export const FloatBox = (props: Props) => {
   const { children, top, right, bottom, left, offset, style, ...rest } = props;
+
+  const resolveResponsiveProp = useResponsiveProp();
 
   const all = resolveResponsiveProp(offset);
   const edges = {

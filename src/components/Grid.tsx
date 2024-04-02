@@ -2,9 +2,9 @@ import * as React from 'react';
 import { Platform, Text } from 'react-native';
 import { createStyleSheet, UnistylesRuntime, useStyles } from 'react-native-unistyles';
 
-import { useSpacingHelpers } from '../hooks';
+import { useResponsiveProp, useSpacingHelpers } from '../hooks';
 import { ResponsiveProp } from '../types';
-import { makeWithIndex, resolveResponsiveProp } from '../utils';
+import { makeWithIndex } from '../utils';
 import { Box } from './Box';
 import { FloatBox } from './FloatBox';
 
@@ -40,6 +40,7 @@ export const Grid = (props: Props) => {
 
   const { multiply } = useSpacingHelpers();
   const { styles } = useStyles(stylesheet);
+  const resolveResponsiveProp = useResponsiveProp();
 
   const numberOfColumns = resolveResponsiveProp(columns);
   const defaultOpacity = resolveResponsiveProp(opacity);

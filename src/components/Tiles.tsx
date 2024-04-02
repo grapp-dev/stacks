@@ -1,7 +1,8 @@
 import * as React from 'react';
 
+import { useResponsiveProp } from '../hooks';
 import { AxisY, ResponsiveProp, Space } from '../types';
-import { makeWithIndex, resolveResponsiveProp, splitEvery } from '../utils';
+import { makeWithIndex, splitEvery } from '../utils';
 import { Box } from './Box';
 
 type BoxProps = Omit<
@@ -22,7 +23,7 @@ export const Tiles = (props: Props) => {
   const {
     children,
     flex = 'content',
-    columns,
+    columns = 1,
     space,
     spaceX,
     spaceY,
@@ -31,7 +32,9 @@ export const Tiles = (props: Props) => {
     ...rest
   } = props;
 
-  const numberOfColumns = Math.max(resolveResponsiveProp(columns) ?? 1, 1);
+  const resolveResponsiveProp = useResponsiveProp();
+
+  const numberOfColumns = Math.max(resolveResponsiveProp(columns), 1);
   const isEmpty = resolveResponsiveProp(empty);
   const rows = splitEvery(React.Children.toArray(children), numberOfColumns);
 

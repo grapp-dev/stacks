@@ -2,9 +2,9 @@ import * as React from 'react';
 import { DimensionValue, View, ViewProps } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
-import { useDebugStyle, useSpacingHelpers } from '../hooks';
+import { useDebugStyle, useResponsiveProp, useSpacingHelpers } from '../hooks';
 import type { AxisX, AxisY, Direction, Flex, ResponsiveProp, Space, Stretch, Wrap } from '../types';
-import { resolveDirectionAndReverse, resolveResponsiveProp } from '../utils';
+import { resolveDirectionAndReverse } from '../utils';
 
 export type BoxProps = ViewProps & {
   readonly alignX?: ResponsiveProp<AxisX | AxisY | Space | Stretch>;
@@ -88,6 +88,7 @@ export const Box = (props: BoxProps) => {
 
   const { multiply } = useSpacingHelpers();
   const debugStyle = useDebugStyle();
+  const resolveResponsiveProp = useResponsiveProp();
 
   const reversed = resolveResponsiveProp(reverse);
   const flexDirection = resolveDirectionAndReverse(resolveResponsiveProp(direction), reversed);

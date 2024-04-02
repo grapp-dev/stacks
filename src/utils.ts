@@ -4,8 +4,8 @@ import { UnistylesRuntime } from 'react-native-unistyles';
 import { Breakpoint, Direction, ResponsiveProp } from './types';
 
 type ResolveResponsiveProp = {
-  <T>(responsiveProp: ResponsiveProp<T>): T;
-  <T>(responsiveProp: ResponsiveProp<T> | undefined): T | undefined;
+  <T>(responsiveProp: ResponsiveProp<T>, breakpoint: Breakpoint): T;
+  <T>(responsiveProp: ResponsiveProp<T> | undefined, breakpoint: Breakpoint): T | undefined;
 };
 
 const randomInt = (min: number, max: number) => {
@@ -45,16 +45,16 @@ export const normalizeResponsiveProp = <T>(responsiveProp: ResponsiveProp<T>): r
     return responsiveProp;
   }
 
-  console.warn(`invalid responsive prop: ${JSON.stringify(responsiveProp)}`);
+  console.warn(`[Stacks] invalid responsive prop: ${JSON.stringify(responsiveProp)}`);
 
   return [];
 };
 
 export const resolveResponsiveProp: ResolveResponsiveProp = <T>(
   responsiveProp: ResponsiveProp<T> | undefined,
+  currentBreakpoint: Breakpoint,
 ) => {
   const breakpoints = getBreakpoints();
-  const currentWidth = UnistylesRuntime.screen.width;
 
   if (responsiveProp !== undefined) {
     const normalizedResponsiveProp = normalizeResponsiveProp(responsiveProp);
@@ -66,7 +66,7 @@ export const resolveResponsiveProp: ResolveResponsiveProp = <T>(
     }
 
     const index = breakpoints.findIndex(breakpoint => {
-      return currentWidth > breakpoint[1];
+      return currentBreakpoint === breakpoint[0];
     });
 
     if (index > -1) {
@@ -74,8 +74,7 @@ export const resolveResponsiveProp: ResolveResponsiveProp = <T>(
 
       return (
         normalizedResponsiveProp[(lastIndex - index) | 0] ??
-        normalizedResponsiveProp[normalizedResponsiveProp.length - 1] ??
-        defaultValue
+        normalizedResponsiveProp[normalizedResponsiveProp.length - 1]
       );
     }
   }
@@ -121,13 +120,16 @@ export const splitEvery = <T>(xs: readonly T[], r: number): readonly (readonly T
   if (r < 1 || xs.length <= r) {
     return [xs];
   }
+
   let current = 0;
   const result = [];
+
   while (current < xs.length) {
     const index = (current + r) | 0;
     result.push(xs.slice(current, index));
     current = index;
   }
+
   return result;
 };
 
@@ -154,11 +156,11 @@ export const getBreakpoints = () => {
 const compareBreakpoints = (
   mapFn: (currentBreakpointIndex: number, breakpointIndex: number) => boolean,
 ) => {
-  return (breakpoint: Breakpoint | undefined) => {
+  return (currentBreakpoint: Breakpoint, breakpoint: Breakpoint | undefined) => {
     if (breakpoint) {
       const breakpoints = getBreakpoints();
       const currentBreakpointIndex = breakpoints.findIndex(value => {
-        return value[0] === UnistylesRuntime.breakpoint;
+        return value[0] === currentBreakpoint;
       });
 
       if (currentBreakpointIndex > -1) {
