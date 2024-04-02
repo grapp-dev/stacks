@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-interface */
 import { UnistylesRegistry } from 'react-native-unistyles';
 
 const breakpoints = {
@@ -6,7 +7,7 @@ const breakpoints = {
   desktop: 998,
 } as const;
 
-const lightTheme = {
+const theme = {
   layout: {
     spacing: 4,
     debug: false,
@@ -16,7 +17,7 @@ const lightTheme = {
 type Breakpoints = typeof breakpoints;
 
 type Themes = {
-  readonly light: typeof lightTheme;
+  readonly light: typeof theme;
 };
 
 declare module 'react-native-unistyles' {
@@ -26,7 +27,7 @@ declare module 'react-native-unistyles' {
 
 UnistylesRegistry.addBreakpoints(breakpoints)
   .addThemes({
-    light: lightTheme,
+    light: theme,
   })
   .addConfig({
     adaptiveThemes: true,

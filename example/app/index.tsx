@@ -24,8 +24,17 @@ const Page = () => {
           <Link href="/float-box" style={styles.link}>
             FloatBox
           </Link>
+          <Link href="/inline" style={styles.link}>
+            Inline
+          </Link>
+          <Link href="/inset" style={styles.link}>
+            Inset
+          </Link>
           <Link href="/grid" style={styles.link}>
             Grid
+          </Link>
+          <Link href="/rows" style={styles.link}>
+            Rows
           </Link>
           <Link href="/stack" style={styles.link}>
             Stack

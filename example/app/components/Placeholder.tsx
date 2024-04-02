@@ -1,7 +1,8 @@
 import * as React from 'react';
+import { Text } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
-import { AxisX, AxisY, Box, Flex, Space } from '@grapp/stacks';
+import { AxisX, AxisY, Box, Flex, FloatBox, Space } from '@grapp/stacks';
 
 type Props = React.PropsWithChildren<{
   readonly height?: number;
@@ -9,10 +10,11 @@ type Props = React.PropsWithChildren<{
   readonly flex?: Flex;
   readonly alignX?: AxisX | Space;
   readonly alignY?: AxisY | Space;
+  readonly label?: string;
 }>;
 
 export const Placeholder = (props: Props) => {
-  const { width, height = 40, flex, children, alignX = 'center', alignY = 'center' } = props;
+  const { width, height = 40, flex, children, alignX = 'center', alignY = 'center', label } = props;
   const { styles } = useStyles(stylesheet);
 
   const common = {
@@ -23,17 +25,25 @@ export const Placeholder = (props: Props) => {
     alignX: alignX,
   };
 
+  const labelComponent = (
+    <FloatBox offset={0} alignX="center" alignY="center">
+      <Text>{label}</Text>
+    </FloatBox>
+  );
+
   if (flex) {
     return (
-      <Box {...common} flex="fluid">
+      <Box {...common} flex={flex} width={width}>
         {children}
+        {labelComponent}
       </Box>
     );
   }
 
   return (
-    <Box {...common} width={width} height={height}>
+    <Box {...common} flex={flex} width={width} height={height}>
       {children}
+      {labelComponent}
     </Box>
   );
 };

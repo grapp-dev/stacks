@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-raw-text */
 
 /* eslint-disable import/no-default-export */
-import { Bleed, Stack } from '@grapp/stacks';
+import { Inset, Stack } from '@grapp/stacks';
 
 import { Placeholder } from '../components/Placeholder';
 import { Screen } from '../components/Screen';
@@ -12,28 +12,28 @@ const Page = () => {
       <Screen.ScrollView>
         <Stack space={4}>
           <Placeholder />
-          <Bleed horizontal={4}>
+          <Inset horizontal={4}>
             <Placeholder label="horizontal = 4" />
-          </Bleed>
+          </Inset>
           <Placeholder />
-          <Bleed vertical={4}>
+          <Inset vertical={4}>
             <Placeholder label="vertical = 4" />
-          </Bleed>
+          </Inset>
           <Placeholder />
-          <Bleed bottom={4}>
+          <Inset bottom={4}>
             <Placeholder label="bottom = 4" />
-          </Bleed>
+          </Inset>
           <Placeholder />
           <Placeholder />
-          <Bleed top={4}>
+          <Inset top={4}>
             <Placeholder label="top = 4" />
-          </Bleed>
-          <Bleed left={4}>
+          </Inset>
+          <Inset left={4}>
             <Placeholder label="left = 4" />
-          </Bleed>
-          <Bleed right={4}>
+          </Inset>
+          <Inset right={4}>
             <Placeholder label="right = 4" />
-          </Bleed>
+          </Inset>
         </Stack>
       </Screen.ScrollView>
     </Screen>

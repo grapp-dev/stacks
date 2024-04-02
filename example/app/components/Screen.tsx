@@ -5,12 +5,12 @@ import { createStyleSheet, UnistylesRuntime, useStyles } from 'react-native-unis
 
 import {
   Box,
-  resolveResponsiveProp,
   ResponsiveProp,
   Row,
   RowProps,
   Rows,
   RowsProps,
+  useResponsiveProp,
   useSpacingHelpers,
 } from '@grapp/stacks';
 
@@ -45,6 +45,7 @@ export const Screen = (props: ScreenProps) => {
 
   const { divide } = useSpacingHelpers();
 
+  const resolveResponsiveProp = useResponsiveProp();
   const paddingTop = resolveResponsiveProp(topInset) ?? divide(UnistylesRuntime.insets.top);
   const paddingBottom =
     resolveResponsiveProp(bottomInset) ?? divide(UnistylesRuntime.insets.bottom);
