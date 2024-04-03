@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useStyles } from 'react-native-unistyles';
 
-import { resolveResponsiveProp } from '../utils';
+import { useResponsiveProp } from './useResponsiveProp';
 
 type SpacingHelper = {
   (value: number): number;
@@ -11,7 +11,9 @@ type SpacingHelper = {
 export const useSpacingHelpers = () => {
   const { theme } = useStyles();
 
-  const spacing = resolveResponsiveProp(theme?.layout?.spacing ?? 4);
+  const resolveResponsiveProp = useResponsiveProp();
+  // @ts-expect-error: this_is_fine.png
+  const spacing = resolveResponsiveProp(theme?.stacks?.spacing ?? 4);
 
   const multiply = React.useCallback(
     value => {

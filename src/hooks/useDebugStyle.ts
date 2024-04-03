@@ -4,10 +4,11 @@ import { useStyles } from 'react-native-unistyles';
 
 import { randomColor } from '../utils';
 
-export const useDebugStyle = (isActive?: boolean) => {
+export const useDebugStyle = () => {
   const { theme } = useStyles();
   const backgroundColor = React.useRef(randomColor()).current;
-  const debug = theme?.layout?.debug || isActive;
+  // @ts-expect-error: this_is_fine.png
+  const debug = theme?.layout?.debug;
   const style = React.useRef<ViewStyle | undefined>(debug ? { backgroundColor } : undefined);
 
   React.useEffect(() => {
