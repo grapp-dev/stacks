@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { useResponsiveProp } from '../hooks';
 import type { AxisX, AxisY, ResponsiveProp } from '../types';
+import { flattenChildren, intersperse } from '../utils';
 import { Box } from './Box';
 
 type BoxProps = Omit<
@@ -13,10 +14,11 @@ type Props = BoxProps & {
   readonly space?: ResponsiveProp<number>;
   readonly horizontal?: ResponsiveProp<boolean>;
   readonly align?: ResponsiveProp<AxisX | AxisY>;
+  readonly divider?: React.ReactElement;
 };
 
 export const Stack = (props: Props) => {
-  const { children, flex = 'content', space, horizontal, align, ...rest } = props;
+  const { children, flex = 'content', space, horizontal, align, divider, ...rest } = props;
 
   const resolveResponsiveProp = useResponsiveProp();
   const isHorizontal = resolveResponsiveProp(horizontal);
@@ -27,7 +29,9 @@ export const Stack = (props: Props) => {
 
   return (
     <Box {...rest} flex={flex} direction={direction} gap={space} alignX={alignX} alignY={alignY}>
-      {children}
+      {React.isValidElement(divider)
+        ? flattenChildren(intersperse(React.Children.toArray(children), divider))
+        : children}
     </Box>
   );
 };
