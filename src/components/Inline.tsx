@@ -19,7 +19,7 @@ type Props = BoxProps & {
 };
 
 export const Inline = (props: Props) => {
-  const { space, children, spaceX, spaceY, alignX, collapseBelow, ...rest } = props;
+  const { space, children, spaceX, spaceY, alignX, alignY, collapseBelow, ...rest } = props;
   const breakpoint = useBreakpointComparator();
 
   const isCollapsed = breakpoint.isBelow(collapseBelow);
@@ -27,17 +27,17 @@ export const Inline = (props: Props) => {
   const wrap = isCollapsed ? 'no-wrap' : 'wrap';
 
   return (
-    <Box {...rest}>
-      <Box
-        direction={direction}
-        wrap={wrap}
-        gap={space}
-        rowGap={spaceY}
-        columnGap={spaceX}
-        alignX={alignX}
-      >
-        {children}
-      </Box>
+    <Box
+      {...rest}
+      direction={direction}
+      wrap={wrap}
+      gap={space}
+      rowGap={spaceY}
+      columnGap={spaceX}
+      alignX={alignX}
+      alignY={alignY}
+    >
+      {children}
     </Box>
   );
 };

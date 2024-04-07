@@ -7,7 +7,7 @@ import { Row } from './Row';
 
 type BoxProps = Omit<
   React.ComponentProps<typeof Box>,
-  'flex' | 'direction' | 'gap' | 'rowGap' | 'columnGap' | 'alignX' | 'alignY'
+  'direction' | 'gap' | 'rowGap' | 'columnGap' | 'alignX' | 'alignY'
 >;
 
 export type RowProps = React.ComponentProps<typeof Row>;
