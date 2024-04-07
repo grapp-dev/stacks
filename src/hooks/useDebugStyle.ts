@@ -8,7 +8,7 @@ export const useDebugStyle = () => {
   const { theme } = useStyles();
   const backgroundColor = React.useRef(randomColor()).current;
   // @ts-expect-error: this_is_fine.png
-  const debug = theme?.layout?.debug;
+  const debug = theme?.stacks?.debug;
   const style = React.useRef<ViewStyle | undefined>(debug ? { backgroundColor } : undefined);
 
   React.useEffect(() => {
