@@ -5,9 +5,10 @@
   "license": "MIT",
   "author": "Marcin Dziewulski <hello@mobily.pl>",
   "react-native": "src/index.ts",
-  "main": "lib/cjs/index.js",
-  "module": "lib/esm/index.js",
   "source": "src/index.ts",
+  "main": "lib/index.js",
+  "module": "lib/index.mjs",
+  "types": "lib/index.d.mts",
   "files": [
     "src",
     "lib",
@@ -15,6 +16,10 @@
     "*.md",
     "package.json"
   ],
+  "scripts": {
+    "build": "tsup",
+    "types:check": "tsc --noEmit"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -39,17 +44,16 @@
     "react-native-unistyles": ">=2.0"
   },
   "devDependencies": {
-    "@grapp/eslint-config": "^0.1.0",
+    "@grapp/eslint-config": "^0.1.1",
     "@grapp/prettier-config": "^0.1.0",
-    "@grapp/ts-config": "^0.1.0",
+    "@grapp/ts-config": "^0.1.2",
     "@types/node": "^18.11.10",
     "@types/react": "~18.2.45",
     "react": "^18.2.0",
     "react-native": "0.73.6",
     "react-native-unistyles": "^2.5.1",
+    "tsup": "^8.0.2",
     "typescript": "5.0.4"
   },
-  "cacheDirectories": [
-    "node_modules"
-  ]
+  "cacheDirectories": ["node_modules"]
 }
