@@ -1,0 +1,37 @@
+name: Build & Deploy docs
+
+on:
+  release:
+    types: [released]
+
+jobs:
+  deploy:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - uses: oven-sh/setup-bun@v1
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.npm
+            ${{ github.workspace }}/docs/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lockb') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lockb') }}-
+      - run: |
+          cd docs
+          bun install --frozen-lockfile
+          bun run build
+          cd ..
+      - uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.GRAPP_FTP_SERVER_URL }}
+          username: ${{ secrets.GRAPP_FTP_USERNAME }} 
+          password: ${{ secrets.GRAPP_FTP_PASSWORD }}
+          local-dir: './docs/out/'
+          server-dir: 'stacks/'

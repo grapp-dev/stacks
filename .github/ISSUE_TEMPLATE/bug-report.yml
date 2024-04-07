@@ -1,0 +1,93 @@
+name: Bug report
+description: File a bug report
+labels: 
+  - 'needs review'
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+
+        Before submitting a new bug/issue, please check the links below to see if there is a solution or question posted there already:
+        -  Issues tab: https://github.com/grapp-dev/stacks/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc
+        -  Closed issues tab: https://github.com/grapp-dev/stacks/issues?q=is%3Aissue+is%3Aclosed
+        -  Discussions tab: https://github.com/grapp-dev/stacks/discussions
+  - type: markdown
+    attributes:
+      value: |
+        ## Required information
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Please provide a clear, concise and descriptive explanation of what the bug is. Include screenshots or a video if needed by drag and dropping them to the box below.
+    validations:
+      required: true
+
+  - type: input
+    id: repro
+    attributes:
+      label: Snack or a link to a repository (optional)
+      description: |
+        Please provide a Snack (https://snack.expo.io/) or a link to a repository on GitHub under your username that reproduces the issue.
+        Here are some tips for providing a minimal example: https://stackoverflow.com/help/mcve.
+        Issues without a reproduction are likely to stale.
+      placeholder: Link to a Snack or a GitHub repository
+
+  - type: input
+    id: stacks-version
+    attributes:
+      label: Stacks version
+      description: What version of Stacks are you using?
+      placeholder: 3.0.0
+    validations:
+      required: true
+
+  - type: input
+    id: react-native-version
+    attributes:
+      label: React Native version
+      description: What version of react-native are you using?
+      placeholder: 0.73.0
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platforms
+    attributes:
+      label: Platforms
+      description: On what platform your application is running on?
+      multiple: true
+      options:
+        - Android
+        - iOS
+        - React Native Web
+        - SSR
+        - React Native macOS
+    validations:
+      required: true
+
+  - type: dropdown
+    id: engine
+    attributes:
+      label: Engine
+      description: Which engine do you use?
+      multiple: false
+      options:
+        - Hermes
+        - JSC
+    validations:
+      required: true
+
+  - type: dropdown
+    id: architecture
+    attributes:
+      label: Architecture
+      description: Which architecture do you use?
+      multiple: false
+      options:
+        - Paper (old)
+        - Fabric (new)
+    validations:
+      required: true
+
