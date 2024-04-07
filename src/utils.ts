@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { UnistylesRuntime } from 'react-native-unistyles';
+import { UnistylesBreakpoints, UnistylesRuntime } from 'react-native-unistyles';
 
 import { Breakpoint, Direction, ResponsiveProp } from './types';
 
@@ -97,9 +97,11 @@ export const resolveDirectionAndReverse = (direction?: Direction, reversed?: boo
   }
 };
 
-export const negate = (value: ResponsiveProp<number> | undefined) => {
+export const negate = (
+  value: ResponsiveProp<number> | undefined,
+): ResponsiveProp<number> | undefined => {
   if (typeof value === 'number') {
-    return [value * -1];
+    return value * -1;
   }
 
   if (value && Array.isArray(value)) {
@@ -147,7 +149,35 @@ export const makeWithIndex = <T>(r: number, mapFn: (index: number) => T): readon
   return result;
 };
 
-export const getBreakpoints = () => {
+const reduceWithIndex = <A, B>(
+  arr: readonly A[],
+  initialValue: B,
+  fn: (acc: B, element: A, index: number) => B,
+): B => {
+  let e = initialValue;
+
+  for (let t = 0, v = arr.length; t < v; ++t) {
+    e = fn(e, arr[t], t);
+  }
+
+  return e;
+};
+
+export const intersperse = <A>(arr: readonly A[], delimiter: A) => {
+  // eslint-disable-next-line functional/prefer-readonly-type
+  return reduceWithIndex(arr, [] as A[], function (acc, element, index) {
+    if (((arr.length - 1) | 0) === index) {
+      acc.push(element);
+    } else {
+      acc.push(element, delimiter);
+    }
+    return acc;
+  });
+};
+
+export const getBreakpoints = (): ReadonlyArray<
+  readonly [keyof UnistylesBreakpoints, UnistylesBreakpoints[keyof UnistylesBreakpoints]]
+> => {
   return Object.entries(UnistylesRuntime.breakpoints).sort((a, b) => {
     return (b[1] - a[1]) | 0;
   }) as unknown as readonly (readonly [Breakpoint, number])[];
