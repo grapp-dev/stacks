@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-raw-text */
 
 /* eslint-disable import/no-default-export */
-import { Box, Tiles } from '@grapp/stacks';
+import { Tiles } from '@grapp/stacks';
 
 import { Placeholder } from '../components/Placeholder';
 import { Screen } from '../components/Screen';
@@ -24,7 +24,7 @@ const Page = () => {
         </Tiles>
       </Screen.Content>
       <Screen.Content flex="content">
-        <Tiles space={2} columns={4} empty={false}>
+        <Tiles space={2} columns={4} fill={true}>
           <Placeholder label="1" />
           <Placeholder label="2" />
           <Placeholder label="3" />
@@ -33,12 +33,13 @@ const Page = () => {
         </Tiles>
       </Screen.Content>
       <Screen.Content>
-        <Tiles flex="fluid" alignY="center" space={2} columns={3} empty={false}>
+        <Tiles flex="fluid" alignY="center" space={2} columns={3} fill={true}>
           <Placeholder width={40} height={50} label="1" />
           <Placeholder width={40} height={60} label="2" />
           <Placeholder width={40} height={50} label="3" />
           <Placeholder height={60} label="4" />
           <Placeholder height={50} label="5" />
+          <Placeholder height={50} label="6" />
         </Tiles>
       </Screen.Content>
       <Screen.Content>

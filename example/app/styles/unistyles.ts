@@ -8,7 +8,7 @@ const breakpoints = {
 } as const;
 
 const theme = {
-  layout: {
+  stacks: {
     spacing: 4,
     debug: false,
   },

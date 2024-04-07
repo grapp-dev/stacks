@@ -1,10 +1,11 @@
 /* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
-import { ScrollView as RNScrollView, ScrollViewProps } from 'react-native';
+import { Button, ScrollView as RNScrollView, ScrollViewProps } from 'react-native';
 import { createStyleSheet, UnistylesRuntime, useStyles } from 'react-native-unistyles';
 
 import {
   Box,
+  FloatBox,
   ResponsiveProp,
   Row,
   RowProps,
@@ -50,6 +51,19 @@ export const Screen = (props: ScreenProps) => {
   const paddingBottom =
     resolveResponsiveProp(bottomInset) ?? divide(UnistylesRuntime.insets.bottom);
 
+  const handleDebugMode = React.useCallback(() => {
+    UnistylesRuntime.updateTheme('light', theme => {
+      console.log(theme);
+      return {
+        ...theme,
+        stacks: {
+          ...theme.stacks,
+          debug: !theme.stacks.debug,
+        },
+      };
+    });
+  }, []);
+
   return (
     <Context.Provider value={{ paddingX: resolveResponsiveProp(paddingX) }}>
       <Rows
@@ -60,6 +74,9 @@ export const Screen = (props: ScreenProps) => {
       >
         {children}
       </Rows>
+      <FloatBox bottom={10} right={10}>
+        <Button title="debug" onPress={handleDebugMode} />
+      </FloatBox>
     </Context.Provider>
   );
 };

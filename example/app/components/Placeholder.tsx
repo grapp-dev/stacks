@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text } from 'react-native';
+import { Platform, Text } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 import { AxisX, AxisY, Box, Flex, FloatBox, Space } from '@grapp/stacks';
@@ -11,15 +11,25 @@ type Props = React.PropsWithChildren<{
   readonly alignX?: AxisX | Space;
   readonly alignY?: AxisY | Space;
   readonly label?: string;
+  readonly backgroundColor?: string;
 }>;
 
 export const Placeholder = (props: Props) => {
-  const { width, height = 40, flex, children, alignX = 'center', alignY = 'center', label } = props;
+  const {
+    width,
+    height = 40,
+    flex,
+    children,
+    alignX = 'center',
+    alignY = 'center',
+    label,
+    backgroundColor = '#1BCABE',
+  } = props;
   const { styles } = useStyles(stylesheet);
 
   const common = {
-    backgroundColor: '#1BCABE',
-    borderRadius: height / 2,
+    backgroundColor,
+    borderRadius: 2,
     style: styles.root,
     alignY: alignY,
     alignX: alignX,
@@ -27,7 +37,7 @@ export const Placeholder = (props: Props) => {
 
   const labelComponent = (
     <FloatBox offset={0} alignX="center" alignY="center">
-      <Text>{label}</Text>
+      <Text style={styles.label}>{label}</Text>
     </FloatBox>
   );
 
@@ -52,5 +62,10 @@ const stylesheet = createStyleSheet({
   root: {
     borderColor: '#1D525640',
     borderWidth: 1,
+  },
+  label: {
+    fontFamily:
+      Platform.OS === 'android' ? 'monospace' : Platform.OS === 'ios' ? 'Menlo' : 'sans-serif',
+    fontSize: 9,
   },
 });

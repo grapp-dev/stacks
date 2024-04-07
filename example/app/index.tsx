@@ -42,6 +42,9 @@ const Page = () => {
           <Link href="/tiles" style={styles.link}>
             Tiles
           </Link>
+          <Link href="/playground" style={styles.link}>
+            Playground
+          </Link>
         </Stack>
       </Screen.ScrollView>
     </Screen>

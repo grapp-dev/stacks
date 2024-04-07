@@ -3,6 +3,7 @@
 /* eslint-disable import/no-default-export */
 import { Stack } from '@grapp/stacks';
 
+import { Divider } from '../components/Divider';
 import { Placeholder } from '../components/Placeholder';
 import { Screen } from '../components/Screen';
 
@@ -10,7 +11,7 @@ const Page = () => {
   return (
     <Screen space={8} paddingX={4}>
       <Screen.Content flex="content">
-        <Stack space={2}>
+        <Stack space={2} divider={<Divider />}>
           <Placeholder label="1" />
           <Placeholder label="2" />
           <Placeholder label="3" />
