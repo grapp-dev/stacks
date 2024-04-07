@@ -1,3 +1,7 @@
 {
-  "extends": "@grapp/ts-config/react-native.json"
+  "extends": "@grapp/ts-config/react-native.json",
+  "compilerOptions": {
+    "types": ["bun-types"]
+  },
+  "include": ["./src/**/*"]
 }
