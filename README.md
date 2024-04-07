@@ -4,6 +4,8 @@
 
 > A set of components for building layouts in React Native. Powered by [React Native Unistyles](https://github.com/jpudysz/react-native-unistyles).
 
+`Stacks` follows a design principle that states that components should not provide surrounding white space. Instead, the spacing between elements is solely owned by layout components. 
+
 ## Documentation
 
 Full documentation can be found [here](https://stacks.grapp.dev).
