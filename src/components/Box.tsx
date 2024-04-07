@@ -45,6 +45,7 @@ export type BoxProps = ViewProps & {
   readonly borderColor?: ResponsiveProp<string>;
   readonly width?: ResponsiveProp<DimensionValue>;
   readonly height?: ResponsiveProp<DimensionValue>;
+  readonly debuggable?: ResponsiveProp<boolean>;
 };
 
 type PolymorphicBox = Polymorphic.ForwardRefComponent<typeof View, BoxProps>;
@@ -91,6 +92,7 @@ export const Box = React.forwardRef((props, ref) => {
     borderColor,
     borderWidth,
     style,
+    debuggable = true,
     ...rest
   } = props;
 
@@ -106,6 +108,7 @@ export const Box = React.forwardRef((props, ref) => {
   const justifyContent = resolveResponsiveProp(isDirectionColumn ? alignY : alignX);
   const defaultWidth = resolveResponsiveProp(width);
   const defaultHeight = resolveResponsiveProp(height);
+  const isDebuggable = resolveResponsiveProp(debuggable);
 
   const flexWrap = resolveResponsiveProp(wrap);
   const flexBasis = resolveResponsiveProp(
@@ -165,7 +168,7 @@ export const Box = React.forwardRef((props, ref) => {
           borderWidth: resolveResponsiveProp(borderWidth),
           borderColor: resolveResponsiveProp(borderColor),
         },
-        debugStyle,
+        isDebuggable && debugStyle,
         style,
       ]}
     >
@@ -173,6 +176,8 @@ export const Box = React.forwardRef((props, ref) => {
     </Component>
   );
 }) as PolymorphicBox;
+
+Box.displayName = 'Box';
 
 const stylesheet = createStyleSheet({
   root: {
