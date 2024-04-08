@@ -16,7 +16,7 @@ type BoxProps = Omit<
   | 'paddingEnd'
 >;
 
-type Props = BoxProps & {
+export type InsetProps = BoxProps & {
   readonly space?: ResponsiveProp<number>;
   readonly horizontal?: ResponsiveProp<number>;
   readonly vertical?: ResponsiveProp<number>;
@@ -28,7 +28,7 @@ type Props = BoxProps & {
   readonly end?: ResponsiveProp<number>;
 };
 
-export const Inset = (props: Props) => {
+export const Inset = (props: InsetProps) => {
   const { children, space, horizontal, vertical, start, end, top, right, bottom, left, ...rest } =
     props;
 

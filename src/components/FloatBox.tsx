@@ -7,7 +7,7 @@ import { Box } from './Box';
 
 type BoxProps = React.ComponentProps<typeof Box>;
 
-type Props = Omit<BoxProps, 'flex'> & {
+export type FloatBoxProps = Omit<BoxProps, 'flex'> & {
   readonly top?: ResponsiveProp<DimensionValue>;
   readonly right?: ResponsiveProp<DimensionValue>;
   readonly bottom?: ResponsiveProp<DimensionValue>;
@@ -15,7 +15,7 @@ type Props = Omit<BoxProps, 'flex'> & {
   readonly offset?: ResponsiveProp<DimensionValue>;
 };
 
-export const FloatBox = (props: Props) => {
+export const FloatBox = (props: FloatBoxProps) => {
   const { children, top, right, bottom, left, offset, style, ...rest } = props;
 
   const resolveResponsiveProp = useResponsiveProp();

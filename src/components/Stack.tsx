@@ -10,14 +10,14 @@ type BoxProps = Omit<
   'direction' | 'alignX' | 'alignY' | 'rowGap' | 'columnGap'
 >;
 
-type Props = BoxProps & {
+export type StackProps = BoxProps & {
   readonly space?: ResponsiveProp<number>;
   readonly horizontal?: ResponsiveProp<boolean>;
   readonly align?: ResponsiveProp<AxisX | AxisY>;
   readonly divider?: React.ReactElement;
 };
 
-export const Stack = (props: Props) => {
+export const Stack = (props: StackProps) => {
   const { children, flex = 'content', space, horizontal, align, divider, ...rest } = props;
 
   const resolveResponsiveProp = useResponsiveProp();
