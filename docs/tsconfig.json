@@ -4,7 +4,8 @@
     "next-env.d.ts",
     "./docs/**/*.ts",
     "./docs/**/*.tsx",
-    "./examples/**/*.tsx"
+    "./examples/**/*.tsx",
+    "./unistyles.ts"
   ],
   "compilerOptions": {
     "incremental": true

@@ -25,6 +25,10 @@ declare module 'react-native-unistyles' {
   export interface UnistylesThemes extends Themes {}
 }
 
+declare module '@grapp/stacks' {
+  export interface StacksBreakpoints extends Breakpoints {}
+}
+
 UnistylesRegistry.addBreakpoints(breakpoints).addThemes({
   light: theme,
 });
