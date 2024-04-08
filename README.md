@@ -6,7 +6,7 @@
 
 `Stacks` primarily aims to simplify building and maintaining layouts, making it quick and easy. It follows a design principle that suggests components should not include any surrounding white space. Instead, layout components should solely own spacing between elements. 
 
-<img src="https://raw.githubusercontent.com/grapp-dev/stacks/main/assets/stacks-preview.png" alt="Stacks, a set of components for building layouts in React Native" align="right" width="100" height="100">
+<img src="https://raw.githubusercontent.com/grapp-dev/stacks/main/assets/stacks-preview.png" alt="Stacks, a set of components for building layouts in React Native">
 
 ## Documentation
 
