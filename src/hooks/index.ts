@@ -1,4 +1,4 @@
 export * from './useSpacingHelpers';
 export * from './useDebugStyle';
-export * from './useBreakpointComparator';
+export * from './useBreakpointComparators';
 export * from './useResponsiveProp';

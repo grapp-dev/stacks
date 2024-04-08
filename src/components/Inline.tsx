@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { useBreakpointComparator } from '../hooks';
+import { useBreakpointComparators } from '../hooks';
 import type { AxisX, AxisY, Breakpoint, ResponsiveProp, Space } from '../types';
 import { Box } from './Box';
 
@@ -20,7 +20,7 @@ type Props = BoxProps & {
 
 export const Inline = (props: Props) => {
   const { space, children, spaceX, spaceY, alignX, alignY, collapseBelow, ...rest } = props;
-  const breakpoint = useBreakpointComparator();
+  const breakpoint = useBreakpointComparators();
 
   const isCollapsed = breakpoint.isBelow(collapseBelow);
   const direction = isCollapsed ? 'column' : 'row';

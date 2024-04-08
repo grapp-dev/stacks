@@ -12,7 +12,7 @@ module.exports = babel => {
 
     return t.callExpression(
       t.memberExpression(
-        t.callExpression(t.identifier('useBreakpointComparator'), []),
+        t.callExpression(t.identifier('useBreakpointComparators'), []),
         t.identifier(key),
       ),
       [expression],
@@ -95,11 +95,11 @@ module.exports = babel => {
             path.replaceWith(t.jsxExpressionContainer(conditionalExpression));
           }
 
-          const importHook = makeImportSpecifier('useBreakpointComparator');
+          const importHook = makeImportSpecifier('useBreakpointComparators');
 
           if (importDeclaration) {
             const isImported = importDeclaration.node.specifiers.some(specifier => {
-              return specifier.imported.name === 'useBreakpointComparator';
+              return specifier.imported.name === 'useBreakpointComparators';
             });
 
             if ((belowAttribute || aboveAttribute) && !isImported) {

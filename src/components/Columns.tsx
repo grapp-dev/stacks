@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Platform } from 'react-native';
 
 import {
-  useBreakpointComparator,
+  useBreakpointComparators,
   useDebugStyle,
   useResponsiveProp,
   useSpacingHelpers,
@@ -215,7 +215,7 @@ export const Columns = (props: ColumnsProps) => {
     ...rest
   } = props;
 
-  const breakpoint = useBreakpointComparator();
+  const breakpoint = useBreakpointComparators();
   const resolveResponsiveProp = useResponsiveProp();
 
   const isCollapsed = breakpoint.isBelow(collapseBelow);

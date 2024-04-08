@@ -4,7 +4,7 @@ import { useStyles } from 'react-native-unistyles';
 import { Breakpoint } from '../types';
 import { isBreakpointAbove, isBreakpointBelow } from '../utils';
 
-export const useBreakpointComparator = () => {
+export const useBreakpointComparators = () => {
   const { breakpoint: currentBreakpoint } = useStyles();
 
   const isBelow = React.useCallback(
