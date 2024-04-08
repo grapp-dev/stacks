@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-interface */
 import { UnistylesRegistry } from 'react-native-unistyles';
 
 const breakpoints = {
@@ -23,6 +22,10 @@ type Themes = {
 declare module 'react-native-unistyles' {
   export interface UnistylesBreakpoints extends Breakpoints {}
   export interface UnistylesThemes extends Themes {}
+}
+
+declare module '@grapp/stacks' {
+  export interface StacksBreakpoints extends Breakpoints {}
 }
 
 UnistylesRegistry.addBreakpoints(breakpoints)

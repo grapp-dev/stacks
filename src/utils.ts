@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { UnistylesBreakpoints, UnistylesRuntime } from 'react-native-unistyles';
+import { UnistylesRuntime } from 'react-native-unistyles';
 
 import { Breakpoint, Direction, ResponsiveProp } from './types';
 
@@ -179,9 +179,7 @@ export const intersperse = <A>(arr: readonly A[], delimiter: A) => {
   });
 };
 
-export const getBreakpoints = (): ReadonlyArray<
-  readonly [keyof UnistylesBreakpoints, UnistylesBreakpoints[keyof UnistylesBreakpoints]]
-> => {
+export const getBreakpoints = (): ReadonlyArray<readonly [Breakpoint, number]> => {
   return Object.entries(UnistylesRuntime.breakpoints).sort((a, b) => {
     return (b[1] - a[1]) | 0;
   }) as unknown as readonly (readonly [Breakpoint, number])[];

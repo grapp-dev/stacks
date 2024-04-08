@@ -1,6 +1,8 @@
 import { UnistylesBreakpoints } from 'react-native-unistyles';
 
-export type Breakpoint = keyof UnistylesBreakpoints;
+export interface StacksBreakpoints {}
+
+export type Breakpoint = keyof StacksBreakpoints | keyof UnistylesBreakpoints;
 export type AxisX = 'left' | 'center' | 'right';
 export type AxisY = 'top' | 'center' | 'bottom';
 export type Stretch = 'stretch';

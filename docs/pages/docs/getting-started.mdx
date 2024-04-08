@@ -48,6 +48,19 @@ const theme = {
 };
 ```
 
+If you are using TypeScript, it is necessary to create types for breakpoints after overriding `Unistyles` types.
+
+```tsx {6-8}
+declare module 'react-native-unistyles' {
+  export interface UnistylesBreakpoints extends AppBreakpoints {}
+  export interface UnistylesThemes extends AppThemes {}
+}
+
+declare module '@grapp/stacks' {
+  export interface StacksBreakpoints extends Breakpoints {}
+}
+```
+
 #### Explore
 
 You can now explore the various components and become familiar with their properties by visiting the [`Components`](/docs/components) page.
