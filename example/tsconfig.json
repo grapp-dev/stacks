@@ -4,5 +4,8 @@
     "paths": {
       "@grapp/stacks": ["../src"]
     }
-  }
+  },
+  "include": [
+    "./app/**/*.{ts,tsx}"
+  ]
 }

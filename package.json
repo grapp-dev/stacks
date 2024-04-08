@@ -17,7 +17,7 @@
     "package.json"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "rm -rf ./lib && tsup",
     "types:check": "tsc --noEmit"
   },
   "publishConfig": {
