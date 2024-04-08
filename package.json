@@ -1,7 +1,7 @@
 {
   "name": "@grapp/stacks",
   "description": "A set of components for building layouts in React Native. Powered by React Native Unistyles.",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "license": "MIT",
   "author": "Marcin Dziewulski <hello@mobily.pl>",
   "react-native": "src/index.ts",
