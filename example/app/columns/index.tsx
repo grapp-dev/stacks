@@ -1,4 +1,5 @@
 /* eslint-disable react-native/no-raw-text */
+import * as React from 'react';
 
 /* eslint-disable import/no-default-export */
 import { Column, Columns, Hidden, Stack } from '@grapp/stacks';

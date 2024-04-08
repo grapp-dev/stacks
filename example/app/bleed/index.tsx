@@ -1,6 +1,8 @@
 /* eslint-disable react-native/no-raw-text */
 
 /* eslint-disable import/no-default-export */
+import * as React from 'react';
+
 import { Bleed, Stack } from '@grapp/stacks';
 
 import { Placeholder } from '../components/Placeholder';
