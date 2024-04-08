@@ -3,11 +3,6 @@ import { UnistylesBreakpoints, UnistylesRuntime } from 'react-native-unistyles';
 
 import { Breakpoint, Direction, ResponsiveProp } from './types';
 
-type ResolveResponsiveProp = {
-  <T>(responsiveProp: ResponsiveProp<T>, breakpoint: Breakpoint): T;
-  <T>(responsiveProp: ResponsiveProp<T> | undefined, breakpoint: Breakpoint): T | undefined;
-};
-
 const randomInt = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min)) + min;
 };
@@ -50,10 +45,19 @@ export const normalizeResponsiveProp = <T>(responsiveProp: ResponsiveProp<T>): r
   return [];
 };
 
-export const resolveResponsiveProp: ResolveResponsiveProp = <T>(
+export function resolveResponsiveProp<T>(
+  responsiveProp: ResponsiveProp<T>,
+  breakpoint: Breakpoint,
+): T;
+export function resolveResponsiveProp<T>(
+  responsiveProp: ResponsiveProp<T> | undefined,
+  breakpoint: Breakpoint,
+): T | undefined;
+
+export function resolveResponsiveProp<T>(
   responsiveProp: ResponsiveProp<T> | undefined,
   currentBreakpoint: Breakpoint,
-) => {
+) {
   const breakpoints = getBreakpoints();
 
   if (responsiveProp !== undefined) {
@@ -80,7 +84,7 @@ export const resolveResponsiveProp: ResolveResponsiveProp = <T>(
   }
 
   return undefined;
-};
+}
 
 export const resolveDirectionAndReverse = (direction?: Direction, reversed?: boolean) => {
   switch (true) {

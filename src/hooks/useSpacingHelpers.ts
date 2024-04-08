@@ -27,7 +27,7 @@ export const useSpacingHelpers = () => {
   ) as SpacingHelper;
 
   const divide = React.useCallback(
-    (value: number | undefined) => {
+    value => {
       if (value) {
         return value / spacing;
       }
