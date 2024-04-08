@@ -51,7 +51,7 @@
     "@types/react": "~18.2.45",
     "react": "^18.2.0",
     "react-native": "0.73.6",
-    "react-native-unistyles": "^2.5.1",
+    "react-native-unistyles": "^2.5.5",
     "tsup": "^8.0.2",
     "typescript": "5.0.4"
   },
