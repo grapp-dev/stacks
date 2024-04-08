@@ -1,5 +1,13 @@
 # Changelog
 
+## v3.0.1 - 2024-04-08
+
+### What's Changed
+
+#### 🐛 Bug Fixes
+
+- fix: 🐛 Export all props of the components @mobily (#46)
+
 ## v3.0.0 - 2024-04-08
 
 ### What's Changed
