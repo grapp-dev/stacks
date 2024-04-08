@@ -41,3 +41,5 @@ export const Inline = (props: Props) => {
     </Box>
   );
 };
+
+Inline.displayName = 'Inline';

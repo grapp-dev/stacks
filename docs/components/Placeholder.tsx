@@ -33,3 +33,5 @@ export const Placeholder = (props: Props) => {
     </Box>
   );
 };
+
+Placeholder.displayName = 'Placeholder';

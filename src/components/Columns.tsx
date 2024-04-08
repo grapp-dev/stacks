@@ -290,3 +290,5 @@ export const Columns = (props: ColumnsProps) => {
     </Box>
   );
 };
+
+Columns.displayName = 'Columns';

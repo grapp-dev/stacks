@@ -19,4 +19,5 @@ const from = <T extends React.ComponentProps<typeof Column>>(Component: React.FC
 };
 
 Column.from = from;
+Column.displayName = 'Column';
 markAsColumn(Column);

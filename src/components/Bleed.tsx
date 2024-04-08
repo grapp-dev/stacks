@@ -50,3 +50,5 @@ export const Bleed = (props: Props) => {
     </Box>
   );
 };
+
+Bleed.displayName = 'Bleed';

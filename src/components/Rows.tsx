@@ -73,3 +73,5 @@ export const Rows = (props: RowsProps) => {
     </Box>
   );
 };
+
+Rows.displayName = 'Rows';

@@ -40,3 +40,5 @@ export const FloatBox = (props: Props) => {
     </Box>
   );
 };
+
+FloatBox.displayName = 'FloatBox';

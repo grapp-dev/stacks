@@ -49,3 +49,5 @@ export const Inset = (props: Props) => {
     </Box>
   );
 };
+
+Inset.displayName = 'Inset';

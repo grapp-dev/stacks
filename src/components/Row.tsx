@@ -17,5 +17,6 @@ const from = <T extends React.ComponentProps<typeof Row>>(Component: React.FC<T>
   return Component;
 };
 
-markAsRow(Row);
 Row.from = from;
+Row.displayName = 'Row';
+markAsRow(Row);

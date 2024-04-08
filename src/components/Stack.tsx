@@ -35,3 +35,5 @@ export const Stack = (props: Props) => {
     </Box>
   );
 };
+
+Stack.displayName = 'Stack';

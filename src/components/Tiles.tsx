@@ -50,3 +50,5 @@ export const Tiles = (props: Props) => {
     </Box>
   );
 };
+
+Tiles.displayName = 'Tiles';

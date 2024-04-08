@@ -85,6 +85,8 @@ export const Grid = (props: Props) => {
   );
 };
 
+Grid.displayName = 'Grid';
+
 const stylesheet = createStyleSheet({
   root: {
     pointerEvents: 'none',
