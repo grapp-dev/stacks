@@ -4,7 +4,9 @@
 
 > A set of components for building layouts in React Native. Powered by [React Native Unistyles](https://github.com/jpudysz/react-native-unistyles).
 
-`Stacks` follows a design principle that states components should not provide surrounding white space. Instead, layout components solely own the spacing between elements.
+`Stacks` primarily aims to simplify building and maintaining layouts, making it quick and easy. It follows a design principle that suggests components should not include any surrounding white space. Instead, layout components should solely own spacing between elements. 
+
+<img src="https://raw.githubusercontent.com/grapp-dev/stacks/main/assets/stacks-preview.png" alt="Stacks, a set of components for building layouts in React Native" align="right" width="100" height="100">
 
 ## Documentation
 
@@ -15,15 +17,15 @@ Full documentation can be found [here](https://stacks.grapp.dev).
 To install Stacks, you should use your preferred package manager.
 
 ```shell
-bun add @mobily/stacks
+bun add @grapp/stacks
 ```
 
 ```shell
-yarn add @mobily/stacks
+yarn add @grapp/stacks
 ```
 
 ```shell
-npm install @mobily/stacks --save
+npm install @grapp/stacks --save
 ```
 
 ## Discord
