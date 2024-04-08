@@ -8,7 +8,7 @@ import { makeWithIndex } from '../utils';
 import { Box } from './Box';
 import { FloatBox } from './FloatBox';
 
-type Props = {
+export type GridProps = {
   readonly gutter?: ResponsiveProp<number>;
   readonly margin?: ResponsiveProp<number>;
   readonly columns?: ResponsiveProp<number>;
@@ -35,7 +35,7 @@ const calculateGridWidth = (options: Options) => {
   return options.width * columns + gutterCount * options.gutter + options.margin * 2;
 };
 
-export const Grid = (props: Props) => {
+export const Grid = (props: GridProps) => {
   const { gutter = 2, margin = 2, opacity = 0.2, columns = 8, color = 'red' } = props;
 
   const { multiply } = useSpacingHelpers();

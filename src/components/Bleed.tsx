@@ -17,7 +17,7 @@ type BoxProps = Omit<
   | 'marginEnd'
 >;
 
-type Props = BoxProps & {
+export type BleedProps = BoxProps & {
   readonly space?: ResponsiveProp<number>;
   readonly horizontal?: ResponsiveProp<number>;
   readonly vertical?: ResponsiveProp<number>;
@@ -29,7 +29,7 @@ type Props = BoxProps & {
   readonly end?: ResponsiveProp<number>;
 };
 
-export const Bleed = (props: Props) => {
+export const Bleed = (props: BleedProps) => {
   const { children, space, horizontal, vertical, start, end, top, right, bottom, left, ...rest } =
     props;
 

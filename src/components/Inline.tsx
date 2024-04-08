@@ -9,7 +9,7 @@ type BoxProps = Omit<
   'gap' | 'rowGap' | 'columnGap' | 'alignX' | 'alignY' | 'direction' | 'wrap'
 >;
 
-type Props = BoxProps & {
+export type InlineProps = BoxProps & {
   readonly space?: ResponsiveProp<number>;
   readonly spaceX?: ResponsiveProp<number>;
   readonly spaceY?: ResponsiveProp<number>;
@@ -18,7 +18,7 @@ type Props = BoxProps & {
   readonly collapseBelow?: Breakpoint;
 };
 
-export const Inline = (props: Props) => {
+export const Inline = (props: InlineProps) => {
   const { space, children, spaceX, spaceY, alignX, alignY, collapseBelow, ...rest } = props;
   const breakpoint = useBreakpointComparators();
 

@@ -10,7 +10,7 @@ type BoxProps = Omit<
   'gap' | 'rowGap' | 'columnGap' | 'direction' | 'alignX' | 'alignY'
 >;
 
-type Props = BoxProps & {
+export type TilesProps = BoxProps & {
   readonly columns?: ResponsiveProp<number>;
   readonly space?: ResponsiveProp<number>;
   readonly spaceX?: ResponsiveProp<number>;
@@ -19,7 +19,7 @@ type Props = BoxProps & {
   readonly alignY?: ResponsiveProp<AxisY | Space>;
 };
 
-export const Tiles = (props: Props) => {
+export const Tiles = (props: TilesProps) => {
   const { children, columns = 1, space, spaceX, spaceY, fill = false, reverse, ...rest } = props;
 
   const resolveResponsiveProp = useResponsiveProp();
