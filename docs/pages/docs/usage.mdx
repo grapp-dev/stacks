@@ -1,0 +1,55 @@
+## Usage
+
+#### Spacings
+
+To use `Stacks`, you must first define a default spacing value in the Unistyles theme object. This is explained in detail in the [`Getting Started`](/docs/getting-started) page.
+
+The spacing value is measured in logical pixels, the same unit you are already familiar with for `margin` or `padding`. `Stacks` automatically multiplies the default spacing value by the space passed to the components.
+
+```tsx
+const theme = {
+  stacks: {
+    spacing: 4,
+  },
+};
+
+<Stack space={2}>…</Stack> // 4 * 2 = 8 logical pixels
+<Box padding={3}>…</Box> // 4 * 3 = 12 logical pixels
+```
+
+#### Responsive Props
+
+`Stacks` also supports the responsive props format. You can use responsive props to customize the spacing, number of columns, or alignments per screen size.
+
+Let's say you have a configuration for breakpoints that defines the different screen sizes. This configuration could look like this:
+
+```tsx
+const breakpoints = {
+  mobile: 0,
+  tablet: 768,
+  desktop: 998,
+} as const;
+```
+
+In Stacks, the responsive prop can be used to set values for different screen sizes. This prop can take either a primitive value or a responsive prop format.
+
+When you pass a primitive value, it applies to all the breakpoints in your configuration.
+
+```tsx
+<Stack space={2}>…</Stack>
+```
+
+On the other hand, a responsive prop is an array of values where you can specify different values to apply to different breakpoints. The first value in the array is applied to the `mobile` breakpoint, the second to the `tablet` breakpoint, and the third to the `desktop` breakpoint.
+
+For example:
+
+```tsx
+<Stack space={[1]}>…</Stack>
+<Stack space={[1, 4]}>…</Stack>
+<Stack space={[1, 4, 8]}>…</Stack>
+```
+
+- if you pass `[1]`, the same value `1` will be used across all breakpoints.
+- if you pass `[1, 4]`, the value `1` will apply to the `mobile` breakpoint, and `4` will apply to the `tablet` and `desktop` breakpoints.
+- if you pass `[1, 4, 8]`, the value `1` will apply to the `mobile` breakpoint, `4` to the `tablet` breakpoint, and `8` to the `desktop` breakpoint.
+

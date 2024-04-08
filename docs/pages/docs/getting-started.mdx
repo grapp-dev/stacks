@@ -1,0 +1,53 @@
+import { Tabs } from 'nextra/components'
+
+## Getting Started
+
+#### Installation
+
+To install `Stacks`, you should use your preferred package manager.
+
+<Tabs items={['bun', 'pnpm', 'yarn', 'npm']}>
+<Tabs.Tab>
+```shell
+bun add @grapp/stacks
+```
+</Tabs.Tab>
+<Tabs.Tab>
+```shell
+pnpm add @grapp/stacks
+```
+</Tabs.Tab>
+<Tabs.Tab>
+```shell
+yarn add @grapp/stacks
+```
+</Tabs.Tab>
+<Tabs.Tab>
+```shell
+npm install @grapp/stacks --save
+```
+</Tabs.Tab>
+</Tabs>
+
+
+#### Unistyles
+
+Once you have installed the library, check out the Unistyles setup guide at this [link](https://www.unistyl.es/start/setup/). This guide provides a step-by-step process for configuring Unistyles in your app. You can skip this step if you have installed and configured Unistyles properly.
+
+#### Stacks
+
+Adding `Stacks` support to the existing `Unistyles` configuration is a simple process. To do this, you need to add the following properties to your theme:
+
+```tsx
+const theme = {
+  ...
+  stacks: {
+    spacing: 4,
+    debug: false,
+  },
+};
+```
+
+#### Explore
+
+You can now explore the various components and become familiar with their properties by visiting the [`Components`](/docs/components) page.

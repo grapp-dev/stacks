@@ -1,0 +1,55 @@
+import { Homepage, Hero, Features, Feature } from '@grapp/nextra-theme';
+import { Components } from '../components/Components'
+
+<Homepage 
+  preview="/stacks-preview.png"
+  hero={
+    <Hero 
+      headline={
+        <>
+          A set of components
+          <br className="hidden sm:block" />
+          for building layouts in React Native.
+        </>
+      }
+      subtitle={
+        <>
+          Create and manage React Native layouts effortlessly.<br className="hidden sm:block" />
+          Powered by{' '}
+          <a
+            href="https://github.com/jpudysz/react-native-unistyles"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nx-text-primary-600 nx-underline nx-decoration-from-font [text-underline-position:from-font]"
+          >
+             React Native Unistyles
+          </a>
+        </>
+      }
+    />
+  }
+>
+ <Features>
+    <Feature
+      title="Compatibility"
+      description="Stacks is compatible with the most popular platforms, including web, mobile, and desktop applications (thanks to Unistyles 🦄)."
+    />
+    <Feature
+      title="Design Flexibility"
+      description="Stacks allows you to think like a designer and easily create layouts. You can eliminate margins and distribute your content evenly with the provided components."
+    />
+    <Feature
+      title="Debug Mode"
+      description="Stacks comes with a debug mode that lets you quickly investigate visual issues. You can easily switch to debug mode and identify UI issues."
+    />
+    <Feature
+      title="Design Grid"
+      description="Stacks also has a design grid component that helps you align and organize your content."
+    />
+    <Feature
+      title="Responsive Props"
+      description="Stacks supports the responsive prop format. You can use responsive props to customize the spacing, number of columns, or alignments per screen size."
+    />
+  </Features>
+</Homepage>
+

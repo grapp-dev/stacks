@@ -1,0 +1,69 @@
+import { Property } from '@grapp/nextra-theme'
+import { Callout } from "nextra/components";
+
+import { Example, getExamples } from '../../../components/Example'
+
+export const getStaticProps = () => {
+  return getExamples(['inline/space', 'inline/align-y', 'inline/align-x']);
+}
+
+## Inline
+
+The `Inline` component arranges its children horizontally, allowing you to display multiple items side by side. If the children exceed the available space, the component wraps them to the next line, with equal spacing between children.
+
+<Example title="Space" example="inline/space" />
+
+The `alignX` prop can be used to align children horizontally.
+
+<Example title="AlignX" example="inline/align-x" expandable={false} />
+
+The `alignY` prop enables you to vertically align children of varying heights vertically, ensuring they are all at the same level.
+
+<Example title="AlignY" example="inline/align-y" expandable={false} />
+
+The `collapseBelow` prop allows you to collapse all items into a single vertical stack, ensuring that your content remains accessible, even on smaller screens.
+
+### Props
+
+The `Inline` component is created using the [`Box`](/docs/components/box) component. It extends all the props* supported by `Box`, as well as [React Native View](https://reactnative.dev/docs/view#props), and the props mentioned below.
+
+<Callout type="info" emoji="*">
+  Unavailable `Box` props:: `gap`, `rowGap`, `columnGap`, `direction`, `wrap`
+</Callout>
+
+#### space
+
+<Property types={['ResponsiveProp<number>']}>
+  Sets the space between children.
+</Property>
+
+#### spaceX 🚀
+
+<Property types={['ResponsiveProp<number>']}>
+  Sets the horizontal space between children.
+</Property>
+
+#### spaceY
+
+<Property types={['ResponsiveProp<number>']}>
+  Sets the vertical space between children.
+</Property>
+
+#### alignX
+
+<Property types={["ResponsiveProp<AxisX | Space>"]}>
+  Aligns children horizontally.
+</Property>
+
+#### alignY
+
+<Property types={["ResponsiveProp<AxisY>"]}>
+  Aligns children vertically.
+</Property>
+
+#### collapseBelow
+
+<Property types={['Breakpoint']}>
+  Stacks children vertically when the current breakpoint is smaller than the provided breakpoint.
+</Property>
+

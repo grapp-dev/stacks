@@ -1,0 +1,37 @@
+import { Property } from '@grapp/nextra-theme'
+import { Callout } from "nextra/components"
+
+## Hidden
+
+The `Hidden` component allows you to hide content responsively. This can be achieved by using the `above` and `below` props, which let you specify a breakpoint name.
+
+---
+
+<Callout type="warning" emoji="⚠️">
+  To use `Hidden` you must add the Babel plugin to your config.
+</Callout>
+
+```js
+module.exports = {
+  plugins: [
+    ...
+    '@grapp/stacks/plugin',
+  ],
+};
+```
+
+---
+
+### Props
+
+#### above 
+
+<Property types={["Breakpoint"]}>
+  Hides the content if the current breakpoint is larger than the provided breakpoint.
+</Property>
+
+#### below 
+
+<Property types={["Breakpoint"]}>
+  Hides the content if the current breakpoint is smaller than the provided breakpoint.
+</Property>

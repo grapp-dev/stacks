@@ -1,0 +1,26 @@
+## Types
+
+```ts
+type Breakpoint = keyof UnistylesBreakpoints;
+type AxisX = 'left' | 'center' | 'right';
+type AxisY = 'top' | 'center' | 'bottom';
+type Stretch = 'stretch';
+type Space = 'between' | 'around' | 'evenly';
+type Direction = 'row' | 'row-reverse' | 'column' | 'column-reverse';
+type Wrap = 'wrap' | 'no-wrap' | 'wrap-reverse';
+
+type Flex =
+  | 'content'
+  | 'fluid'
+  | '1/2'
+  | '1/3'
+  | '2/3'
+  | '1/4'
+  | '3/4'
+  | '1/5'
+  | '2/5'
+  | '3/5'
+  | '4/5';
+
+type ResponsiveProp<T> = T | readonly T[];
+```

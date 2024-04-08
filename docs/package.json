@@ -1,0 +1,32 @@
+{
+  "name": "@grapp/stacks-docs",
+  "module": "index.ts",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "devDependencies": {
+    "@grapp/eslint-config": "^0.1.1",
+    "@grapp/prettier-config": "^0.1.0",
+    "@grapp/ts-config": "^0.1.2",
+    "@types/react": "^18.2.65",
+    "@types/react-dom": "^18.2.21",
+    "babel-plugin-module-resolver": "^5.0.0",
+    "bun-types": "latest",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "raw-loader": "^4.0.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@grapp/nextra-theme": "^0.3.8",
+    "@grapp/stacks": "link:@grapp/stacks",
+    "react-element-to-jsx-string": "^15.0.0",
+    "react-native-web": "^0.19.10"
+  }
+}

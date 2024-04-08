@@ -1,0 +1,128 @@
+.root {
+  display: flex;
+  flex-direction: row;
+}
+
+.title {
+  margin-bottom: 16px;
+}
+
+.iphone {
+	display: block;
+	color: #fff;
+	text-align: center;
+	background-color: #fff;
+	border: solid #111;
+	margin-bottom: 2em;
+	position: relative;
+	box-shadow: 0 0.5em 2em 0.2em rgba(0, 0, 0, 0.33), 0 0 0 0.5px #000 inset;
+  width: 380px;
+	height: 818px;
+	border-width: 24px;
+	border-radius: 56px;
+}
+
+.iphoneX {
+  position: relative;
+  margin: 40px 0;
+  width: 360px;
+  height: 780px;
+  background-color: #fff;
+  border-radius: 40px;
+  box-shadow: 0px 0px 0px 11px #1f1f1f, 0px 0px 0px 13px #191919, 0px 0px 0px 20px #111;
+  display: flex;
+  flex-direction: row;
+}
+
+:is(html[class~=dark]) {
+  .iphoneX {
+    background-color: #232731;
+  }
+}
+
+.iphoneX:before, .iphoneX:after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.iphoneX:after {
+  bottom: 7px;
+  width: 140px;
+  height: 4px;
+  background-color: #111;
+  border-radius: 10px;
+}
+
+.iphoneX:before {
+  top: 0px;
+  width: 56%;
+  height: 30px;
+  background-color: #1f1f1f;
+  border-radius: 0px 0px 40px 40px;
+}
+
+.iphoneX .speaker,
+.iphoneX .camera,
+.iphoneX .action-button {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  color: transparent;
+}
+
+.iphoneX .speaker {
+  top: 0px;
+  left: 50%;
+  transform: translate(-50%, 6px);
+  height: 8px;
+  width: 15%;
+  background-color: #101010;
+  border-radius: 8px;
+  box-shadow: inset 0px -3px 3px 0px rgba(255, 255, 255, 0.2);
+}
+
+.iphoneX .camera {
+  left: 10%;
+  top: 0px;
+  transform: translate(180px, 4px);
+  width: 12px;
+  height: 12px;
+  background-color: #101010;
+  border-radius: 12px;
+  box-shadow: inset 0px -3px 2px 0px rgba(255, 255, 255, 0.2);
+}
+
+.iphoneX .camera:after {
+  content: "";
+  position: absolute;
+  background-color: #2d4d76;
+  width: 6px;
+  height: 6px;
+  top: 2px;
+  left: 2px;
+  top: 3px;
+  left: 3px;
+  display: block;
+  border-radius: 4px;
+  box-shadow: inset 0px -2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.iphoneX .screen {
+  padding: 30px 1px 24px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border-radius: 38px;
+  overflow: hidden;
+}
+
+.iphoneX .content {
+  padding: 16px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}

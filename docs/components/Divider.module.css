@@ -1,0 +1,10 @@
+.root {
+  background-color: rgba(11, 15, 26, 0.14);
+  height: 1px;
+}
+
+:is(html[class~=dark]) {
+  .root {
+    background-color: rgba(255, 137, 175, 0.3);
+  }
+}

@@ -1,0 +1,78 @@
+import { Property } from '@grapp/nextra-theme'
+import { Callout } from "nextra/components";
+
+import { Example, getExamples } from '../../../components/Example'
+
+export const getStaticProps = () => {
+  return getExamples(['bleed/bleed']);
+}
+
+## Bleed
+
+The `Bleed` component is specifically designed to create a container with negative margins so that its content appears to extend beyond the container's boundaries. This is particularly useful when you want to visually break out of a parent container without having to refactor the entire component tree.
+
+<Example title="Example" example="bleed/bleed" />
+
+This component works in contrast to the [`Inset`](/docs/components/inset) component, which creates a padded container. While `Inset` creates a container that keeps its content within its boundaries, this component creates a container that allows its content to "bleed" into the surrounding layout.
+
+### Props
+
+The `Bleed` component is created using the [`Box`](/docs/components/box) component. It extends all the props* supported by `Box`, as well as [React Native View](https://reactnative.dev/docs/view#props), and the props mentioned below.
+
+<Callout type="info" emoji="*">
+  Unavailable `Box` props: `margin`, `marginX`, `marginY`, `marginTop`, `marginRight`, `marginBottom`, `marginLeft`, `marginStart`, `marginEnd`
+</Callout>
+
+#### space
+
+<Property types={["ResponsiveProp<number>"]}>
+  Applies a negative margin to each side.
+</Property>
+
+#### horizontal
+
+<Property types={["ResponsiveProp<number>"]}>
+  Applies a negative margin horizontally.
+</Property>
+
+#### vertical
+
+<Property types={["ResponsiveProp<number>"]}>
+  Applies a negative margin vertically.
+</Property>
+
+#### top
+
+<Property types={["ResponsiveProp<number>"]}>
+  Applies a negative margin to the top.
+</Property>
+
+#### right
+
+<Property types={["ResponsiveProp<number>"]}>
+  Applies a negative margin to the right.
+</Property>
+
+#### bottom
+
+<Property types={["ResponsiveProp<number>"]}>
+  Applies a negative margin to the bottom.
+</Property>
+
+#### left
+
+<Property types={["ResponsiveProp<number>"]}>
+  Applies a negative margin to the left.
+</Property>
+
+#### start
+
+<Property types={["ResponsiveProp<number>"]}>
+  Applies a negative margin to the left for the `ltr` direction, otherwise to the right.
+</Property>
+
+#### end
+
+<Property types={["ResponsiveProp<number>"]}>
+  Applies a negative margin to the right for the `ltr` direction, otherwise to the left.
+</Property>

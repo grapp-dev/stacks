@@ -1,0 +1,76 @@
+import { Property } from '@grapp/nextra-theme'
+import { Callout } from "nextra/components";
+
+import { Example, getExamples } from '../../../components/Example'
+
+export const getStaticProps = () => {
+  return getExamples(['inset/inset']);
+}
+
+## Inset
+
+The `Inset` component is a component that creates a container with additional space around its content. This extra space, also known as padding, can be customized via props.
+
+<Example title="Example" example="inset/inset" />
+
+### Props
+
+The `Inset` component is created using the [`Box`](/docs/components/box) component. It extends all the props* supported by `Box`, as well as [React Native View](https://reactnative.dev/docs/view#props), and the props mentioned below.
+
+<Callout type="info" emoji="*">
+  Unavailable `Box` props: `padding`, `paddingX`, `paddingY`, `paddingTop`, `paddingRight`, `paddingBottom`, `paddingLeft`, `paddingStart`, `paddingEnd`
+</Callout>
+
+#### space
+
+<Property types={["ResponsiveProp<number>"]}>
+  Add padding to all sides.
+</Property>
+
+#### horizontal
+
+<Property types={["ResponsiveProp<number>"]}>
+  Adds padding horizontally.
+</Property>
+
+#### vertical
+
+<Property types={["ResponsiveProp<number>"]}>
+  Adds padding vertically.
+</Property>
+
+#### top
+
+<Property types={["ResponsiveProp<number>"]}>
+  Adds padding to the top.
+</Property>
+
+#### right
+
+<Property types={["ResponsiveProp<number>"]}>
+  Adds padding to the right.
+</Property>
+
+#### bottom
+
+<Property types={["ResponsiveProp<number>"]}>
+  Adds padding to the bottom.
+</Property>
+
+#### left
+
+<Property types={["ResponsiveProp<number>"]}>
+  Adds padding to the left.
+</Property>
+
+#### start
+
+<Property types={["ResponsiveProp<number>"]}>
+  Adds padding to the left for the `ltr` direction, otherwise to the right.
+</Property>
+
+#### end
+
+<Property types={["ResponsiveProp<number>"]}>
+  Adds padding to the right for the `ltr` direction, otherwise to the left.
+</Property>

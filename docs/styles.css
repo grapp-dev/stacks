@@ -1,0 +1,23 @@
+@import "@grapp/nextra-theme/lib/global.css";
+@import "@grapp/nextra-theme/lib/index.css";
+
+.nextra-code-block pre {
+  font-size: 16px;
+  --tw-bg-opacity: 0.03;
+  background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
+}
+
+:root {
+  --grapp-home-preview-max-width: 1200px;
+}
+
+html {
+ &.dark {
+    --shiki-token-constant: #1BCABE;
+    --shiki-token-string-expression: #faf39c;
+    --grapp-property-type-color: #ff89af;
+    --grapp-property-default-value-color: var(--shiki-token-string-expression);
+    --grapp-hero-button-background-color: #232731;
+  }
+}
+

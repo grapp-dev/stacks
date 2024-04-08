@@ -1,0 +1,21 @@
+{
+  "index": {
+    "type": "page",
+    "title": "Stacks",
+    "display": "hidden",
+    "theme": {
+      "layout": "raw"
+    }
+  },
+  "docs": {
+    "type": "page",
+    "title": "Documentation"
+  },
+  "about": {
+    "type": "page",
+    "title": "About Grapp.Dev",
+    "theme": {
+      "typesetting": "article"
+    }
+  }
+}

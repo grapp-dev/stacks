@@ -1,0 +1,69 @@
+import { Property } from '@grapp/nextra-theme'
+import { Callout } from "nextra/components";
+
+import { Example, getExamples } from '../../../components/Example'
+
+export const getStaticProps = () => {
+  return getExamples(['rows/rows', 'rows/align-x', 'rows/align-y', 'rows/flex']);
+}
+
+## Rows
+
+The `Rows` component is designed to organize its children in rows with consistent vertical spacing. It is particularly useful in building the generic `Screen` component.
+
+<Example title="Screen Concept" example="rows/rows" expandable={false} />
+
+If you have rows with varying heights, you can use the `alignY` prop to align them vertically. 
+
+<Example title="AlignY" example="rows/align-y" expandable={false} />
+
+The `alignX` prop can also help horizontally align the rows when their total width is less than that of the parent container.
+
+<Example title="AlignX" example="rows/align-x" expandable={false} />
+
+To set the flex value of a row, you can place `Row` directly inside `Rows` and set a flex property. To define a default flex for all rows, use the `defaultFlex` property on `Rows`.
+
+<Example title="Flex" example="rows/flex" expandable={false} />
+
+### Custom Row component
+
+To include a custom component within `Rows`, you should utilize the `Row.from` method. This method enables you to create a new `Row` instance from a custom component and use it in your `Rows` layout. Following this approach, you can ensure your custom component is correctly integrated and behaves as expected.
+
+```tsx
+const Content = Row.from<Props>(props => {
+  return <Box {...props} />;
+});
+```
+
+### Props
+
+The `Rows` component is created using the [`Box`](/docs/components/box) component. It extends all the props* supported by `Box`, as well as [React Native View](https://reactnative.dev/docs/view#props), and the props mentioned below.
+
+<Callout type="info" emoji="*">
+  Unavailable `Box` props: `direction`, `gap`, `rowGap`, `columnGap` 
+</Callout>
+
+#### defaultFlex
+
+<Property types={["ResponsiveProp<Flex>"]} defaultValue="fluid">
+  Assigns a default flex value to each column.
+</Property>
+
+#### space
+
+<Property types={['ResponsiveProp<number>']}>
+  Sets the space between children.
+</Property>
+
+#### alignX
+
+<Property types={["ResponsiveProp<AxisX | Space>"]}>
+  Aligns children horizontally.
+</Property>
+
+#### alignY
+
+<Property types={["ResponsiveProp<AxisY>"]}>
+  Aligns children vertically.
+</Property>
+

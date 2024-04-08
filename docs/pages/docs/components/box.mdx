@@ -1,0 +1,294 @@
+import { Property } from '@grapp/nextra-theme'
+
+import { Example, getExamples } from '../../../components/Example'
+
+export const getStaticProps = () => {
+  return getExamples(['box/flex', 'box/size', 'box/align-x', 'box/align-y', 'box/gap', 'box/padding', 'box/margin']);
+}
+
+## Box
+
+The `Box` component in the `Stacks` library is a fundamental layout element that renders a single [`View`](https://reactnative.dev/docs/view) element. It offers a wide range of props, such as standard padding and margin scales, alignments, and other commonly used layout properties, to facilitate easy layout creation.
+
+The `flex` prop determines how children fill space along the main axis. You can assign fractional flex values up to `1/5` to `Box` for more precise layout control.
+
+<Example title="Flex" example="box/flex" />
+
+If you find that using the `flex` prop doesn't produce the desired layout, you can always specify the `width` and `height` attributes to set a fixed size. 
+
+<Example title="Size" example="box/size" />
+
+If you need to adjust the horizontal alignment of children in a container, you can use the `alignX` prop. This prop allows you to control the positioning of the children along the X-axis.
+
+<Example title="AlignX" example="box/align-x" />
+
+To control the vertical alignment of the children in a container, you can use the `alignY` prop. This property enables you to adjust the positioning of the children along the Y-axis.
+
+<Example title="AlignY" example="box/align-y" />
+
+You can set the gap size (gutter) between rows and columns using the `gap` prop. This property is a shorthand for `rowGap` and `columnGap`, which can also be set individually to achieve the desired spacing.
+
+<Example title="Gap" example="box/gap" />
+
+You can use the `padding` prop to create space between the content and the boundaries. Padding can be applied in all directions.
+
+<Example title="Padding" example="box/padding" />
+
+The `margin` prop allows you to add space between an element and its surrounding elements. As with `padding`, the `margin` can be applied in all directions.
+
+<Example title="Margin" example="box/margin" />
+
+Use the `as` prop to render another element, such as `Animated.View` (from `Reanimated`) instead of `View` when composing `Box`.
+
+```tsx
+import Animated from 'react-native-reanimated'
+
+const progress = useSharedValue(0);
+
+const animatedStyle = useAnimatedStyle(() => {
+  return {
+    opacity: withTiming(progress.value),
+  }
+});
+
+<Box as={Animated.View} style={animatedStyle} />
+```
+
+### Props
+
+The `Box` component is created using the [React Native View](https://reactnative.dev/docs/view#props) component. It extends all the props supported by `View`, and the props mentioned below.
+
+#### flex
+
+<Property types={["ResponsiveProp<Flex>"]}>
+  Fills over the available space along the main axis defined by the `direction` prop. It supports fractional values down to `1/5`.
+</Property>
+
+#### width
+
+<Property types={["ResponsiveProp<DimensionValue>"]}>
+  Specifies the component width.
+</Property>
+
+#### height
+
+<Property types={["ResponsiveProp<DimensionValue>"]}>
+  Specifies the component height.
+</Property>
+
+#### as
+
+<Property types={["React.ReactElement"]}>
+  Renders another element instead of `View` when composing `Box`.
+</Property>
+
+#### alignX
+
+<Property types={["ResponsiveProp<AxisX | AxisY | Space | Stretch>"]}>
+  Aligns children horizontally or vertically, depending on the value of the `direction` prop.
+</Property>
+
+#### alignY
+
+<Property types={["ResponsiveProp<AxisX | AxisY | Space | Stretch>"]}>
+  Aligns children horizontally or vertically, depending on the value of the `direction` prop.
+</Property>
+
+#### gap
+
+<Property types={["ResponsiveProp<number>"]}>
+  Sets the size of the gap between rows and columns.
+</Property>
+
+#### rowGap
+
+<Property types={["ResponsiveProp<number>"]}>
+  Sets the size of the gap between rows.
+</Property>
+
+#### columnGap
+
+<Property types={["ResponsiveProp<number>"]}>
+  Sets the size of the gap between columns.
+</Property>
+
+#### direction
+
+<Property types={["ResponsiveProp<Direction>"]}>
+  Sets the direction in which the children are laid out.
+</Property>
+
+#### wrap
+
+<Property types={["ResponsiveProp<Wrap>"]}>
+  Determines whether children should be wrapped when they overflow the size of the container along the main axis.
+</Property>
+
+#### reverse
+
+<Property types={["ResponsiveProp<boolean>"]}>
+  Sets the reversed order for children.
+</Property>
+
+#### padding
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### paddingX
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### paddingY
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### paddingTop
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### paddingRight
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### paddingBottom
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### paddingLeft
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### paddingStart
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### paddingEnd
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### margin
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### marginX
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### marginY
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### marginTop
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### marginRight
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### marginBottom
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### marginLeft
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### marginStart
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### marginEnd
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### backgroundColor
+
+<Property types={["ResponsiveProp<string>"]}>
+
+</Property>
+
+#### borderRadius
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### borderTopLeftRadius
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### borderTopRightRadius
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### borderBottomRightRadius
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### borderBottomLeftRadius
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### borderWidth
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### borderColor
+
+<Property types={["ResponsiveProp<number>"]}>
+
+</Property>
+
+#### debuggable
+
+<Property types={["ResponsiveProp<boolean>"]}>
+  Defines whether to display a custom background color if the `debug` mode is enabled.
+</Property>
+

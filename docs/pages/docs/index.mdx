@@ -1,0 +1,28 @@
+import { Cards, Card } from 'nextra/components';
+import { Components } from '../../components/Components'
+
+## Stacks
+
+Stacks is a set of various components for building layouts in React Native.
+
+The `Stacks` library follows a design principle that states components should not provide surrounding white space. Instead, layout components solely own the spacing between elements. This approach ensures that the system is highly composable while maintaining predictable white space.
+
+All components can be nested infinitely within each other, creating various standard layouts in React Native. To work efficiently with `Stacks`, understanding the following components is necessary.
+
+---
+
+<Components />
+
+---
+
+The main objective of the `Stacks` library is to make building and maintaining layouts quick and easy. Whenever possible, component APIs should resemble how a designer would describe them.
+
+## Unistyles
+
+To streamline the development process of `Stacks`, I have decided to add [Unistyles](https://github.com/jpudysz/react-native-unistyles/tree/main) as a dependency. Unistyles is a style library for React Native that has several benefits. First, it has a simple setup process, making it easy to use. Second, the library is actively developing, and the core maintainer ([@jacekp](https://twitter.com/jpudysz)) continuously improves and expands its capabilities. Any issues or bugs are quickly addressed and fixed.
+
+Another significant advantage of using Unistyles is that it provides everything you need to work with styles in React Native. It supports media queries, which enables the creation of responsive designs that adapt to different screen sizes. It also supports defined breakpoints, allowing you to set specific styles for various screen sizes. It also supports variants, which makes it easy to create different versions of a component based on certain conditions.
+
+Unistyles also provides excellent performance, which is crucial for any mobile app. The library is optimized for speed. Moreover, it's compatible with React Native Web, so you can write code once and use it on mobile and web platforms.
+
+Unistyles is an excellent choice for simplifying the styling process in React Native projects. Its simple setup, comprehensive features, and excellent performance make it a reliable and efficient style library.

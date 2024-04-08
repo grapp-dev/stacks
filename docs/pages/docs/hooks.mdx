@@ -1,0 +1,130 @@
+## Hooks
+
+#### useResponsiveProp
+
+This hook returns a function that can be used to resolve responsive props in components. It accepts the responsive props format as an argument.
+
+```ts
+function useResponsiveProp<T>(value: ResponsiveProp<T>): T;
+```
+
+```tsx
+type Props = {
+  size: ResponsiveProp<number>;
+};
+
+const Avatar = (props: Props) => {
+  const resolveResponsiveProp = useResponsiveProp();
+  const size = resolveResponsiveProp(props.size);
+
+  return (
+    <Image width={size} height={size} />
+  );
+};
+
+<Avatar size={[48, 64, 96]} />
+```
+
+#### useSpacingHelpers
+
+This hook returns two helper functions - `multiply` and `divide`. These functions allow you to adjust the spacing between elements in your components by multiplying or dividing a value by the spacing value set in the Unistyles theme object.
+
+```ts
+type SpacingHelper = {
+  (value: number): number;
+  (value: number | undefined): number | undefined;
+};
+
+type SpacingHelpers = {
+  multiply: SpacingHelper;
+  divide: SpacingHelper;
+};
+
+function useSpacingHelpers(): SpacingHelpers;
+```
+
+```tsx
+type Props = React.PropsWitchChildren<{
+  value: number;
+}>;
+
+const Padding = (props: Props) => {
+  const { value, children } = props
+  const { multiply } = useSpacingHelpers()
+
+  return (
+    <View style={{ padding: multiply(value) }}>
+      {children}
+    </View>
+  );
+};
+
+<Padding value={2}>
+  <Text>Hello!</Text>
+</Padding>
+```
+
+#### useBreakpointComparators
+
+This hook returns two functions - `isAbove` and `isBelow`. These functions can compare the current breakpoint with the provided breakpoint, which can be helpful when adjusting component styling based on screen size.
+
+```ts
+type BreakpointComparator = (breakpoint?: Breakpoint) => boolean;
+
+type BreakpointComparators = {
+  isBelow: BreakpointComparator;
+  isAbove: BreakpointComparator;
+};
+
+function useBreakpointComparators(): BreakpointComparators;
+```
+
+```tsx
+type Props = React.PropsWitchChildren<{
+  below: Breakpoint;
+}>;
+
+const Collapse = (props: Props) => {
+  const { below, children } = props;
+  const { isBelow } = useBreakpointComparators();
+
+  const isCollapsed = breakpoint.isBelow(below);
+  const direction = isCollapsed ? 'column' : 'row';
+
+  return (
+    <Box direction={direction}>
+      {children}
+    </Box>
+  );
+};
+
+<Collapse below="tablet">
+  {elements}
+</Collaps>
+```
+
+#### useDebugStyle
+
+This hook generates a style object with a random `backgroundColor` value. It can be useful for quickly identifying specific components in your application when the debug mode is enabled.
+
+```ts
+function useDebugStyle(): ViewStyle | undefined;
+```
+
+```tsx
+const Debug = (props: React.PropsWitchChildren) => {
+  const { children } = props;
+  const debugStyle = useDebugStyle();
+
+  return (
+    <View style={debugStyle}>
+      {children}
+    </View>
+  );
+};
+
+<Debug>
+  <Text>Debug</Text>
+</Debug>
+```
+

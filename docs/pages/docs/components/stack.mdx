@@ -1,0 +1,59 @@
+import { Property } from '@grapp/nextra-theme'
+import { Callout } from "nextra/components";
+
+import { Example, getExamples } from '../../../components/Example'
+
+export const getStaticProps = () => {
+  return getExamples(['stack/space', 'stack/align', 'stack/horizontal', 'stack/divider']);
+}
+
+## Stack
+
+`Stack` is a layout component that helps in positioning child elements vertically with equal spacing between them. 
+
+<Example title="Space" example="stack/space" expandable={false} />
+
+The component also supports horizontal alignment, which allows you to align children left, right, or center within the stack. 
+
+<Example title="Align" example="stack/align" expandable={false} />
+
+`Stack` allows you to arrange children in a horizontal layout by using the `horizontal` property.
+
+<Example title="Horizontal" example="stack/horizontal" expandable={false} />
+
+Additionally, you can insert a custom divider between all stack children by setting the `divider` prop on `Stack`. This is useful when you want to separate child elements with a visible line or space.
+
+<Example title="Divider" example="stack/divider" expandable={false} />
+
+### Props
+
+The `Stack` component is created using the [`Box`](/docs/components/box) component. It extends all the props* supported by `Box`, as well as [React Native View](https://reactnative.dev/docs/view#props), and the props mentioned below.
+
+<Callout type="info" emoji="*">
+  Unavailable `Box` props: `direction`, `alignX`, `alignY`, `rowGap`, `columnGap`
+</Callout>
+
+#### space
+
+<Property types={['ResponsiveProp<number>']}>
+  Set the space between children.
+</Property>
+
+#### horizontal
+
+<Property types={["ResponsiveProp<boolean>"]}>
+  Arranges children horizontally.
+</Property>
+
+#### align
+
+<Property types={["ResponsiveProp<AxisX | AxisY>"]}>
+  Aligns children horizontally or vertically, depending on the value of the `horizontal` prop.
+</Property>
+
+#### divider
+
+<Property types={['React.ReactElement']}>
+  Inserts a custom divider between each child.
+</Property>
+

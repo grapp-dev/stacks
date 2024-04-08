@@ -1,0 +1,47 @@
+import { Property } from '@grapp/nextra-theme'
+import { Callout } from "nextra/components";
+
+import { Example, getExamples } from '../../../components/Example'
+
+export const getStaticProps = () => {
+  return getExamples(['grid/grid']);
+}
+
+## Grid
+
+The `Grid` component renders a design system grid in your React Native application. It's worth noting that you should only utilize this component once and at the highest level of your component tree. This will ensure that the grid is applied consistently throughout your application.
+
+<Example title="Grid" example="grid/grid" backgroundColor="" expandable={false} />
+
+### Props
+
+#### gutter
+
+<Property types={["ResponsiveProp<number>"]} defaultValue="2">
+  Set the space between columns.
+</Property>
+
+#### margin
+
+<Property types={["ResponsiveProp<number>"]} defaultValue="2">
+  Specifies the amount of space on both the left and right sides.
+</Property>
+
+#### columns
+
+<Property types={["ResponsiveProp<number>"]} defaultValue="8">
+  Sets the number of columns.
+</Property>
+
+#### opacity
+
+<Property types={["ResponsiveProp<number>"]} defaultValue="0.2">
+  Adjusts the transparency level for each column.
+</Property>
+
+#### color
+
+<Property types={["ResponsiveProp<string>"]} defaultValue="red">
+  Sets the color of each column.
+</Property>
+

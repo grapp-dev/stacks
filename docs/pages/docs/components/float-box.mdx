@@ -1,0 +1,52 @@
+
+import { Property } from '@grapp/nextra-theme'
+
+import { Example, getExamples } from '../../../components/Example'
+
+export const getStaticProps = () => {
+  return getExamples(['float-box/float-box']);
+}
+
+## FloatBox
+
+`FloatBox` is a component that can position its child elements over the parent component using absolute positioning. It's similar to the [`Box`](/docs/components/box) component but has the added benefit of positioning elements precisely within the parent container. 
+
+With `FloatBox`, you can easily control the position of each child element by specifying exact coordinates, such as `top`, `bottom`, `left`, and `right`.
+
+<Example title="Example" example="float-box/float-box" />
+
+### Props
+
+The `FloatBox` component is created using the [`Box`](/docs/components/box) component. It extends all the props supported by `Box`, as well as [React Native View](https://reactnative.dev/docs/view#props), and the props mentioned below.
+
+#### offset
+
+<Property types={["ResponsiveProp<DimensionValue>"]}>
+  Specifies the value of each offset.
+</Property>
+
+#### top 
+
+<Property types={["ResponsiveProp<DimensionValue>"]}>
+  Sets the top offset.
+</Property>
+
+#### right 
+
+<Property types={["ResponsiveProp<DimensionValue>"]}>
+  Sets the right offset.
+</Property>
+
+#### bottom
+
+<Property types={["ResponsiveProp<DimensionValue>"]}>
+  Sets the bottom offset.
+</Property>
+
+#### left
+
+<Property types={["ResponsiveProp<DimensionValue>"]}>
+  Sets the left offset.
+</Property>
+
+

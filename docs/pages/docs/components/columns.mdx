@@ -1,0 +1,80 @@
+import { Property } from '@grapp/nextra-theme'
+import { Callout } from "nextra/components";
+
+import { Example, getExamples } from '../../../components/Example'
+
+export const getStaticProps = () => {
+  return getExamples(['columns/flex', 'columns/reverse', 'columns/align-x', 'columns/align-y']);
+}
+
+## Columns
+
+`Columns` is a layout component that helps you organize your content horizontally into columns with consistent spacing between them. By default, all columns have the same width, but you can modify the width of each column based on your preference. You can even assign fractional flex values up to 1/5 to a column for more precise layout control. 
+
+<Example title="Flex" example="columns/flex" />
+
+If you want a column to be as small as possible, you can set its flex value to `content`. This ensures the column takes up the least amount of space necessary to display its content. 
+
+The `alignY` prop allows you to vertically align columns with varying content heights. 
+
+<Example title="AlignY" example="columns/align-y" />
+
+You can use the `alignX` prop to horizontally align the columns when the total width of all columns is less than the width of the parent container. 
+
+<Example title="AlignX" example="columns/align-x" />
+
+The `reverse` prop allows you to reverse the order of the columns if you need to display them in a different order.
+
+<Example title="Reverse" example="columns/reverse" expandable={false} />
+
+If you want to stack the columns vertically on smaller screens, you can use the `collapseBelow` prop.
+
+### Custom Column component
+
+To include a custom component within `Columns`, you should utilize the `Column.from` method. This method enables you to create a new `Column` instance from a custom component and use it in your `Columns` layout. Following this approach, you can ensure your custom component is correctly integrated and behaves as expected.
+
+```tsx
+const Content = Column.from<Props>(props => {
+  return <Box {...props} />;
+});
+```
+
+### Props
+
+The `Columns` component is created using the [`Box`](/docs/components/box) component. It extends all the props* supported by `Box`, as well as [React Native View](https://reactnative.dev/docs/view#props), and the props mentioned below.
+
+<Callout type="info" emoji="*">
+  Unavailable `Box` props: `gap`, `rowGap`, `columnGap`
+</Callout>
+
+#### defaultFlex
+
+<Property types={["ResponsiveProp<Flex>"]} defaultValue="fluid">
+  Assigns a default flex value to each column.
+</Property>
+
+#### space
+
+<Property types={['ResponsiveProp<number>']}>
+  Sets the space between children.
+</Property>
+
+#### alignX
+
+<Property types={["ResponsiveProp<AxisX | Space>"]}>
+  Aligns children horizontally.
+</Property>
+
+#### alignY
+
+<Property types={["ResponsiveProp<AxisY>"]}>
+  Aligns children vertically.
+</Property>
+
+#### collapseBelow
+
+<Property types={['Breakpoint']}>
+  Stacks the columns vertically when the current breakpoint is smaller than the provided breakpoint.
+</Property>
+
+

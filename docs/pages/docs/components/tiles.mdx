@@ -1,0 +1,66 @@
+import { Property } from '@grapp/nextra-theme'
+import { Callout } from "nextra/components";
+
+import { Example, getExamples } from '../../../components/Example'
+
+export const getStaticProps = () => {
+  return getExamples(['tiles/space', 'tiles/columns', 'tiles/fill']);
+}
+
+## Tiles
+
+The `Tiles` component displays a grid of elements with equal spacing between them. You can use the `space` and `columns` props to customize the spacing and number of columns per screen size. 
+
+The `space` prop adjusts the spacing between the tiles.
+
+<Example title="Space" example="tiles/space" />
+
+The `columns` prop sets the number of columns to display.
+
+<Example title="Columns" example="tiles/columns" expandable={false} />
+
+The `fill` prop allows you to determine whether the empty content needs to be filled if the last row has fewer columns than defined in the `columns` prop. Depending on your requirements, you can set the value of the `fill` prop to `true` or `false`.
+
+<Example title="Fill" example="tiles/fill" expandable={false} />
+
+### Props
+
+The `Tiles` component is created using the [`Box`](/docs/components/box) component. It extends all the props* supported by `Box`, as well as [React Native View](https://reactnative.dev/docs/view#props), and the props mentioned below.
+
+<Callout type="info" emoji="*">
+  Unavailable `Box` props: `gap`, `rowGap`, `columnGap`, `direction`, `alignX` 
+</Callout>
+
+#### columns
+
+<Property types={['ResponsiveProp<number>']} defaultValue="1">
+  Define the number of columns.
+</Property>
+
+#### space
+
+<Property types={['ResponsiveProp<number>']}>
+  Sets the space between children.
+</Property>
+
+#### spaceX 🚀
+
+<Property types={['ResponsiveProp<number>']}>
+  Sets the horizontal space between children.
+</Property>
+
+#### spaceY
+
+<Property types={['ResponsiveProp<number>']}>
+  Sets the vertical space between children.
+</Property>
+
+#### fill
+
+<Property types={["ResponsiveProp<boolean>"]} defaultValue="false">
+  Fills the last row if it has fewer columns than defined in the `columns` prop.
+</Property>
+
+
+
+
