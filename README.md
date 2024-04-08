@@ -1,4 +1,4 @@
-# Stacks &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/grapp-dev/stacks/blob/master/LICENSE) [![npm](https://img.shields.io/npm/v/@mobily/stacks.svg?style=flat-square&amp;logo=npm)](https://www.npmjs.com/package/@mobily/stacks)
+# Stacks &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/grapp-dev/stacks/blob/master/LICENSE) [![npm](https://img.shields.io/npm/v/@grapp/stacks.svg?style=flat-square&amp;logo=npm)](https://www.npmjs.com/package/@mobily/stacks)
 
 <img src="https://raw.githubusercontent.com/grapp-dev/stacks/main/assets/stacks-logo.png" alt="Stacks, a set of components for building layouts in React Native" align="right" width="100" height="100">
 
