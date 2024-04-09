@@ -1,5 +1,13 @@
 # Changelog
 
+## v3.0.2 - 2024-04-09
+
+### What's Changed
+
+#### 🐛 Bug Fixes
+
+- fix: improve `Row.from` and `Column.from` type signatures @mobily (#47)
+
 ## v3.0.1 - 2024-04-08
 
 ### What's Changed
