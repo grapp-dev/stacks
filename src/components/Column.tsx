@@ -12,7 +12,7 @@ const markAsColumn = (node: React.FC) => {
   node.__isColumn__ = true;
 };
 
-const from = <T extends React.ComponentProps<typeof Column>>(Component: React.FC<T>) => {
+const from = <T extends React.FC<any>>(Component: T) => {
   // @ts-expect-error: this_is_fine.png
   Component.__isColumnForwarded__ = true;
   return Component;
