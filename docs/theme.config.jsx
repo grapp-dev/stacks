@@ -27,7 +27,7 @@ export default getDefaultConfig({
               },
               {
                 title: 'Migration Guide',
-                url: '/docs/migration-guid',
+                url: '/docs/migration-guide',
               },
               {
                 title: 'About Grapp.Dev',
