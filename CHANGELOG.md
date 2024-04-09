@@ -1,5 +1,13 @@
 # Changelog
 
+## v3.0.3 - 2024-04-09
+
+### What's Changed
+
+#### 🐛 Bug Fixes
+
+- fix: allow passing 0 to `multiply`/`divide` functions @mobily (#48)
+
 ## v3.0.2 - 2024-04-09
 
 ### What's Changed
