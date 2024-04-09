@@ -25,7 +25,7 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lockb') }}-
       - run: |
           cd docs
-          bun install --frozen-lockfile
+          bun install
           bun run build
           cd ..
       - uses: SamKirkland/FTP-Deploy-Action@v4.3.5
