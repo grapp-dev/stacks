@@ -11,7 +11,7 @@ const markAsRow = (node: React.FC) => {
   node.__isRow__ = true;
 };
 
-const from = <T extends React.ComponentProps<typeof Row>>(Component: React.FC<T>) => {
+const from = <T extends React.FC<any>>(Component: T) => {
   // @ts-expect-error: this_is_fine.png
   Component.__isRowForwarded__ = true;
   return Component;
