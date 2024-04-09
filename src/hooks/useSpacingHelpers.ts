@@ -17,7 +17,7 @@ export const useSpacingHelpers = () => {
 
   const multiply = React.useCallback(
     value => {
-      if (value) {
+      if (typeof value !== 'undefined') {
         return value * spacing;
       }
 
@@ -28,7 +28,7 @@ export const useSpacingHelpers = () => {
 
   const divide = React.useCallback(
     value => {
-      if (value) {
+      if (typeof value !== 'undefined') {
         return value / spacing;
       }
 
