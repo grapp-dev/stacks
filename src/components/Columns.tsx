@@ -96,6 +96,10 @@ const resolveBleedOrInset = (
 type BackgroundProps = Pick<
   BoxProps,
   | 'borderWidth'
+  | 'borderTopWidth'
+  | 'borderRightWidth'
+  | 'borderLeftWidth'
+  | 'borderBottomWidth'
   | 'borderColor'
   | 'borderRadius'
   | 'borderTopRightRadius'
@@ -109,12 +113,26 @@ type BackgroundProps = Pick<
 };
 
 const Background = (props: BackgroundProps) => {
-  const { right, left, color, borderWidth, ...rest } = props;
+  const {
+    right,
+    left,
+    color,
+    borderWidth,
+    borderTopWidth,
+    borderLeftWidth,
+    borderBottomWidth,
+    borderRightWidth,
+    ...rest
+  } = props;
   const { multiply } = useSpacingHelpers();
   const resolveResponsiveProp = useResponsiveProp();
 
   const backgroundColor = resolveResponsiveProp(color);
   const borderSize = resolveResponsiveProp(borderWidth);
+  const borderTopSize = resolveResponsiveProp(borderTopWidth);
+  const borderRightSize = resolveResponsiveProp(borderRightWidth);
+  const borderBottomSize = resolveResponsiveProp(borderBottomWidth);
+  const borderLeftSize = resolveResponsiveProp(borderLeftWidth);
   const offsetRight = resolveResponsiveProp(right);
   const offsetLeft = resolveResponsiveProp(left);
   const debugStyle = useDebugStyle();
@@ -123,6 +141,10 @@ const Background = (props: BackgroundProps) => {
     <FloatBox
       {...rest}
       borderWidth={borderSize}
+      borderTopWidth={borderTopSize}
+      borderRightWidth={borderRightSize}
+      borderBottomWidth={borderBottomSize}
+      borderLeftWidth={borderLeftSize}
       offset={0}
       right={offsetRight ? multiply(offsetRight) : 0}
       left={offsetLeft ? multiply(offsetLeft) : 0}
@@ -151,6 +173,10 @@ const PrivateColumn = (props: PrivateColumnProps) => {
     defaultFlex,
     borderRadius,
     borderWidth,
+    borderTopWidth,
+    borderRightWidth,
+    borderBottomWidth,
+    borderLeftWidth,
     borderColor,
     borderTopRightRadius,
     borderTopLeftRadius,
@@ -179,6 +205,10 @@ const PrivateColumn = (props: PrivateColumnProps) => {
         right={inset}
         borderRadius={borderRadius}
         borderWidth={borderWidth}
+        borderTopWidth={borderTopWidth}
+        borderRightWidth={borderRightWidth}
+        borderBottomWidth={borderBottomWidth}
+        borderLeftWidth={borderLeftWidth}
         borderColor={borderColor}
         borderTopRightRadius={borderTopRightRadius}
         borderTopLeftRadius={borderTopLeftRadius}
@@ -207,6 +237,10 @@ export const Columns = (props: ColumnsProps) => {
     backgroundColor,
     borderRadius,
     borderWidth,
+    borderTopWidth,
+    borderRightWidth,
+    borderBottomWidth,
+    borderLeftWidth,
     borderColor,
     borderTopRightRadius,
     borderTopLeftRadius,
@@ -264,6 +298,10 @@ export const Columns = (props: ColumnsProps) => {
         left={negate(bleedStart)}
         borderRadius={borderRadius}
         borderWidth={borderWidth}
+        borderTopWidth={borderTopWidth}
+        borderRightWidth={borderRightWidth}
+        borderBottomWidth={borderBottomWidth}
+        borderLeftWidth={borderLeftWidth}
         borderColor={borderColor}
         borderTopRightRadius={borderTopRightRadius}
         borderTopLeftRadius={borderTopLeftRadius}
