@@ -1,5 +1,13 @@
 # Changelog
 
+## v3.1.0 - 2024-04-11
+
+### What's Changed
+
+#### 🚀 Features
+
+- feat(Box): add support for `borderTopWidth`, `borderRightWidth`, `borderBottomWidth` and `borderLeftWidth` @mobily (#49)
+
 ## v3.0.3 - 2024-04-09
 
 ### What's Changed
