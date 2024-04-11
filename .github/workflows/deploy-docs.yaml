@@ -1,8 +1,11 @@
 name: Build & Deploy docs
 
 on:
-  release:
-    types: [released]
+  push:
+    branches:
+      - main
+    paths:
+      - docs/**
 
 jobs:
   deploy:
