@@ -21,6 +21,10 @@ bun add @grapp/stacks
 ```
 
 ```shell
+pnpm add @grapp/stacks
+```
+
+```shell
 yarn add @grapp/stacks
 ```
 
