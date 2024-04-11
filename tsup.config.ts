@@ -9,9 +9,4 @@ export default defineConfig({
   clean: true,
   dts: true,
   external: ['react', 'react-native', 'react-native-unistyles'],
-  outExtension: () => {
-    return {
-      js: '.js',
-    };
-  },
 });
