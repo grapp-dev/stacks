@@ -16,7 +16,6 @@ export default getDefaultConfig({
   footer: () => {
     return (
       <Footer
-        github="https://github.com/grapp-dev/stacks"
         sections={[
           {
             title: 'FAQ',

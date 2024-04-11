@@ -20,9 +20,6 @@
     "prettier": "^3.2.5",
     "raw-loader": "^4.0.2"
   },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
   "dependencies": {
     "@grapp/nextra-theme": "^0.3.8",
     "@grapp/stacks": "3.0.3",
