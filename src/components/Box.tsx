@@ -42,6 +42,10 @@ export type BoxProps = ViewProps & {
   readonly borderBottomLeftRadius?: ResponsiveProp<number>;
   readonly borderBottomRightRadius?: ResponsiveProp<number>;
   readonly borderWidth?: ResponsiveProp<number>;
+  readonly borderTopWidth?: ResponsiveProp<number>;
+  readonly borderRightWidth?: ResponsiveProp<number>;
+  readonly borderBottomWidth?: ResponsiveProp<number>;
+  readonly borderLeftWidth?: ResponsiveProp<number>;
   readonly borderColor?: ResponsiveProp<string>;
   readonly width?: ResponsiveProp<DimensionValue>;
   readonly height?: ResponsiveProp<DimensionValue>;
@@ -91,6 +95,10 @@ export const Box = React.forwardRef((props, ref) => {
     borderBottomRightRadius,
     borderColor,
     borderWidth,
+    borderTopWidth,
+    borderRightWidth,
+    borderBottomWidth,
+    borderLeftWidth,
     style,
     debuggable = true,
     ...rest
@@ -166,6 +174,10 @@ export const Box = React.forwardRef((props, ref) => {
           borderBottomLeftRadius: resolveResponsiveProp(borderBottomLeftRadius),
           borderBottomRightRadius: resolveResponsiveProp(borderBottomRightRadius),
           borderWidth: resolveResponsiveProp(borderWidth),
+          borderTopWidth: resolveResponsiveProp(borderTopWidth),
+          borderRightWidth: resolveResponsiveProp(borderRightWidth),
+          borderBottomWidth: resolveResponsiveProp(borderBottomWidth),
+          borderLeftWidth: resolveResponsiveProp(borderLeftWidth),
           borderColor: resolveResponsiveProp(borderColor),
         },
         isDebuggable && debugStyle,
