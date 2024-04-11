@@ -25,11 +25,8 @@
   },
   "dependencies": {
     "@grapp/nextra-theme": "^0.3.8",
-    "@grapp/stacks": "3.0.0",
-    "react": "^18.2.0",
+    "@grapp/stacks": "3.0.3",
     "react-element-to-jsx-string": "^15.0.0",
-    "react-native": "0.73.6",
-    "react-native-unistyles": "^2.5.5",
     "react-native-web": "^0.19.10"
   }
 }

@@ -24,6 +24,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lockb') }}-
       - run: |
+          bun install
           cd docs
           bun install
           bun run build
