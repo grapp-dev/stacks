@@ -1,6 +1,22 @@
 .root {
   display: flex;
   flex-direction: row;
+
+  @media (max-width: 480px) {
+    transform: scale(0.8);
+  }
+
+  @media (max-width: 380px) {
+    transform: scale(0.7);
+  }
+
+  @media (max-width: 330px) {
+    transform: scale(0.6);
+  }
+
+  @media (max-width: 310px) {
+    transform: scale(0.5);
+  }
 }
 
 .title {
