@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { Platform } from 'react-native';
 
+import { Box } from './Box';
+import { Column } from './Column';
+import { FloatBox } from './FloatBox';
+
 import {
   useBreakpointComparators,
   useDebugStyle,
@@ -9,9 +13,6 @@ import {
 } from '../hooks';
 import type { AxisX, AxisY, Breakpoint, Flex, ResponsiveProp, Space } from '../types';
 import { flattenChildren, negate } from '../utils';
-import { Box } from './Box';
-import { Column } from './Column';
-import { FloatBox } from './FloatBox';
 
 type BoxProps = Omit<
   React.ComponentProps<typeof Box>,

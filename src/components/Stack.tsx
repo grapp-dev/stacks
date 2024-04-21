@@ -1,9 +1,10 @@
 import * as React from 'react';
 
+import { Box } from './Box';
+
 import { useResponsiveProp } from '../hooks';
 import type { AxisX, AxisY, ResponsiveProp } from '../types';
 import { flattenChildren, intersperse } from '../utils';
-import { Box } from './Box';
 
 type BoxProps = Omit<
   React.ComponentProps<typeof Box>,

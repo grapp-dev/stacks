@@ -2,11 +2,12 @@ import * as React from 'react';
 import { Platform, Text } from 'react-native';
 import { createStyleSheet, UnistylesRuntime, useStyles } from 'react-native-unistyles';
 
+import { Box } from './Box';
+import { FloatBox } from './FloatBox';
+
 import { useResponsiveProp, useSpacingHelpers } from '../hooks';
 import type { ResponsiveProp } from '../types';
 import { makeWithIndex } from '../utils';
-import { Box } from './Box';
-import { FloatBox } from './FloatBox';
 
 export type GridProps = {
   readonly gutter?: ResponsiveProp<number>;

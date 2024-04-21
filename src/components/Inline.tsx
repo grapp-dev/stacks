@@ -1,8 +1,9 @@
 import * as React from 'react';
 
+import { Box } from './Box';
+
 import { useBreakpointComparators } from '../hooks';
 import type { AxisX, AxisY, Breakpoint, ResponsiveProp, Space } from '../types';
-import { Box } from './Box';
 
 type BoxProps = Omit<
   React.ComponentProps<typeof Box>,

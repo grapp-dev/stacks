@@ -1,8 +1,9 @@
 import * as React from 'react';
 
+import { Box } from './Box';
+
 import type { ResponsiveProp } from '../types';
 import { negate } from '../utils';
-import { Box } from './Box';
 
 type BoxProps = Omit<
   React.ComponentProps<typeof Box>,

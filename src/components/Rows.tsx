@@ -1,9 +1,10 @@
 import * as React from 'react';
 
-import type { AxisX, AxisY, Flex, ResponsiveProp, Space } from '../types';
-import { flattenChildren } from '../utils';
 import { Box } from './Box';
 import { Row } from './Row';
+
+import type { AxisX, AxisY, Flex, ResponsiveProp, Space } from '../types';
+import { flattenChildren } from '../utils';
 
 type BoxProps = Omit<
   React.ComponentProps<typeof Box>,

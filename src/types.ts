@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-interface */
 import { UnistylesBreakpoints } from 'react-native-unistyles';
 
 export interface StacksBreakpoints {}

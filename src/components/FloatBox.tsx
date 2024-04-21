@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { DimensionValue, StyleSheet } from 'react-native';
 
+import { Box } from './Box';
+
 import { useResponsiveProp } from '../hooks';
 import type { ResponsiveProp } from '../types';
-import { Box } from './Box';
 
 type BoxProps = React.ComponentProps<typeof Box>;
 
