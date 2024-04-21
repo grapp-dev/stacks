@@ -1,7 +1,7 @@
-import StacksLogo from './components/svg/stacks-logo.svg';
-
 import { Footer, Logo } from '@grapp/nextra-theme';
 import { getDefaultConfig } from '@grapp/nextra-theme/config/next';
+
+import StacksLogo from './components/svg/stacks-logo.svg';
 
 export default getDefaultConfig({
   title: 'Stacks',
@@ -11,11 +11,13 @@ export default getDefaultConfig({
   discord: 'https://discord.gg/DhS6neVJBK',
   docs: 'https://stacks.grapp.dev',
   logo: () => {
-    return <Logo image={StacksLogo} title="Stacks" />;
+    return <Logo title="stacks." />;
   },
   footer: () => {
     return (
       <Footer
+        logo={StacksLogo}
+        description="A set of components for building layouts in React Native. Powered by React Native Unistyles."
         sections={[
           {
             title: 'FAQ',

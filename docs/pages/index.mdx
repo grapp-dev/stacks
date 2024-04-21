@@ -1,55 +1,102 @@
-import { Homepage, Hero, Features, Feature } from '@grapp/nextra-theme';
-import { Components } from '../components/Components'
+import Slider from 'react-slick';
 
-<Homepage 
-  preview="/stacks-preview.png"
-  hero={
-    <Hero 
-      headline={
-        <>
-          A set of components
-          <br className="hidden sm:block" />
-          for building layouts in React Native.
-        </>
-      }
-      subtitle={
-        <>
-          Create and manage React Native layouts effortlessly.<br className="hidden sm:block" />
-          Powered by{' '}
-          <a
-            href="https://github.com/jpudysz/react-native-unistyles"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="nx-text-primary-600 nx-underline nx-decoration-from-font [text-underline-position:from-font]"
-          >
-             React Native Unistyles
-          </a>
-        </>
-      }
-    />
-  }
->
- <Features>
+import { Homepage, Hero, Features, Feature, SectionHeader, NoSSR } from '@grapp/nextra-theme';
+import { Components } from '../components/Components';
+import { Example, getExamples } from '../components/Example'
+
+import StacksLogo from '../components/svg/stacks-logo.svg';
+import IconDesign from '../components/svg/icon-design.svg';
+import IconMultipleDevices from '../components/svg/icon-multiple-devices.svg';
+import IconSmartphoneTablet from '../components/svg/icon-smartphone-tablet.svg';
+import IconGrid from '../components/svg/icon-grid.svg';
+import IconGlasses from '../components/svg/icon-glasses.svg';
+
+export const getStaticProps = () => {
+  return getExamples(['box/flex', 'columns/flex', 'inline/space', 'rows/rows', 'grid/grid', 'stack/space', 'tiles/columns']);
+}
+
+<Homepage>
+  <Hero 
+    title="A set of components for building layouts in React Native."
+    logo={StacksLogo}
+    description={
+      <>
+        Create and manage React Native layouts effortlessly. Powered by{' '}
+        <a
+          href="https://github.com/jpudysz/react-native-unistyles"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="nx-text-primary-600 nx-underline nx-decoration-from-font [text-underline-position:from-font]"
+        >
+           React Native Unistyles
+        </a>.
+      </>
+    }
+  />
+
+  <Features
+    header={
+      <SectionHeader 
+        badge="Features" 
+        title="A closer look at the key features of Stacks."
+        description="Discover how Stacks can boost your productivity when building React Native layouts."
+      />
+    }
+    preview={
+      <div className="lg:pr-8">
+        <NoSSR>
+          <Slider dots={false} arrows={false} infinite={true} speed={500} slidesToShow={1} slidesToScroll={1} autoplay={true} autoplaySpeed={4000}>
+            <Example example="box/flex" isDeviceOnly={true} />
+            <Example example="columns/flex" isDeviceOnly={true} />
+            <Example example="inline/space" isDeviceOnly={true} />
+            <Example example="rows/rows" isDeviceOnly={true} />
+            <Example example="stack/space" isDeviceOnly={true} />
+            <Example example="tiles/columns" isDeviceOnly={true} />
+            <Example example="grid/grid" isDeviceOnly={true} />
+          </Slider>
+        </NoSSR>
+      </div>
+    }
+  >
     <Feature
+      icon={IconMultipleDevices}
+      color="#33bdff"
       title="Compatibility"
       description="Stacks is compatible with the most popular platforms, including web, mobile, and desktop applications (thanks to Unistyles 🦄)."
     />
     <Feature
+      icon={IconDesign}
+      color="#1bca67"
       title="Design Flexibility"
       description="Stacks allows you to think like a designer and easily create layouts. You can eliminate margins and distribute your content evenly with the provided components."
     />
     <Feature
+      icon={IconGlasses} 
+      color="#f34d4f"
       title="Debug Mode"
       description="Stacks comes with a debug mode that lets you quickly investigate visual issues. You can easily switch to debug mode and identify UI issues."
     />
     <Feature
+      icon={IconGrid}
+      color="#7657e5"
       title="Design Grid"
       description="Stacks also has a design grid component that helps you align and organize your content."
     />
     <Feature
+      icon={IconSmartphoneTablet}
+      color="#1bcabe"
       title="Responsive Props"
       description="Stacks supports the responsive prop format. You can use responsive props to customize the spacing, number of columns, or alignments per screen size."
     />
   </Features>
+
+  <div className="mx-auto max-w-[90rem] mt-16 nx-pl-[max(env(safe-area-inset-left),1.5rem)] nx-pr-[max(env(safe-area-inset-right),1.5rem)]">
+    <SectionHeader 
+      badge="Components" 
+      title="Component showcase."
+      description="A collection of reusable layout components in your React Native projects."
+    />
+    <Components num={6} />
+  </div>
 </Homepage>
 

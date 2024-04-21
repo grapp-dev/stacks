@@ -1,9 +1,8 @@
-import styles from './Example.module.css';
-
 import * as React from 'react';
 
 import { NoSSR } from '@grapp/nextra-theme';
 
+import clsx from 'clsx';
 import { Code, Pre } from 'nextra/components';
 import { useData } from 'nextra/data';
 import reactElementToJSXString from 'react-element-to-jsx-string';
@@ -15,6 +14,7 @@ import {
 } from 'shiki';
 
 import { Device } from './Device';
+import styles from './Example.module.css';
 
 const langs: Lang[] = ['tsx'];
 const theme: Theme = 'css-variables';
@@ -56,10 +56,11 @@ type Props = {
   readonly example: string;
   readonly frame?: boolean;
   readonly expandable?: boolean;
+  readonly isDeviceOnly?: boolean;
 };
 
 export const Example = (props: Props) => {
-  const { example, title, frame = true, expandable = true } = props;
+  const { example, title, frame = true, expandable = true, isDeviceOnly = false } = props;
 
   const [isExpanded, setExpanded] = React.useState(!expandable);
   const handleExpand = React.useCallback(() => setExpanded(value => !value), []);
@@ -81,15 +82,27 @@ export const Example = (props: Props) => {
     importComponent();
   }, []);
 
+  if (isDeviceOnly) {
+    return (
+      <div
+        className={`${styles.body} nx-border-neutral-200/70 contrast-more:nx-border-neutral-400 dark:nx-border-primary-100/10 contrast-more:dark:nx-border-neutral-400`}
+      >
+        {frame ? <Device>{component}</Device> : <NoSSR>{component}</NoSSR>}
+      </div>
+    );
+  }
+
   return (
     <div className={styles.root}>
-      <div
-        className={`${styles.header} nx-border-neutral-200/70 contrast-more:nx-border-neutral-400 dark:nx-border-primary-100/10 contrast-more:dark:nx-border-neutral-400`}
-      >
-        <h4 className="nx-font-semibold nx-tracking-tight nx-text-slate-900 dark:nx-text-slate-100 nx-text-2xl nx-border-neutral-200/70">
-          {title}
-        </h4>
-      </div>
+      {title && (
+        <div
+          className={`${styles.header} nx-border-neutral-200/70 contrast-more:nx-border-neutral-400 dark:nx-border-primary-100/10 contrast-more:dark:nx-border-neutral-400`}
+        >
+          <h4 className="nx-font-semibold nx-tracking-tight nx-text-slate-900 dark:nx-text-slate-100 nx-text-2xl nx-border-neutral-200/70">
+            {title}
+          </h4>
+        </div>
+      )}
       <div
         className={`${styles.body} nx-border-neutral-200/70 contrast-more:nx-border-neutral-400 dark:nx-border-primary-100/10 contrast-more:dark:nx-border-neutral-400`}
       >

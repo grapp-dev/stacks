@@ -1,6 +1,12 @@
 @import "@grapp/nextra-theme/lib/global.css";
 @import "@grapp/nextra-theme/lib/index.css";
 
+@import "slick-carousel/slick/slick.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .nextra-code-block pre {
   font-size: 16px;
   --tw-bg-opacity: 0.03;
@@ -8,7 +14,11 @@
 }
 
 :root {
-  --grapp-home-preview-max-width: 1200px;
+  --grapp-hero-text-column-span: span 4 / span 4;
+  --grapp-features-list-column-span: span 2 / span 2;
+  --grapp-features-grid-cols: repeat(2, minmax(0, 1fr));
+  --grapp-features-container-grid-cols: repeat(4, minmax(0, 1fr));
+  --grapp-features-preview-column-span: span 2 / span 2;
 }
 
 html {

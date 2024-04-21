@@ -18,7 +18,7 @@ const Example = () => {
           <Placeholder label="footer" height={60} />
         </Row>
       </Rows>
-      <Grid columns={8} margin={4} gutter={4} color="#1BCABE" opacity={0.2} />
+      <Grid columns={8} margin={4} gutter={4} color="#34BDFF" opacity={0.2} />
     </>
   );
 };

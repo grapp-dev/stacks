@@ -1,18 +1,3 @@
-.root {
-  background-color: rgba(11, 15, 26, 0.14);
-  border-radius: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-:is(html[class~=dark]) {
-  .root {
-    /* background-color: rgba(27, 202, 190, 0.3); */
-    background-color: rgba(255, 137, 175, 0.18);
-  }
-}
-
 .label {
   font-family: 'JetBrains Mono';
   font-size: 13px;
@@ -21,7 +6,6 @@
 
 :is(html[class~=dark]) {
   .label {
-    /* color: rgba(27, 202, 190, 1.0); */
-    color: rgba(255, 137, 175, 1.0);
+    color: #2BBBB2;
   }
 }
