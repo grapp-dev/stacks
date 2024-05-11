@@ -21,8 +21,8 @@
     "raw-loader": "^4.0.2"
   },
   "dependencies": {
-    "@grapp/nextra-theme": "0.4.8",
-    "@grapp/stacks": "3.0.3",
+    "@grapp/nextra-theme": "0.4.9",
+    "@grapp/stacks": "3.1.0",
     "react-element-to-jsx-string": "^15.0.0",
     "react-native-web": "^0.19.10",
     "react-slick": "^0.30.2",
