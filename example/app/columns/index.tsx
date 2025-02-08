@@ -2,31 +2,27 @@
 import * as React from 'react';
 
 /* eslint-disable import/no-default-export */
-import { Column, Columns, Hidden, Stack } from '@grapp/stacks';
+import { Box, Column, Columns, Hidden, Stack } from '@grapp/stacks';
 
-import { Placeholder } from '../components/Placeholder';
-import { Screen } from '../components/Screen';
+import { Placeholder } from '../../components/Placeholder';
+import { Screen } from '../../components/Screen';
 
 const Page = () => {
   return (
     <Screen space={8} paddingX={4}>
       <Screen.ScrollView>
         <Stack space={8}>
-          <Stack space={2}>
-            <Columns
-              space={2}
-              backgroundColor="yellow"
-              borderRadius={10}
-              borderWidth={1}
-              borderColor="green"
-            >
-              <Column flex="1/2">
-                <Placeholder label="1/2" backgroundColor="transparent" />
-              </Column>
-              <Column flex="1/2">
-                <Placeholder label="1/2" backgroundColor="transparent" />
-              </Column>
-            </Columns>
+          <Stack space={2} marginTop={1}>
+            <Box backgroundColor="yellow" outlineColor="red" outlineWidth={1} outlineStyle="solid">
+              <Columns space={2}>
+                <Column flex="1/2">
+                  <Placeholder label="1/2" backgroundColor="transparent" />
+                </Column>
+                <Column flex="1/2">
+                  <Placeholder label="1/2" backgroundColor="transparent" />
+                </Column>
+              </Columns>
+            </Box>
 
             <Columns space={2}>
               <Column flex="1/4">
@@ -77,8 +73,10 @@ const Page = () => {
             </Columns>
 
             <Columns space={2}>
-              <Column flex="1/4" backgroundColor="red" borderWidth={1}>
-                <Placeholder label="1/4" backgroundColor="transparent" />
+              <Column flex="1/4">
+                <Box backgroundColor="red" outlineColor="green" outlineWidth={1} outlineOffset={-2}>
+                  <Placeholder label="1/4" backgroundColor="transparent" />
+                </Box>
               </Column>
               <Column flex="3/4">
                 <Placeholder label="3/4" />
@@ -121,7 +119,7 @@ const Page = () => {
             <Columns space={2}>
               <Placeholder label="1" />
               <Hidden below="tablet">
-                <Placeholder label="2" />
+                <Placeholder label="2, hidden" />
               </Hidden>
               <Placeholder label="3" />
             </Columns>

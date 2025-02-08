@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-color-literals */
 import * as React from 'react';
 import { Button, ScrollView as RNScrollView, ScrollViewProps } from 'react-native';
-import { createStyleSheet, UnistylesRuntime, useStyles } from 'react-native-unistyles';
+import { StyleSheet, UnistylesRuntime } from 'react-native-unistyles';
 
 import {
   Box,
@@ -81,16 +81,20 @@ export const Screen = (props: ScreenProps) => {
   );
 };
 
-const Content = Row.from<Props>(props => {
+const Content = Row.from((props: Props) => {
   const { paddingX } = useScreen();
   return <Box paddingX={paddingX} {...props} />;
 });
 
-const ScrollView = Row.from<Props & ScrollViewProps>(props => {
+const Footer = Row.from((props: Props) => {
+  const { children } = props;
+  return <Content flex="content">{children}</Content>;
+});
+
+const ScrollView = Row.from((props: Props & ScrollViewProps) => {
   const { children, contentContainerStyle, flex = 'fluid', horizontal } = props;
   const { paddingX } = useScreen();
   const { multiply } = useSpacingHelpers();
-  const { styles } = useStyles(stylesheet);
 
   return (
     <Box flex={flex}>
@@ -108,7 +112,7 @@ const ScrollView = Row.from<Props & ScrollViewProps>(props => {
   );
 });
 
-const stylesheet = createStyleSheet({
+const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
   },
@@ -116,3 +120,4 @@ const stylesheet = createStyleSheet({
 
 Screen.Content = Content;
 Screen.ScrollView = ScrollView;
+Screen.Footer = Footer;

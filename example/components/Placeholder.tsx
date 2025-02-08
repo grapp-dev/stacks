@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Platform, Text } from 'react-native';
-import { createStyleSheet, useStyles } from 'react-native-unistyles';
+import { StyleSheet } from 'react-native-unistyles';
 
 import { AxisX, AxisY, Box, Flex, FloatBox, Space } from '@grapp/stacks';
 
@@ -25,7 +25,6 @@ export const Placeholder = (props: Props) => {
     label,
     backgroundColor = '#1BCABE',
   } = props;
-  const { styles } = useStyles(stylesheet);
 
   const common = {
     backgroundColor,
@@ -58,7 +57,7 @@ export const Placeholder = (props: Props) => {
   );
 };
 
-const stylesheet = createStyleSheet({
+const styles = StyleSheet.create({
   root: {
     borderColor: '#1D525640',
     borderWidth: 1,

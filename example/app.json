@@ -5,6 +5,7 @@
     "version": "1.0.0",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -15,7 +16,10 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.stacks"
+      "bundleIdentifier": "com.anonymous.stacks",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -30,6 +34,14 @@
     "plugins": [
       "expo-router"
     ],
-    "scheme": "stacks"
+    "scheme": "stacks",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "6c5fdf69-115c-4880-99f1-880467bece9b"
+      }
+    }
   }
 }

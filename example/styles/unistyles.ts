@@ -1,4 +1,4 @@
-import { UnistylesRegistry } from 'react-native-unistyles';
+import { StyleSheet } from 'react-native-unistyles';
 
 const breakpoints = {
   mobile: 0,
@@ -11,6 +11,11 @@ const theme = {
     spacing: 4,
     debug: false,
   },
+};
+
+const themes = {
+  light: theme,
+  dark: theme,
 };
 
 type Breakpoints = typeof breakpoints;
@@ -28,10 +33,10 @@ declare module '@grapp/stacks' {
   export interface StacksBreakpoints extends Breakpoints {}
 }
 
-UnistylesRegistry.addBreakpoints(breakpoints)
-  .addThemes({
-    light: theme,
-  })
-  .addConfig({
-    adaptiveThemes: true,
-  });
+StyleSheet.configure({
+  settings: {
+    initialTheme: 'light',
+  },
+  breakpoints,
+  themes,
+});

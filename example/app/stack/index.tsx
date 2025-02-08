@@ -2,11 +2,11 @@
 import * as React from 'react';
 
 /* eslint-disable import/no-default-export */
-import { Stack } from '@grapp/stacks';
+import { Box, Stack } from '@grapp/stacks';
 
-import { Divider } from '../components/Divider';
-import { Placeholder } from '../components/Placeholder';
-import { Screen } from '../components/Screen';
+import { Divider } from '../../components/Divider';
+import { Placeholder } from '../../components/Placeholder';
+import { Screen } from '../../components/Screen';
 
 const Page = () => {
   return (

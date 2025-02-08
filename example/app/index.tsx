@@ -1,16 +1,16 @@
 /* eslint-disable react-native/no-raw-text */
 
 /* eslint-disable import/no-default-export */
-import { createStyleSheet, useStyles } from 'react-native-unistyles';
-
-import { Stack } from '@grapp/stacks';
+import * as React from 'react';
+import { StyleSheet } from 'react-native-unistyles';
 
 import { Link } from 'expo-router';
 
-import { Screen } from './components/Screen';
+import { Stack } from '@grapp/stacks';
+
+import { Screen } from '../components/Screen';
 
 const Page = () => {
-  const { styles } = useStyles(stylesheet);
   return (
     <Screen space={4} paddingX={4}>
       <Screen.ScrollView>
@@ -51,7 +51,7 @@ const Page = () => {
   );
 };
 
-const stylesheet = createStyleSheet({
+const styles = StyleSheet.create({
   link: {
     color: '#0B0F1A',
   },

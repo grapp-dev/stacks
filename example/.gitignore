@@ -5,6 +5,7 @@ node_modules/
 
 # Expo
 .expo/
+.build/
 dist/
 web-build/
 
@@ -35,3 +36,4 @@ yarn-error.*
 *.tsbuildinfo
 
 app/playground/
+components/Screen2.tsx

@@ -1,0 +1,23 @@
+ios_app := "stacks.app"
+
+ignore := "> /dev/null"
+
+dev *flags:
+  bun run expo start --dev-client {{flags}}
+
+build platform:
+  bun run eas build --local \
+              --platform {{platform}} \
+              --output .build/{{ if platform == "android" { "android.apk" } else { "ios.tar.gz" } }} \
+              --profile development
+
+install platform:
+  #!/usr/bin/env sh
+  if [ "{{platform}}" = "android" ]; then
+    echo "android installation steps here";
+  else \
+    tar -xvzf .build/ios.tar.gz -C .build
+    xcrun simctl install booted .build/{{ios_app}}
+    rm -rf .build/{{ios_app}}
+  fi
+

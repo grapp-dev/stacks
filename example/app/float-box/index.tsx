@@ -4,8 +4,8 @@ import * as React from 'react';
 /* eslint-disable import/no-default-export */
 import { FloatBox } from '@grapp/stacks';
 
-import { Placeholder } from '../components/Placeholder';
-import { Screen } from '../components/Screen';
+import { Placeholder } from '../../components/Placeholder';
+import { Screen } from '../../components/Screen';
 
 const Page = () => {
   return (

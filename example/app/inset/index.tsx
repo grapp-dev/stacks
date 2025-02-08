@@ -4,12 +4,12 @@ import * as React from 'react';
 /* eslint-disable import/no-default-export */
 import { Inset, Stack } from '@grapp/stacks';
 
-import { Placeholder } from '../components/Placeholder';
-import { Screen } from '../components/Screen';
+import { Placeholder } from '../../components/Placeholder';
+import { Screen } from '../../components/Screen';
 
 const Page = () => {
   return (
-    <Screen space={8} paddingX={4}>
+    <Screen paddingX={4}>
       <Screen.ScrollView>
         <Stack space={4}>
           <Placeholder />
@@ -37,6 +37,9 @@ const Page = () => {
           </Inset>
         </Stack>
       </Screen.ScrollView>
+      <Screen.Footer>
+        <Placeholder label="right = 4" />
+      </Screen.Footer>
     </Screen>
   );
 };

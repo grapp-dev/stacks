@@ -1,7 +1,7 @@
 /* eslint-disable import/no-default-export */
-import { Stack } from 'expo-router';
+import * as React from 'react';
 
-import './styles/unistyles';
+import { Stack } from 'expo-router';
 
 const Layout = () => {
   return <Stack screenOptions={{ headerShown: false }} />;
