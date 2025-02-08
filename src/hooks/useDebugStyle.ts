@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { ViewStyle } from 'react-native';
-import { useStyles } from 'react-native-unistyles';
+import { useUnistyles } from 'react-native-unistyles';
 
 import { randomColor } from '../utils';
 
 export const useDebugStyle = () => {
-  const { theme } = useStyles();
+  const { theme } = useUnistyles();
   const backgroundColor = React.useRef(randomColor()).current;
   // @ts-expect-error: this_is_fine.png
   const debug = theme?.stacks?.debug;

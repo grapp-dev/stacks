@@ -10,6 +10,9 @@ export type Stretch = 'stretch';
 export type Space = 'between' | 'around' | 'evenly';
 export type Direction = 'row' | 'row-reverse' | 'column' | 'column-reverse';
 export type Wrap = 'wrap' | 'no-wrap' | 'wrap-reverse';
+export type OutlineStyle = 'solid' | 'dotted' | 'dashed';
+export type PointerEvent = 'auto' | 'box-none' | 'box-only' | 'none';
+export type Overflow = 'visible' | 'hidden';
 
 export type Flex =
   | 'content'

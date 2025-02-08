@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { useStyles } from 'react-native-unistyles';
+import { useUnistyles } from 'react-native-unistyles';
 
-import { ResponsiveProp } from '../types';
+import { Breakpoint, ResponsiveProp } from '../types';
 import { resolveResponsiveProp } from '../utils';
 
 export const useResponsiveProp = () => {
-  const { breakpoint } = useStyles();
+  const { rt } = useUnistyles();
 
   return React.useCallback(
     <T>(value: ResponsiveProp<T>) => {
-      return resolveResponsiveProp(value, breakpoint);
+      return resolveResponsiveProp(value, rt.breakpoint as Breakpoint);
     },
-    [breakpoint],
+    [rt.breakpoint],
   );
 };

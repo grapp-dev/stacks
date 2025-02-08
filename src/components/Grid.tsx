@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Platform, Text } from 'react-native';
-import { createStyleSheet, UnistylesRuntime, useStyles } from 'react-native-unistyles';
+import { StyleSheet, UnistylesRuntime } from 'react-native-unistyles';
 
 import { Box } from './Box';
 import { FloatBox } from './FloatBox';
@@ -40,7 +40,6 @@ export const Grid = (props: GridProps) => {
   const { gutter = 2, margin = 2, opacity = 0.2, columns = 8, color = 'red' } = props;
 
   const { multiply } = useSpacingHelpers();
-  const { styles } = useStyles(stylesheet);
   const resolveResponsiveProp = useResponsiveProp();
 
   const numberOfColumns = resolveResponsiveProp(columns);
@@ -88,10 +87,11 @@ export const Grid = (props: GridProps) => {
 
 Grid.displayName = 'Grid';
 
-const stylesheet = createStyleSheet({
+const styles = StyleSheet.create({
   root: {
     pointerEvents: 'none',
   },
+  // eslint-disable-next-line react-native/no-color-literals
   text: {
     color: 'white',
     fontFamily:

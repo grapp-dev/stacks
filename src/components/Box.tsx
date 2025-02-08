@@ -1,13 +1,25 @@
 import * as React from 'react';
-import { DimensionValue, View, ViewProps } from 'react-native';
-import { createStyleSheet, useStyles } from 'react-native-unistyles';
+import { ColorValue, DimensionValue, View, ViewProps } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
 import { useDebugStyle, useResponsiveProp, useSpacingHelpers } from '../hooks';
 import type * as Polymorphic from '../polymorphic';
-import type { AxisX, AxisY, Direction, Flex, ResponsiveProp, Space, Stretch, Wrap } from '../types';
+import type {
+  AxisX,
+  AxisY,
+  Direction,
+  Flex,
+  OutlineStyle,
+  Overflow,
+  PointerEvent,
+  ResponsiveProp,
+  Space,
+  Stretch,
+  Wrap,
+} from '../types';
 import { resolveDirectionAndReverse } from '../utils';
 
-export type BoxProps = ViewProps & {
+export type BoxProps = Omit<ViewProps, 'pointerEvents'> & {
   readonly alignX?: ResponsiveProp<AxisX | AxisY | Space | Stretch>;
   readonly alignY?: ResponsiveProp<AxisX | AxisY | Space | Stretch>;
   readonly gap?: ResponsiveProp<number>;
@@ -35,7 +47,7 @@ export type BoxProps = ViewProps & {
   readonly wrap?: ResponsiveProp<Wrap>;
   readonly flex?: ResponsiveProp<Flex>;
   readonly reverse?: ResponsiveProp<boolean>;
-  readonly backgroundColor?: ResponsiveProp<string>;
+  readonly backgroundColor?: ResponsiveProp<ColorValue>;
   readonly borderRadius?: ResponsiveProp<number>;
   readonly borderTopLeftRadius?: ResponsiveProp<number>;
   readonly borderTopRightRadius?: ResponsiveProp<number>;
@@ -46,9 +58,16 @@ export type BoxProps = ViewProps & {
   readonly borderRightWidth?: ResponsiveProp<number>;
   readonly borderBottomWidth?: ResponsiveProp<number>;
   readonly borderLeftWidth?: ResponsiveProp<number>;
-  readonly borderColor?: ResponsiveProp<string>;
+  readonly borderColor?: ResponsiveProp<ColorValue>;
   readonly width?: ResponsiveProp<DimensionValue>;
   readonly height?: ResponsiveProp<DimensionValue>;
+  readonly outlineColor?: ResponsiveProp<ColorValue>;
+  readonly outlineStyle?: ResponsiveProp<OutlineStyle>;
+  readonly outlineOffset?: ResponsiveProp<number>;
+  readonly outlineWidth?: ResponsiveProp<number>;
+  readonly opacity?: ResponsiveProp<number>;
+  readonly pointerEvents?: ResponsiveProp<PointerEvent>;
+  readonly overflow?: ResponsiveProp<Overflow>;
   readonly debuggable?: ResponsiveProp<boolean>;
 };
 
@@ -101,6 +120,13 @@ export const Box = React.forwardRef((props, ref) => {
     borderLeftWidth,
     style,
     debuggable = true,
+    outlineColor,
+    outlineWidth,
+    outlineStyle,
+    outlineOffset,
+    opacity,
+    pointerEvents,
+    overflow,
     ...rest
   } = props;
 
@@ -116,6 +142,11 @@ export const Box = React.forwardRef((props, ref) => {
   const justifyContent = resolveResponsiveProp(isDirectionColumn ? alignY : alignX);
   const defaultWidth = resolveResponsiveProp(width);
   const defaultHeight = resolveResponsiveProp(height);
+
+  const defaultOutlineStyle = resolveResponsiveProp(outlineStyle);
+  const defaultPointerEvents = resolveResponsiveProp(pointerEvents);
+  const defaultOverflow = resolveResponsiveProp(overflow);
+
   const isDebuggable = resolveResponsiveProp(debuggable);
 
   const flexWrap = resolveResponsiveProp(wrap);
@@ -129,12 +160,15 @@ export const Box = React.forwardRef((props, ref) => {
         : 'content',
   );
 
-  const { styles } = useStyles(stylesheet, {
+  styles.useVariants({
     justifyContent,
     alignItems,
     flexBasis,
     flexWrap,
     flexDirection,
+    outlineStyle: defaultOutlineStyle,
+    pointerEvents: defaultPointerEvents,
+    overflow: defaultOverflow,
   });
 
   return (
@@ -179,6 +213,10 @@ export const Box = React.forwardRef((props, ref) => {
           borderBottomWidth: resolveResponsiveProp(borderBottomWidth),
           borderLeftWidth: resolveResponsiveProp(borderLeftWidth),
           borderColor: resolveResponsiveProp(borderColor),
+          outlineColor: resolveResponsiveProp(outlineColor),
+          outlineOffset: resolveResponsiveProp(outlineOffset),
+          outlineWidth: resolveResponsiveProp(outlineWidth),
+          opacity: resolveResponsiveProp(opacity),
         },
         isDebuggable && debugStyle,
         style,
@@ -191,7 +229,7 @@ export const Box = React.forwardRef((props, ref) => {
 
 Box.displayName = 'Box';
 
-const stylesheet = createStyleSheet({
+const styles = StyleSheet.create({
   root: {
     variants: {
       alignItems: {
@@ -267,6 +305,39 @@ const stylesheet = createStyleSheet({
         },
         ['wrap-reverse']: {
           flexWrap: 'wrap-reverse',
+        },
+      },
+      pointerEvents: {
+        auto: {
+          pointerEvents: 'auto',
+        },
+        'box-none': {
+          pointerEvents: 'box-none',
+        },
+        'box-only': {
+          pointerEvents: 'box-only',
+        },
+        none: {
+          pointerEvents: 'none',
+        },
+      },
+      overflow: {
+        visible: {
+          overflow: 'visible',
+        },
+        hidden: {
+          overflow: 'hidden',
+        },
+      },
+      outlineStyle: {
+        solid: {
+          outlineStyle: 'solid',
+        },
+        dotted: {
+          outlineStyle: 'dotted',
+        },
+        dashed: {
+          outlineStyle: 'dashed',
         },
       },
       flexBasis: {

@@ -2,24 +2,37 @@ import * as React from 'react';
 import { Platform } from 'react-native';
 
 import { Box } from './Box';
-import { Column } from './Column';
-import { FloatBox } from './FloatBox';
+import { ColumnProps } from './Column';
 
-import {
-  useBreakpointComparators,
-  useDebugStyle,
-  useResponsiveProp,
-  useSpacingHelpers,
-} from '../hooks';
+import { useBreakpointComparators, useResponsiveProp } from '../hooks';
 import type { AxisX, AxisY, Breakpoint, Flex, ResponsiveProp, Space } from '../types';
 import { flattenChildren, negate } from '../utils';
 
 type BoxProps = Omit<
   React.ComponentProps<typeof Box>,
-  'alignX' | 'alignY' | 'direction' | 'gap' | 'rowGap' | 'columnGap'
+  | 'alignX'
+  | 'alignY'
+  | 'direction'
+  | 'gap'
+  | 'rowGap'
+  | 'columnGap'
+  | 'backgroundColor'
+  | 'borderRadius'
+  | 'borderTopLeftRadius'
+  | 'borderTopRightRadius'
+  | 'borderBottomLeftRadius'
+  | 'borderBottomRightRadius'
+  | 'borderWidth'
+  | 'borderTopWidth'
+  | 'borderRightWidth'
+  | 'borderBottomWidth'
+  | 'borderLeftWidth'
+  | 'borderColor'
+  | 'outlineColor'
+  | 'outlineStyle'
+  | 'outlineWidth'
+  | 'outlineOffset'
 >;
-
-export type ColumnProps = React.ComponentProps<typeof Column>;
 
 export type ColumnsProps = BoxProps & {
   readonly space?: ResponsiveProp<number>;
@@ -94,67 +107,6 @@ const resolveBleedOrInset = (
   return space;
 };
 
-type BackgroundProps = Pick<
-  BoxProps,
-  | 'borderWidth'
-  | 'borderTopWidth'
-  | 'borderRightWidth'
-  | 'borderLeftWidth'
-  | 'borderBottomWidth'
-  | 'borderColor'
-  | 'borderRadius'
-  | 'borderTopRightRadius'
-  | 'borderTopLeftRadius'
-  | 'borderBottomRightRadius'
-  | 'borderBottomLeftRadius'
-> & {
-  readonly color?: ResponsiveProp<string>;
-  readonly left?: ResponsiveProp<number>;
-  readonly right?: ResponsiveProp<number>;
-};
-
-const Background = (props: BackgroundProps) => {
-  const {
-    right,
-    left,
-    color,
-    borderWidth,
-    borderTopWidth,
-    borderLeftWidth,
-    borderBottomWidth,
-    borderRightWidth,
-    ...rest
-  } = props;
-  const { multiply } = useSpacingHelpers();
-  const resolveResponsiveProp = useResponsiveProp();
-
-  const backgroundColor = resolveResponsiveProp(color);
-  const borderSize = resolveResponsiveProp(borderWidth);
-  const borderTopSize = resolveResponsiveProp(borderTopWidth);
-  const borderRightSize = resolveResponsiveProp(borderRightWidth);
-  const borderBottomSize = resolveResponsiveProp(borderBottomWidth);
-  const borderLeftSize = resolveResponsiveProp(borderLeftWidth);
-  const offsetRight = resolveResponsiveProp(right);
-  const offsetLeft = resolveResponsiveProp(left);
-  const debugStyle = useDebugStyle();
-
-  return backgroundColor || borderSize || debugStyle ? (
-    <FloatBox
-      {...rest}
-      borderWidth={borderSize}
-      borderTopWidth={borderTopSize}
-      borderRightWidth={borderRightSize}
-      borderBottomWidth={borderBottomSize}
-      borderLeftWidth={borderLeftSize}
-      offset={0}
-      right={offsetRight ? multiply(offsetRight) : 0}
-      left={offsetLeft ? multiply(offsetLeft) : 0}
-      backgroundColor={backgroundColor}
-      style={debugStyle}
-    />
-  ) : null;
-};
-
 type PrivateColumnProps = ColumnProps & {
   readonly gap?: ResponsiveProp<number>;
   readonly defaultFlex: ResponsiveProp<Flex>;
@@ -169,20 +121,8 @@ const PrivateColumn = (props: PrivateColumnProps) => {
     paddingEnd,
     paddingX,
     width,
-    backgroundColor,
     gap,
     defaultFlex,
-    borderRadius,
-    borderWidth,
-    borderTopWidth,
-    borderRightWidth,
-    borderBottomWidth,
-    borderLeftWidth,
-    borderColor,
-    borderTopRightRadius,
-    borderTopLeftRadius,
-    borderBottomRightRadius,
-    borderBottomLeftRadius,
     ...rest
   } = props;
 
@@ -201,21 +141,6 @@ const PrivateColumn = (props: PrivateColumnProps) => {
       paddingEnd={inset}
       debuggable={false}
     >
-      <Background
-        color={backgroundColor}
-        right={inset}
-        borderRadius={borderRadius}
-        borderWidth={borderWidth}
-        borderTopWidth={borderTopWidth}
-        borderRightWidth={borderRightWidth}
-        borderBottomWidth={borderBottomWidth}
-        borderLeftWidth={borderLeftWidth}
-        borderColor={borderColor}
-        borderTopRightRadius={borderTopRightRadius}
-        borderTopLeftRadius={borderTopLeftRadius}
-        borderBottomRightRadius={borderBottomRightRadius}
-        borderBottomLeftRadius={borderBottomLeftRadius}
-      />
       {children}
     </Box>
   );
@@ -235,18 +160,6 @@ export const Columns = (props: ColumnsProps) => {
     marginX,
     marginStart,
     marginEnd,
-    backgroundColor,
-    borderRadius,
-    borderWidth,
-    borderTopWidth,
-    borderRightWidth,
-    borderBottomWidth,
-    borderLeftWidth,
-    borderColor,
-    borderTopRightRadius,
-    borderTopLeftRadius,
-    borderBottomRightRadius,
-    borderBottomLeftRadius,
     ...rest
   } = props;
 
@@ -276,8 +189,6 @@ export const Columns = (props: ColumnsProps) => {
 
   const gap = isCollapsed ? undefined : space;
 
-  const color = resolveResponsiveProp(backgroundColor);
-
   return (
     <Box
       {...rest}
@@ -293,22 +204,6 @@ export const Columns = (props: ColumnsProps) => {
       marginEnd={bleedEnd}
       debuggable={false}
     >
-      <Background
-        color={color}
-        right={negate(bleedEnd)}
-        left={negate(bleedStart)}
-        borderRadius={borderRadius}
-        borderWidth={borderWidth}
-        borderTopWidth={borderTopWidth}
-        borderRightWidth={borderRightWidth}
-        borderBottomWidth={borderBottomWidth}
-        borderLeftWidth={borderLeftWidth}
-        borderColor={borderColor}
-        borderTopRightRadius={borderTopRightRadius}
-        borderTopLeftRadius={borderTopLeftRadius}
-        borderBottomRightRadius={borderBottomRightRadius}
-        borderBottomLeftRadius={borderBottomLeftRadius}
-      />
       {React.Children.map(flattenChildren(children), child => {
         if (isColumnForwarded(child)) {
           return <PrivateColumn {...child.props} gap={gap} defaultFlex={defaultFlex} />;

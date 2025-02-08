@@ -31,7 +31,7 @@ export const FloatBox = (props: FloatBoxProps) => {
 
   const fillObject = Object.fromEntries(
     Object.entries(edges).map(([key, value]) => {
-      return [key, key in props ? resolveResponsiveProp(value) : all ?? null];
+      return [key, key in props ? resolveResponsiveProp(value) : all ?? undefined];
     }),
   );
 

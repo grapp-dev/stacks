@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useStyles } from 'react-native-unistyles';
+import { useUnistyles } from 'react-native-unistyles';
 
 import { useResponsiveProp } from './useResponsiveProp';
 
@@ -9,7 +9,7 @@ type SpacingHelper = {
 };
 
 export const useSpacingHelpers = () => {
-  const { theme } = useStyles();
+  const { theme } = useUnistyles();
 
   const resolveResponsiveProp = useResponsiveProp();
   // @ts-expect-error: this_is_fine.png

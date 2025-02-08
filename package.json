@@ -16,11 +16,6 @@
     "*.md",
     "package.json"
   ],
-  "scripts": {
-    "build": "rm -rf ./lib && tsup",
-    "lint": "eslint ./src",
-    "types:check": "tsc --noEmit"
-  },
   "publishConfig": {
     "access": "public"
   },

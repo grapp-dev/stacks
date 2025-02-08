@@ -2,7 +2,27 @@ import * as React from 'react';
 
 import { BoxProps } from './Box';
 
-export const Column = (_props: BoxProps): JSX.Element => {
+export type ColumnProps = Omit<
+  BoxProps,
+  | 'backgroundColor'
+  | 'borderRadius'
+  | 'borderTopLeftRadius'
+  | 'borderTopRightRadius'
+  | 'borderBottomLeftRadius'
+  | 'borderBottomRightRadius'
+  | 'borderWidth'
+  | 'borderTopWidth'
+  | 'borderRightWidth'
+  | 'borderBottomWidth'
+  | 'borderLeftWidth'
+  | 'borderColor'
+  | 'outlineColor'
+  | 'outlineStyle'
+  | 'outlineWidth'
+  | 'outlineOffset'
+>;
+
+export const Column = (_props: ColumnProps): JSX.Element => {
   throw new Error('[Stacks] Column must be a direct child of Columns.');
 };
 
