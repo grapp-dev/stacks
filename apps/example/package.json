@@ -1,0 +1,30 @@
+{
+  "name": "stacks",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@expo/metro-runtime": "~4.0.1",
+    "@grapp/stacks": "link:@grapp/stacks",
+    "expo": "~52.0.28",
+    "expo-constants": "~17.0.5",
+    "expo-image": "^2.0.4",
+    "expo-linking": "~7.0.5",
+    "expo-router": "~4.0.17",
+    "expo-status-bar": "~2.0.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-native": "0.77.0",
+    "react-native-edge-to-edge": "^1.4.3",
+    "react-native-nitro-modules": "^0.21.0",
+    "react-native-safe-area-context": "^5.1.0",
+    "react-native-screens": "4.4.0",
+    "react-native-unistyles": "3.0.0-beta.6",
+    "react-native-web": "~0.19.13"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.7",
+    "eas-cli": "^14.7.1",
+    "expo-dev-client": "^5.0.11"
+  },
+  "private": true
+}
