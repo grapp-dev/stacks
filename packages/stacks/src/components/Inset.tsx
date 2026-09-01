@@ -1,8 +1,7 @@
-import * as React from 'react';
-
-import { Box } from './Box';
+import type * as React from 'react';
 
 import type { ResponsiveProp } from '../types';
+import { Box } from './Box';
 
 type BoxProps = Omit<
   React.ComponentProps<typeof Box>,
@@ -17,8 +16,8 @@ type BoxProps = Omit<
   | 'paddingEnd'
 >;
 
-export type InsetProps = BoxProps & {
-  readonly space?: ResponsiveProp<number>;
+type InsetProps = {
+  readonly edge?: ResponsiveProp<number>;
   readonly horizontal?: ResponsiveProp<number>;
   readonly vertical?: ResponsiveProp<number>;
   readonly top?: ResponsiveProp<number>;
@@ -29,14 +28,15 @@ export type InsetProps = BoxProps & {
   readonly end?: ResponsiveProp<number>;
 };
 
-export const Inset = (props: InsetProps) => {
-  const { children, space, horizontal, vertical, start, end, top, right, bottom, left, ...rest } =
-    props;
+type Props = BoxProps & InsetProps;
+
+export const Inset = (props: Props) => {
+  const { children, edge, horizontal, vertical, start, end, top, right, bottom, left, ...rest } = props;
 
   return (
     <Box
       {...rest}
-      padding={space}
+      padding={edge}
       paddingX={horizontal}
       paddingY={vertical}
       paddingStart={start}

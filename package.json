@@ -1,7 +1,7 @@
 {
   "name": "@grapp/stacks",
   "description": "A set of components for building layouts in React Native. Powered by React Native Unistyles.",
-  "version": "4.0.0-beta.1",
+  "version": "4.0.0-rc.1",
   "license": "MIT",
   "author": "Marcin Dziewulski <hello@mobily.pl>",
   "react-native": "src/index.ts",
@@ -22,9 +22,10 @@
   "keywords": [
     "react",
     "react-native",
+    "react-native-unistyles",
     "react-native-web",
-    "typescript",
     "stacks",
+    "unistyles",
     "layout",
     "ui"
   ],
@@ -35,23 +36,22 @@
     "url": "https://github.com/grapp-dev/stacks.git"
   },
   "peerDependencies": {
-    "react": ">=18.0.0",
-    "react-native": ">=0.76.0",
+    "react": ">=19.0.0",
+    "react-native": ">=0.81.0",
     "react-native-unistyles": ">=3.0.0",
     "react-native-edge-to-edge": "*",
     "react-native-nitro-modules": "*"
   },
   "devDependencies": {
-    "@grapp/eslint-config": "^0.1.2",
-    "@grapp/prettier-config": "^0.1.1",
-    "@grapp/ts-config": "^0.1.3",
     "@types/node": "^18.11.10",
-    "@types/react": "~18.2.45",
-    "react": "^18.2.0",
-    "react-native": "0.77.0",
-    "react-native-unistyles": "3.0.0-beta.6",
-    "tsup": "^8.3.6",
-    "typescript": "^5.7.3"
+    "@types/react": "^19.2.2",
+    "react": "^19.2.3",
+    "react-native": "0.87.1",
+    "react-native-unistyles": "3.3.0",
+    "tsup": "^8.5.1",
+    "typescript": "^6"
   },
-  "cacheDirectories": ["node_modules"]
+  "cacheDirectories": [
+    "node_modules"
+  ]
 }
